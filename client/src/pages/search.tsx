@@ -11,17 +11,26 @@ import type { Ingredient } from "@shared/schema";
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
-    nature: "",
-    flavor: "",
-    element: "",
-    category: ""
+    nature: "all",
+    flavor: "all",
+    element: "all",
+    category: "all"
   });
 
   const { data: ingredients = [], isLoading } = useQuery<Ingredient[]>({
-    queryKey: ["/api/ingredients/search", { 
-      q: searchQuery, 
-      ...filters 
-    }],
+    queryKey: ["/api/ingredients/search", searchQuery, filters.nature, filters.flavor, filters.element, filters.category],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (searchQuery) params.set('q', searchQuery);
+      if (filters.nature && filters.nature !== 'all') params.set('nature', filters.nature);
+      if (filters.flavor && filters.flavor !== 'all') params.set('flavor', filters.flavor);
+      if (filters.element && filters.element !== 'all') params.set('element', filters.element);
+      if (filters.category && filters.category !== 'all') params.set('category', filters.category);
+      
+      const response = await fetch(`/api/ingredients/search?${params.toString()}`);
+      if (!response.ok) throw new Error('Failed to search ingredients');
+      return response.json();
+    },
     enabled: true,
   });
 
@@ -65,7 +74,7 @@ export default function Search() {
                 <SelectValue placeholder="すべて" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">すべて</SelectItem>
+                <SelectItem value="all">すべて</SelectItem>
                 <SelectItem value="hot">熱性</SelectItem>
                 <SelectItem value="warm">温性</SelectItem>
                 <SelectItem value="neutral">平性</SelectItem>
@@ -81,7 +90,7 @@ export default function Search() {
                 <SelectValue placeholder="すべて" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">すべて</SelectItem>
+                <SelectItem value="all">すべて</SelectItem>
                 <SelectItem value="sweet">甘味</SelectItem>
                 <SelectItem value="sour">酸味</SelectItem>
                 <SelectItem value="bitter">苦味</SelectItem>
@@ -97,7 +106,7 @@ export default function Search() {
                 <SelectValue placeholder="すべて" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">すべて</SelectItem>
+                <SelectItem value="all">すべて</SelectItem>
                 <SelectItem value="wood">木</SelectItem>
                 <SelectItem value="fire">火</SelectItem>
                 <SelectItem value="earth">土</SelectItem>
@@ -113,13 +122,19 @@ export default function Search() {
                 <SelectValue placeholder="すべて" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">すべて</SelectItem>
+                <SelectItem value="all">すべて</SelectItem>
+                <SelectItem value="grain">穀類</SelectItem>
                 <SelectItem value="vegetable">野菜</SelectItem>
-                <SelectItem value="fruit">果物</SelectItem>
-                <SelectItem value="grain">穀物</SelectItem>
-                <SelectItem value="protein">タンパク質</SelectItem>
-                <SelectItem value="spice">香辛料</SelectItem>
-                <SelectItem value="herb">薬草</SelectItem>
+                <SelectItem value="fruit">果実</SelectItem>
+                <SelectItem value="seafood">魚介類・海藻</SelectItem>
+                <SelectItem value="meat">肉類</SelectItem>
+                <SelectItem value="dairy">卵類・乳類</SelectItem>
+                <SelectItem value="herb">香草</SelectItem>
+                <SelectItem value="nut">種実類</SelectItem>
+                <SelectItem value="oil">油脂類</SelectItem>
+                <SelectItem value="sweetener">甘味類</SelectItem>
+                <SelectItem value="spice">香辛料・調味料</SelectItem>
+                <SelectItem value="beverage">飲料類</SelectItem>
               </SelectContent>
             </Select>
           </div>
