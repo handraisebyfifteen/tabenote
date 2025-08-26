@@ -73,6 +73,127 @@ const getElementLabel = (element: string) => {
   return labels[element] || element;
 };
 
+const getNutritionLabel = (key: string) => {
+  const labels: Record<string, string> = {
+    calories: "カロリー",
+    protein: "タンパク質",
+    fat: "脂質",
+    carbohydrates: "炭水化物",
+    fiber: "食物繊維",
+    sugar: "糖質",
+    sodium: "ナトリウム",
+    potassium: "カリウム",
+    calcium: "カルシウム",
+    iron: "鉄",
+    magnesium: "マグネシウム",
+    phosphorus: "リン",
+    zinc: "亜鉛",
+    vitamin_A: "ビタミンA",
+    vitamin_B1: "ビタミンB1",
+    vitamin_B2: "ビタミンB2",
+    vitamin_B6: "ビタミンB6",
+    vitamin_B12: "ビタミンB12",
+    vitamin_C: "ビタミンC",
+    vitamin_D: "ビタミンD",
+    vitamin_E: "ビタミンE",
+    vitamin_K: "ビタミンK",
+    folate: "葉酸",
+    niacin: "ナイアシン",
+    omega_3: "オメガ3脂肪酸",
+    beta_carotene: "ベータカロテン",
+    lycopene: "リコピン",
+    anthocyanins: "アントシアニン",
+    polyphenols: "ポリフェノール",
+    isoflavones: "イソフラボン",
+    caffeine: "カフェイン",
+    alcohol: "アルコール",
+    salt: "塩分",
+    cholesterol: "コレステロール",
+    selenium: "セレン",
+    copper: "銅",
+    manganese: "マンガン",
+    iodine: "ヨウ素",
+    chromium: "クロム",
+    molybdenum: "モリブデン",
+    pantothenic_acid: "パントテン酸",
+    biotin: "ビオチン",
+    choline: "コリン",
+    water: "水分",
+    ash: "灰分",
+    energy: "エネルギー",
+    glucose: "グルコース",
+    fructose: "フルクトース",
+    sucrose: "スクロース",
+    lactose: "ラクトース",
+    galactose: "ガラクトース",
+    starch: "デンプン",
+    amino_acids: "アミノ酸",
+    essential_oils: "精油",
+    volatile_compounds: "揮発性化合物",
+    organic_acids: "有機酸",
+    enzymes: "酵素",
+    probiotics: "プロバイオティクス",
+    prebiotics: "プレバイオティクス",
+    dietary_fiber: "食物繊維",
+    pectin: "ペクチン",
+    cellulose: "セルロース",
+    hemicellulose: "ヘミセルロース",
+    lignin: "リグニン"
+  };
+  return labels[key] || key;
+};
+
+const formatNutritionValue = (key: string, value: any) => {
+  const stringValue = String(value);
+  
+  // カロリーの場合
+  if (key === 'calories' || key === 'energy') {
+    return `${stringValue}kcal`;
+  }
+  
+  // ミリグラム単位の栄養素
+  if (['sodium', 'potassium', 'calcium', 'iron', 'magnesium', 'phosphorus', 'zinc', 
+       'vitamin_C', 'caffeine', 'cholesterol'].includes(key)) {
+    return `${stringValue}mg`;
+  }
+  
+  // マイクログラム単位の栄養素
+  if (['vitamin_A', 'vitamin_B12', 'vitamin_D', 'folate', 'biotin', 'selenium', 
+       'iodine', 'chromium', 'molybdenum'].includes(key)) {
+    return `${stringValue}μg`;
+  }
+  
+  // グラム単位の栄養素
+  if (['protein', 'fat', 'carbohydrates', 'fiber', 'sugar'].includes(key)) {
+    return `${stringValue}g`;
+  }
+  
+  // パーセント表示
+  if (['alcohol', 'water'].includes(key) && !isNaN(Number(stringValue))) {
+    return `${stringValue}%`;
+  }
+  
+  // 定性的な値（high, low, etc.）はそのまま
+  if (['high', 'low', 'moderate', 'rich', '含有', 'natural', 'fermented', 'unique'].includes(stringValue)) {
+    const qualitativeLabels: Record<string, string> = {
+      high: '豊富',
+      very_high: '非常に豊富',
+      extremely_high: '極めて豊富',
+      low: '少量',
+      moderate: '適量',
+      rich: '豊富',
+      含有: '含有',
+      natural: '天然',
+      fermented: '発酵',
+      unique: '特有',
+      trace: '微量'
+    };
+    return qualitativeLabels[stringValue] || stringValue;
+  }
+  
+  return stringValue;
+};
+
 export default function IngredientCard({ ingredient }: IngredientCardProps) {
   const [showDetails, setShowDetails] = useState(false);
   const Icon = getCategoryIcon(ingredient.category);
@@ -141,7 +262,7 @@ export default function IngredientCard({ ingredient }: IngredientCardProps) {
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   {Object.entries(ingredient.nutrition as Record<string, any>).map(([key, value]) => (
                     <div key={key} className="bg-gray-50 p-2 rounded">
-                      <span className="font-medium">{key}:</span> {String(value)}
+                      <span className="font-medium">{getNutritionLabel(key)}:</span> {formatNutritionValue(key, value)}
                     </div>
                   ))}
                 </div>
