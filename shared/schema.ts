@@ -7,6 +7,7 @@ export const ingredients = pgTable("ingredients", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   nameEn: text("name_en"),
+  nameAlt: text("name_alt").array(), // alternative names in hiragana, katakana, and other variations
   scientificName: text("scientific_name"),
   category: text("category").notNull(), // vegetable, fruit, grain, protein, spice, herb
   

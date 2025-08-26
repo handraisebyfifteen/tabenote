@@ -203,6 +203,7 @@ export class MemStorage implements IStorage {
       {
         name: "大根",
         nameEn: "Daikon Radish",
+        nameAlt: ["だいこん", "ダイコン", "蘿蔔"],
         scientificName: "Raphanus sativus",
         category: "vegetable",
         nature: "cool",
@@ -221,6 +222,7 @@ export class MemStorage implements IStorage {
       {
         name: "人参",
         nameEn: "Carrot",
+        nameAlt: ["にんじん", "ニンジン", "胡蘿蔔"],
         scientificName: "Daucus carota",
         category: "vegetable",
         nature: "neutral",
@@ -239,6 +241,7 @@ export class MemStorage implements IStorage {
       {
         name: "トマト",
         nameEn: "Tomato",
+        nameAlt: ["とまと", "赤茄子", "蕃茄"],
         scientificName: "Solanum lycopersicum",
         category: "vegetable",
         nature: "cool",
@@ -257,6 +260,7 @@ export class MemStorage implements IStorage {
       {
         name: "きゅうり",
         nameEn: "Cucumber",
+        nameAlt: ["キュウリ", "胡瓜"],
         scientificName: "Cucumis sativus",
         category: "vegetable",
         nature: "cool",
@@ -293,6 +297,7 @@ export class MemStorage implements IStorage {
       {
         name: "かぼちゃ",
         nameEn: "Pumpkin",
+        nameAlt: ["カボチャ", "南瓜"],
         scientificName: "Cucurbita maxima",
         category: "vegetable",
         nature: "warm",
@@ -311,6 +316,7 @@ export class MemStorage implements IStorage {
       {
         name: "キャベツ",
         nameEn: "Cabbage",
+        nameAlt: ["きゃべつ", "甘藍", "玉菜"],
         scientificName: "Brassica oleracea",
         category: "vegetable",
         nature: "neutral",
@@ -1308,10 +1314,25 @@ export class MemStorage implements IStorage {
     let filtered = ingredients;
     
     if (query) {
+      const queryLower = query.toLowerCase();
+      const queryHiragana = this.toHiragana(query);
+      const queryKatakana = this.toKatakana(query);
+      
       filtered = filtered.filter(ingredient => 
-        ingredient.name.toLowerCase().includes(query.toLowerCase()) ||
-        ingredient.nameEn?.toLowerCase().includes(query.toLowerCase()) ||
-        ingredient.scientificName?.toLowerCase().includes(query.toLowerCase())
+        ingredient.name.toLowerCase().includes(queryLower) ||
+        ingredient.name.includes(queryHiragana) ||
+        ingredient.name.includes(queryKatakana) ||
+        ingredient.nameEn?.toLowerCase().includes(queryLower) ||
+        ingredient.scientificName?.toLowerCase().includes(queryLower) ||
+        // 別名での検索
+        (ingredient as any).nameAlt?.some((alt: string) => 
+          alt.toLowerCase().includes(queryLower) ||
+          alt.includes(queryHiragana) ||
+          alt.includes(queryKatakana)
+        ) ||
+        // ひらがな・カタカナ変換して比較
+        this.toHiragana(ingredient.name).includes(queryHiragana) ||
+        this.toKatakana(ingredient.name).includes(queryKatakana)
       );
     }
     
@@ -1332,6 +1353,19 @@ export class MemStorage implements IStorage {
     }
     
     return filtered;
+  }
+
+  // ひらがな・カタカナ変換ヘルパー関数
+  private toHiragana(str: string): string {
+    return str.replace(/[\u30A1-\u30F6]/g, (match) => {
+      return String.fromCharCode(match.charCodeAt(0) - 0x60);
+    });
+  }
+
+  private toKatakana(str: string): string {
+    return str.replace(/[\u3041-\u3096]/g, (match) => {
+      return String.fromCharCode(match.charCodeAt(0) + 0x60);
+    });
   }
 
   async createIngredient(ingredient: InsertIngredient): Promise<Ingredient> {
