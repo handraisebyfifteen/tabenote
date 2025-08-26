@@ -279,6 +279,7 @@ export class MemStorage implements IStorage {
       {
         name: "なす",
         nameEn: "Eggplant",
+        nameAlt: ["ナス", "茄子"],
         scientificName: "Solanum melongena",
         category: "vegetable",
         nature: "cool",
@@ -335,6 +336,7 @@ export class MemStorage implements IStorage {
       {
         name: "ほうれん草",
         nameEn: "Spinach",
+        nameAlt: ["ホウレンソウ", "菠薐草"],
         scientificName: "Spinacia oleracea",
         category: "vegetable",
         nature: "cool",
@@ -355,6 +357,7 @@ export class MemStorage implements IStorage {
       {
         name: "生姜",
         nameEn: "Ginger",
+        nameAlt: ["しょうが", "ショウガ", "薑"],
         scientificName: "Zingiber officinale",
         category: "spice",
         nature: "warm",
@@ -373,6 +376,7 @@ export class MemStorage implements IStorage {
       {
         name: "にんにく",
         nameEn: "Garlic",
+        nameAlt: ["ニンニク", "大蒜"],
         scientificName: "Allium sativum",
         category: "spice",
         nature: "warm",
@@ -391,6 +395,7 @@ export class MemStorage implements IStorage {
       {
         name: "ネギ",
         nameEn: "Green Onion",
+        nameAlt: ["ねぎ", "葱", "青ネギ"],
         scientificName: "Allium fistulosum",
         category: "spice",
         nature: "warm",
@@ -1112,10 +1117,23 @@ export class MemStorage implements IStorage {
       }
     ];
 
-    ingredientsData.forEach(data => {
-      const id = randomUUID();
-      this.ingredients.set(id, { ...data, id, isActive: true });
+    ingredientsData.forEach((data, index) => {
+      try {
+        const id = randomUUID();
+        // nameAltがundefinedの場合は空配列を設定
+        const ingredient: Ingredient = { 
+          ...data, 
+          id, 
+          isActive: true,
+          nameAlt: data.nameAlt || []
+        };
+        this.ingredients.set(id, ingredient);
+      } catch (error) {
+        console.error(`Failed to initialize ingredient at index ${index}:`, data.name, error);
+      }
     });
+    
+    console.log(`Successfully initialized ${this.ingredients.size} ingredients`);
 
     // Initialize complete 24 seasonal periods data (二十四節気)
     const seasonsData: InsertSeason[] = [
@@ -1318,22 +1336,25 @@ export class MemStorage implements IStorage {
       const queryHiragana = this.toHiragana(query);
       const queryKatakana = this.toKatakana(query);
       
-      filtered = filtered.filter(ingredient => 
-        ingredient.name.toLowerCase().includes(queryLower) ||
-        ingredient.name.includes(queryHiragana) ||
-        ingredient.name.includes(queryKatakana) ||
-        ingredient.nameEn?.toLowerCase().includes(queryLower) ||
-        ingredient.scientificName?.toLowerCase().includes(queryLower) ||
-        // 別名での検索
-        (ingredient as any).nameAlt?.some((alt: string) => 
-          alt.toLowerCase().includes(queryLower) ||
-          alt.includes(queryHiragana) ||
-          alt.includes(queryKatakana)
-        ) ||
-        // ひらがな・カタカナ変換して比較
-        this.toHiragana(ingredient.name).includes(queryHiragana) ||
-        this.toKatakana(ingredient.name).includes(queryKatakana)
-      );
+      filtered = filtered.filter(ingredient => {
+        this.logSearch(query, ingredient);
+        return (
+          ingredient.name.toLowerCase().includes(queryLower) ||
+          ingredient.name.includes(queryHiragana) ||
+          ingredient.name.includes(queryKatakana) ||
+          ingredient.nameEn?.toLowerCase().includes(queryLower) ||
+          ingredient.scientificName?.toLowerCase().includes(queryLower) ||
+          // 別名での検索
+          ingredient.nameAlt?.some((alt: string) => 
+            alt.toLowerCase().includes(queryLower) ||
+            alt.includes(queryHiragana) ||
+            alt.includes(queryKatakana)
+          ) ||
+          // ひらがな・カタカナ変換して比較
+          this.toHiragana(ingredient.name).includes(queryHiragana) ||
+          this.toKatakana(ingredient.name).includes(queryKatakana)
+        );
+      });
     }
     
     if (filters?.nature) {
@@ -1366,6 +1387,16 @@ export class MemStorage implements IStorage {
     return str.replace(/[\u3041-\u3096]/g, (match) => {
       return String.fromCharCode(match.charCodeAt(0) + 0x60);
     });
+  }
+  
+  // デバッグ用の検索ログ
+  private logSearch(query: string, ingredient: any): void {
+    if (query.includes("きゃべつ") || query.includes("だいこん") || query.includes("ニンジン")) {
+      console.log(`Searching "${query}" in "${ingredient.name}":`);
+      console.log(`  - nameAlt: ${JSON.stringify(ingredient.nameAlt)}`);
+      console.log(`  - toHiragana("${query}"): "${this.toHiragana(query)}"`);
+      console.log(`  - toKatakana("${query}"): "${this.toKatakana(query)}"`);
+    }
   }
 
   async createIngredient(ingredient: InsertIngredient): Promise<Ingredient> {
