@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import SeasonalCalendar from "@/components/seasonal-calendar";
-import { Snowflake, Calendar } from "lucide-react";
+import { Snowflake, Calendar, Clock, Users, ChefHat } from "lucide-react";
+import { useState } from "react";
 
 export default function Seasons() {
   const { data: currentSeason } = useQuery({
@@ -23,19 +25,85 @@ export default function Seasons() {
     {
       name: "羊肉と大根の煮込み",
       description: "温陽効果の高い羊肉と消化を助ける大根の組み合わせ",
-      properties: ["温性", "補腎", "消食"]
+      properties: ["温性", "補腎", "消食"],
+      cookingTime: "90分",
+      servings: "4人分",
+      ingredients: [
+        "羊肉 500g（ブロック肉）",
+        "大根 1本（約800g）",
+        "生姜 30g",
+        "長ネギ 2本",
+        "八角 2個",
+        "桂皮 1片",
+        "醤油 大さじ3",
+        "紹興酒 大さじ3",
+        "氷砂糖 大さじ1",
+        "水 1000ml"
+      ],
+      instructions: [
+        "羊肉を3cm角に切り、熱湯で下茹でして臭みを取る",
+        "大根は乱切り、生姜は薄切り、長ネギは斜め切りにする",
+        "鍋に油を熱し、生姜、八角、桂皮を炒めて香りを出す",
+        "羊肉を加えて表面を焼き、紹興酒を加えてアルコールを飛ばす",
+        "水、醤油、氷砂糖を加えて煮立て、アクを取る",
+        "弱火で60分煮込み、大根を加えてさらに30分煮る",
+        "長ネギを加えて5分煮て完成"
+      ],
+      tcmBenefits: "羊肉の温陽作用で体を温め、大根の消食作用で消化を促進。冬の養生に適した温補の料理。"
     },
     {
       name: "黒豆と胡桃の甘煮", 
       description: "腎を補い、脳の働きを活性化するデザート",
-      properties: ["平性", "補腎", "健脳"]
+      properties: ["平性", "補腎", "健脳"],
+      cookingTime: "120分",
+      servings: "6人分",
+      ingredients: [
+        "黒豆 200g",
+        "胡桃 100g",
+        "黒砂糖 80g",
+        "水 800ml",
+        "塩 ひとつまみ"
+      ],
+      instructions: [
+        "黒豆は一晩水に浸けて戻す",
+        "胡桃は粗く砕いておく",
+        "鍋に黒豆と水を入れ、強火で煮立てる",
+        "アクを取り、弱火で90分柔らかくなるまで煮る",
+        "黒砂糖と塩を加えて溶かす",
+        "胡桃を加えて10分煮て完成",
+        "冷蔵庫で冷やしても美味しい"
+      ],
+      tcmBenefits: "黒豆の補腎作用と胡桃の健脳作用で、腎の精を補い記憶力向上に効果的。アンチエイジングにも。"
     },
     {
       name: "山芋と白きくらげのスープ",
       description: "気を補い肺を潤す滋養スープ", 
-      properties: ["平性", "補気", "潤肺"]
+      properties: ["平性", "補気", "潤肺"],
+      cookingTime: "45分",
+      servings: "4人分",
+      ingredients: [
+        "山芋 300g",
+        "白きくらげ 20g（乾燥）",
+        "鶏がらスープ 1000ml",
+        "枸杞子 大さじ1",
+        "塩 小さじ1",
+        "白胡椒 少々",
+        "ごま油 小さじ1"
+      ],
+      instructions: [
+        "白きくらげは水で戻し、石づきを取って一口大に切る",
+        "山芋は皮を剥き、1cm厚の輪切りにする",
+        "鍋に鶏がらスープを入れて煮立てる",
+        "白きくらげを加えて20分煮る",
+        "山芋を加えて15分煮る",
+        "枸杞子を加えて5分煮る",
+        "塩、白胡椒で味を調え、ごま油を垂らして完成"
+      ],
+      tcmBenefits: "山芋の補気健脾作用と白きくらげの潤肺養陰作用で、疲労回復と肺の乾燥を防ぐ。"
     }
   ];
+
+  const [selectedRecipe, setSelectedRecipe] = useState<typeof seasonalRecipes[0] | null>(null);
 
   return (
     <div className="p-6">
@@ -210,6 +278,18 @@ export default function Seasons() {
               <CardContent className="p-4">
                 <h4 className="font-medium text-gray-800 mb-2">{recipe.name}</h4>
                 <p className="text-sm text-gray-600 mb-3">{recipe.description}</p>
+                
+                <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                  <div className="flex items-center gap-1">
+                    <Clock size={12} />
+                    {recipe.cookingTime}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Users size={12} />
+                    {recipe.servings}
+                  </div>
+                </div>
+                
                 <div className="flex flex-wrap gap-1 mb-3">
                   {recipe.properties.map((prop, propIndex) => (
                     <Badge 
@@ -224,12 +304,94 @@ export default function Seasons() {
                     </Badge>
                   ))}
                 </div>
-                <Button 
-                  className="w-full bg-orange-600 hover:bg-orange-700"
-                  data-testid={`button-recipe-${index}`}
-                >
-                  レシピを見る
-                </Button>
+                
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button 
+                      className="w-full bg-orange-600 hover:bg-orange-700"
+                      data-testid={`button-recipe-${index}`}
+                    >
+                      <ChefHat className="mr-2" size={16} />
+                      レシピを見る
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-xl font-bold text-gray-800">
+                        {recipe.name}
+                      </DialogTitle>
+                    </DialogHeader>
+                    
+                    <div className="space-y-6">
+                      {/* Recipe Info */}
+                      <div className="flex items-center gap-6 text-sm text-gray-600">
+                        <div className="flex items-center gap-2">
+                          <Clock size={16} />
+                          <span>調理時間: {recipe.cookingTime}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Users size={16} />
+                          <span>分量: {recipe.servings}</span>
+                        </div>
+                      </div>
+                      
+                      {/* TCM Benefits */}
+                      <div className="bg-orange-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-orange-800 mb-2">薬膳効果</h4>
+                        <p className="text-orange-700 text-sm">{recipe.tcmBenefits}</p>
+                      </div>
+                      
+                      {/* Properties */}
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">性味・効能</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {recipe.properties.map((prop, propIndex) => (
+                            <Badge 
+                              key={propIndex}
+                              className={
+                                propIndex === 0 ? "bg-red-50 text-red-600" :
+                                propIndex === 1 ? "bg-blue-50 text-blue-600" :
+                                "bg-green-50 text-green-600"
+                              }
+                            >
+                              {prop}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="grid md:grid-cols-2 gap-6">
+                        {/* Ingredients */}
+                        <div>
+                          <h4 className="font-semibold text-gray-800 mb-3">材料</h4>
+                          <ul className="space-y-1">
+                            {recipe.ingredients.map((ingredient, idx) => (
+                              <li key={idx} className="text-sm text-gray-700 flex items-start">
+                                <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                {ingredient}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        
+                        {/* Instructions */}
+                        <div>
+                          <h4 className="font-semibold text-gray-800 mb-3">作り方</h4>
+                          <ol className="space-y-2">
+                            {recipe.instructions.map((instruction, idx) => (
+                              <li key={idx} className="text-sm text-gray-700 flex">
+                                <span className="bg-orange-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs mr-2 flex-shrink-0 mt-0.5">
+                                  {idx + 1}
+                                </span>
+                                {instruction}
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </CardContent>
             </Card>
           ))}
