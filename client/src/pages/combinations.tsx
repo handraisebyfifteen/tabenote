@@ -44,6 +44,7 @@ export default function Combinations() {
       return response.json();
     },
     enabled: searchQuery.length > 0,
+    staleTime: 0,
   });
 
   const analyzeCombination = useMutation({
@@ -151,6 +152,13 @@ export default function Combinations() {
                     </Button>
                   )}
                 </div>
+                
+                {/* デバッグ情報 */}
+                {process.env.NODE_ENV === 'development' && searchQuery && (
+                  <div className="text-xs text-gray-500 mb-2">
+                    検索中: "{searchQuery}" - 結果: {searchResults.length}件
+                  </div>
+                )}
                 
                 {/* ドロップダウン検索結果 */}
                 {searchQuery && searchResults.length > 0 && (
