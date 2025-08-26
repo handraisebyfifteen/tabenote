@@ -37,6 +37,7 @@ const ingredientFormSchema = z.object({
     vitamins: z.record(z.number()).optional(),
     minerals: z.record(z.number()).optional()
   }).optional(),
+  functionalComponents: z.array(z.string()).optional(),
   commonUses: z.array(z.string()).optional(),
   preparationMethods: z.array(z.string()).optional(),
   bestSeasons: z.array(z.string()).optional()
@@ -51,7 +52,7 @@ export default function Manage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data: ingredients, isLoading } = useQuery({
+  const { data: ingredients = [], isLoading } = useQuery({
     queryKey: ["/api/ingredients"],
   });
 
@@ -77,6 +78,7 @@ export default function Manage() {
         vitamins: {},
         minerals: {}
       },
+      functionalComponents: [],
       commonUses: [],
       preparationMethods: [],
       bestSeasons: []

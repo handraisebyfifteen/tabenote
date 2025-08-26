@@ -23,6 +23,9 @@ export const ingredients = pgTable("ingredients", {
   // Nutritional Information
   nutrition: jsonb("nutrition"), // calories, vitamins, minerals per 100g
   
+  // Functional Components
+  functionalComponents: text("functional_components").array(), // specific bioactive compounds
+  
   // Usage Information
   commonUses: text("common_uses").array(),
   preparationMethods: text("preparation_methods").array(),
