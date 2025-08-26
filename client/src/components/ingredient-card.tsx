@@ -73,6 +73,24 @@ const getElementLabel = (element: string) => {
   return labels[element] || element;
 };
 
+const getMeridianLabel = (meridian: string) => {
+  const labels: Record<string, string> = {
+    lung: "肺 (Lung)",
+    large_intestine: "大腸 (Large Intestine)",
+    stomach: "胃 (Stomach)",
+    spleen: "脾 (Spleen)",
+    heart: "心 (Heart)",
+    small_intestine: "小腸 (Small Intestine)",
+    bladder: "膀胱 (Bladder)",
+    kidney: "腎 (Kidney)",
+    pericardium: "心包 (Pericardium)",
+    triple_heater: "三焦 (Triple Heater)",
+    gallbladder: "胆 (Gallbladder)",
+    liver: "肝 (Liver)"
+  };
+  return labels[meridian] || meridian;
+};
+
 const getNutritionLabel = (key: string) => {
   const labels: Record<string, string> = {
     calories: "カロリー",
@@ -233,11 +251,15 @@ export default function IngredientCard({ ingredient }: IngredientCardProps) {
           <div className="space-y-4 mb-4 border-t pt-4">
             {/* TCM Properties */}
             <div className="space-y-3">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-start">
                 <span className="text-sm font-medium text-gray-700">帰経:</span>
-                <Badge className="bg-green-100 text-green-800">
-                  {ingredient.meridians?.join("・") || ""}
-                </Badge>
+                <div className="flex flex-wrap gap-1 max-w-48">
+                  {ingredient.meridians?.map((meridian, index) => (
+                    <Badge key={index} className="bg-green-100 text-green-800 text-xs">
+                      {getMeridianLabel(meridian)}
+                    </Badge>
+                  )) || <span className="text-sm text-gray-500">-</span>}
+                </div>
               </div>
             </div>
             
