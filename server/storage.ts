@@ -1,4 +1,7 @@
 import { type Ingredient, type InsertIngredient, type Season, type InsertSeason, type Combination, type InsertCombination } from "@shared/schema";
+import { db } from "./db";
+import { ingredients, seasons, combinations } from "@shared/schema";
+import { eq, like, or, and } from "drizzle-orm";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -21,6 +24,77 @@ export interface IStorage {
   // Combinations
   createCombination(combination: InsertCombination): Promise<Combination>;
   getCombination(id: string): Promise<Combination | undefined>;
+}
+
+export class DatabaseStorage implements IStorage {
+  async getIngredients(): Promise<Ingredient[]> {
+    return await db.select().from(ingredients);
+  }
+
+  async getIngredient(id: string): Promise<Ingredient | undefined> {
+    const [ingredient] = await db.select().from(ingredients).where(eq(ingredients.id, id));
+    return ingredient || undefined;
+  }
+
+  async searchIngredients(query: string, filters?: { nature?: string; flavor?: string; element?: string; category?: string }): Promise<Ingredient[]> {
+    const conditions = [];
+    
+    if (query) {
+      conditions.push(
+        or(
+          like(ingredients.name, `%${query}%`),
+          like(ingredients.nameEn, `%${query}%`)
+        )
+      );
+    }
+    
+    if (filters?.nature) {
+      conditions.push(eq(ingredients.nature, filters.nature));
+    }
+    
+    if (filters?.element) {
+      conditions.push(eq(ingredients.element, filters.element));
+    }
+    
+    if (filters?.category) {
+      conditions.push(eq(ingredients.category, filters.category));
+    }
+    
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+    
+    return await db.select().from(ingredients).where(whereClause);
+  }
+
+  async createIngredient(ingredient: InsertIngredient): Promise<Ingredient> {
+    const [newIngredient] = await db.insert(ingredients).values(ingredient).returning();
+    return newIngredient;
+  }
+
+  async getSeasons(): Promise<Season[]> {
+    return await db.select().from(seasons);
+  }
+
+  async getSeason(id: string): Promise<Season | undefined> {
+    const [season] = await db.select().from(seasons).where(eq(seasons.id, id));
+    return season || undefined;
+  }
+
+  async getCurrentSeason(): Promise<Season | undefined> {
+    // For now, return the first season. In a real implementation,
+    // this would calculate based on current date
+    const [season] = await db.select().from(seasons).limit(1);
+    return season || undefined;
+  }
+
+  async createCombination(combination: InsertCombination): Promise<Combination> {
+    const [newCombination] = await db.insert(combinations).values(combination).returning();
+    return newCombination;
+  }
+
+  async getCombination(id: string): Promise<Combination | undefined> {
+    const [combination] = await db.select().from(combinations).where(eq(combinations.id, id));
+    return combination || undefined;
+  }
 }
 
 export class MemStorage implements IStorage {
@@ -1049,4 +1123,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
