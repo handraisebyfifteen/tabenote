@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Carrot, Leaf, Flame, Wheat } from "lucide-react";
+import { Carrot, Leaf, Flame, Wheat, ChevronDown, ChevronUp } from "lucide-react";
 import type { Ingredient } from "@shared/schema";
 
 interface IngredientCardProps {
@@ -73,6 +74,7 @@ const getElementLabel = (element: string) => {
 };
 
 export default function IngredientCard({ ingredient }: IngredientCardProps) {
+  const [showDetails, setShowDetails] = useState(false);
   const Icon = getCategoryIcon(ingredient.category);
 
   return (
@@ -92,59 +94,94 @@ export default function IngredientCard({ ingredient }: IngredientCardProps) {
           </div>
         </div>
         
-        {/* TCM Properties */}
-        <div className="space-y-3 mb-4">
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium text-gray-700">四性:</span>
-            <Badge className={getNatureColor(ingredient.nature)}>
-              {getNatureLabel(ingredient.nature)}
-            </Badge>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium text-gray-700">五味:</span>
-            <Badge className="bg-yellow-100 text-yellow-800">
-              {getFlavorLabel(ingredient.flavor || [])}
-            </Badge>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium text-gray-700">帰経:</span>
-            <Badge className="bg-green-100 text-green-800">
-              {ingredient.meridians?.join("・") || ""}
-            </Badge>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium text-gray-700">五行:</span>
-            <Badge className={getElementColor(ingredient.element)}>
-              {getElementLabel(ingredient.element)}
-            </Badge>
-          </div>
+        {/* Basic Properties */}
+        <div className="flex gap-2 mb-4 flex-wrap">
+          <Badge className={getNatureColor(ingredient.nature)}>
+            {getNatureLabel(ingredient.nature)}
+          </Badge>
+          <Badge className="bg-yellow-100 text-yellow-800">
+            {getFlavorLabel(ingredient.flavor || [])}
+          </Badge>
+          <Badge className={getElementColor(ingredient.element)}>
+            {getElementLabel(ingredient.element)}
+          </Badge>
         </div>
         
-        {/* Effects */}
-        <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-700 mb-2">効能:</h4>
-          <p className="text-sm text-gray-600">{ingredient.effects?.join("、") || ""}</p>
-        </div>
-        
-        {/* Nutrition */}
-        {ingredient.nutrition && (
-          <div className="mb-4">
-            <h4 className="text-sm font-medium text-gray-700 mb-2">栄養成分:</h4>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              {Object.entries(ingredient.nutrition as Record<string, any>).slice(0, 2).map(([key, value]) => (
-                <div key={key} className="bg-gray-50 p-2 rounded">
-                  <span className="font-medium">{key}:</span> {String(value)}
-                </div>
-              ))}
+        {/* Detailed Information (Collapsible) */}
+        {showDetails && (
+          <div className="space-y-4 mb-4 border-t pt-4">
+            {/* TCM Properties */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">帰経:</span>
+                <Badge className="bg-green-100 text-green-800">
+                  {ingredient.meridians?.join("・") || ""}
+                </Badge>
+              </div>
             </div>
+            
+            {/* Effects */}
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">効能:</h4>
+              <p className="text-sm text-gray-600">{ingredient.effects?.join("、") || ""}</p>
+            </div>
+            
+            {/* Contraindications */}
+            {ingredient.contraindications && ingredient.contraindications.length > 0 && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">適応:</h4>
+                <p className="text-sm text-gray-600">{ingredient.contraindications.join("、")}</p>
+              </div>
+            )}
+            
+            {/* Nutrition */}
+            {ingredient.nutrition && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">栄養成分:</h4>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  {Object.entries(ingredient.nutrition as Record<string, any>).map(([key, value]) => (
+                    <div key={key} className="bg-gray-50 p-2 rounded">
+                      <span className="font-medium">{key}:</span> {String(value)}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Functional Components */}
+            {ingredient.functionalComponents && ingredient.functionalComponents.length > 0 && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">機能性成分:</h4>
+                <p className="text-sm text-gray-600">{ingredient.functionalComponents.join("、")}</p>
+              </div>
+            )}
+            
+            {/* Common Uses */}
+            {ingredient.commonUses && ingredient.commonUses.length > 0 && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">一般的な用途:</h4>
+                <p className="text-sm text-gray-600">{ingredient.commonUses.join("、")}</p>
+              </div>
+            )}
           </div>
         )}
         
         <Button 
+          onClick={() => setShowDetails(!showDetails)}
           className="w-full bg-green-600 hover:bg-green-700"
           data-testid={`button-view-details-${ingredient.id}`}
         >
-          詳細を表示
+          {showDetails ? (
+            <>
+              <ChevronUp className="w-4 h-4 mr-2" />
+              詳細を隠す
+            </>
+          ) : (
+            <>
+              <ChevronDown className="w-4 h-4 mr-2" />
+              詳細を表示
+            </>
+          )}
         </Button>
       </CardContent>
     </Card>
