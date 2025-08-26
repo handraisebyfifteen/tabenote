@@ -10,6 +10,7 @@ import Elements from "@/pages/elements";
 import Seasons from "@/pages/seasons";
 import Combination from "@/pages/combination";
 import Education from "@/pages/education";
+import Manage from "@/pages/manage";
 import Navigation from "@/components/navigation";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
           <Route path="/seasons" component={Seasons} />
           <Route path="/combination" component={Combination} />
           <Route path="/education" component={Education} />
+          <Route path="/manage" component={Manage} />
           <Route component={NotFound} />
         </Switch>
       </div>

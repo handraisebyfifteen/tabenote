@@ -5,7 +5,8 @@ import {
   Moon, 
   Calendar, 
   Plus, 
-  Book 
+  Book,
+  Settings 
 } from "lucide-react";
 
 export default function Navigation() {
@@ -24,6 +25,7 @@ export default function Navigation() {
     { path: "/seasons", label: "節気", icon: Calendar, id: "seasons" },
     { path: "/combination", label: "組み合わせ", icon: Plus, id: "combination" },
     { path: "/education", label: "学習", icon: Book, id: "education" },
+    { path: "/manage", label: "管理", icon: Settings, id: "manage" },
   ];
 
   return (

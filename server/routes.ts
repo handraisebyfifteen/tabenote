@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertCombinationSchema } from "@shared/schema";
+import { insertCombinationSchema, insertIngredientSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Ingredients routes
@@ -41,6 +41,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(ingredient);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch ingredient" });
+    }
+  });
+
+  // Create new ingredient
+  app.post("/api/ingredients", async (req, res) => {
+    try {
+      const validatedData = insertIngredientSchema.parse(req.body);
+      const newIngredient = await storage.createIngredient(validatedData);
+      res.status(201).json(newIngredient);
+    } catch (error) {
+      res.status(400).json({ message: error instanceof Error ? error.message : "Invalid ingredient data" });
     }
   });
 
