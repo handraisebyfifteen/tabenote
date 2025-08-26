@@ -13,9 +13,19 @@ import {
 } from "lucide-react";
 
 export default function Elements() {
-  const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const [expandedElements, setExpandedElements] = useState<Set<string>>(new Set());
 
   const elements = Object.entries(fiveElementsData);
+
+  const toggleElement = (key: string) => {
+    const newExpanded = new Set(expandedElements);
+    if (newExpanded.has(key)) {
+      newExpanded.delete(key);
+    } else {
+      newExpanded.add(key);
+    }
+    setExpandedElements(newExpanded);
+  };
 
   const generateCycle = (type: 'generate' | 'destroy') => {
     if (type === 'generate') {
@@ -60,7 +70,6 @@ export default function Elements() {
                 <FiveElementsDisplay 
                   element={key} 
                   showDetails={true}
-                  className={`${selectedElement === key ? 'ring-4 ring-blue-300' : ''}`}
                 />
               </div>
             );
@@ -152,24 +161,31 @@ export default function Elements() {
       {/* Element Cards Grid */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">五行詳細 - クリックして詳細表示</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {elements.map(([key, element]) => {
             const Icon = element.icon;
+            const isExpanded = expandedElements.has(key);
+            
             return (
               <Card 
                 key={key} 
-                className={`shadow-lg border-2 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-105 ${
-                  selectedElement === key ? 'ring-4 ring-blue-300 border-blue-300' : 'hover:border-gray-300'
+                className={`shadow-lg border-2 overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-xl ${
+                  isExpanded ? 'ring-4 ring-blue-300 border-blue-300 scale-105' : 'hover:border-gray-300'
                 }`}
-                onClick={() => setSelectedElement(selectedElement === key ? null : key)}
+                onClick={() => toggleElement(key)}
               >
                 <div className={`${element.color} text-white p-6 text-center`}>
                   <Icon className="w-12 h-12 mx-auto mb-3" />
                   <h3 className="font-bold text-xl">{element.name}</h3>
                   <p className="text-sm opacity-90">{element.nameEn}</p>
+                  <div className="mt-2 text-xs opacity-75">
+                    {isExpanded ? '▲ 詳細を隠す' : '▼ 詳細を表示'}
+                  </div>
                 </div>
+                
                 <CardContent className="p-6">
-                  <div className="space-y-4 text-sm">
+                  {/* Basic Info */}
+                  <div className="space-y-4 text-sm mb-4">
                     <div className="flex justify-between items-center">
                       <span className="font-medium text-gray-700">季節:</span>
                       <Badge className={element.lightColor}>{element.season}</Badge>
@@ -186,54 +202,78 @@ export default function Elements() {
                       <span className="font-medium text-gray-700">感情:</span>
                       <Badge className={element.lightColor}>{element.emotion}</Badge>
                     </div>
-                    <div>
-                      <span className="font-medium text-gray-700 block mb-2">代表食材:</span>
-                      <div className="flex flex-wrap gap-1">
-                        {element.foods.slice(0, 3).map((food, foodIndex) => (
-                          <span 
-                            key={foodIndex}
-                            className={`px-2 py-1 ${element.lightColor} rounded-full text-xs font-medium`}
-                          >
-                            {food}
-                          </span>
-                        ))}
-                        {element.foods.length > 3 && (
-                          <span className={`px-2 py-1 ${element.lightColor} rounded-full text-xs`}>
-                            +{element.foods.length - 3}
-                          </span>
-                        )}
+                  </div>
+
+                  {/* Expanded Details */}
+                  {isExpanded && (
+                    <div className="border-t pt-4 space-y-4 text-sm animate-in slide-in-from-top-2 duration-300">
+                      {/* Additional Properties */}
+                      <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                        <h4 className="font-semibold text-gray-800 flex items-center gap-2">
+                          <Icon className="w-4 h-4" />
+                          詳細属性
+                        </h4>
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div><span className="text-gray-600">方位:</span> <span className="font-medium">{element.direction}</span></div>
+                          <div><span className="text-gray-600">色:</span> <span className="font-medium">{element.colorName}</span></div>
+                          <div><span className="text-gray-600">気候:</span> <span className="font-medium">{element.climate}</span></div>
+                          <div><span className="text-gray-600">組織:</span> <span className="font-medium">{element.tissue}</span></div>
+                          <div><span className="text-gray-600">感覚器:</span> <span className="font-medium">{element.sense}</span></div>
+                          <div><span className="text-gray-600">体液:</span> <span className="font-medium">{element.liquid}</span></div>
+                        </div>
+                      </div>
+
+                      {/* Foods */}
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">代表食材</h4>
+                        <div className="flex flex-wrap gap-1">
+                          {element.foods.map((food, foodIndex) => (
+                            <span 
+                              key={foodIndex}
+                              className={`px-2 py-1 ${element.lightColor} rounded-full text-xs font-medium`}
+                            >
+                              {food}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Characteristics */}
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">特性</h4>
+                        <div className="flex flex-wrap gap-1">
+                          {element.characteristics.map((char, idx) => (
+                            <Badge key={idx} variant="outline" className="text-xs">
+                              {char}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Imbalances */}
+                      <div className="grid grid-cols-1 gap-3">
+                        <div className="bg-red-50 rounded p-3">
+                          <h5 className="font-medium text-red-800 text-xs mb-1">過剰時の症状</h5>
+                          <p className="text-xs text-red-600">{element.imbalance.excess.join("、")}</p>
+                        </div>
+                        <div className="bg-blue-50 rounded p-3">
+                          <h5 className="font-medium text-blue-800 text-xs mb-1">不足時の症状</h5>
+                          <p className="text-xs text-blue-600">{element.imbalance.deficiency.join("、")}</p>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <div className="bg-amber-50 rounded-lg p-3">
+                        <p className="text-xs text-amber-800 font-medium">{element.description}</p>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </CardContent>
               </Card>
             );
           })}
         </div>
       </div>
-
-      {/* Selected Element Details */}
-      {selectedElement && (
-        <Card className="shadow-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">
-              {fiveElementsData[selectedElement as keyof typeof fiveElementsData].name} 
-              ({fiveElementsData[selectedElement as keyof typeof fiveElementsData].nameEn}) の詳細
-            </h2>
-            <button 
-              onClick={() => setSelectedElement(null)}
-              className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium"
-            >
-              閉じる
-            </button>
-          </div>
-          
-          <FiveElementsDisplay 
-            element={selectedElement} 
-            showDetails={true}
-          />
-        </Card>
-      )}
 
       {/* TCM Application */}
       <Card className="shadow-lg border p-8 bg-gradient-to-br from-amber-50 to-white">
