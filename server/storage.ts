@@ -20,6 +20,7 @@ export interface IStorage {
   getSeasons(): Promise<Season[]>;
   getSeason(id: string): Promise<Season | undefined>;
   getCurrentSeason(): Promise<Season | undefined>;
+  getSeasonalIngredients(season: Season): Promise<Ingredient[]>;
   
   // Combinations
   createCombination(combination: InsertCombination): Promise<Combination>;
@@ -80,10 +81,96 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getCurrentSeason(): Promise<Season | undefined> {
-    // For now, return the first season. In a real implementation,
-    // this would calculate based on current date
+    const now = new Date();
+    const month = now.getMonth() + 1; // 1-12
+    const day = now.getDate();
+    
+    // Calculate which season we're currently in based on date
+    // This is a simplified calculation - in practice you'd want more precise dates
+    const seasonRanges = [
+      { name: "大寒", start: { month: 1, day: 20 }, end: { month: 2, day: 3 } },
+      { name: "立春", start: { month: 2, day: 4 }, end: { month: 2, day: 18 } },
+      { name: "雨水", start: { month: 2, day: 19 }, end: { month: 3, day: 5 } },
+      { name: "啓蟄", start: { month: 3, day: 6 }, end: { month: 3, day: 20 } },
+      { name: "春分", start: { month: 3, day: 21 }, end: { month: 4, day: 4 } },
+      { name: "清明", start: { month: 4, day: 5 }, end: { month: 4, day: 19 } },
+      { name: "穀雨", start: { month: 4, day: 20 }, end: { month: 5, day: 4 } },
+      { name: "立夏", start: { month: 5, day: 5 }, end: { month: 5, day: 20 } },
+      { name: "小満", start: { month: 5, day: 21 }, end: { month: 6, day: 5 } },
+      { name: "芒種", start: { month: 6, day: 6 }, end: { month: 6, day: 20 } },
+      { name: "夏至", start: { month: 6, day: 21 }, end: { month: 7, day: 6 } },
+      { name: "小暑", start: { month: 7, day: 7 }, end: { month: 7, day: 22 } },
+      { name: "大暑", start: { month: 7, day: 23 }, end: { month: 8, day: 6 } },
+      { name: "立秋", start: { month: 8, day: 7 }, end: { month: 8, day: 22 } },
+      { name: "処暑", start: { month: 8, day: 23 }, end: { month: 9, day: 7 } },
+      { name: "白露", start: { month: 9, day: 8 }, end: { month: 9, day: 22 } },
+      { name: "秋分", start: { month: 9, day: 23 }, end: { month: 10, day: 7 } },
+      { name: "寒露", start: { month: 10, day: 8 }, end: { month: 10, day: 22 } },
+      { name: "霜降", start: { month: 10, day: 23 }, end: { month: 11, day: 6 } },
+      { name: "立冬", start: { month: 11, day: 7 }, end: { month: 11, day: 21 } },
+      { name: "小雪", start: { month: 11, day: 22 }, end: { month: 12, day: 6 } },
+      { name: "大雪", start: { month: 12, day: 7 }, end: { month: 12, day: 21 } },
+      { name: "冬至", start: { month: 12, day: 22 }, end: { month: 12, day: 31 } },
+      { name: "冬至", start: { month: 1, day: 1 }, end: { month: 1, day: 5 } },
+      { name: "小寒", start: { month: 1, day: 6 }, end: { month: 1, day: 19 } }
+    ];
+    
+    const currentSeason = seasonRanges.find(range => {
+      const isInRange = (month === range.start.month && day >= range.start.day) || 
+                       (month === range.end.month && day <= range.end.day) ||
+                       (month > range.start.month && month < range.end.month);
+      return isInRange;
+    });
+    
+    if (currentSeason) {
+      const [season] = await db.select().from(seasons).where(eq(seasons.name, currentSeason.name));
+      return season || undefined;
+    }
+    
+    // Fallback to first season if calculation fails
     const [season] = await db.select().from(seasons).limit(1);
     return season || undefined;
+  }
+
+  async getSeasonalIngredients(season: Season): Promise<Ingredient[]> {
+    const allIngredients = await this.getIngredients();
+    
+    // Filter ingredients based on season's recommendations
+    return allIngredients.filter(ingredient => {
+      // Check if ingredient's element matches season's recommended elements
+      const elementMatch = season.recommendedElements?.includes(ingredient.element) || false;
+      
+      // Check if ingredient's nature matches season's recommended natures
+      const natureMatch = season.recommendedNatures?.includes(ingredient.nature) || false;
+      
+      // Check if any of ingredient's flavors match season's recommended flavors
+      const flavorMatch = season.recommendedFlavors?.some(flavor => 
+        ingredient.flavor.includes(flavor)
+      ) || false;
+      
+      // Check if ingredient is specifically recommended for this season
+      const seasonMatch = ingredient.bestSeasons?.includes(season.name) || 
+                         ingredient.bestSeasons?.includes("all") || false;
+      
+      // Return ingredient if it matches any of the criteria
+      return elementMatch || natureMatch || flavorMatch || seasonMatch;
+    }).sort((a, b) => {
+      // Sort by relevance: season-specific > element match > nature match > flavor match
+      const aSeasonMatch = a.bestSeasons?.includes(season.name) ? 4 : 0;
+      const aElementMatch = season.recommendedElements?.includes(a.element) ? 3 : 0;
+      const aNatureMatch = season.recommendedNatures?.includes(a.nature) ? 2 : 0;
+      const aFlavorMatch = season.recommendedFlavors?.some(f => a.flavor.includes(f)) ? 1 : 0;
+      
+      const bSeasonMatch = b.bestSeasons?.includes(season.name) ? 4 : 0;
+      const bElementMatch = season.recommendedElements?.includes(b.element) ? 3 : 0;
+      const bNatureMatch = season.recommendedNatures?.includes(b.nature) ? 2 : 0;
+      const bFlavorMatch = season.recommendedFlavors?.some(f => b.flavor.includes(f)) ? 1 : 0;
+      
+      const aScore = aSeasonMatch + aElementMatch + aNatureMatch + aFlavorMatch;
+      const bScore = bSeasonMatch + bElementMatch + bNatureMatch + bFlavorMatch;
+      
+      return bScore - aScore; // Sort by relevance score (highest first)
+    });
   }
 
   async createCombination(combination: InsertCombination): Promise<Combination> {
@@ -1006,33 +1093,175 @@ export class MemStorage implements IStorage {
       this.ingredients.set(id, { ...data, id, isActive: true });
     });
 
-    // Initialize 24 seasonal periods data
+    // Initialize complete 24 seasonal periods data (二十四節気)
     const seasonsData: InsertSeason[] = [
       {
-        name: "立春",
-        nameEn: "Beginning of Spring",
-        period: "2月4日〜18日",
+        name: "立春", nameEn: "Beginning of Spring", period: "2月4日〜18日",
         description: "春の始まり。陽気が初めて動き出す時期。肝の働きを整え、気の流れを良くする。",
-        recommendedElements: ["wood", "fire"],
-        recommendedNatures: ["neutral", "slightly_warm"],
-        recommendedFlavors: ["sweet", "sour"],
-        healthFocus: ["疏肝理気", "養血柔肝", "健脾和胃"],
-        avoidances: ["過度な辛味", "生冷食品"],
-        recommendedIngredients: [],
-        order: 1
+        recommendedElements: ["wood", "fire"], recommendedNatures: ["neutral", "warm"],
+        recommendedFlavors: ["sweet", "sour"], healthFocus: ["疏肝理気", "養血柔肝", "健脾和胃"],
+        avoidances: ["過度な辛味", "生冷食品"], recommendedIngredients: [], order: 1
       },
       {
-        name: "立冬",
-        nameEn: "Beginning of Winter",
-        period: "11月7日〜21日",
-        description: "冬の始まり。体を温め、腎の働きを補う食材を重視する時期です。",
-        recommendedElements: ["water", "fire"],
-        recommendedNatures: ["warm", "hot"],
-        recommendedFlavors: ["salty", "sweet"],
-        healthFocus: ["補腎強身", "温陽散寒", "滋陰潤燥"],
-        avoidances: ["生冷食品", "過度な寒涼性食材"],
-        recommendedIngredients: [],
-        order: 19
+        name: "雨水", nameEn: "Rain Water", period: "2月19日〜3月5日",
+        description: "雪から雨に変わる時期。脾胃を健やかにし、湿気対策を重視。",
+        recommendedElements: ["earth", "wood"], recommendedNatures: ["neutral", "warm"],
+        recommendedFlavors: ["sweet", "bitter"], healthFocus: ["健脾除湿", "理気和胃", "養肝血"],
+        avoidances: ["過度な甘味", "湿気の多い食材"], recommendedIngredients: [], order: 2
+      },
+      {
+        name: "啓蟄", nameEn: "Awakening of Insects", period: "3月6日〜20日",
+        description: "虫が目覚める時期。肝気が上昇しやすいので、穏やかに肝を養う。",
+        recommendedElements: ["wood", "earth"], recommendedNatures: ["neutral", "cool"],
+        recommendedFlavors: ["sweet", "sour"], healthFocus: ["養肝血", "清肝火", "健脾胃"],
+        avoidances: ["辛辣食品", "過度な飲酒"], recommendedIngredients: [], order: 3
+      },
+      {
+        name: "春分", nameEn: "Spring Equinox", period: "3月21日〜4月4日",
+        description: "昼夜が等しくなる。陰陽のバランスを重視し、調和のとれた食事を。",
+        recommendedElements: ["wood", "earth"], recommendedNatures: ["neutral"],
+        recommendedFlavors: ["sweet", "bland"], healthFocus: ["調和陰陽", "養肝脾", "清心安神"],
+        avoidances: ["極端な性味", "過食"], recommendedIngredients: [], order: 4
+      },
+      {
+        name: "清明", nameEn: "Clear and Bright", period: "4月5日〜19日",
+        description: "清らかで明るい時期。肝の疏泄機能を助け、気血の流れを促進。",
+        recommendedElements: ["wood", "fire"], recommendedNatures: ["neutral", "cool"],
+        recommendedFlavors: ["sweet", "bitter"], healthFocus: ["疏肝理気", "清熱涼血", "健脾益気"],
+        avoidances: ["発物食材", "過度な補養"], recommendedIngredients: [], order: 5
+      },
+      {
+        name: "穀雨", nameEn: "Grain Rain", period: "4月20日〜5月4日",
+        description: "春の最後の節気。脾胃を調え、夏への準備を整える。",
+        recommendedElements: ["earth", "wood"], recommendedNatures: ["neutral", "cool"],
+        recommendedFlavors: ["sweet", "bitter"], healthFocus: ["健脾和胃", "清肝瀉火", "養陰潤燥"],
+        avoidances: ["温燥食材", "厚味食品"], recommendedIngredients: [], order: 6
+      },
+      {
+        name: "立夏", nameEn: "Beginning of Summer", period: "5月5日〜20日",
+        description: "夏の始まり。心の働きを養い、暑熱に備える。",
+        recommendedElements: ["fire", "earth"], recommendedNatures: ["cool", "neutral"],
+        recommendedFlavors: ["bitter", "sweet"], healthFocus: ["養心安神", "清熱解暑", "健脾化湿"],
+        avoidances: ["過度な寒涼", "厚膩食品"], recommendedIngredients: [], order: 7
+      },
+      {
+        name: "小満", nameEn: "Grain Buds", period: "5月21日〜6月5日",
+        description: "麦の穂が実り始める時期。湿邪を防ぎ、心火を清める。",
+        recommendedElements: ["fire", "earth"], recommendedNatures: ["cool", "neutral"],
+        recommendedFlavors: ["bitter", "bland"], healthFocus: ["清心火", "利水渗湿", "健脾和胃"],
+        avoidances: ["膩滞食品", "辛辣刺激"], recommendedIngredients: [], order: 8
+      },
+      {
+        name: "芒種", nameEn: "Grain in Ear", period: "6月6日〜20日",
+        description: "麦の収穫時期。湿熱を除き、心神を安定させる。",
+        recommendedElements: ["fire", "earth"], recommendedNatures: ["cool"],
+        recommendedFlavors: ["bitter", "sweet"], healthFocus: ["清熱利湿", "養心安神", "健脾開胃"],
+        avoidances: ["熱性食材", "過度な甘味"], recommendedIngredients: [], order: 9
+      },
+      {
+        name: "夏至", nameEn: "Summer Solstice", period: "6月21日〜7月6日",
+        description: "一年で最も昼が長い時期。陽気が最盛なので、涼性食材で調和を図る。",
+        recommendedElements: ["fire", "water"], recommendedNatures: ["cool", "cold"],
+        recommendedFlavors: ["bitter", "salty"], healthFocus: ["清熱解暑", "養陰生津", "清心安神"],
+        avoidances: ["温熱食材", "辛辣刺激"], recommendedIngredients: [], order: 10
+      },
+      {
+        name: "小暑", nameEn: "Slight Heat", period: "7月7日〜22日",
+        description: "暑さが本格化する時期。清熱と化湿を重視。",
+        recommendedElements: ["fire", "earth"], recommendedNatures: ["cool", "cold"],
+        recommendedFlavors: ["bitter", "sweet"], healthFocus: ["清熱解暑", "化湿健脾", "生津止渇"],
+        avoidances: ["温燥食材", "厚膩食品"], recommendedIngredients: [], order: 11
+      },
+      {
+        name: "大暑", nameEn: "Great Heat", period: "7月23日〜8月6日",
+        description: "一年で最も暑い時期。涼性食材で体を冷ましつつ、脾胃を保護。",
+        recommendedElements: ["water", "earth"], recommendedNatures: ["cool", "cold"],
+        recommendedFlavors: ["bitter", "sweet"], healthFocus: ["清熱瀉火", "健脾化湿", "生津潤燥"],
+        avoidances: ["熱性食材", "肥甘厚味"], recommendedIngredients: [], order: 12
+      },
+      {
+        name: "立秋", nameEn: "Beginning of Autumn", period: "8月7日〜22日",
+        description: "秋の始まり。肺を潤し、燥邪から身を守る。",
+        recommendedElements: ["metal", "earth"], recommendedNatures: ["neutral", "cool"],
+        recommendedFlavors: ["sweet", "sour"], healthFocus: ["潤肺養陰", "收斂固脱", "健脾益気"],
+        avoidances: ["辛辣燥烈", "過度な発散"], recommendedIngredients: [], order: 13
+      },
+      {
+        name: "処暑", nameEn: "Stopping the Heat", period: "8月23日〜9月7日",
+        description: "暑さが和らぐ時期。秋燥に備え、肺陰を養う。",
+        recommendedElements: ["metal", "water"], recommendedNatures: ["neutral", "cool"],
+        recommendedFlavors: ["sweet", "sour"], healthFocus: ["養陰潤肺", "清残熱", "健脾和胃"],
+        avoidances: ["辛燥食材", "冷飲過度"], recommendedIngredients: [], order: 14
+      },
+      {
+        name: "白露", nameEn: "White Dew", period: "9月8日〜22日",
+        description: "露が白く見える時期。肺を潤し、腎気を収斂させる。",
+        recommendedElements: ["metal", "water"], recommendedNatures: ["neutral", "warm"],
+        recommendedFlavors: ["sweet", "sour"], healthFocus: ["潤肺防燥", "收斂腎気", "養胃生津"],
+        avoidances: ["辛辣食品", "過度な涼性"], recommendedIngredients: [], order: 15
+      },
+      {
+        name: "秋分", nameEn: "Autumn Equinox", period: "9月23日〜10月7日",
+        description: "昼夜が等しくなる。燥邪を防ぎ、陰陽の調和を図る。",
+        recommendedElements: ["metal", "earth"], recommendedNatures: ["neutral"],
+        recommendedFlavors: ["sweet", "sour"], healthFocus: ["調和陰陽", "潤燥養陰", "健脾益肺"],
+        avoidances: ["極端な性味", "過燥食材"], recommendedIngredients: [], order: 16
+      },
+      {
+        name: "寒露", nameEn: "Cold Dew", period: "10月8日〜22日",
+        description: "露が冷たくなる時期。腎気を収斂し、温養を始める。",
+        recommendedElements: ["metal", "water"], recommendedNatures: ["neutral", "warm"],
+        recommendedFlavors: ["sweet", "salty"], healthFocus: ["滋陰潤燥", "收斂腎気", "温養脾胃"],
+        avoidances: ["辛散食材", "過度な寒涼"], recommendedIngredients: [], order: 17
+      },
+      {
+        name: "霜降", nameEn: "Frost's Descent", period: "10月23日〜11月6日",
+        description: "霜が降りる時期。腎陽を温養し、冬への準備を整える。",
+        recommendedElements: ["metal", "water"], recommendedNatures: ["warm", "neutral"],
+        recommendedFlavors: ["sweet", "salty"], healthFocus: ["溫養腎陽", "潤肺防燥", "健脾益氣"],
+        avoidances: ["寒涼食材", "辛散過度"], recommendedIngredients: [], order: 18
+      },
+      {
+        name: "立冬", nameEn: "Beginning of Winter", period: "11月7日〜21日",
+        description: "冬の始まり。腎陽を補い、精気を蓄える時期。",
+        recommendedElements: ["water", "fire"], recommendedNatures: ["warm", "hot"],
+        recommendedFlavors: ["salty", "sweet"], healthFocus: ["補腎強身", "温陽散寒", "滋陰潤燥"],
+        avoidances: ["生冷食品", "過度な寒涼"], recommendedIngredients: [], order: 19
+      },
+      {
+        name: "小雪", nameEn: "Slight Snow", period: "11月22日〜12月6日",
+        description: "雪が降り始める時期。腎陽を温補し、寒邪を防ぐ。",
+        recommendedElements: ["water", "fire"], recommendedNatures: ["warm", "hot"],
+        recommendedFlavors: ["salty", "sweet"], healthFocus: ["溫補腎陽", "禦寒保暖", "滋養精血"],
+        avoidances: ["生冷瓜果", "寒涼飲食"], recommendedIngredients: [], order: 20
+      },
+      {
+        name: "大雪", nameEn: "Great Snow", period: "12月7日〜21日",
+        description: "大雪の時期。陽気を蓄え、腎精を養う。",
+        recommendedElements: ["water", "fire"], recommendedNatures: ["warm", "hot"],
+        recommendedFlavors: ["salty", "bitter"], healthFocus: ["蔵精納氣", "溫陽補腎", "滋陰降火"],
+        avoidances: ["寒涼生冷", "辛辣燥烈"], recommendedIngredients: [], order: 21
+      },
+      {
+        name: "冬至", nameEn: "Winter Solstice", period: "12月22日〜1月5日",
+        description: "一年で最も夜が長い時期。陽気が生まれ始める重要な節気。",
+        recommendedElements: ["water", "fire"], recommendedNatures: ["warm", "neutral"],
+        recommendedFlavors: ["salty", "sweet"], healthFocus: ["一陽初生", "補腎益精", "溫中散寒"],
+        avoidances: ["過度な補養", "辛辣刺激"], recommendedIngredients: [], order: 22
+      },
+      {
+        name: "小寒", nameEn: "Slight Cold", period: "1月6日〜19日",
+        description: "寒さが本格化する時期。腎陽を温補し、精気を保護。",
+        recommendedElements: ["water", "fire"], recommendedNatures: ["warm", "hot"],
+        recommendedFlavors: ["salty", "sweet"], healthFocus: ["溫補腎陽", "固精保暖", "健脾益氣"],
+        avoidances: ["生冷食物", "過度な發散"], recommendedIngredients: [], order: 23
+      },
+      {
+        name: "大寒", nameEn: "Great Cold", period: "1月20日〜2月3日",
+        description: "一年で最も寒い時期。温養を重視し、春への準備を整える。",
+        recommendedElements: ["water", "fire"], recommendedNatures: ["warm", "hot"],
+        recommendedFlavors: ["salty", "sweet"], healthFocus: ["溫陽散寒", "補腎益精", "調養脾胃"],
+        avoidances: ["寒涼性質", "過分發散"], recommendedIngredients: [], order: 24
       }
     ];
 
@@ -1103,8 +1332,93 @@ export class MemStorage implements IStorage {
   }
 
   async getCurrentSeason(): Promise<Season | undefined> {
-    // For demo purposes, return "立冬" (Beginning of Winter)
-    return Array.from(this.seasons.values()).find(season => season.name === "立冬");
+    const now = new Date();
+    const month = now.getMonth() + 1; // 1-12
+    const day = now.getDate();
+    
+    // Calculate which season we're currently in based on date
+    const seasonRanges = [
+      { name: "大寒", start: { month: 1, day: 20 }, end: { month: 2, day: 3 } },
+      { name: "立春", start: { month: 2, day: 4 }, end: { month: 2, day: 18 } },
+      { name: "雨水", start: { month: 2, day: 19 }, end: { month: 3, day: 5 } },
+      { name: "啓蟄", start: { month: 3, day: 6 }, end: { month: 3, day: 20 } },
+      { name: "春分", start: { month: 3, day: 21 }, end: { month: 4, day: 4 } },
+      { name: "清明", start: { month: 4, day: 5 }, end: { month: 4, day: 19 } },
+      { name: "穀雨", start: { month: 4, day: 20 }, end: { month: 5, day: 4 } },
+      { name: "立夏", start: { month: 5, day: 5 }, end: { month: 5, day: 20 } },
+      { name: "小満", start: { month: 5, day: 21 }, end: { month: 6, day: 5 } },
+      { name: "芒種", start: { month: 6, day: 6 }, end: { month: 6, day: 20 } },
+      { name: "夏至", start: { month: 6, day: 21 }, end: { month: 7, day: 6 } },
+      { name: "小暑", start: { month: 7, day: 7 }, end: { month: 7, day: 22 } },
+      { name: "大暑", start: { month: 7, day: 23 }, end: { month: 8, day: 6 } },
+      { name: "立秋", start: { month: 8, day: 7 }, end: { month: 8, day: 22 } },
+      { name: "処暑", start: { month: 8, day: 23 }, end: { month: 9, day: 7 } },
+      { name: "白露", start: { month: 9, day: 8 }, end: { month: 9, day: 22 } },
+      { name: "秋分", start: { month: 9, day: 23 }, end: { month: 10, day: 7 } },
+      { name: "寒露", start: { month: 10, day: 8 }, end: { month: 10, day: 22 } },
+      { name: "霜降", start: { month: 10, day: 23 }, end: { month: 11, day: 6 } },
+      { name: "立冬", start: { month: 11, day: 7 }, end: { month: 11, day: 21 } },
+      { name: "小雪", start: { month: 11, day: 22 }, end: { month: 12, day: 6 } },
+      { name: "大雪", start: { month: 12, day: 7 }, end: { month: 12, day: 21 } },
+      { name: "冬至", start: { month: 12, day: 22 }, end: { month: 12, day: 31 } },
+      { name: "冬至", start: { month: 1, day: 1 }, end: { month: 1, day: 5 } },
+      { name: "小寒", start: { month: 1, day: 6 }, end: { month: 1, day: 19 } }
+    ];
+    
+    const currentSeason = seasonRanges.find(range => {
+      const isInRange = (month === range.start.month && day >= range.start.day) || 
+                       (month === range.end.month && day <= range.end.day) ||
+                       (month > range.start.month && month < range.end.month);
+      return isInRange;
+    });
+    
+    if (currentSeason) {
+      return Array.from(this.seasons.values()).find(season => season.name === currentSeason.name);
+    }
+    
+    // Fallback to first season if calculation fails
+    return Array.from(this.seasons.values()).sort((a, b) => a.order - b.order)[0];
+  }
+
+  async getSeasonalIngredients(season: Season): Promise<Ingredient[]> {
+    const allIngredients = await this.getIngredients();
+    
+    // Filter ingredients based on season's recommendations
+    return allIngredients.filter(ingredient => {
+      // Check if ingredient's element matches season's recommended elements
+      const elementMatch = season.recommendedElements?.includes(ingredient.element) || false;
+      
+      // Check if ingredient's nature matches season's recommended natures
+      const natureMatch = season.recommendedNatures?.includes(ingredient.nature) || false;
+      
+      // Check if any of ingredient's flavors match season's recommended flavors
+      const flavorMatch = season.recommendedFlavors?.some(flavor => 
+        ingredient.flavor.includes(flavor)
+      ) || false;
+      
+      // Check if ingredient is specifically recommended for this season
+      const seasonMatch = ingredient.bestSeasons?.includes(season.name) || 
+                         ingredient.bestSeasons?.includes("all") || false;
+      
+      // Return ingredient if it matches any of the criteria
+      return elementMatch || natureMatch || flavorMatch || seasonMatch;
+    }).sort((a, b) => {
+      // Sort by relevance: season-specific > element match > nature match > flavor match
+      const aSeasonMatch = a.bestSeasons?.includes(season.name) ? 4 : 0;
+      const aElementMatch = season.recommendedElements?.includes(a.element) ? 3 : 0;
+      const aNatureMatch = season.recommendedNatures?.includes(a.nature) ? 2 : 0;
+      const aFlavorMatch = season.recommendedFlavors?.some(f => a.flavor.includes(f)) ? 1 : 0;
+      
+      const bSeasonMatch = b.bestSeasons?.includes(season.name) ? 4 : 0;
+      const bElementMatch = season.recommendedElements?.includes(b.element) ? 3 : 0;
+      const bNatureMatch = season.recommendedNatures?.includes(b.nature) ? 2 : 0;
+      const bFlavorMatch = season.recommendedFlavors?.some(f => b.flavor.includes(f)) ? 1 : 0;
+      
+      const aScore = aSeasonMatch + aElementMatch + aNatureMatch + aFlavorMatch;
+      const bScore = bSeasonMatch + bElementMatch + bNatureMatch + bFlavorMatch;
+      
+      return bScore - aScore; // Sort by relevance score (highest first)
+    });
   }
 
   async createCombination(combination: InsertCombination): Promise<Combination> {

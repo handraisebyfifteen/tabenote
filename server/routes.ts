@@ -77,6 +77,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/seasons/current/ingredients", async (_req, res) => {
+    try {
+      const currentSeason = await storage.getCurrentSeason();
+      if (!currentSeason) {
+        return res.status(404).json({ message: "Current season not found" });
+      }
+      
+      const seasonalIngredients = await storage.getSeasonalIngredients(currentSeason);
+      res.json(seasonalIngredients);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch seasonal ingredients" });
+    }
+  });
+
   // Combinations routes
   app.post("/api/combinations", async (req, res) => {
     try {

@@ -14,6 +14,11 @@ export default function Seasons() {
     queryKey: ["/api/seasons"],
   });
 
+  const { data: seasonalIngredients } = useQuery({
+    queryKey: ["/api/seasons/current/ingredients"],
+    enabled: !!currentSeason,
+  });
+
   const seasonalRecipes = [
     {
       name: "羊肉と大根の煮込み",
@@ -114,34 +119,83 @@ export default function Seasons() {
         {/* Recommended Foods */}
         <Card className="shadow-sm border p-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            <Calendar className="inline mr-2" size={18} />
             {currentSeason?.name || "立冬"}の推奨食材
           </h3>
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-medium text-gray-700 mb-2">温性食材（体を温める）</h4>
-              <div className="flex flex-wrap gap-2">
-                {["羊肉", "生姜", "ニンニク", "ネギ", "唐辛子"].map(food => (
-                  <Badge key={food} className="bg-red-100 text-red-700">{food}</Badge>
-                ))}
+          {seasonalIngredients && seasonalIngredients.length > 0 ? (
+            <div className="space-y-4">
+              {/* Group by nature */}
+              {["hot", "warm", "neutral", "cool", "cold"].map(nature => {
+                const ingredientsOfNature = seasonalIngredients.filter(ing => ing.nature === nature);
+                if (ingredientsOfNature.length === 0) return null;
+                
+                const natureColors = {
+                  hot: "bg-red-100 text-red-700",
+                  warm: "bg-orange-100 text-orange-700",
+                  neutral: "bg-gray-100 text-gray-700",
+                  cool: "bg-blue-100 text-blue-700",
+                  cold: "bg-cyan-100 text-cyan-700"
+                };
+                
+                const natureLabels = {
+                  hot: "熱性食材（強く体を温める）",
+                  warm: "温性食材（体を温める）",
+                  neutral: "平性食材（バランス）",
+                  cool: "涼性食材（体を冷やす）",
+                  cold: "寒性食材（強く体を冷やす）"
+                };
+                
+                return (
+                  <div key={nature}>
+                    <h4 className="font-medium text-gray-700 mb-2">{natureLabels[nature]}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {ingredientsOfNature.slice(0, 8).map(ingredient => (
+                        <Badge 
+                          key={ingredient.id} 
+                          className={natureColors[nature]}
+                          data-testid={`badge-ingredient-${ingredient.id}`}
+                        >
+                          {ingredient.name}
+                        </Badge>
+                      ))}
+                      {ingredientsOfNature.length > 8 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{ingredientsOfNature.length - 8}個
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-medium text-gray-700 mb-2">温性食材（体を温める）</h4>
+                <div className="flex flex-wrap gap-2">
+                  {["羊肉", "生姜", "ニンニク", "ネギ", "唐辛子"].map(food => (
+                    <Badge key={food} className="bg-red-100 text-red-700">{food}</Badge>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-700 mb-2">補腎食材（腎を強化）</h4>
+                <div className="flex flex-wrap gap-2">
+                  {["黒豆", "黒胡麻", "栗", "クルミ", "山芋"].map(food => (
+                    <Badge key={food} className="bg-gray-100 text-gray-700">{food}</Badge>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-700 mb-2">滋陰食材（潤いを補う）</h4>
+                <div className="flex flex-wrap gap-2">
+                  {["白きくらげ", "蓮の実", "百合根", "豚肉"].map(food => (
+                    <Badge key={food} className="bg-blue-100 text-blue-700">{food}</Badge>
+                  ))}
+                </div>
               </div>
             </div>
-            <div>
-              <h4 className="font-medium text-gray-700 mb-2">補腎食材（腎を強化）</h4>
-              <div className="flex flex-wrap gap-2">
-                {["黒豆", "黒胡麻", "栗", "クルミ", "山芋"].map(food => (
-                  <Badge key={food} className="bg-gray-100 text-gray-700">{food}</Badge>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4 className="font-medium text-gray-700 mb-2">滋陰食材（潤いを補う）</h4>
-              <div className="flex flex-wrap gap-2">
-                {["白きくらげ", "蓮の実", "百合根", "豚肉"].map(food => (
-                  <Badge key={food} className="bg-blue-100 text-blue-700">{food}</Badge>
-                ))}
-              </div>
-            </div>
-          </div>
+          )}
         </Card>
       </div>
 
