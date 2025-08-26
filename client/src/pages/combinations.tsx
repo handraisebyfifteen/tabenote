@@ -35,21 +35,36 @@ export default function Combinations() {
     queryKey: ["/api/ingredients"],
   });
 
-  const { data: searchResults = [] } = useQuery({
+  const { data: searchResults = [] } = useQuery<Ingredient[]>({
     queryKey: ["/api/ingredients/search", searchQuery],
+    queryFn: async () => {
+      const params = new URLSearchParams({ q: searchQuery });
+      const response = await fetch(`/api/ingredients/search?${params}`);
+      if (!response.ok) throw new Error("検索に失敗しました");
+      return response.json();
+    },
     enabled: searchQuery.length > 0,
   });
 
   const analyzeCombination = useMutation({
     mutationFn: async (ingredientIds: string[]) => {
-      return apiRequest("/api/combinations", {
+      const response = await fetch("/api/combinations", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           name: `組み合わせ分析 ${new Date().toLocaleString()}`,
           description: "自動生成された組み合わせ分析",
           ingredients: ingredientIds,
         }),
       });
+      
+      if (!response.ok) {
+        throw new Error("分析に失敗しました");
+      }
+      
+      return response.json();
     },
     onSuccess: (data) => {
       setCombinationResult(data);
@@ -125,7 +140,7 @@ export default function Combinations() {
               {/* 検索結果 */}
               {searchQuery && (
                 <div className="mb-4 max-h-40 overflow-y-auto bg-gray-50 rounded-lg p-2">
-                  {searchResults.slice(0, 8).map((ingredient) => (
+                  {searchResults.slice(0, 8).map((ingredient: Ingredient) => (
                     <button
                       key={ingredient.id}
                       onClick={() => addIngredient(ingredient)}
