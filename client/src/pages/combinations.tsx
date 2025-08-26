@@ -124,62 +124,128 @@ export default function Combinations() {
                 食材を選択 ({selectedIngredients.length}/5)
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-              {/* 検索バー */}
-              <div className="relative mb-4">
-                <Search className="absolute left-3 top-3 text-gray-400" size={20} />
-                <Input
-                  placeholder="食材を検索..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                  data-testid="input-ingredient-search"
-                />
+            <CardContent className="p-6 relative">
+              {/* 簡単検索 */}
+              <div className="mb-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-3 text-gray-400" size={20} />
+                  <Input
+                    placeholder="食材名を入力してEnterで追加..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && searchResults.length > 0) {
+                        addIngredient(searchResults[0]);
+                      }
+                    }}
+                    className="pl-10"
+                    data-testid="input-ingredient-search"
+                  />
+                  {searchQuery && searchResults.length > 0 && (
+                    <Button
+                      onClick={() => addIngredient(searchResults[0])}
+                      className="absolute right-2 top-1.5 h-8 px-3 text-xs bg-orange-500 hover:bg-orange-600"
+                      data-testid="button-quick-add"
+                    >
+                      追加
+                    </Button>
+                  )}
+                </div>
+                
+                {/* ドロップダウン検索結果 */}
+                {searchQuery && searchResults.length > 0 && (
+                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                    {searchResults.slice(0, 10).map((ingredient: Ingredient, index) => (
+                      <button
+                        key={ingredient.id}
+                        onClick={() => addIngredient(ingredient)}
+                        className={`w-full text-left p-3 hover:bg-orange-50 transition-colors border-b border-gray-100 last:border-b-0 ${
+                          index === 0 ? 'bg-orange-25' : ''
+                        }`}
+                        data-testid={`button-add-ingredient-${ingredient.id}`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <div className="font-medium text-gray-800">{ingredient.name}</div>
+                            <div className="text-sm text-gray-500 mt-1">
+                              <Badge variant="outline" className="mr-1 text-xs">{ingredient.nature}</Badge>
+                              <Badge variant="outline" className="mr-1 text-xs">{ingredient.element}</Badge>
+                              <Badge variant="outline" className="text-xs">{ingredient.flavor[0]}</Badge>
+                            </div>
+                          </div>
+                          <Plus className="text-orange-500" size={16} />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* 検索結果 */}
-              {searchQuery && (
-                <div className="mb-4 max-h-40 overflow-y-auto bg-gray-50 rounded-lg p-2">
-                  {searchResults.slice(0, 8).map((ingredient: Ingredient) => (
-                    <button
+              {/* 人気食材クイック選択 */}
+              <div className="mb-4">
+                <h4 className="text-sm font-medium text-gray-700 mb-2">よく使われる食材</h4>
+                <div className="flex flex-wrap gap-2">
+                  {ingredients.slice(0, 12).map((ingredient) => (
+                    <Button
                       key={ingredient.id}
+                      variant="outline"
+                      size="sm"
                       onClick={() => addIngredient(ingredient)}
-                      className="w-full text-left p-2 hover:bg-white rounded transition-colors"
-                      data-testid={`button-add-ingredient-${ingredient.id}`}
+                      className="text-xs h-8 hover:bg-orange-50 hover:border-orange-300"
+                      disabled={selectedIngredients.find(item => item.id === ingredient.id) !== undefined}
+                      data-testid={`button-quick-select-${ingredient.id}`}
                     >
-                      <div className="font-medium">{ingredient.name}</div>
-                      <div className="text-sm text-gray-500">
-                        {ingredient.nature} • {ingredient.element} • {ingredient.flavor.join("、")}
-                      </div>
-                    </button>
+                      <Plus className="mr-1" size={12} />
+                      {ingredient.name}
+                    </Button>
                   ))}
                 </div>
-              )}
+              </div>
 
               {/* 選択済み食材 */}
               <div className="space-y-2">
-                {selectedIngredients.map((ingredient) => (
+                <h4 className="text-sm font-medium text-gray-700 mb-2">選択済み食材</h4>
+                {selectedIngredients.map((ingredient, index) => (
                   <div
                     key={ingredient.id}
-                    className="flex items-center justify-between p-3 bg-orange-50 rounded-lg border border-orange-200"
+                    className="flex items-center justify-between p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg border-2 border-orange-200 animate-in slide-in-from-right duration-300"
+                    style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <div className="flex-1">
-                      <div className="font-medium text-gray-800">{ingredient.name}</div>
-                      <div className="flex gap-2 mt-1">
-                        <Badge variant="outline" className="text-xs">{ingredient.nature}</Badge>
-                        <Badge variant="outline" className="text-xs">{ingredient.element}</Badge>
-                        <Badge variant="outline" className="text-xs">{ingredient.flavor[0]}</Badge>
+                      <div className="font-medium text-gray-800 flex items-center">
+                        <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs mr-2">
+                          {index + 1}
+                        </span>
+                        {ingredient.name}
+                      </div>
+                      <div className="flex gap-2 mt-2 ml-8">
+                        <Badge variant="outline" className="text-xs bg-white">{ingredient.nature}</Badge>
+                        <Badge variant="outline" className="text-xs bg-white">{ingredient.element}</Badge>
+                        <Badge variant="outline" className="text-xs bg-white">{ingredient.flavor[0]}</Badge>
                       </div>
                     </div>
                     <button
                       onClick={() => removeIngredient(ingredient.id)}
-                      className="ml-2 p-1 text-red-500 hover:bg-red-100 rounded"
+                      className="ml-2 p-2 text-red-500 hover:bg-red-100 rounded-full transition-colors"
                       data-testid={`button-remove-ingredient-${ingredient.id}`}
+                      title="削除"
                     >
                       <X size={16} />
                     </button>
                   </div>
                 ))}
+                
+                {selectedIngredients.length > 0 && (
+                  <Button
+                    onClick={() => setSelectedIngredients([])}
+                    variant="outline"
+                    size="sm"
+                    className="w-full mt-2 text-red-600 border-red-200 hover:bg-red-50"
+                  >
+                    <X className="mr-2" size={14} />
+                    すべてクリア
+                  </Button>
+                )}
               </div>
 
               {selectedIngredients.length === 0 && (
