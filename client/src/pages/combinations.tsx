@@ -28,6 +28,7 @@ export default function Combinations() {
   const [searchQuery, setSearchQuery] = useState("");
   const [combinationResult, setCombinationResult] = useState<any>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [showAllVegetables, setShowAllVegetables] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -189,25 +190,68 @@ export default function Combinations() {
                 )}
               </div>
 
-              {/* 人気食材クイック選択 */}
+              {/* 野菜一覧表示 */}
               <div className="mb-4">
-                <h4 className="text-sm font-medium text-gray-700 mb-2">よく使われる食材</h4>
-                <div className="flex flex-wrap gap-2">
-                  {ingredients.slice(0, 12).map((ingredient) => (
-                    <Button
-                      key={ingredient.id}
-                      variant="outline"
-                      size="sm"
-                      onClick={() => addIngredient(ingredient)}
-                      className="text-xs h-8 hover:bg-orange-50 hover:border-orange-300"
-                      disabled={selectedIngredients.find(item => item.id === ingredient.id) !== undefined}
-                      data-testid={`button-quick-select-${ingredient.id}`}
-                    >
-                      <Plus className="mr-1" size={12} />
-                      {ingredient.name}
-                    </Button>
-                  ))}
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-medium text-gray-700">登録済み野菜一覧</h4>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowAllVegetables(!showAllVegetables)}
+                    className="text-xs"
+                  >
+                    {showAllVegetables ? "閉じる" : "全て表示"}
+                  </Button>
                 </div>
+                
+                {showAllVegetables ? (
+                  <div className="max-h-60 overflow-y-auto bg-gray-50 rounded-lg p-3 space-y-2">
+                    {ingredients
+                      .filter(ingredient => ingredient.category === "vegetable")
+                      .map((vegetable) => (
+                        <div
+                          key={vegetable.id}
+                          className="flex items-center justify-between p-2 bg-white rounded border hover:shadow-sm"
+                        >
+                          <div className="flex-1">
+                            <div className="font-medium text-sm">{vegetable.name}</div>
+                            <div className="text-xs text-gray-500">
+                              {vegetable.nameEn} • {vegetable.nature} • {vegetable.element} • {vegetable.flavor.join("、")}
+                            </div>
+                          </div>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => addIngredient(vegetable)}
+                            disabled={selectedIngredients.find(item => item.id === vegetable.id) !== undefined}
+                            className="ml-2 h-8 px-2 text-xs"
+                          >
+                            <Plus size={12} />
+                          </Button>
+                        </div>
+                      ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap gap-2">
+                    {ingredients
+                      .filter(ingredient => ingredient.category === "vegetable")
+                      .slice(0, 12)
+                      .map((ingredient) => (
+                        <Button
+                          key={ingredient.id}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => addIngredient(ingredient)}
+                          className="text-xs h-8 hover:bg-orange-50 hover:border-orange-300"
+                          disabled={selectedIngredients.find(item => item.id === ingredient.id) !== undefined}
+                          data-testid={`button-quick-select-${ingredient.id}`}
+                        >
+                          <Plus className="mr-1" size={12} />
+                          {ingredient.name}
+                        </Button>
+                      ))}
+                  </div>
+                )}
               </div>
 
               {/* 選択済み食材 */}
