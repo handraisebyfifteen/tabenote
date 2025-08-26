@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Carrot, Leaf, Flame, Wheat, ChevronDown, ChevronUp } from "lucide-react";
+import FiveElementsDisplay from "./five-elements-display";
 import type { Ingredient } from "@shared/schema";
 
 interface IngredientCardProps {
@@ -241,9 +242,10 @@ export default function IngredientCard({ ingredient }: IngredientCardProps) {
           <Badge className="bg-yellow-100 text-yellow-800">
             {getFlavorLabel(ingredient.flavor || [])}
           </Badge>
-          <Badge className={getElementColor(ingredient.element)}>
-            {getElementLabel(ingredient.element)}
-          </Badge>
+          <FiveElementsDisplay 
+            element={ingredient.element} 
+            showDetails={false}
+          />
         </div>
         
         {/* Detailed Information (Collapsible) */}
