@@ -24,7 +24,7 @@ export default function SeasonalCalendar({ seasons, currentSeason }: SeasonalCal
     { id: "4", name: "立夏", period: "5/5〜20", icon: Sun, color: "border-red-200 hover:bg-red-50" },
     { id: "5", name: "小満", period: "5/21〜6/5", icon: Wheat, color: "border-red-200 hover:bg-red-50" },
     { id: "6", name: "立秋", period: "8/7〜22", icon: Leaf, color: "border-orange-200 hover:bg-orange-50" },
-    { id: "7", name: "立冬", period: "11/7〜21", icon: Snowflake, color: "border-blue-200 hover:bg-blue-50", isCurrent: true },
+    { id: "7", name: "立冬", period: "11/7〜21", icon: Snowflake, color: "border-blue-200 hover:bg-blue-50" },
     { id: "8", name: "小雪", period: "11/22〜12/6", icon: Snowflake, color: "border-blue-200 hover:bg-blue-50" },
   ];
 
@@ -34,7 +34,7 @@ export default function SeasonalCalendar({ seasons, currentSeason }: SeasonalCal
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3" data-testid="seasonal-calendar">
       {displaySeasons.map((season: any) => {
         const Icon = season.icon || Leaf;
-        const isCurrentSeason = currentSeason?.id === season.id || season.name === "立冬";
+        const isCurrentSeason = currentSeason?.name === season.name;
         
         return (
           <div
