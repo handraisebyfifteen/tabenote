@@ -46,64 +46,66 @@ export default function Elements() {
       <Card className="shadow-lg border-2 p-8 mb-8 bg-gradient-to-br from-gray-50 to-white">
         <h2 className="text-xl font-semibold text-gray-800 mb-8 text-center">五行相関図 - インタラクティブ表示</h2>
         
-        <div className="relative w-96 h-96 mx-auto mb-8">
-          {/* Center pentagon */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center border-4 border-gray-200">
-              <span className="text-lg font-bold text-gray-600">五行</span>
+        <div className="flex justify-center mb-8">
+          <div className="relative w-96 h-96">
+            {/* Center pentagon */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center border-4 border-gray-200">
+                <span className="text-lg font-bold text-gray-600">五行</span>
+              </div>
             </div>
+
+            {/* Elements positioned in a circle */}
+            {Object.entries(fiveElementsData).map(([key, element], index) => {
+              const angle = (index * 72 - 90) * (Math.PI / 180); // 72 degrees apart, starting from top
+              const radius = 140;
+              const x = Math.cos(angle) * radius + 192; // 192 = half of container width
+              const y = Math.sin(angle) * radius + 192; // 192 = half of container height
+              
+              return (
+                <div
+                  key={key}
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: x, top: y }}
+                >
+                  <FiveElementsDisplay 
+                    element={key} 
+                    showDetails={true}
+                  />
+                </div>
+              );
+            })}
+
+            {/* Generate cycle arrows (outer circle) */}
+            {generateCycle('generate').map((element, index) => {
+              const nextIndex = (index + 1) % 5;
+              const angle1 = (index * 72 - 90) * (Math.PI / 180);
+              const angle2 = (nextIndex * 72 - 90) * (Math.PI / 180);
+              const radius = 120;
+              const x1 = Math.cos(angle1) * radius + 192;
+              const y1 = Math.sin(angle1) * radius + 192;
+              const x2 = Math.cos(angle2) * radius + 192;
+              const y2 = Math.sin(angle2) * radius + 192;
+            
+              const midX = (x1 + x2) / 2;
+              const midY = (y1 + y2) / 2;
+              const arrowAngle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
+              
+              return (
+                <div
+                  key={`generate-${index}`}
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                  style={{ 
+                    left: midX, 
+                    top: midY,
+                    transform: `translate(-50%, -50%) rotate(${arrowAngle}deg)`
+                  }}
+                >
+                  <ArrowRight className="w-4 h-4 text-green-500" />
+                </div>
+              );
+            })}
           </div>
-
-          {/* Elements positioned in a circle */}
-          {Object.entries(fiveElementsData).map(([key, element], index) => {
-            const angle = (index * 72 - 90) * (Math.PI / 180); // 72 degrees apart, starting from top
-            const radius = 140;
-            const x = Math.cos(angle) * radius + 192; // 192 = half of container width
-            const y = Math.sin(angle) * radius + 192; // 192 = half of container height
-            
-            return (
-              <div
-                key={key}
-                className="absolute transform -translate-x-1/2 -translate-y-1/2"
-                style={{ left: x, top: y }}
-              >
-                <FiveElementsDisplay 
-                  element={key} 
-                  showDetails={true}
-                />
-              </div>
-            );
-          })}
-
-          {/* Generate cycle arrows (outer circle) */}
-          {generateCycle('generate').map((element, index) => {
-            const nextIndex = (index + 1) % 5;
-            const angle1 = (index * 72 - 90) * (Math.PI / 180);
-            const angle2 = (nextIndex * 72 - 90) * (Math.PI / 180);
-            const radius = 120;
-            const x1 = Math.cos(angle1) * radius + 192;
-            const y1 = Math.sin(angle1) * radius + 192;
-            const x2 = Math.cos(angle2) * radius + 192;
-            const y2 = Math.sin(angle2) * radius + 192;
-            
-            const midX = (x1 + x2) / 2;
-            const midY = (y1 + y2) / 2;
-            const arrowAngle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
-            
-            return (
-              <div
-                key={`generate-${index}`}
-                className="absolute transform -translate-x-1/2 -translate-y-1/2"
-                style={{ 
-                  left: midX, 
-                  top: midY,
-                  transform: `translate(-50%, -50%) rotate(${arrowAngle}deg)`
-                }}
-              >
-                <ArrowRight className="w-4 h-4 text-green-500" />
-              </div>
-            );
-          })}
         </div>
 
         {/* Legend */}
