@@ -46,8 +46,8 @@ export default function Elements() {
       <Card className="shadow-lg border-2 p-8 mb-8 bg-gradient-to-br from-gray-50 to-white">
         <h2 className="text-xl font-semibold text-gray-800 mb-8 text-center">五行相関図 - インタラクティブ表示</h2>
         
-        <div className="flex justify-center items-center mb-8">
-          <div className="relative bg-gray-100 border-2 border-dashed border-gray-300" style={{ width: '384px', height: '384px' }}>
+        <div className="mb-8" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <div className="relative" style={{ width: '384px', height: '384px' }}>
             {/* Center pentagon */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center border-4 border-gray-200">
