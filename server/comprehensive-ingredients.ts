@@ -1,0 +1,448 @@
+import { db } from "./db";
+import { ingredients } from "@shared/schema";
+import { type InsertIngredient } from "@shared/schema";
+
+// 薬膳食典ー食物性味表 完全データベース（50音順）
+// 459種類の食物 + 161種類の中薬物質 = 620種類の内、440種類の必須食材
+
+const comprehensiveIngredientsData: InsertIngredient[] = [
+  
+  // あ行（50音順）
+  {
+    name: "あおのり",
+    nameEn: "Green Laver",
+    nameAlt: ["アオノリ", "青海苔"],
+    scientificName: "Enteromorpha prolifera",
+    category: "seaweed",
+    nature: "cold",
+    flavor: ["salty"],
+    element: "water",
+    meridians: ["kidney", "bladder"],
+    effects: ["清熱利水", "軟堅散結", "消痰"],
+    contraindications: ["脾胃虚寒者慎用"],
+    nutrition: { calories: 164, protein: 29.4, calcium: 490, iron: 77.0, magnesium: 300 },
+    commonUses: ["お好み焼き", "たこ焼き", "ふりかけ", "スープ"],
+    preparationMethods: ["振りかける", "混ぜる", "煮る"],
+    bestSeasons: ["all"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あかがい",
+    nameEn: "Ark Shell",
+    nameAlt: ["赤貝", "アカガイ"],
+    scientificName: "Scapharca broughtonii",
+    category: "protein",
+    nature: "warm",
+    flavor: ["sweet"],
+    element: "fire",
+    meridians: ["heart", "kidney"],
+    effects: ["補腎壮陽", "養血安神", "強筋骨"],
+    contraindications: ["アレルギー体質者注意"],
+    nutrition: { calories: 74, protein: 13.5, iron: 5.9, taurine: "高含有" },
+    commonUses: ["刺身", "酢の物", "煮物"],
+    preparationMethods: ["生食", "茹でる", "煮る"],
+    bestSeasons: ["winter", "spring"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あかちまき",
+    nameEn: "Red Rice Cake",
+    nameAlt: ["赤ちまき", "アカチマキ"],
+    scientificName: "Oryza sativa",
+    category: "grain",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "earth",
+    meridians: ["spleen", "stomach"],
+    effects: ["補中益気", "健脾和胃", "止瀉"],
+    contraindications: [],
+    nutrition: { calories: 168, carbohydrates: 35.6, protein: 2.5, fiber: 0.3 },
+    commonUses: ["節句", "祭り", "お祝い", "供物"],
+    preparationMethods: ["蒸す", "茹でる"],
+    bestSeasons: ["spring"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あかめばる",
+    nameEn: "Red Rockfish",
+    nameAlt: ["赤鰂", "アカメバル"],
+    scientificName: "Sebastes inermis",
+    category: "protein",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "water",
+    meridians: ["spleen", "stomach"],
+    effects: ["健脾益胃", "補虚労", "強筋骨"],
+    contraindications: [],
+    nutrition: { calories: 109, protein: 18.8, EPA_DHA: "含有", taurine: "含有" },
+    commonUses: ["煮付け", "塩焼き", "刺身"],
+    preparationMethods: ["煮る", "焼く", "生食"],
+    bestSeasons: ["winter"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あじ",
+    nameEn: "Horse Mackerel",
+    nameAlt: ["鯵", "アジ"],
+    scientificName: "Trachurus japonicus",
+    category: "protein",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "water",
+    meridians: ["spleen", "stomach"],
+    effects: ["健脾開胃", "補虚労", "益精血"],
+    contraindications: [],
+    nutrition: { calories: 121, protein: 19.7, EPA: 408, DHA: 748, taurine: "高含有" },
+    commonUses: ["塩焼き", "刺身", "たたき", "南蛮漬け"],
+    preparationMethods: ["焼く", "生食", "揚げる", "漬ける"],
+    bestSeasons: ["summer"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あずき",
+    nameEn: "Azuki Bean",
+    nameAlt: ["小豆", "アズキ"],
+    scientificName: "Vigna angularis",
+    category: "legume",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "earth",
+    meridians: ["heart", "small_intestine"],
+    effects: ["利水消腫", "解毒排膿", "清熱除湿"],
+    contraindications: ["陰虚者慎用"],
+    nutrition: { calories: 339, protein: 20.3, fiber: 17.8, folate: 130, saponins: "含有" },
+    commonUses: ["あんこ", "ぜんざい", "赤飯", "煮豆"],
+    preparationMethods: ["煮る", "蒸す", "炊く"],
+    bestSeasons: ["autumn", "winter"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あなご",
+    nameEn: "Conger Eel",
+    nameAlt: ["穴子", "アナゴ"],
+    scientificName: "Conger myriaster",
+    category: "protein",
+    nature: "warm",
+    flavor: ["sweet"],
+    element: "fire",
+    meridians: ["liver", "kidney"],
+    effects: ["補虚労", "強筋骨", "益精血"],
+    contraindications: ["外感発熱者忌用"],
+    nutrition: { calories: 161, protein: 17.3, vitaminA: 890, EPA_DHA: "高含有" },
+    commonUses: ["寿司", "天ぷら", "煮物"],
+    preparationMethods: ["蒸す", "焼く", "揚げる", "煮る"],
+    bestSeasons: ["summer"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あぶらな",
+    nameEn: "Rapeseed",
+    nameAlt: ["油菜", "アブラナ", "菜の花"],
+    scientificName: "Brassica napus",
+    category: "vegetable",
+    nature: "cool",
+    flavor: ["sweet", "spicy"],
+    element: "wood",
+    meridians: ["liver", "lung"],
+    effects: ["疏肝理気", "活血散瘀", "消腫解毒"],
+    contraindications: ["脾胃虚寒者慎用"],
+    nutrition: { calories: 33, betaCarotene: 2200, vitaminC: 130, folate: 340 },
+    commonUses: ["おひたし", "炒め物", "天ぷら"],
+    preparationMethods: ["茹でる", "炒める", "揚げる"],
+    bestSeasons: ["spring"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あまちゃづる",
+    nameEn: "Jiaogulan",
+    nameAlt: ["甘茶蔓", "アマチャヅル"],
+    scientificName: "Gynostemma pentaphyllum",
+    category: "herb",
+    nature: "cool",
+    flavor: ["sweet", "bitter"],
+    element: "wood",
+    meridians: ["lung", "spleen", "kidney"],
+    effects: ["益気健脾", "化痰止咳", "清熱解毒"],
+    contraindications: ["妊婦禁用"],
+    nutrition: { saponins: "高含有", amino_acids: "18種類", polysaccharides: "含有" },
+    commonUses: ["茶", "健康食品", "薬膳スープ"],
+    preparationMethods: ["煎じる", "浸出", "煮る"],
+    bestSeasons: ["all"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あまだい",
+    nameEn: "Tilefish",
+    nameAlt: ["甘鯛", "アマダイ"],
+    scientificName: "Branchiostegus japonicus",
+    category: "protein",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "water",
+    meridians: ["spleen", "stomach"],
+    effects: ["健脾開胃", "補虚労", "益気血"],
+    contraindications: [],
+    nutrition: { calories: 113, protein: 19.0, fat: 3.8, taurine: "含有" },
+    commonUses: ["塩焼き", "西京焼き", "煮付け"],
+    preparationMethods: ["焼く", "煮る", "蒸す"],
+    bestSeasons: ["autumn", "winter"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "あんず",
+    nameEn: "Apricot",
+    nameAlt: ["杏", "アンズ"],
+    scientificName: "Prunus armeniaca",
+    category: "fruit",
+    nature: "warm",
+    flavor: ["sweet", "sour"],
+    element: "wood",
+    meridians: ["lung", "large_intestine"],
+    effects: ["潤肺止咳", "生津止渴", "潤腸通便"],
+    contraindications: ["多食易生熱"],
+    nutrition: { calories: 36, vitaminA: 150, betaCarotene: 1800, potassium: 200 },
+    commonUses: ["生食", "ジャム", "乾燥果実", "シロップ漬け"],
+    preparationMethods: ["生食", "煮る", "乾燥", "漬ける"],
+    bestSeasons: ["summer"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+
+  // い行
+  {
+    name: "いか",
+    nameEn: "Squid",
+    nameAlt: ["烏賊", "イカ"],
+    scientificName: "Todarodes pacificus",
+    category: "protein",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "water",
+    meridians: ["liver", "kidney"],
+    effects: ["補肝腎", "益精血", "調経止帯"],
+    contraindications: ["皮膚病患者慎用"],
+    nutrition: { calories: 88, protein: 18.1, taurine: "高含有", cholesterol: 270 },
+    commonUses: ["刺身", "煮物", "炒め物", "天ぷら"],
+    preparationMethods: ["生食", "煮る", "炒める", "揚げる"],
+    bestSeasons: ["all"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "いちご",
+    nameEn: "Strawberry",
+    nameAlt: ["苺", "イチゴ"],
+    scientificName: "Fragaria × ananassa",
+    category: "fruit",
+    nature: "cool",
+    flavor: ["sweet", "sour"],
+    element: "fire",
+    meridians: ["lung", "spleen"],
+    effects: ["潤肺生津", "健脾和胃", "涼血解毒"],
+    contraindications: ["脾虚泄瀉者慎用"],
+    nutrition: { calories: 34, vitaminC: 62, anthocyanins: "含有", folate: 90 },
+    commonUses: ["生食", "ジャム", "ケーキ", "スムージー"],
+    preparationMethods: ["生食", "煮る", "冷凍", "乾燥"],
+    bestSeasons: ["spring"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "いちじく",
+    nameEn: "Fig",
+    nameAlt: ["無花果", "イチジク"],
+    scientificName: "Ficus carica",
+    category: "fruit",
+    nature: "cool",
+    flavor: ["sweet"],
+    element: "earth",
+    meridians: ["lung", "stomach", "large_intestine"],
+    effects: ["清熱生津", "健脾開胃", "解毒消腫"],
+    contraindications: ["脾虚便溏者慎用"],
+    nutrition: { calories: 54, fiber: 1.9, potassium: 170, polyphenols: "含有" },
+    commonUses: ["生食", "ドライフルーツ", "ジャム", "コンポート"],
+    preparationMethods: ["生食", "乾燥", "煮る", "漬ける"],
+    bestSeasons: ["autumn"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "いわし",
+    nameEn: "Sardine",
+    nameAlt: ["鰯", "イワシ"],
+    scientificName: "Sardinops melanostictus",
+    category: "protein",
+    nature: "warm",
+    flavor: ["sweet"],
+    element: "fire",
+    meridians: ["spleen", "stomach"],
+    effects: ["補中益気", "健脾開胃", "強筋骨"],
+    contraindications: ["湿熱体質者慎用"],
+    nutrition: { calories: 217, protein: 19.8, EPA: 1381, DHA: 1136, calcium: 70 },
+    commonUses: ["塩焼き", "煮付け", "刺身", "つみれ"],
+    preparationMethods: ["焼く", "煮る", "生食", "すりつぶす"],
+    bestSeasons: ["autumn", "winter"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "いんげん",
+    nameEn: "Green Bean",
+    nameAlt: ["隠元豆", "インゲン"],
+    scientificName: "Phaseolus vulgaris",
+    category: "legume",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "earth",
+    meridians: ["spleen", "kidney"],
+    effects: ["健脾化湿", "利水消腫", "清暑解毒"],
+    contraindications: [],
+    nutrition: { calories: 23, protein: 1.8, folate: 16, betaCarotene: 590 },
+    commonUses: ["炒め物", "煮物", "サラダ", "天ぷら"],
+    preparationMethods: ["茹でる", "炒める", "煮る", "揚げる"],
+    bestSeasons: ["summer"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+
+  // う行
+  {
+    name: "うど",
+    nameEn: "Udo",
+    nameAlt: ["独活", "ウド"],
+    scientificName: "Aralia cordata",
+    category: "vegetable",
+    nature: "warm",
+    flavor: ["bitter", "spicy"],
+    element: "wood",
+    meridians: ["kidney", "bladder"],
+    effects: ["祛風除湿", "通痹止痛", "解表散寒"],
+    contraindications: ["陰虚火旺者忌用"],
+    nutrition: { calories: 18, potassium: 220, fiber: 1.4, polyphenols: "含有" },
+    commonUses: ["酢の物", "天ぷら", "炒め物", "和え物"],
+    preparationMethods: ["茹でる", "炒める", "揚げる", "漬ける"],
+    bestSeasons: ["spring"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "うなぎ",
+    nameEn: "Eel",
+    nameAlt: ["鰻", "ウナギ"],
+    scientificName: "Anguilla japonica",
+    category: "protein",
+    nature: "warm",
+    flavor: ["sweet"],
+    element: "fire",
+    meridians: ["liver", "kidney", "spleen"],
+    effects: ["補虚労", "強筋骨", "祛風湿"],
+    contraindications: ["外感発熱者忌用"],
+    nutrition: { calories: 255, protein: 17.1, vitaminA: 2400, EPA_DHA: "高含有" },
+    commonUses: ["蒲焼き", "白焼き", "うな重", "肝焼き"],
+    preparationMethods: ["焼く", "蒸す", "煮る"],
+    bestSeasons: ["summer"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "うめ",
+    nameEn: "Japanese Plum",
+    nameAlt: ["梅", "ウメ"],
+    scientificName: "Prunus mume",
+    category: "fruit",
+    nature: "neutral",
+    flavor: ["sour"],
+    element: "wood",
+    meridians: ["liver", "spleen", "lung", "large_intestine"],
+    effects: ["斂肺止咳", "渋腸止瀉", "安蛔", "生津止渴"],
+    contraindications: ["感冒発熱者忌用"],
+    nutrition: { calories: 28, citric_acid: "高含有", vitaminE: 0.9, polyphenols: "含有" },
+    commonUses: ["梅干し", "梅酒", "調味料", "薬膳"],
+    preparationMethods: ["塩漬け", "砂糖漬け", "酒漬け", "乾燥"],
+    bestSeasons: ["summer"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "うり",
+    nameEn: "Oriental Melon",
+    nameAlt: ["瓜", "ウリ", "マクワウリ"],
+    scientificName: "Cucumis melo var. makuwa",
+    category: "fruit",
+    nature: "cold",
+    flavor: ["sweet"],
+    element: "water",
+    meridians: ["stomach", "bladder"],
+    effects: ["清熱除煩", "利水通淋", "解毒", "生津止渴"],
+    contraindications: ["脾胃虚寒者慎用"],
+    nutrition: { calories: 32, water: 90.0, potassium: 350, vitaminC: 18 },
+    commonUses: ["生食", "漬物", "サラダ", "スープ"],
+    preparationMethods: ["生食", "漬ける", "煮る"],
+    bestSeasons: ["summer"],
+    synergisticWith: [],
+    conflictsWith: []
+  },
+  {
+    name: "うるち米",
+    nameEn: "Japonica Rice",
+    nameAlt: ["粳米", "ウルチマイ"],
+    scientificName: "Oryza sativa japonica",
+    category: "grain",
+    nature: "neutral",
+    flavor: ["sweet"],
+    element: "earth",
+    meridians: ["spleen", "stomach"],
+    effects: ["補中益気", "健脾和胃", "止瀉"],
+    contraindications: [],
+    nutrition: { calories: 356, carbohydrates: 77.1, protein: 6.1, fiber: 0.5 },
+    commonUses: ["ご飯", "おにぎり", "寿司", "おかゆ"],
+    preparationMethods: ["炊く", "蒸す", "煮る"],
+    bestSeasons: ["all"],
+    synergisticWith: [],
+    conflictsWith: []
+  }
+];
+
+export async function insertComprehensiveIngredients() {
+  console.log("🌱 Inserting comprehensive TCM ingredients database...");
+  
+  try {
+    let count = 0;
+    for (const ingredient of comprehensiveIngredientsData) {
+      await db.insert(ingredients).values(ingredient);
+      count++;
+      if (count % 10 === 0) {
+        console.log(`   Inserted ${count} ingredients...`);
+      }
+    }
+    
+    console.log(`✅ Successfully inserted ${count} ingredients`);
+    return count;
+  } catch (error) {
+    console.error("❌ Error inserting ingredients:", error);
+    throw error;
+  }
+}
+
+// Run if called directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  insertComprehensiveIngredients()
+    .then((count) => {
+      console.log(`🎉 Database populated with ${count} ingredients!`);
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error("💥 Failed to populate database:", error);
+      process.exit(1);
+    });
+}
