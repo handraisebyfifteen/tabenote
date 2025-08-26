@@ -309,6 +309,24 @@ export class MemStorage implements IStorage {
         conflictsWith: []
       },
       {
+        name: "キャベツ",
+        nameEn: "Cabbage",
+        scientificName: "Brassica oleracea",
+        category: "vegetable",
+        nature: "neutral",
+        flavor: ["sweet"],
+        element: "metal",
+        meridians: ["stomach", "kidney"],
+        effects: ["健胃整腸", "清熱解毒", "抗炎症"],
+        contraindications: ["甲状腺機能低下症者注意"],
+        nutrition: { calories: 23, vitaminC: 51, vitaminK: 76, fiber: 2.5 },
+        commonUses: ["サラダ", "炒め物", "スープ"],
+        preparationMethods: ["生食", "炒める", "煮る"],
+        bestSeasons: ["spring", "autumn", "winter"],
+        synergisticWith: [],
+        conflictsWith: []
+      },
+      {
         name: "ほうれん草",
         nameEn: "Spinach",
         scientificName: "Spinacia oleracea",
