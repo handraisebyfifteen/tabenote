@@ -455,6 +455,71 @@ export default function Combinations() {
                       })}
                     </div>
 
+                    {/* 五行バランス改善アドバイス */}
+                    {combinationResult.suggestions && combinationResult.suggestions.length > 0 && (
+                      <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                        <h4 className="font-medium mb-3 text-amber-800 flex items-center">
+                          <Lightbulb className="mr-2" size={20} />
+                          五行バランス改善アドバイス
+                        </h4>
+                        <div className="space-y-3">
+                          {combinationResult.suggestions.map((suggestion: string, index: number) => (
+                            <div key={index} className="flex items-start space-x-2 text-sm text-amber-700">
+                              <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <span>{suggestion}</span>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        {/* 推奨食材のクイック追加 */}
+                        <div className="mt-4 pt-3 border-t border-amber-200">
+                          <h5 className="text-sm font-medium text-amber-800 mb-2">おすすめ食材を追加</h5>
+                          <div className="flex flex-wrap gap-2">
+                            {(() => {
+                              const elementBalance = combinationResult.elementBalance as any;
+                              const recommendedFoods = [];
+                              
+                              // 不足している要素の食材を推奨
+                              if (elementBalance.wood <= 1) recommendedFoods.push({name: "ほうれん草", element: "wood"});
+                              if (elementBalance.fire <= 1) recommendedFoods.push({name: "トマト", element: "fire"});
+                              if (elementBalance.earth <= 1) recommendedFoods.push({name: "かぼちゃ", element: "earth"});
+                              if (elementBalance.metal <= 1) recommendedFoods.push({name: "大根", element: "metal"});
+                              if (elementBalance.water <= 1) recommendedFoods.push({name: "昆布", element: "water"});
+                              
+                              return recommendedFoods.slice(0, 3).map((food, idx) => {
+                                const elementColors = {
+                                  wood: "bg-green-100 text-green-800 border-green-300",
+                                  fire: "bg-red-100 text-red-800 border-red-300",
+                                  earth: "bg-yellow-100 text-yellow-800 border-yellow-300",
+                                  metal: "bg-gray-100 text-gray-800 border-gray-300",
+                                  water: "bg-blue-100 text-blue-800 border-blue-300"
+                                };
+                                
+                                // 実際の食材データから検索して追加する簡易版
+                                const handleQuickAdd = () => {
+                                  const foundIngredient = ingredients.find(ing => ing.name === food.name);
+                                  if (foundIngredient && !selectedIngredients.find(item => item.id === foundIngredient.id)) {
+                                    addIngredient(foundIngredient);
+                                  }
+                                };
+                                
+                                return (
+                                  <button
+                                    key={idx}
+                                    onClick={handleQuickAdd}
+                                    className={`px-3 py-1 text-xs rounded-full border transition-colors hover:shadow-sm ${elementColors[food.element as keyof typeof elementColors]}`}
+                                    disabled={!ingredients.find(ing => ing.name === food.name) || selectedIngredients.find(item => item.name === food.name)}
+                                  >
+                                    + {food.name}
+                                  </button>
+                                );
+                              });
+                            })()}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     {/* 五行説明 */}
                     <div className="bg-blue-50 p-4 rounded-lg">
                       <h4 className="font-medium mb-2 text-blue-800">五行相生について</h4>

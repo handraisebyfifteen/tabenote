@@ -217,15 +217,54 @@ function generateWarnings(ingredients: any[]): string[] {
 
 function generateSuggestions(ingredients: any[]): string[] {
   const suggestions: string[] = [];
-  const elements = ingredients.map(i => i.element);
+  const elementBalance = calculateElementBalance(ingredients);
+  const elements = Object.keys(elementBalance);
   
-  if (!elements.includes("water")) {
-    suggestions.push("水の要素（黒豆、昆布など）を追加してバランス改善");
+  // 不足している五行要素を特定してアドバイス
+  const elementAdvice = {
+    wood: {
+      foods: ["ほうれん草", "小松菜", "春菊", "セロリ", "青ネギ", "ブロッコリー"],
+      benefit: "肝機能向上・デトックス・ストレス軽減・春の養生"
+    },
+    fire: {
+      foods: ["トマト", "赤ピーマン", "人参", "赤唐辛子", "小豆", "苦瓜"],
+      benefit: "循環器系強化・活力向上・心機能サポート・夏の養生"
+    },
+    earth: {
+      foods: ["かぼちゃ", "さつまいも", "とうもろこし", "大豆", "米", "じゃがいも"],
+      benefit: "消化機能改善・脾胃強化・エネルギー補給・長夏の養生"
+    },
+    metal: {
+      foods: ["大根", "白菜", "玉ねぎ", "蓮根", "梨", "白ごま"],
+      benefit: "呼吸器系強化・肺機能向上・免疫力アップ・秋の養生"
+    },
+    water: {
+      foods: ["黒豆", "昆布", "ひじき", "しいたけ", "黒ごま", "栗"],
+      benefit: "腎機能強化・生殖機能サポート・老化防止・冬の養生"
+    }
+  };
+
+  // 要素数が0または1の場合は不足として扱う
+  Object.entries(elementBalance).forEach(([element, count]) => {
+    if (count <= 1) {
+      const advice = elementAdvice[element as keyof typeof elementAdvice];
+      if (advice) {
+        suggestions.push(`${element}の要素が不足：${advice.foods.slice(0, 3).join("、")}などを追加（${advice.benefit}）`);
+      }
+    }
+  });
+
+  // 全体的なバランスアドバイス
+  const totalElements = Object.values(elementBalance).reduce((a: any, b: any) => a + b, 0);
+  const activeElements = Object.values(elementBalance).filter(count => count > 0).length;
+  
+  if (activeElements < 3) {
+    suggestions.push("五行のバランスが偏っています。多様な色の食材を取り入れることをお勧めします");
   }
   
-  if (!elements.includes("fire")) {
-    suggestions.push("火の要素（トマト、赤唐辛子など）を追加して活力向上");
+  if (totalElements >= 3 && activeElements >= 4) {
+    suggestions.push("五行バランスが良好です。現在の組み合わせを基本として継続してください");
   }
-  
-  return suggestions;
+
+  return suggestions.slice(0, 4); // 最大4つの提案に制限
 }
