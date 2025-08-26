@@ -46,8 +46,8 @@ export default function Elements() {
       <Card className="shadow-lg border-2 p-8 mb-8 bg-gradient-to-br from-gray-50 to-white">
         <h2 className="text-xl font-semibold text-gray-800 mb-8 text-center">五行相関図 - インタラクティブ表示</h2>
         
-        <div className="flex justify-center mb-8">
-          <div className="relative w-96 h-96">
+        <div className="w-full flex justify-center mb-8">
+          <div className="relative" style={{ width: '384px', height: '384px' }}>
             {/* Center pentagon */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center border-4 border-gray-200">
@@ -59,8 +59,10 @@ export default function Elements() {
             {Object.entries(fiveElementsData).map(([key, element], index) => {
               const angle = (index * 72 - 90) * (Math.PI / 180); // 72 degrees apart, starting from top
               const radius = 140;
-              const x = Math.cos(angle) * radius + 192; // 192 = half of container width
-              const y = Math.sin(angle) * radius + 192; // 192 = half of container height
+              const centerX = 192; // 384px / 2
+              const centerY = 192; // 384px / 2
+              const x = Math.cos(angle) * radius + centerX;
+              const y = Math.sin(angle) * radius + centerY;
               
               return (
                 <div
@@ -82,10 +84,12 @@ export default function Elements() {
               const angle1 = (index * 72 - 90) * (Math.PI / 180);
               const angle2 = (nextIndex * 72 - 90) * (Math.PI / 180);
               const radius = 120;
-              const x1 = Math.cos(angle1) * radius + 192;
-              const y1 = Math.sin(angle1) * radius + 192;
-              const x2 = Math.cos(angle2) * radius + 192;
-              const y2 = Math.sin(angle2) * radius + 192;
+              const centerX = 192; // 384px / 2
+              const centerY = 192; // 384px / 2
+              const x1 = Math.cos(angle1) * radius + centerX;
+              const y1 = Math.sin(angle1) * radius + centerY;
+              const x2 = Math.cos(angle2) * radius + centerX;
+              const y2 = Math.sin(angle2) * radius + centerY;
             
               const midX = (x1 + x2) / 2;
               const midY = (y1 + y2) / 2;
