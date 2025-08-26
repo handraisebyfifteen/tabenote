@@ -103,13 +103,13 @@ export default function IngredientCard({ ingredient }: IngredientCardProps) {
           <div className="flex justify-between items-center">
             <span className="text-sm font-medium text-gray-700">五味:</span>
             <Badge className="bg-yellow-100 text-yellow-800">
-              {getFlavorLabel(ingredient.flavor)}
+              {getFlavorLabel(ingredient.flavor || [])}
             </Badge>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-sm font-medium text-gray-700">帰経:</span>
             <Badge className="bg-green-100 text-green-800">
-              {ingredient.meridians.join("・")}
+              {ingredient.meridians?.join("・") || ""}
             </Badge>
           </div>
           <div className="flex justify-between items-center">
@@ -123,7 +123,7 @@ export default function IngredientCard({ ingredient }: IngredientCardProps) {
         {/* Effects */}
         <div className="mb-4">
           <h4 className="text-sm font-medium text-gray-700 mb-2">効能:</h4>
-          <p className="text-sm text-gray-600">{ingredient.effects.join("、")}</p>
+          <p className="text-sm text-gray-600">{ingredient.effects?.join("、") || ""}</p>
         </div>
         
         {/* Nutrition */}
@@ -133,7 +133,7 @@ export default function IngredientCard({ ingredient }: IngredientCardProps) {
             <div className="grid grid-cols-2 gap-2 text-xs">
               {Object.entries(ingredient.nutrition as Record<string, any>).slice(0, 2).map(([key, value]) => (
                 <div key={key} className="bg-gray-50 p-2 rounded">
-                  <span className="font-medium">{key}:</span> {value}
+                  <span className="font-medium">{key}:</span> {String(value)}
                 </div>
               ))}
             </div>

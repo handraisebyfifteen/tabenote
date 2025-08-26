@@ -17,7 +17,7 @@ export default function Search() {
     category: ""
   });
 
-  const { data: ingredients, isLoading } = useQuery({
+  const { data: ingredients = [], isLoading } = useQuery<Ingredient[]>({
     queryKey: ["/api/ingredients/search", { 
       q: searchQuery, 
       ...filters 
