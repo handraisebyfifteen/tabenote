@@ -346,35 +346,122 @@ export default function Combinations() {
               </TabsContent>
 
               <TabsContent value="balance" className="space-y-4">
-                {/* 詳細バランス */}
+                {/* 五行バランス分析 */}
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Scale className="mr-2" size={24} />
-                      詳細バランス分析
+                      五行バランス分析
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <div className="flex justify-between mb-2">
-                        <span>温度バランス</span>
-                        <span className="font-semibold">{(combinationResult.temperatureBalance * 100).toFixed(0)}%</span>
+                  <CardContent className="space-y-6">
+                    {/* 五行円形図 */}
+                    <div className="text-center">
+                      <h4 className="font-medium mb-4">五行相生相克図</h4>
+                      <div className="relative w-64 h-64 mx-auto">
+                        <svg viewBox="0 0 200 200" className="w-full h-full">
+                          {/* 背景円 */}
+                          <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" strokeWidth="2"/>
+                          
+                          {/* 五行要素 */}
+                          {[
+                            { element: 'wood', name: '木', color: '#10b981', x: 100, y: 20 },
+                            { element: 'fire', name: '火', color: '#ef4444', x: 176, y: 69 },
+                            { element: 'earth', name: '土', color: '#f59e0b', x: 145, y: 169 },
+                            { element: 'metal', name: '金', color: '#6b7280', x: 55, y: 169 },
+                            { element: 'water', name: '水', color: '#3b82f6', x: 24, y: 69 }
+                          ].map(({ element, name, color, x, y }) => {
+                            const count = (combinationResult.elementBalance as any)?.[element] || 0;
+                            const radius = 8 + (count * 6);
+                            return (
+                              <g key={element}>
+                                <circle 
+                                  cx={x} 
+                                  cy={y} 
+                                  r={radius} 
+                                  fill={color}
+                                  opacity={count > 0 ? 1 : 0.3}
+                                />
+                                <text 
+                                  x={x} 
+                                  y={y + 3} 
+                                  textAnchor="middle" 
+                                  fontSize="12" 
+                                  fill="white" 
+                                  fontWeight="bold"
+                                >
+                                  {name}
+                                </text>
+                                <text 
+                                  x={x} 
+                                  y={y + 25} 
+                                  textAnchor="middle" 
+                                  fontSize="10" 
+                                  fill="#374151"
+                                >
+                                  {count}品
+                                </text>
+                              </g>
+                            );
+                          })}
+                          
+                          {/* 相生の線（生成関係） */}
+                          <g stroke="#10b981" strokeWidth="2" opacity="0.6" fill="none">
+                            <path d="M 100 20 L 176 69" markerEnd="url(#arrowgreen)"/>
+                            <path d="M 176 69 L 145 169" markerEnd="url(#arrowgreen)"/>
+                            <path d="M 145 169 L 55 169" markerEnd="url(#arrowgreen)"/>
+                            <path d="M 55 169 L 24 69" markerEnd="url(#arrowgreen)"/>
+                            <path d="M 24 69 L 100 20" markerEnd="url(#arrowgreen)"/>
+                          </g>
+                          
+                          {/* 矢印マーカー */}
+                          <defs>
+                            <marker id="arrowgreen" markerWidth="10" markerHeight="7" 
+                                    refX="9" refY="3.5" orient="auto">
+                              <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+                            </marker>
+                          </defs>
+                        </svg>
                       </div>
-                      <Progress value={Math.abs(combinationResult.temperatureBalance) * 100} className="h-2" />
                     </div>
-                    <div>
-                      <div className="flex justify-between mb-2">
-                        <span>味のバランス</span>
-                        <span className="font-semibold">{(combinationResult.flavorBalance * 100).toFixed(0)}%</span>
-                      </div>
-                      <Progress value={Math.abs(combinationResult.flavorBalance) * 100} className="h-2" />
+
+                    {/* 五行要素詳細 */}
+                    <div className="space-y-3">
+                      <h4 className="font-medium">五行要素の詳細</h4>
+                      {Object.entries(combinationResult.elementBalance || {}).map(([element, count]) => {
+                        const elementInfo = {
+                          wood: { name: '木', color: 'bg-green-500', description: '肝胆系・成長・発散・春の季節', organ: '肝・胆' },
+                          fire: { name: '火', color: 'bg-red-500', description: '心小腸系・興奮・活動・夏の季節', organ: '心・小腸' },
+                          earth: { name: '土', color: 'bg-yellow-500', description: '脾胃系・安定・消化・長夏の季節', organ: '脾・胃' },
+                          metal: { name: '金', color: 'bg-gray-500', description: '肺大腸系・収斂・浄化・秋の季節', organ: '肺・大腸' },
+                          water: { name: '水', color: 'bg-blue-500', description: '腎膀胱系・蓄積・排泄・冬の季節', organ: '腎・膀胱' }
+                        }[element as keyof typeof elementInfo] || { name: element, color: 'bg-gray-400', description: '', organ: '' };
+                        
+                        return (
+                          <div key={element} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                            <div className={`w-8 h-8 ${elementInfo.color} rounded-full flex items-center justify-center text-white text-sm font-bold`}>
+                              {elementInfo.name}
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-medium">{elementInfo.name}の要素 - {elementInfo.organ}</div>
+                              <div className="text-sm text-gray-600">{elementInfo.description}</div>
+                            </div>
+                            <div className="text-right">
+                              <div className="font-bold text-lg text-orange-600">{count as number}</div>
+                              <div className="text-xs text-gray-500">品目</div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                    <div>
-                      <div className="flex justify-between mb-2">
-                        <span>五行バランス</span>
-                        <span className="font-semibold">{(combinationResult.elementBalance * 100).toFixed(0)}%</span>
-                      </div>
-                      <Progress value={Math.abs(combinationResult.elementBalance) * 100} className="h-2" />
+
+                    {/* 五行説明 */}
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2 text-blue-800">五行相生について</h4>
+                      <p className="text-sm text-blue-700">
+                        木→火→土→金→水→木の順で、各要素が次の要素を生み育てる関係です。
+                        バランスの取れた食事では、これらの要素が調和していることが重要です。
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
