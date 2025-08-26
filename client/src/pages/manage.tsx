@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Download, Upload, Plus, Edit2, Trash2, FileJson, FileText } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 import { apiRequest } from "@/lib/queryClient";
 import type { Ingredient } from "@shared/schema";
 
@@ -27,6 +28,15 @@ const ingredientFormSchema = z.object({
   meridians: z.array(z.string()).min(1, "最低1つの経絡を選択してください"),
   effects: z.array(z.string()).min(1, "最低1つの効能を入力してください"),
   contraindications: z.array(z.string()).optional(),
+  nutrition: z.object({
+    calories: z.number().optional(),
+    protein: z.number().optional(),
+    carbohydrates: z.number().optional(),
+    fat: z.number().optional(),
+    fiber: z.number().optional(),
+    vitamins: z.record(z.number()).optional(),
+    minerals: z.record(z.number()).optional()
+  }).optional(),
   commonUses: z.array(z.string()).optional(),
   preparationMethods: z.array(z.string()).optional(),
   bestSeasons: z.array(z.string()).optional()
@@ -58,6 +68,15 @@ export default function Manage() {
       meridians: [],
       effects: [],
       contraindications: [],
+      nutrition: {
+        calories: undefined,
+        protein: undefined,
+        carbohydrates: undefined,
+        fat: undefined,
+        fiber: undefined,
+        vitamins: {},
+        minerals: {}
+      },
       commonUses: [],
       preparationMethods: [],
       bestSeasons: []
