@@ -37,12 +37,12 @@ tabenote
 薬膳の手帳。書くのは、あなた
 ```
 
-### プロモーションテキスト (73)
+### プロモーションテキスト (80)
 
 いつでも差し替え可能(審査不要)。季節の話題を入れ替える使い方ができる。
 
 ```
-食材を選ぶと、五味と性がひとつの五角形になる。二十四節気と五季に合わせて、いまの季節にすすめられる味も。効能を書くのは、アプリではなく持ち主です。
+食材を選ぶと、五味と性がひとつの五角形になる。二十四節気と五季から、いまの季節にすすめられる味も分かる。効能を書くのは、アプリではなく、持ち主であるあなたです。
 ```
 
 ### キーワード (72)
@@ -102,10 +102,10 @@ tabenote が表示するのは、五味・性・帰経・分類という事実�
 A notebook for what you eat
 ```
 
-### Promotional Text (155)
+### Promotional Text (160)
 
 ```
-Pick your ingredients and watch the five flavors and thermal nature form a single pentagon. The app never writes the effects — that part is yours to write.
+Pick a few ingredients and watch the five flavors and thermal nature settle into a single pentagon. tabenote shows the facts — what they mean is yours to write.
 ```
 
 ### Keywords (98)
