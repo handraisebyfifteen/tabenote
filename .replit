@@ -21,6 +21,10 @@ externalPort = 3002
 localPort = 8090
 externalPort = 3001
 
+[[ports]]
+localPort = 8099
+externalPort = 8099
+
 [workflows]
 runButton = "tabenote"
 
