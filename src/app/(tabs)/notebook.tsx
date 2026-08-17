@@ -41,6 +41,12 @@ import {
 
 type Segment = 'combos' | 'zukan' | 'guide';
 
+/**
+ * カードのダブルタップ判定(ms)。組み合わせ画面の「2タップ目で決定」の手帳版。
+ * 1タップの開閉は残したいので、こちらは素早い2タップ目だけを拾う(点灯の演出はなし)
+ */
+const DOUBLE_TAP_MS = 350;
+
 /** 保存した組み合わせの日付 'YYYY-MM-DD' を Date にする(見出しの整形用) */
 function parseYmd(ymd: string): Date | null {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd);
@@ -176,6 +182,25 @@ function CombosSection({
   // タブ切り替え等でセクションごと消えるときも書き込む
   useEffect(() => () => persistDraft(false), [persistDraft]);
 
+  /** 直近にタップしたカード。素早い2タップ目 = 組成を見る(/advice) */
+  const lastTap = useRef<{ id: string; at: number }>({ id: '', at: 0 });
+
+  const onCardPress = (combo: SavedCombo) => {
+    const now = new Date().getTime();
+    const isDouble =
+      lastTap.current.id === combo.id && now - lastTap.current.at < DOUBLE_TAP_MS;
+    lastTap.current = { id: combo.id, at: now };
+    if (isDouble) {
+      persistDraft(true);
+      router.push({
+        pathname: '/advice',
+        params: { ids: combo.foodIds.join(',') },
+      });
+      return;
+    }
+    toggleExpand(combo);
+  };
+
   const toggleExpand = (combo: SavedCombo) => {
     persistDraft(true);
     if (expandedId === combo.id) {
@@ -255,7 +280,7 @@ function CombosSection({
         return (
           <Pressable
             style={[styles.card, { backgroundColor: c.backgroundElement }]}
-            onPress={() => toggleExpand(item)}
+            onPress={() => onCardPress(item)}
           >
             {expanded ? (
               <TextInput
@@ -589,7 +614,8 @@ const styles = StyleSheet.create({
   list: { padding: 16, gap: 12 },
   dateHeading: { fontSize: 12, marginTop: 8, marginBottom: 2 },
   card: { borderRadius: 12, padding: 16, gap: 4, marginBottom: 10 },
-  comboName: { fontSize: 16, fontWeight: '600' },
+  // userSelect: Webのダブルタップで文字が範囲選択されるのを防ぐ(ネイティブでは無視される)
+  comboName: { fontSize: 16, fontWeight: '600', userSelect: 'none' },
   comboNameInput: {
     fontSize: 16,
     fontWeight: '600',
@@ -599,8 +625,8 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
   comboActions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  comboFoods: { fontSize: 14, marginTop: 4, lineHeight: 20 },
-  comboMemoPreview: { fontSize: 13, marginTop: 6, lineHeight: 19 },
+  comboFoods: { fontSize: 14, marginTop: 4, lineHeight: 20, userSelect: 'none' },
+  comboMemoPreview: { fontSize: 13, marginTop: 6, lineHeight: 19, userSelect: 'none' },
   comboDetail: { marginTop: 10, gap: 10 },
   comboMemoInput: {
     fontSize: 14,

@@ -22,6 +22,10 @@ import {
   View,
 } from 'react-native';
 
+import Reanimated, {
+  useReducedMotion,
+  type CSSAnimationKeyframes,
+} from 'react-native-reanimated';
 import Svg, { Polygon as SvgPolygon, Text as SvgText } from 'react-native-svg';
 
 import FiveElementsChart from '@/components/FiveElementsChart';
@@ -59,6 +63,7 @@ import {
   type FiveSeason,
 } from '@/logic/season';
 import { complementOrder } from '@/logic/suggest';
+import { brighten } from '@/lib/color';
 import { useDisplay } from '@/lib/DisplayContext';
 import { loadUserData, recordSelections, toggleFavorite } from '@/lib/storage';
 
@@ -84,6 +89,24 @@ const NATURE_LEGEND = [
 const PENTAGON_ICON_POINTS = '11,2 19.56,8.22 16.29,18.28 5.71,18.28 2.44,8.22';
 
 /**
+ * 決定(2タップ目)の瞬間にポートレートを点灯させる。
+ * タイル側の点灯(FoodTile の FLASH_FRAMES・0.8 始まり)の弱い版
+ */
+const PORTRAIT_FLASH_FRAMES: CSSAnimationKeyframes = {
+  '0%': { opacity: 0.45 },
+  '100%': { opacity: 0 },
+};
+
+/** 決定ボタンを押した瞬間の点灯。白をパッと重ねて、光が引くのに合わせて遷移する */
+const DECIDE_FLASH_FRAMES: CSSAnimationKeyframes = {
+  '0%': { opacity: 0.55 },
+  '100%': { opacity: 0 },
+};
+
+/** 決定ボタンの点灯を見せてから advice へ遷移するまでの間(ms) */
+const DECIDE_TRANSITION_MS = 350;
+
+/**
  * 主味(いちばん強い味)の軸の角度(FlavorPentagon と同じ「酸が真上、時計回り」)。
  * ポートレートが五行のその方向から飛び出してくる演出に使う。
  */
@@ -105,6 +128,7 @@ function FoodPortrait({
   color,
   nameColor,
   fromAngleDeg,
+  flashSignal,
 }: {
   id: string;
   name: string;
@@ -113,7 +137,10 @@ function FoodPortrait({
   color: string;
   nameColor: string;
   fromAngleDeg: number;
+  /** 決定のたびに増えるカウンター。増えた瞬間に弱く点灯する(0 = まだ) */
+  flashSignal: number;
 }) {
+  const reduced = useReducedMotion();
   const anim = useMemo(() => new Animated.Value(0), []);
   useEffect(() => {
     anim.setValue(0);
@@ -147,7 +174,25 @@ function FoodPortrait({
         transform: [{ translateX }, { translateY }, { scale }],
       }}
     >
-      <FoodThumb name={name} icon={icon} catIcon={catIcon} color={color} size={96} />
+      <View>
+        <FoodThumb name={name} icon={icon} catIcon={catIcon} color={color} size={96} />
+        {/* 決定の点灯。key で毎回マウントし直して、決定のたびに焚き直す(FoodTile と同じ) */}
+        {flashSignal > 0 && !reduced && (
+          <Reanimated.View
+            key={flashSignal}
+            pointerEvents="none"
+            style={[
+              styles.portraitFlash,
+              {
+                backgroundColor: brighten(color, 0.55),
+                animationName: PORTRAIT_FLASH_FRAMES,
+                animationDuration: '400ms',
+                animationTimingFunction: 'ease-out',
+              },
+            ]}
+          />
+        )}
+      </View>
       {/* 英語名は長いので、収まらない時だけ字を縮める(Web は非対応のため従来どおり切り詰め) */}
       <Text
         style={{
@@ -169,6 +214,7 @@ function FoodPortrait({
 
 export default function CombineScreen() {
   const scheme = useColorScheme();
+  const reduced = useReducedMotion();
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
   const { lang } = useLang();
   const t = getStrings(lang);
@@ -288,10 +334,17 @@ export default function CombineScreen() {
   // 凍結を解いて本当に抜く。長さは FoodTile の DEPART_FRAMES と合わせること
   const [frozenList, setFrozenList] = useState<Food[] | null>(null);
   const [departingId, setDepartingId] = useState<string | null>(null);
+  /** 決定(2タップ目)のたびに増える。ポートレートを弱く点灯させる合図 */
+  const [decideFlash, setDecideFlash] = useState(0);
+  /** 決定ボタンの点灯の合図(押すたびに増える) */
+  const [decideBtnFlash, setDecideBtnFlash] = useState(0);
   const frozenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** 点灯を見せてから遷移するタイマー。動作中は決定ボタンの再押下を無視する */
+  const decideNavTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(
     () => () => {
       if (frozenTimer.current !== null) clearTimeout(frozenTimer.current);
+      if (decideNavTimer.current !== null) clearTimeout(decideNavTimer.current);
     },
     [],
   );
@@ -311,6 +364,8 @@ export default function CombineScreen() {
       toggle(id);
       // 決定したタイルはグリッドから抜けるので、カーソルも外す
       setFocusedId(null);
+      // ポートレートも決定に合わせて弱く点灯させる(タイルの点灯と同時)
+      setDecideFlash((n) => n + 1);
     } else {
       setFocusedId(id);
     }
@@ -327,13 +382,23 @@ export default function CombineScreen() {
     focusedFood ??
     (selectedFoods.length > 0 ? selectedFoods[selectedFoods.length - 1] : undefined);
 
-  const decide = async () => {
-    if (selectedIds.length === 0) return;
-    await recordSelections(selectedIds);
-    router.push({
-      pathname: '/advice',
-      params: { ids: selectedIds.join(','), season },
-    });
+  const decide = () => {
+    if (selectedIds.length === 0 || decideNavTimer.current !== null) return;
+    const go = async () => {
+      decideNavTimer.current = null;
+      await recordSelections(selectedIds);
+      router.push({
+        pathname: '/advice',
+        params: { ids: selectedIds.join(','), season },
+      });
+    };
+    if (reduced) {
+      void go();
+      return;
+    }
+    // 押した手応え: ボタンを点灯させ、光が引くのに合わせて遷移する
+    setDecideBtnFlash((n) => n + 1);
+    decideNavTimer.current = setTimeout(go, DECIDE_TRANSITION_MS);
   };
 
   return (
@@ -352,6 +417,7 @@ export default function CombineScreen() {
               color={natureColor(natureValue(portraitFood))}
               nameColor={c.text}
               fromAngleDeg={dominantAxisAngle(portraitFood)}
+              flashSignal={decideFlash}
             />
           )}
         </View>
@@ -685,6 +751,21 @@ export default function CombineScreen() {
         disabled={selectedIds.length === 0}
       >
         <Text style={styles.decideText}>{t.combine.decide(selectedIds.length)}</Text>
+        {/* 押した瞬間の点灯。key で毎回焚き直す(タイル・ポートレートと同じ流儀) */}
+        {decideBtnFlash > 0 && (
+          <Reanimated.View
+            key={decideBtnFlash}
+            pointerEvents="none"
+            style={[
+              styles.decideFlash,
+              {
+                animationName: DECIDE_FLASH_FRAMES,
+                animationDuration: `${DECIDE_TRANSITION_MS}ms`,
+                animationTimingFunction: 'ease-out',
+              },
+            ]}
+          />
+        )}
       </Pressable>
     </View>
   );
@@ -776,6 +857,17 @@ const styles = StyleSheet.create({
   },
   list: { flex: 1 },
   gridContent: { paddingHorizontal: 8, paddingBottom: 8 },
+  portraitFlash: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    // FoodThumb(size 96)の角丸(size * 0.28)に合わせる
+    borderRadius: 96 * 0.28,
+    // 点灯が終わったあとの静止値。アニメーションは 0.45 から始まってここへ戻る
+    opacity: 0,
+  },
   focusRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -800,7 +892,19 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: 'center',
+    // 点灯(decideFlash)を角丸の内側に収める
+    overflow: 'hidden',
   },
   decideDisabled: { opacity: 0.4 },
   decideText: { color: '#fff', fontSize: 16, fontWeight: '600' },
+  decideFlash: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#fff',
+    // 点灯が終わったあとの静止値。アニメーションは 0.55 から始まってここへ戻る
+    opacity: 0,
+  },
 });
