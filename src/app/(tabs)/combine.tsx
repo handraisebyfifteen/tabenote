@@ -46,7 +46,7 @@ import {
   type Food,
 } from '@/data/foods';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { useSelectSound } from '@/hooks/use-select-sound';
+import { useCombineFeedback } from '@/hooks/use-combine-feedback';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import {
@@ -220,7 +220,7 @@ export default function CombineScreen() {
   const { lang } = useLang();
   const t = getStrings(lang);
   const { gridColumns } = useDisplay();
-  const playSelect = useSelectSound();
+  const feedback = useCombineFeedback();
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [query, setQuery] = useState('');
@@ -368,10 +368,12 @@ export default function CombineScreen() {
       setFocusedId(null);
       // ポートレートも決定に合わせて弱く点灯させる(タイルの点灯と同時)
       setDecideFlash((n) => n + 1);
-      // 点灯と同じ瞬間に決定音。目と耳で一度に「決まった」と分かるようにする
-      playSelect();
+      // 点灯と同じ瞬間に決定の音とバイブ。目と耳と指で一度に「決まった」と分かる
+      feedback.decide();
     } else {
       setFocusedId(id);
+      // カーソルが乗った合図。決定より短く小さい「キコ」
+      feedback.cursor();
     }
   };
 

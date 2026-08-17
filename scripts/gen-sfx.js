@@ -2,13 +2,17 @@
 /**
  * 効果音(SFX)を波形から作る。
  *
- * 組み合わせ画面の「決定」の音(キコーン)を、ファミコンの矩形波の流儀で合成する。
+ * 組み合わせ画面のキャラ選択の音を、ファミコンの矩形波の流儀で合成する。
+ *
+ *   cursor.wav  1タップ目・カーソル「キコ」  D#5 → B5
+ *   select.wav  2タップ目・決定「キコーン」  D#5 → C6
+ *
  * 音源を外から持ってくると権利の出所を追えなくなる(指示書 8-5)ので、
  * 素材は置かず、このスクリプトが唯一の出所になる。鳴りを変えたいときは
- * 下の VARIANTS をいじって作り直す。
+ * 下の VARIANTS・CURSOR_SFX をいじって作り直す。
  *
  * 使い方:
- *   node ./scripts/gen-sfx.js                    採用中の1つを assets/sfx/select.wav へ
+ *   node ./scripts/gen-sfx.js                    採用中のものを assets/sfx/ へ
  *   node ./scripts/gen-sfx.js --variants <dir>   聴き比べ用に候補を全部 <dir> へ
  *
  * 出力は 16bit / 44.1kHz / モノラルの WAV。
@@ -116,6 +120,27 @@ const VARIANTS = {
 /** 採用中の候補(assets へ書き出すのはこれ) */
 const SELECTED = 'chord';
 
+/**
+ * カーソル音「キコ」。1タップ目(カーソルが乗った合図)に鳴る。
+ *
+ * 決定音と同じ D#5 で立ち上げ、行き先だけ半音低い B5 にして、余韻を切る。
+ * 決定音が D#→C まで上がりきるのに対し、カーソルは B で止まる。
+ * 「まだ決まっていない」を音程で言うための半音差で、続けて2タップ目を鳴らすと
+ * B → C と収まる。連打されるので、決定音より短く(0.13秒)小さく(gain 0.4)。
+ */
+const CURSOR_SFX = {
+  gain: 0.4,
+  layers: [
+    // 「キ」: 決定音と同じ立ち上がり。同じ楽器から出ているように聞かせる
+    { note: 'D#5', duty: 0.125, start: 0, dur: 0.045, gain: 1.6, decay: 0 },
+    { note: 'D#6', duty: 0.125, start: 0, dur: 0.045, gain: 0.6, decay: 0 },
+    // 「コ」: 伸ばさない。速く減衰させて言い切る
+    // 「キ」と同じ高さに聞こえるまで上げる(重なりが1層少ないぶん強く出す)
+    { note: 'B5', duty: 0.25, start: 0.045, dur: 0.085, gain: 1.8, decay: 12 },
+    { note: 'B6', duty: 0.125, start: 0.045, dur: 0.05, gain: 0.35, decay: 20 },
+  ],
+};
+
 /** 1レイヤーを合成してバッファへ足し込む */
 function renderLayer(out, layer) {
   const tune = Math.pow(2, (layer.octave ?? 0) + (layer.detune ?? 0) / 1200);
@@ -191,6 +216,9 @@ if (variantsIndex !== -1) {
   for (const [name, sfx] of Object.entries(VARIANTS)) {
     write(path.join(dir, `select-${name}.wav`), sfx);
   }
+  write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
 } else {
-  write(path.join(__dirname, '..', 'assets', 'sfx', 'select.wav'), VARIANTS[SELECTED]);
+  const dir = path.join(__dirname, '..', 'assets', 'sfx');
+  write(path.join(dir, 'select.wav'), VARIANTS[SELECTED]);
+  write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
 }

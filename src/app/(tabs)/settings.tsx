@@ -1,6 +1,6 @@
 /**
  * 設定(指示書 6-4/申請準備指示書 Phase 5)。
- * 月額プラン/復元/購読管理・表示(配色と文字サイズ)・効果音・言語・参考文献・免責・
+ * 月額プラン/復元/購読管理・表示(配色と文字サイズ)・効果音・バイブ・言語・参考文献・免責・
  * 規約とポリシー・お問い合わせ・データのエクスポート・バージョン。
  * 課金の導線は、APIキー未設定のときとWebでは出さない(食材名の英語データは未整備。言語欄に注記)。
  * 規約・ポリシーへの導線はアプリ内から常に必要(Schedule 2 §3.8(b))なので課金の有効無効に関わらず出す。
@@ -29,12 +29,13 @@ import {
 } from '@/constants/site';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { useSelectSound } from '@/hooks/use-select-sound';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings, type Strings } from '@/i18n/strings';
 import type { Lang } from '@/i18n/terms';
 import { useBilling } from '@/lib/BillingContext';
 import { useDisplay } from '@/lib/DisplayContext';
+import { decideHaptic } from '@/lib/haptics';
+import { playSfx } from '@/lib/sfx';
 import { sfxGain, useSound, VOLUME_ORDER, type SfxVolume } from '@/lib/SoundContext';
 import { loadUserData } from '@/lib/storage';
 
@@ -62,8 +63,7 @@ export default function SettingsScreen() {
 
   const { enabled: billingOn, active, restore } = useBilling();
   const { themePref, setThemePref, textSize, setTextSize } = useDisplay();
-  const { volume, setVolume } = useSound();
-  const playSelect = useSelectSound();
+  const { volume, setVolume, haptics, setHaptics } = useSound();
 
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [restoring, setRestoring] = useState(false);
@@ -208,7 +208,7 @@ export default function SettingsScreen() {
               ]}
               onPress={() => {
                 setVolume(option);
-                playSelect(sfxGain(option));
+                playSfx('select', sfxGain(option));
               }}
             >
               <Text
@@ -221,6 +221,27 @@ export default function SettingsScreen() {
         </View>
         <Text style={[styles.note, { color: c.textSecondary }]}>
           {t.settings.soundNote}
+        </Text>
+      </View>
+
+      {/* バイブ。音を切っている人にも選んだ手応えだけは残す */}
+      <View style={[styles.row, { backgroundColor: c.backgroundElement }]}>
+        <View style={styles.switchRow}>
+          <Text style={[styles.title, styles.switchLabel, { color: c.text }]}>
+            {t.settings.haptics}
+          </Text>
+          <Switch
+            value={haptics}
+            onValueChange={(on) => {
+              setHaptics(on);
+              // 入れた瞬間に一度震わせて、どのくらいか分かるようにする
+              if (on) decideHaptic();
+            }}
+            trackColor={switchTrack}
+          />
+        </View>
+        <Text style={[styles.note, { color: c.textSecondary }]}>
+          {t.settings.hapticsNote}
         </Text>
       </View>
 
