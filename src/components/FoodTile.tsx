@@ -4,7 +4,7 @@
  * 参考はレースゲーム/格闘ゲームのキャラ選択画面:
  *   枠と地の色 = 性(寒熱)。術語は出さず色だけで伝える。
  *   1タップ = カーソル(プレビュー)、2タップ目 = 決定、長押し = ★よく使う。
- *   名前はタイル右下に小さく。
+ *   名前はタイル右下に小さく。1画面 3×3 の9マス(4列は小さすぎて見分けづらかった)。
  *
  * ビジュアルは差し替え可能なスロット:
  * いまは絵文字/頭文字の仮置きで、権利がクリーンなイラストが
@@ -12,6 +12,8 @@
  */
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+import { Text as ScaledText } from '@/components/Type';
 
 /** 性の色(#RRGGBB)を白に寄せて明るくする。カーソル/選択の枠を「光った」見た目にするため */
 function brighten(hex: string, ratio: number): string {
@@ -82,51 +84,52 @@ export default function FoodTile({
             <Text style={[styles.monogram, { color }]}>{name.slice(0, 1)}</Text>
           )}
         </View>
-        <Text numberOfLines={1} style={[styles.name, { color: nameColor }]}>
+        {/* 文字サイズ設定が効くのは名前だけ。絵文字と★はタイルの寸法に合わせてある */}
+        <ScaledText numberOfLines={1} style={[styles.name, { color: nameColor }]}>
           {name}
-        </Text>
+        </ScaledText>
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  cell: { width: '25%', padding: 4 },
+  cell: { width: '33.333%', padding: 5 },
   tile: {
     aspectRatio: 1,
-    borderRadius: 14,
+    borderRadius: 18,
     overflow: 'hidden',
     justifyContent: 'space-between',
   },
   visual: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   // userSelect: Webのダブルタップで文字が範囲選択されるのを防ぐ(ネイティブでは無視される)
-  emoji: { fontSize: 30, userSelect: 'none' },
-  monogram: { fontSize: 26, fontWeight: '700', userSelect: 'none' },
+  emoji: { fontSize: 40, userSelect: 'none' },
+  monogram: { fontSize: 34, fontWeight: '700', userSelect: 'none' },
   name: {
-    fontSize: 10,
+    fontSize: 12,
     textAlign: 'right',
-    paddingHorizontal: 6,
-    paddingBottom: 4,
+    paddingHorizontal: 8,
+    paddingBottom: 6,
     userSelect: 'none',
   },
   star: {
     position: 'absolute',
-    top: 3,
-    left: 6,
-    fontSize: 11,
+    top: 4,
+    left: 8,
+    fontSize: 13,
     color: '#D9A441',
     zIndex: 1,
   },
   badge: {
     position: 'absolute',
-    top: 4,
-    right: 4,
-    width: 16,
-    height: 16,
-    borderRadius: 8,
+    top: 5,
+    right: 5,
+    width: 19,
+    height: 19,
+    borderRadius: 9.5,
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 1,
   },
-  badgeText: { color: '#fff', fontSize: 10, fontWeight: '700' },
+  badgeText: { color: '#fff', fontSize: 12, fontWeight: '700' },
 });

@@ -3,7 +3,7 @@
  *
  *   組み合わせ: 保存した組み合わせ + そのメモ(編集・呼び出し・削除)
  *   図鑑: 全品目の一覧(参照のみ項目を含む)と食材詳細への入口
- *   解説: 五行の体系・五味のはたらき・必須の注記・参考文献
+ *   解説: 五行の体系・五味のはたらき・必須の注記
  */
 import { router, useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -14,14 +14,13 @@ import {
   ScrollView,
   SectionList,
   StyleSheet,
-  Text,
-  TextInput,
   View,
 } from 'react-native';
 
 import { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
 import PageHead from '@/components/PageHead';
+import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
 import { getFoodEmoji } from '@/data/foodEmoji';
 import { FOODS, getFood, isReferenceOnly, searchFoods } from '@/data/foods';
@@ -370,6 +369,10 @@ function ZukanSection({
     return base;
   }, [query, filter, favorites, notes]);
 
+  // 英語は語が長い(Slightly warming / Vegetables)。1行に名前と並べると窮屈なので、
+  // 名前の下にまとめて置く。日本語は2文字で収まるので右端に列で出したままにする。
+  const stackMeta = lang === 'en';
+
   const filters: { key: ZukanFilter; label: string }[] = [
     { key: 'all', label: t.notebook.filterAll },
     { key: 'starred', label: t.notebook.filterStarred },
@@ -417,6 +420,10 @@ function ZukanSection({
         renderItem={({ item }) => {
           const refOnly = isReferenceOnly(item);
           const memo = (notes[item.id] ?? '').trim();
+          const meta = [
+            item.nature !== '' ? natureLabel(item.nature, lang) : '',
+            cat15Label(item.cat15, lang),
+          ].filter((part) => part !== '');
           return (
             <Pressable
               style={styles.zukanRow}
@@ -434,6 +441,14 @@ function ZukanSection({
                   {foodName(item, lang)}
                   {memo !== '' ? ' ✎' : ''}
                 </Text>
+                {stackMeta && meta.length > 0 && (
+                  <Text
+                    style={[styles.zukanMeta, { color: c.textSecondary }]}
+                    numberOfLines={1}
+                  >
+                    {meta.join(' · ')}
+                  </Text>
+                )}
                 {filter === 'memo' && memo !== '' && (
                   <Text
                     style={[styles.zukanMemo, { color: c.textSecondary }]}
@@ -443,14 +458,16 @@ function ZukanSection({
                   </Text>
                 )}
               </View>
-              {item.nature !== '' && (
+              {!stackMeta && item.nature !== '' && (
                 <Text style={[styles.zukanNature, { color: c.textSecondary }]}>
                   {natureLabel(item.nature, lang)}
                 </Text>
               )}
-              <Text style={[styles.zukanCat, { color: c.textSecondary }]}>
-                {cat15Label(item.cat15, lang)}
-              </Text>
+              {!stackMeta && (
+                <Text style={[styles.zukanCat, { color: c.textSecondary }]}>
+                  {cat15Label(item.cat15, lang)}
+                </Text>
+              )}
               <Text style={{ color: c.textSecondary }}>›</Text>
             </Pressable>
           );
@@ -479,6 +496,8 @@ function GuideSection() {
                   key={ci}
                   style={[
                     styles.tableCell,
+                    // 英語は Blue-green / Long summer が入るので一段細かく
+                    lang === 'en' && styles.tableCellEn,
                     { color: ri === 0 ? c.textSecondary : c.text },
                     ri === 0 && styles.tableHeader,
                   ]}
@@ -528,9 +547,6 @@ function GuideSection() {
 
       <GuideCard title={g.positionTitle} color={c}>
         <Text style={[styles.guideText, { color: c.text }]}>{g.positionBody}</Text>
-        <Text style={[styles.guideText, { color: c.textSecondary }]}>
-          {g.referencesLine}
-        </Text>
       </GuideCard>
     </ScrollView>
   );
@@ -628,6 +644,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   zukanName: { flex: 1, gap: 2 },
+  zukanMeta: { fontSize: 12 },
   zukanMemo: { fontSize: 12 },
   zukanNature: { fontSize: 12 },
   zukanCat: { fontSize: 11 },
@@ -637,6 +654,7 @@ const styles = StyleSheet.create({
   table: { gap: 2, marginBottom: 8 },
   tableRow: { flexDirection: 'row' },
   tableCell: { flex: 1, textAlign: 'center', fontSize: 14, lineHeight: 24 },
+  tableCellEn: { fontSize: 12, lineHeight: 18, paddingHorizontal: 2 },
   tableHeader: { fontSize: 11 },
   flavorRow: { flexDirection: 'row', gap: 12, marginBottom: 2 },
   flavorLabel: { fontSize: 14, lineHeight: 21, fontWeight: '600' },

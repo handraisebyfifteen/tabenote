@@ -19,8 +19,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
   View,
 } from 'react-native';
 
@@ -32,6 +30,7 @@ import FoodThumb from '@/components/FoodThumb';
 import FoodTile from '@/components/FoodTile';
 import NatureScale from '@/components/NatureScale';
 import PageHead from '@/components/PageHead';
+import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
 import { getFoodEmoji } from '@/data/foodEmoji';
 import {
@@ -608,7 +607,7 @@ export default function CombineScreen() {
         style={styles.list}
         data={listFoods}
         keyExtractor={(f) => f.id}
-        numColumns={4}
+        numColumns={3}
         contentContainerStyle={styles.gridContent}
         ListEmptyComponent={
           cat === 'quick' && query.trim() === '' ? (

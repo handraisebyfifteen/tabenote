@@ -15,10 +15,10 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
+import { Text } from '@/components/Type';
 import { PRIVACY_URL, TERMS_URL } from '@/constants/site';
 import { Colors, MaxContentWidth } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';

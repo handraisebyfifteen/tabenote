@@ -15,10 +15,17 @@ export interface Strings {
   home: {
     dateLabel(d: Date): string;
     nextTermIn(nextKanji: string, nextEnglish: string, days: number): string;
+    /** 節気の進み具合(elapsed は1日目から数える) */
+    termDay(elapsed: number, total: number): string;
     nowSeasonTitle: string;
     seasonSentence(organJa: string, flavors: FiveFlavor[]): string;
     natureLine(season: FiveSeason): string;
     seeSeasonFoods: string;
+    /** 「いまの季節に合う食材」の見出しと、タップの案内 */
+    seasonFoodsTitle: string;
+    seasonFoodsHint: string;
+    /** 節気の説明の折りたたみ見出し */
+    aboutTermTitle: string;
   };
 
   combine: {
@@ -126,7 +133,6 @@ export interface Strings {
     conventionsBody: string;
     positionTitle: string;
     positionBody: string;
-    referencesLine: string;
   };
 
   food: {
@@ -164,6 +170,16 @@ export interface Strings {
     version: string;
     language: string;
     languageNote: string;
+    /** 表示(配色・文字サイズ) */
+    darkMode: string;
+    /** 端末の配色に追随しているとき */
+    darkModeSystemNote: string;
+    /** ライト/ダークをこの端末で固定したとき */
+    darkModeFixedNote: string;
+    /** 固定を解いて端末の設定へ戻す操作 */
+    followSystem: string;
+    largeText: string;
+    largeTextNote: string;
     references: string;
     referencesBody: string;
     disclaimer: string;
@@ -269,11 +285,15 @@ const ja: Strings = {
     dateLabel: (d) =>
       `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日(${WEEKDAYS_JA[d.getDay()]})`,
     nextTermIn: (kanji, _english, days) => `次の節気「${kanji}」まで あと${days}日`,
+    termDay: (elapsed, total) => `${elapsed} / ${total}日目`,
     nowSeasonTitle: 'いまの五季',
     seasonSentence: (organ, flavors) =>
       `${organ}を養う季節。${flavors.join('味・')}味が推奨されます。`,
     natureLine: (season) => `性は ${seasonNatureText(season, 'ja')}`,
     seeSeasonFoods: 'この季節の食材を見る',
+    seasonFoodsTitle: 'いまの季節に合う食材',
+    seasonFoodsHint: 'タップすると、その食材から組み合わせを始めます',
+    aboutTermTitle: 'この節気について',
   },
 
   combine: {
@@ -399,11 +419,9 @@ const ja: Strings = {
     conventionsTitle: '本アプリ独自の整理',
     conventionsBody:
       '・淡は甘に、渋は酸に属するものとして 0.5 に数える\n・「微」の付く味も 0.5 に数える\n・性は 寒-2 〜 熱+2 の5段階にして平均し、色で表す\n・長夏は土用方式(四立の直前18日間)で判定する',
-    positionTitle: '立ち位置と参考文献',
+    positionTitle: '立ち位置',
     positionBody:
       '本アプリは、中医学で伝統的に用いられてきた食材の分類(性・味・帰経)を、一般に知られる内容の範囲で整理して示すものです。効能や治療について述べるものではありません。',
-    referencesLine:
-      '参考文献:『薬膳食典 食物性味表(第2版)』『増補新版 薬膳・漢方 食材&食べ合わせ手帖』『新版 毎日使える薬膳&漢方の食材事典』『実用中医薬膳学』ほか(詳細は 設定 > 参考文献)',
   },
 
   food: {
@@ -439,6 +457,12 @@ const ja: Strings = {
     version: 'バージョン',
     language: '言語',
     languageNote: '食材名は現在日本語のみです',
+    darkMode: 'ダークモード',
+    darkModeSystemNote: '端末の設定に合わせています',
+    darkModeFixedNote: 'この端末での表示を固定しています',
+    followSystem: '端末の設定に戻す',
+    largeText: '文字を大きく',
+    largeTextNote: '本文と見出しを少し大きく表示します',
     references: '参考文献',
     referencesBody:
       '本アプリの性・味・帰経・分類は、中医学で広く共有されている伝統的な分類を、複数の一般的な資料にあたって事実データとして整理したものです。特定の書籍の解説・構成・文章を再現したものではありません。\n\n別名・漢字名は、生物学上・言語上の一般知識に基づきます。\n\n本アプリは効能・適応(症状への応用)を扱いません。解説文はすべてアプリ側で独自に書き起こしています。',
@@ -551,12 +575,16 @@ const en: Strings = {
       days === 1
         ? `1 day until the next term, ${english} (${kanji})`
         : `${days} days until the next term, ${english} (${kanji})`,
+    termDay: (elapsed, total) => `Day ${elapsed} of ${total}`,
     nowSeasonTitle: 'The season now',
     seasonSentence: (organ, flavors) =>
       `A season that nourishes the ${organLabel(organ, 'en')}. ` +
       `${capitalize(flavorsEn(flavors))} flavors are favored.`,
     natureLine: (season) => `Nature: ${seasonNatureText(season, 'en')}`,
     seeSeasonFoods: "See this season's ingredients",
+    seasonFoodsTitle: 'Ingredients for this season',
+    seasonFoodsHint: 'Tap one to start a combination with it',
+    aboutTermTitle: 'About this solar term',
   },
 
   combine: {
@@ -685,11 +713,9 @@ const en: Strings = {
     conventionsTitle: 'Conventions of this app',
     conventionsBody:
       '• Bland counts toward sweet at 0.5; astringent toward sour at 0.5\n• Flavors marked “slightly” also count 0.5\n• Nature is averaged on a five-step scale (cold −2 to hot +2) and shown as color\n• The long summer is determined by the doyō method (the eighteen days before each Beginning)',
-    positionTitle: 'Position and references',
+    positionTitle: 'Position',
     positionBody:
       'This app organizes the classifications traditionally used in Chinese dietary theory — nature, flavor, meridians — within what is commonly known. It makes no claims about effects or treatment.',
-    referencesLine:
-      'References: Yakuzen Shokuten: Shokumotsu Seimihyō (2nd ed.); Yakuzen–Kanpō Shokuzai & Tabeawase Techō (expanded ed.); Mainichi Tsukaeru Yakuzen & Kanpō no Shokuzai Jiten (new ed.); Jitsuyō Chūi Yakuzengaku — see Settings > References for details.',
   },
 
   food: {
@@ -726,6 +752,12 @@ const en: Strings = {
     version: 'Version',
     language: 'Language',
     languageNote: 'Ingredient names are currently Japanese only',
+    darkMode: 'Dark mode',
+    darkModeSystemNote: 'Following your device setting',
+    darkModeFixedNote: 'Set manually on this device',
+    followSystem: 'Follow device setting',
+    largeText: 'Larger text',
+    largeTextNote: 'Slightly enlarges body text and headings',
     references: 'References',
     referencesBody:
       'The nature, flavor, meridian, and category data in this app organizes the traditional classifications widely shared in Chinese dietary theory, compiled as factual data from a range of general sources. It does not reproduce the commentary, structure, or text of any particular book.\n\nAlternate names and kanji names are based on common biological and linguistic knowledge.\n\nThis app does not cover efficacy or indications. All explanatory text is written independently for this app.',

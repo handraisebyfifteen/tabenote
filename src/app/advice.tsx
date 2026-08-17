@@ -15,12 +15,12 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
 import FlavorPentagon from '@/components/FlavorPentagon';
 import PageHead from '@/components/PageHead';
+import { Text } from '@/components/Type';
 import { Colors } from '@/constants/theme';
 import { getFood, type Food } from '@/data/foods';
 import { useColorScheme } from '@/hooks/use-color-scheme';

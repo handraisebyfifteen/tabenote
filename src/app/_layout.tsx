@@ -1,4 +1,5 @@
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, View } from 'react-native';
 
 import Onboarding from '@/components/Onboarding';
@@ -7,6 +8,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { LanguageProvider, useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { BillingProvider, useBilling } from '@/lib/BillingContext';
+import { DisplayProvider } from '@/lib/DisplayContext';
 
 function RootStack() {
   const { lang } = useLang();
@@ -46,15 +48,27 @@ function RootStack() {
   );
 }
 
-export default function RootLayout() {
+/** 配色は設定画面の指定を含むので、DisplayProvider の内側で読む */
+function ThemedRoot() {
   const colorScheme = useColorScheme();
+  const dark = colorScheme === 'dark';
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={dark ? DarkTheme : DefaultTheme}>
+      {/* 端末の設定と食い違う配色を選べるので、ステータスバーは auto ではなく明示する */}
+      <StatusBar style={dark ? 'light' : 'dark'} />
+      <RootStack />
+    </ThemeProvider>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <DisplayProvider>
       <LanguageProvider>
         <BillingProvider>
-          <RootStack />
+          <ThemedRoot />
         </BillingProvider>
       </LanguageProvider>
-    </ThemeProvider>
+    </DisplayProvider>
   );
 }

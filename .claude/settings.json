@@ -1,4 +1,25 @@
 {
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.expo.dev)",
+      "WebFetch(domain:docs.swmansion.com)",
+      "Bash(node -p \"require\\('react-native-reanimated/package.json'\\).version\")",
+      "Bash(python3 -)",
+      "Bash(node -e ' *)",
+      "Bash(npx tsc *)",
+      "Bash(npm test *)",
+      "Bash(npx expo *)",
+      "Bash(ls node_modules | grep -iE \"playwright|puppeteer\" ; ls node_modules/.bin | grep -iE \"playwright|puppeteer\"; echo \"---\"; ls ~/.cache/ms-playwright 2>/dev/null)",
+      "Read(//home/runner/.cache/**)",
+      "Bash(which chromium *)",
+      "Read(//nix/store/**)",
+      "Bash(ls -d /nix/store/*ungoogled-chromium-*/bin 2>/dev/null | head -5; ls /nix/store/*chromium*/bin/chromium 2>/dev/null | head -5)",
+      "Bash(BROWSER=none EXPO_UNSTABLE_HEADLESS=1 npx expo start --web --port 5000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5000)",
+      "Bash(/nix/store/5afrhwm7zqn1vb7p5z1mc2rkh2grsfgz-ungoogled-chromium-138.0.7204.100/bin/chromium --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=414,1500 --virtual-time-budget=30000 --screenshot=/tmp/claude-1000/-home-runner-workspace/e8e08ef1-dd41-45b5-803b-d89b59845f53/scratchpad/home1.png http://127.0.0.1:5000/)"
+    ]
+  },
   "enabledPlugins": {
     "expo@claude-plugins-official": true
   }

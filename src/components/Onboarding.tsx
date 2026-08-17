@@ -6,11 +6,12 @@
  * 図は画像素材ではなく実物のコンポーネントで描く(権利がクリーンで、実装と乖離しない)。
  */
 import React, { useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import FlavorPentagon from '@/components/FlavorPentagon';
 import PaywallContent from '@/components/PaywallContent';
+import { Text } from '@/components/Type';
 import { Colors, MaxContentWidth } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';

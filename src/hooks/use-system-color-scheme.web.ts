@@ -1,5 +1,5 @@
 /**
- * useColorScheme の静的書き出し(web)対応版。Metro が web ビルドでのみこちらを解決する。
+ * 端末の配色設定(web)。Metro が web ビルドでのみこちらを解決する。
  *
  * 静的HTMLはライトで書き出される。React はハイドレーション時にインラインスタイルの
  * 食い違いを修復しないため、React Native の useColorScheme をそのまま使うと
@@ -15,7 +15,7 @@ function subscribe(onChange: () => void) {
   return () => sub.remove();
 }
 
-export function useColorScheme(): 'light' | 'dark' {
+export function useSystemColorScheme(): 'light' | 'dark' {
   return useSyncExternalStore(
     subscribe,
     () => (Appearance.getColorScheme() === 'dark' ? 'dark' : 'light'),

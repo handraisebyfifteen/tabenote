@@ -10,14 +10,13 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
   View,
 } from 'react-native';
 
 import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
 import PageHead from '@/components/PageHead';
+import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
 import { getFoodEmoji } from '@/data/foodEmoji';
 import { FOODS, getFood, isReferenceOnly } from '@/data/foods';
