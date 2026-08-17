@@ -28,11 +28,11 @@ import FiveElementsChart from '@/components/FiveElementsChart';
 import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
 import FoodTile from '@/components/FoodTile';
+import { TabenoteIcon } from '@/components/icons/TabenoteIcon';
 import NatureScale from '@/components/NatureScale';
 import PageHead from '@/components/PageHead';
 import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
-import { getFoodEmoji } from '@/data/foodEmoji';
 import {
   ALL_CAT15,
   SELECTABLE_FOODS,
@@ -100,14 +100,16 @@ function dominantAxisAngle(food: Food): number {
 function FoodPortrait({
   id,
   name,
-  emoji,
+  icon,
+  catIcon,
   color,
   nameColor,
   fromAngleDeg,
 }: {
   id: string;
   name: string;
-  emoji: string | null;
+  icon: string;
+  catIcon: string;
   color: string;
   nameColor: string;
   fromAngleDeg: number;
@@ -116,9 +118,12 @@ function FoodPortrait({
   useEffect(() => {
     anim.setValue(0);
     Animated.spring(anim, {
+      // 跳ねの山が 0.1 秒ぶん遅れるようにゆるめた(140/6 → 54/4)。
+      // 減衰比は 0.39 のままなので跳ね幅は変えず、動きだけ約半分の速さになる。
+      // 山 ≈ 0.20 秒 / ほぼ静止 ≈ 0.50 秒。
       toValue: 1,
-      friction: 6,
-      tension: 140,
+      friction: 4,
+      tension: 54,
       useNativeDriver: false,
     }).start();
     // 表示する食材が替わるたびに演出をやり直す
@@ -142,10 +147,19 @@ function FoodPortrait({
         transform: [{ translateX }, { translateY }, { scale }],
       }}
     >
-      <FoodThumb name={name} emoji={emoji} color={color} size={96} />
+      <FoodThumb name={name} icon={icon} catIcon={catIcon} color={color} size={96} />
+      {/* 英語名は長いので、収まらない時だけ字を縮める(Web は非対応のため従来どおり切り詰め) */}
       <Text
-        style={{ color: nameColor, fontSize: 13, fontWeight: '600' }}
+        style={{
+          color: nameColor,
+          fontSize: 13,
+          fontWeight: '600',
+          maxWidth: 112,
+          textAlign: 'center',
+        }}
         numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.6}
       >
         {name}
       </Text>
@@ -269,8 +283,31 @@ export default function CombineScreen() {
   };
 
   /** 1タップ = カーソル、カーソル中のタイルへの2タップ目 = 決定(時間制限なし) */
+  // 決定したタイルはグリッドから抜けるが、抜けるのを一拍(450ms)待つ。
+  // その間に FoodTile が点灯(flash) → 縮んで消える(departing)を演じてから、
+  // 凍結を解いて本当に抜く。長さは FoodTile の DEPART_FRAMES と合わせること
+  const [frozenList, setFrozenList] = useState<Food[] | null>(null);
+  const [departingId, setDepartingId] = useState<string | null>(null);
+  const frozenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(
+    () => () => {
+      if (frozenTimer.current !== null) clearTimeout(frozenTimer.current);
+    },
+    [],
+  );
+
   const onTile = (id: string) => {
+    // 退場中のタイルは触れない(再フォーカスすると消える瞬間に演出が矛盾する)
+    if (id === departingId) return;
     if (focusedId === id) {
+      // いま画面に出ている並びのまま凍結してから決定する
+      setFrozenList(frozenList ?? listFoods);
+      setDepartingId(id);
+      if (frozenTimer.current !== null) clearTimeout(frozenTimer.current);
+      frozenTimer.current = setTimeout(() => {
+        setFrozenList(null);
+        setDepartingId(null);
+      }, 450);
       toggle(id);
       // 決定したタイルはグリッドから抜けるので、カーソルも外す
       setFocusedId(null);
@@ -310,7 +347,8 @@ export default function CombineScreen() {
             <FoodPortrait
               id={portraitFood.id}
               name={foodName(portraitFood, lang)}
-              emoji={getFoodEmoji(portraitFood.name)}
+              icon={portraitFood.icon}
+              catIcon={portraitFood.catIcon}
               color={natureColor(natureValue(portraitFood))}
               nameColor={c.text}
               fromAngleDeg={dominantAxisAngle(portraitFood)}
@@ -511,10 +549,13 @@ export default function CombineScreen() {
               style={[styles.chip, { backgroundColor: c.backgroundSelected }]}
               onPress={() => toggle(f.id)}
             >
-              <Text style={{ color: c.text }}>
-                {getFoodEmoji(f.name) ?? ''}
-                {foodName(f, lang)} ✕
-              </Text>
+              <TabenoteIcon
+                name={f.icon}
+                fallback={f.catIcon}
+                size={16}
+                color={c.text}
+              />
+              <Text style={{ color: c.text }}>{foodName(f, lang)} ✕</Text>
             </Pressable>
           ))}
         </ScrollView>
@@ -607,7 +648,7 @@ export default function CombineScreen() {
 
       <FlatList
         style={styles.list}
-        data={listFoods}
+        data={frozenList ?? listFoods}
         keyExtractor={(f) => f.id}
         // numColumns は動的に変えられないので、列数が変わったら key で作り直す
         key={`grid-${gridColumns}`}
@@ -624,11 +665,13 @@ export default function CombineScreen() {
           <FoodTile
             columns={gridColumns}
             name={foodName(item, lang)}
-            emoji={getFoodEmoji(item.name)}
+            icon={item.icon}
+            catIcon={item.catIcon}
             color={natureColor(natureValue(item))}
             selected={selectedIds.includes(item.id)}
             focused={focusedId === item.id}
             starred={favorites.includes(item.id)}
+            departing={item.id === departingId}
             nameColor={c.text}
             onPress={() => onTile(item.id)}
             onLongPress={() => toggleStar(item.id)}
@@ -716,6 +759,9 @@ const styles = StyleSheet.create({
   chipsRow: { flexGrow: 0 },
   chipsContent: { paddingHorizontal: 12, gap: 8, paddingVertical: 4 },
   chip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     borderRadius: 16,
     paddingHorizontal: 12,
     paddingVertical: 6,

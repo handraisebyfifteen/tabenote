@@ -18,7 +18,6 @@ import FoodThumb from '@/components/FoodThumb';
 import PageHead from '@/components/PageHead';
 import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
-import { getFoodEmoji } from '@/data/foodEmoji';
 import { FOODS, getFood, isReferenceOnly } from '@/data/foods';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
@@ -130,7 +129,8 @@ export default function FoodDetailScreen() {
       <View style={styles.header}>
         <FoodThumb
           name={foodName(food, lang)}
-          emoji={getFoodEmoji(food.name)}
+          icon={food.icon}
+          catIcon={food.catIcon}
           color={natureColor(refOnly ? null : natureValue(food))}
           size={48}
         />

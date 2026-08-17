@@ -19,10 +19,10 @@ import {
 
 import { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
+import { getFoodEmoji } from '@/data/foodEmoji';
 import PageHead from '@/components/PageHead';
 import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
-import { getFoodEmoji } from '@/data/foodEmoji';
 import { FOODS, getFood, isReferenceOnly, searchFoods } from '@/data/foods';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
@@ -432,7 +432,8 @@ function ZukanSection({
             >
               <FoodThumb
                 name={foodName(item, lang)}
-                emoji={getFoodEmoji(item.name)}
+                icon={item.icon}
+                catIcon={item.catIcon}
                 color={natureColor(refOnly ? null : natureValue(item))}
               />
               <View style={styles.zukanName}>

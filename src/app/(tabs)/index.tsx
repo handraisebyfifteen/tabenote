@@ -23,7 +23,6 @@ import PageHead from '@/components/PageHead';
 import TermScene from '@/components/TermScene';
 import { Text } from '@/components/Type';
 import { Colors } from '@/constants/theme';
-import { getFoodEmoji } from '@/data/foodEmoji';
 import { getTermText } from '@/data/solarTermTexts';
 import { getTermScene } from '@/data/termScenes';
 import { useColorScheme } from '@/hooks/use-color-scheme';
@@ -162,7 +161,8 @@ export default function HomeScreen() {
               >
                 <FoodThumb
                   name={foodName(food, lang)}
-                  emoji={getFoodEmoji(food.name)}
+                  icon={food.icon}
+                  catIcon={food.catIcon}
                   color={natureColor(natureValue(food))}
                   size={52}
                 />
