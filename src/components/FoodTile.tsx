@@ -29,8 +29,8 @@ function brighten(hex: string, ratio: number): string {
  * 「大きく表示」の文字倍率はここには掛けない — マスに対する比率で決まっているため。
  */
 const METRICS = {
-  standard: { emoji: 40, monogram: 34, name: 12, star: 13, badge: 19, badgeText: 12 },
-  large: { emoji: 60, monogram: 50, name: 16, star: 17, badge: 26, badgeText: 15 },
+  standard: { emoji: 40, monogram: 34, name: 14, star: 13, badge: 19, badgeText: 12 },
+  large: { emoji: 60, monogram: 50, name: 20, star: 17, badge: 26, badgeText: 15 },
 } as const;
 
 interface Props {

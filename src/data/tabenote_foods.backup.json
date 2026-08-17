@@ -9,10 +9,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "赤米・紅米",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "赤米・紅米"
  },
  {
   "id": "f956384",
@@ -25,10 +22,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "粟",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "粟"
  },
  {
   "id": "f2c8ce8",
@@ -40,10 +34,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "粳米・白米。※粥は益精強志",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "粳米・白米"
  },
  {
   "id": "f92c59b",
@@ -55,10 +46,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "燕麦・オートミール",
-  "icon": "mugi",
-  "catIcon": "cat_kokurui"
+  "note": "燕麦・オートミール"
  },
  {
   "id": "f17f1c7",
@@ -71,10 +59,7 @@
   "meridians": "脾・胃",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "大麦",
-  "icon": "mugi",
-  "catIcon": "cat_kokurui"
+  "note": "大麦"
  },
  {
   "id": "fb6022a",
@@ -86,10 +71,7 @@
   "meridians": "脾・肺",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "黍",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "黍"
  },
  {
   "id": "fd3c039",
@@ -101,10 +83,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "黒米",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "黒米"
  },
  {
   "id": "f57518d",
@@ -116,10 +95,7 @@
   "meridians": "脾・胃・肝・腎",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "32",
-  "note": "玄米。※脾胃虚弱者は慎用。炒ってから粥にして食す",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "玄米"
  },
  {
   "id": "f4e5a04",
@@ -131,10 +107,7 @@
   "meridians": "心・脾・腎",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "小麦。※実は温性で皮は涼性。全粒粉は涼性",
-  "icon": "mugi",
-  "catIcon": "cat_kokurui"
+  "note": "小麦"
  },
  {
   "id": "f9e92f8",
@@ -146,10 +119,7 @@
   "meridians": "心・脾・腎",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "小麦粉",
-  "icon": "kona",
-  "catIcon": "cat_kokurui"
+  "note": "小麦粉"
  },
  {
   "id": "f3b4ec8",
@@ -162,10 +132,7 @@
   "meridians": "脾・胃",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "米麹",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "米麹"
  },
  {
   "id": "fc8f67c",
@@ -177,10 +144,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "蕎麦。※脾胃虚寒の者は注意",
-  "icon": "mugi",
-  "catIcon": "cat_kokurui"
+  "note": "蕎麦"
  },
  {
   "id": "ffdc68b",
@@ -193,10 +157,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "薏苡仁。※妊娠初期は注意",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "薏苡仁"
  },
  {
   "id": "f5fce7e",
@@ -209,10 +170,7 @@
   "meridians": "脾・胃",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "発芽玄米",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "発芽玄米"
  },
  {
   "id": "f2977d3",
@@ -224,10 +182,7 @@
   "meridians": "脾・胃",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "稗",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "稗"
  },
  {
   "id": "f078a1e",
@@ -239,10 +194,7 @@
   "meridians": "脾・胃",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "34",
-  "note": "麩",
-  "icon": "fu",
-  "catIcon": "cat_kokurui"
+  "note": "麩"
  },
  {
   "id": "ffca0d0",
@@ -254,10 +206,7 @@
   "meridians": "脾・胃",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "36",
-  "note": "小麦麩",
-  "icon": "mugi",
-  "catIcon": "cat_kokurui"
+  "note": "小麦麩"
  },
  {
   "id": "ff8cf24",
@@ -269,10 +218,7 @@
   "meridians": "脾・胃・肝・大腸",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "36",
-  "note": "紅麹",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "紅麹"
  },
  {
   "id": "f011d61",
@@ -284,10 +230,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "kokurui",
   "cat5": "grain",
-  "page": "36",
-  "note": "糯米。※痰湿証者の常食に注意",
-  "icon": "kome",
-  "catIcon": "cat_kokurui"
+  "note": "糯米"
  },
  {
   "id": "f57103d",
@@ -297,10 +240,7 @@
   "meridians": "",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "36",
-  "note": "片栗粉",
-  "icon": "denpun",
-  "catIcon": "cat_imo"
+  "note": "片栗粉"
  },
  {
   "id": "f36a913",
@@ -313,10 +253,7 @@
   "meridians": "脾・肺",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "36",
-  "note": "菊芋",
-  "icon": "konsai",
-  "catIcon": "cat_imo"
+  "note": "菊芋"
  },
  {
   "id": "f65abc9",
@@ -328,10 +265,7 @@
   "meridians": "脾・肺",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "36",
-  "note": "玉米澱粉",
-  "icon": "denpun",
-  "catIcon": "cat_imo"
+  "note": "玉米澱粉"
  },
  {
   "id": "f3386cc",
@@ -344,10 +278,7 @@
   "meridians": "肺・大腸",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "36",
-  "note": "蒟蒻",
-  "icon": "denpun",
-  "catIcon": "cat_imo"
+  "note": "蒟蒻"
  },
  {
   "id": "f37e84a",
@@ -359,10 +290,7 @@
   "meridians": "脾・腎",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "38",
-  "note": "薩摩芋",
-  "icon": "imo_root",
-  "catIcon": "cat_imo"
+  "note": "薩摩芋"
  },
  {
   "id": "f04511b",
@@ -375,10 +303,7 @@
   "meridians": "脾・胃",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "38",
-  "note": "里芋",
-  "icon": "imo_root",
-  "catIcon": "cat_imo"
+  "note": "里芋"
  },
  {
   "id": "ff2c34f",
@@ -390,10 +315,7 @@
   "meridians": "胃・大腸",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "38",
-  "note": "馬鈴薯。※生汁には解毒・消炎作用あり",
-  "icon": "imo_root",
-  "catIcon": "cat_imo"
+  "note": "馬鈴薯"
  },
  {
   "id": "fee6c33",
@@ -405,10 +327,7 @@
   "meridians": "脾・腎",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "38",
-  "note": "木薯澱粉",
-  "icon": "denpun",
-  "catIcon": "cat_imo"
+  "note": "木薯澱粉"
  },
  {
   "id": "fa5392b",
@@ -420,10 +339,7 @@
   "meridians": "腎",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "38",
-  "note": "零余子",
-  "icon": "imo_root",
-  "catIcon": "cat_imo"
+  "note": "零余子"
  },
  {
   "id": "f0afb25",
@@ -436,10 +352,7 @@
   "meridians": "脾",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "38",
-  "note": "八つ頭",
-  "icon": "imo_root",
-  "catIcon": "cat_imo"
+  "note": "八つ頭"
  },
  {
   "id": "fd85c26",
@@ -451,10 +364,7 @@
   "meridians": "肺・脾・腎",
   "cat15": "imo",
   "cat5": "grain",
-  "page": "38",
-  "note": "山薬・自然薯・長芋",
-  "icon": "imo_root",
-  "catIcon": "cat_imo"
+  "note": "山薬・自然薯・長芋"
  },
  {
   "id": "f4b2257",
@@ -467,10 +377,7 @@
   "meridians": "心・小腸・脾",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "小豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "小豆"
  },
  {
   "id": "f878d86",
@@ -482,10 +389,7 @@
   "meridians": "脾・胃",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "隠元豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "隠元豆"
  },
  {
   "id": "fe33561",
@@ -497,10 +401,7 @@
   "meridians": "脾・腎",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "黒大豆。※煮汁は利咽。煮食は偏涼、炒食は偏温。皮に養血平肝・除熱・止汗",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "黒大豆"
  },
  {
   "id": "fb0fa9a",
@@ -513,10 +414,7 @@
   "meridians": "脾・腎",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "大角豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "大角豆"
  },
  {
   "id": "fb340d0",
@@ -528,10 +426,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "大豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "大豆"
  },
  {
   "id": "fd7a109",
@@ -543,10 +438,7 @@
   "meridians": "肺・胃",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "豆乳",
-  "icon": "tofu",
-  "catIcon": "cat_mame"
+  "note": "豆乳"
  },
  {
   "id": "fd25307",
@@ -558,10 +450,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "豆腐",
-  "icon": "tofu",
-  "catIcon": "cat_mame"
+  "note": "豆腐"
  },
  {
   "id": "f2e101f",
@@ -573,10 +462,7 @@
   "meridians": "肺・脾・胃・腎",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "40",
-  "note": "刀豆。※福神漬けに利用",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "刀豆"
  },
  {
   "id": "f6d2445",
@@ -588,10 +474,7 @@
   "meridians": "脾・肺",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "42",
-  "note": "納豆",
-  "icon": "tofu",
-  "catIcon": "cat_mame"
+  "note": "納豆"
  },
  {
   "id": "f5c6256",
@@ -603,10 +486,7 @@
   "meridians": "脾・大腸",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "42",
-  "note": "別名ガルバンゾー",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "別名ガルバンゾー"
  },
  {
   "id": "fd9910f",
@@ -618,10 +498,7 @@
   "meridians": "胃・脾",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "42",
-  "note": "腐乳。豆腐に紅麹をつけ発酵させた調味料",
-  "icon": "tofu",
-  "catIcon": "cat_mame"
+  "note": "腐乳。豆腐に紅麹をつけ発酵させた調味料"
  },
  {
   "id": "f455504",
@@ -634,10 +511,7 @@
   "meridians": "肺・胃",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "42",
-  "note": "湯葉",
-  "icon": "tofu",
-  "catIcon": "cat_mame"
+  "note": "湯葉"
  },
  {
   "id": "f264915",
@@ -649,10 +523,7 @@
   "meridians": "心・胃",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "42",
-  "note": "緑豆。※清熱解毒の力は豆皮にある",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "緑豆"
  },
  {
   "id": "fff0c6d",
@@ -665,10 +536,7 @@
   "meridians": "脾",
   "cat15": "mame",
   "cat5": "grain",
-  "page": "42",
-  "note": "扁豆・眼鏡豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_mame"
+  "note": "扁豆・眼鏡豆"
  },
  {
   "id": "fd0f077",
@@ -680,10 +548,7 @@
   "meridians": "肺・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "44",
-  "note": "青葱・九条葱",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "青葱・九条葱"
  },
  {
   "id": "f138677",
@@ -695,10 +560,7 @@
   "meridians": "肺・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "44",
-  "note": "浅葱",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "浅葱"
  },
  {
   "id": "f1b6704",
@@ -711,10 +573,7 @@
   "meridians": "心・肺・肝・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "44",
-  "note": "明日葉",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "明日葉"
  },
  {
   "id": "fb7bb83",
@@ -727,10 +586,7 @@
   "meridians": "肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "44",
-  "note": "※中医飲食営養学では微温性・抗癌、中医薬膳学では寒性・清熱生津・利水の記述",
-  "icon": "asupara",
-  "catIcon": "cat_yasai"
+  "note": ""
  },
  {
   "id": "f489d4c",
@@ -742,10 +598,7 @@
   "meridians": "心・肝・胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "44",
-  "note": "※禁忌:妊婦。皮は苦味が強く緩下作用",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": ""
  },
  {
   "id": "f34aeb4",
@@ -758,10 +611,7 @@
   "meridians": "腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "44",
-  "note": "茴香(茎・葉)。※魚の臭みを消す",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "茴香(茎・葉)"
  },
  {
   "id": "fac2590",
@@ -774,10 +624,7 @@
   "meridians": "肝・腎・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "44",
-  "note": "独活",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "独活"
  },
  {
   "id": "fa3e3a5",
@@ -789,10 +636,7 @@
   "meridians": "肺・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "荏葉",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "荏葉"
  },
  {
   "id": "f12c0f3",
@@ -805,10 +649,7 @@
   "meridians": "肺・胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": ""
  },
  {
   "id": "f8cf2f2",
@@ -820,10 +661,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "枝豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_yasai"
+  "note": "枝豆"
  },
  {
   "id": "fe851eb",
@@ -835,10 +673,7 @@
   "meridians": "肺・腎・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "金針菇",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "金針菇"
  },
  {
   "id": "fb76cf5",
@@ -850,10 +685,7 @@
   "meridians": "脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "豌豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_yasai"
+  "note": "豌豆"
  },
  {
   "id": "fd13208",
@@ -866,10 +698,7 @@
   "meridians": "脾・胃・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "杏鮑菇",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "杏鮑菇"
  },
  {
   "id": "f455ab9",
@@ -881,10 +710,7 @@
   "meridians": "肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "陸鹿尾菜",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "陸鹿尾菜"
  },
  {
   "id": "f2147f0",
@@ -897,10 +723,7 @@
   "meridians": "腎・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "46",
-  "note": "秋葵",
-  "icon": "kasai",
-  "catIcon": "cat_yasai"
+  "note": "秋葵"
  },
  {
   "id": "f214a03",
@@ -913,10 +736,7 @@
   "meridians": "脾・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "牛至",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "牛至"
  },
  {
   "id": "f5f6d49",
@@ -930,10 +750,7 @@
   "meridians": "脾・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "蕪菁。※生食は涼性、熱食は温性にかたむく",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "蕪菁"
  },
  {
   "id": "f5ac0cd",
@@ -945,10 +762,7 @@
   "meridians": "脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "南瓜",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "南瓜"
  },
  {
   "id": "f16256e",
@@ -960,10 +774,7 @@
   "meridians": "肺・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "芥菜",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "芥菜"
  },
  {
   "id": "f96ff21",
@@ -976,10 +787,7 @@
   "meridians": "脾・腎・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "花椰菜",
-  "icon": "kasai_hana",
-  "catIcon": "cat_yasai"
+  "note": "花椰菜"
  },
  {
   "id": "ff0caa4",
@@ -993,10 +801,7 @@
   "meridians": "肝・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "菊花。※黄菊花は疏散風熱、白菊花は平肝明目",
-  "icon": "kasai_hana",
-  "catIcon": "cat_yasai"
+  "note": "菊花"
  },
  {
   "id": "f6f65c5",
@@ -1008,10 +813,7 @@
   "meridians": "胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "黒木耳",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "黒木耳"
  },
  {
   "id": "fad4c08",
@@ -1024,10 +826,7 @@
   "meridians": "肺・胃・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "48",
-  "note": "銀耳",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "銀耳"
  },
  {
   "id": "f7daf64",
@@ -1039,10 +838,7 @@
   "meridians": "心・肝・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "韮黄",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "韮黄"
  },
  {
   "id": "f737fb9",
@@ -1054,10 +850,7 @@
   "meridians": "胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "花椒葉・木の芽",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "花椒葉・木の芽"
  },
  {
   "id": "f3ef0d8",
@@ -1069,10 +862,7 @@
   "meridians": "肝・膀胱・胃・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "甘藍",
-  "icon": "kekkyu",
-  "catIcon": "cat_yasai"
+  "note": "甘藍"
  },
  {
   "id": "f0d5fa9",
@@ -1084,10 +874,7 @@
   "meridians": "胃・小腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "胡瓜。※注意:多食",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "胡瓜"
  },
  {
   "id": "f577bfd",
@@ -1099,10 +886,7 @@
   "meridians": "肝・腎・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "金針菜。※生は小毒なので加熱し多食を控える。禁忌:皮膚掻痒の者",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "金針菜"
  },
  {
   "id": "ffd69d8",
@@ -1114,10 +898,7 @@
   "meridians": "腸・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "空心菜",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "空心菜"
  },
  {
   "id": "f6554f4",
@@ -1127,10 +908,7 @@
   "meridians": "",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_yasai"
+  "note": ""
  },
  {
   "id": "f044b7b",
@@ -1142,10 +920,7 @@
   "meridians": "肺・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "50",
-  "note": "水田芥",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "水田芥"
  },
  {
   "id": "f414e19",
@@ -1157,10 +932,7 @@
   "meridians": "肺・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "52",
-  "note": "荸薺",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "荸薺"
  },
  {
   "id": "fbabeee",
@@ -1173,10 +945,7 @@
   "meridians": "心・肝・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "52",
-  "note": "慈菇",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "慈菇"
  },
  {
   "id": "f318b7d",
@@ -1188,10 +957,7 @@
   "meridians": "肺・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "52",
-  "note": "香菜・パクチー",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "香菜・パクチー"
  },
  {
   "id": "f38cdfb",
@@ -1204,10 +970,7 @@
   "meridians": "肝・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "52",
-  "note": "莢果蕨",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "莢果蕨"
  },
  {
   "id": "fde6ccb",
@@ -1220,10 +983,7 @@
   "meridians": "脾・肺・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "52",
-  "note": "蕪茎藍",
-  "icon": "kekkyu",
-  "catIcon": "cat_yasai"
+  "note": "蕪茎藍"
  },
  {
   "id": "fa12a6c",
@@ -1236,10 +996,7 @@
   "meridians": "肺・胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "52",
-  "note": "牛蒡",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "牛蒡"
  },
  {
   "id": "f23b71c",
@@ -1252,10 +1009,7 @@
   "meridians": "肺・肝・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "52",
-  "note": "小松菜",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "小松菜"
  },
  {
   "id": "f0a520f",
@@ -1267,10 +1021,7 @@
   "meridians": "肝・脾・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "搾菜",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "搾菜"
  },
  {
   "id": "f9774bc",
@@ -1282,10 +1033,7 @@
   "meridians": "脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "菜豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_yasai"
+  "note": "菜豆"
  },
  {
   "id": "f2d8c0e",
@@ -1297,10 +1045,7 @@
   "meridians": "胃・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "香菇",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "香菇"
  },
  {
   "id": "f778dc0",
@@ -1312,10 +1057,7 @@
   "meridians": "胃・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "冬菇・花菇。※冬から春の肉厚を冬菇、薄手で開かないうちのものを香信",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "冬菇・花菇"
  },
  {
   "id": "f0ef412",
@@ -1328,10 +1070,7 @@
   "meridians": "脾・心・肝・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "獅子唐辛子",
-  "icon": "kasai",
-  "catIcon": "cat_yasai"
+  "note": "獅子唐辛子"
  },
  {
   "id": "f483b6f",
@@ -1343,10 +1082,7 @@
   "meridians": "肺・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "紫蘇。※効能は赤紫蘇が強い。解魚蟹毒",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "紫蘇"
  },
  {
   "id": "fe8a831",
@@ -1358,10 +1094,7 @@
   "meridians": "肺・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "口蘑",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "口蘑"
  },
  {
   "id": "fd6ab1e",
@@ -1374,10 +1107,7 @@
   "meridians": "肝・肺・心・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "54",
-  "note": "春菊・蒿",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "春菊・蒿"
  },
  {
   "id": "f2be587",
@@ -1389,10 +1119,7 @@
   "meridians": "肝・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "蓴菜",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "蓴菜"
  },
  {
   "id": "f3796fb",
@@ -1404,10 +1131,7 @@
   "meridians": "肺・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "生姜。※注意:陰虚内熱の者。生は辛散の効能が強く、熱は温中に傾く。皮は涼で利水消腫",
-  "icon": "turmeric",
-  "catIcon": "cat_yasai"
+  "note": "生姜"
  },
  {
   "id": "f0dcf70",
@@ -1419,10 +1143,7 @@
   "meridians": "肺・膀胱・大腸・小腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "白瓜",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "白瓜"
  },
  {
   "id": "fc041bc",
@@ -1435,10 +1156,7 @@
   "meridians": "脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "芋頭茎。※乾かした物がいもがら",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "芋頭茎"
  },
  {
   "id": "f3f54b6",
@@ -1450,10 +1168,7 @@
   "meridians": "肺・脾・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "西葫芦",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "西葫芦"
  },
  {
   "id": "f55dde1",
@@ -1466,10 +1181,7 @@
   "meridians": "肝・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "鼠尾草",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "鼠尾草"
  },
  {
   "id": "f5ea4e6",
@@ -1482,10 +1194,7 @@
   "meridians": "肺・胃・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "水芹",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "水芹"
  },
  {
   "id": "f10ac5f",
@@ -1498,10 +1207,7 @@
   "meridians": "肝・胃・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "56",
-  "note": "芹菜",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "芹菜"
  },
  {
   "id": "f8542f8",
@@ -1514,10 +1220,7 @@
   "meridians": "脾・大腸・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "薇。※寒性でありながら活血と止血の働きを併せもつ",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "薇"
  },
  {
   "id": "fe62b3f",
@@ -1529,10 +1232,7 @@
   "meridians": "脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "空豆",
-  "icon": "mame_tsubu",
-  "catIcon": "cat_yasai"
+  "note": "空豆"
  },
  {
   "id": "f46a1dc",
@@ -1545,10 +1245,7 @@
   "meridians": "肺・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "大根。※生は冷やす作用が強いが加熱すると温める作用。注意:脾胃虚弱者の生食・多食",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "大根"
  },
  {
   "id": "f0319fe",
@@ -1560,10 +1257,7 @@
   "meridians": "肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "百里香",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "百里香"
  },
  {
   "id": "f5c5c85",
@@ -1575,10 +1269,7 @@
   "meridians": "肺・胃・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "高菜",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "高菜"
  },
  {
   "id": "fb945cb",
@@ -1590,10 +1281,7 @@
   "meridians": "胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "筍。※注意:胃潰瘍、慢性腎炎、泌尿系結石の者",
-  "icon": "takenoko",
-  "catIcon": "cat_yasai"
+  "note": "筍"
  },
  {
   "id": "f935835",
@@ -1605,10 +1293,7 @@
   "meridians": "肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "玉葱",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "玉葱"
  },
  {
   "id": "fbcd86a",
@@ -1620,10 +1305,7 @@
   "meridians": "心",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "58",
-  "note": "楤の芽",
-  "icon": "kasai_hana",
-  "catIcon": "cat_yasai"
+  "note": "楤の芽"
  },
  {
   "id": "fbec250",
@@ -1635,10 +1317,7 @@
   "meridians": "肝・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "60",
-  "note": "セルフィーユ・細葉",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "セルフィーユ・細葉"
  },
  {
   "id": "f0daf3c",
@@ -1650,10 +1329,7 @@
   "meridians": "肝・肺・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "60",
-  "note": "青梗菜",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "青梗菜"
  },
  {
   "id": "fb530ea",
@@ -1665,10 +1341,7 @@
   "meridians": "心・肝・脾・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "60",
-  "note": "落葵",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "落葵"
  },
  {
   "id": "fe3f898",
@@ -1680,10 +1353,7 @@
   "meridians": "脾・胃・肝・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "60",
-  "note": "草茴香",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "草茴香"
  },
  {
   "id": "fcdc23e",
@@ -1696,10 +1366,7 @@
   "meridians": "肺・大腸・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "60",
-  "note": "冬瓜",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "冬瓜"
  },
  {
   "id": "f6ca3ad",
@@ -1711,10 +1378,7 @@
   "meridians": "脾・胃・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "60",
-  "note": "豆苗",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "豆苗"
  },
  {
   "id": "fa24cd1",
@@ -1726,10 +1390,7 @@
   "meridians": "大腸・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "60",
-  "note": "玉蜀黍。※根や葉を煎じて飲むと尿路結石を改善",
-  "icon": "mugi",
-  "catIcon": "cat_yasai"
+  "note": "玉蜀黍"
  },
  {
   "id": "f633fac",
@@ -1741,10 +1402,7 @@
   "meridians": "肝・腎・膀胱・心・小腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "玉米鬚。※乾燥したものを生薬として使用",
-  "icon": "mugi",
-  "catIcon": "cat_yasai"
+  "note": "玉米鬚"
  },
  {
   "id": "f91d158",
@@ -1757,10 +1415,7 @@
   "meridians": "肝・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "番茄",
-  "icon": "kasai",
-  "catIcon": "cat_yasai"
+  "note": "番茄"
  },
  {
   "id": "fb0ce9d",
@@ -1773,10 +1428,7 @@
   "meridians": "腎・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "地膚子",
-  "icon": "shushi",
-  "catIcon": "cat_yasai"
+  "note": "地膚子"
  },
  {
   "id": "f7a3c71",
@@ -1788,10 +1440,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "茄子",
-  "icon": "nasu",
-  "catIcon": "cat_yasai"
+  "note": "茄子"
  },
  {
   "id": "f0fe9ca",
@@ -1803,10 +1452,7 @@
   "meridians": "肝・腎・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "薺・ぺんぺん草",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "薺・ぺんぺん草"
  },
  {
   "id": "ffc8c0e",
@@ -1819,10 +1465,7 @@
   "meridians": "肺・肝・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "菜の花・油菜花",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "菜の花・油菜花"
  },
  {
   "id": "faf06b5",
@@ -1835,10 +1478,7 @@
   "meridians": "脾・腎・心",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "朴蕈",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "朴蕈"
  },
  {
   "id": "f9fd7db",
@@ -1850,10 +1490,7 @@
   "meridians": "心・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "62",
-  "note": "苦瓜・ゴーヤ。※たね 甘/苦 益気壮陽",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "苦瓜・ゴーヤ"
  },
  {
   "id": "f9b62f0",
@@ -1865,10 +1502,7 @@
   "meridians": "肝・胃・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "韮菜",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "韮菜"
  },
  {
   "id": "f9484ef",
@@ -1880,10 +1514,7 @@
   "meridians": "肺・脾・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "人参・紅蘿蔔",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "人参・紅蘿蔔"
  },
  {
   "id": "f321ec0",
@@ -1895,10 +1526,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "大蒜。※注意:陰虚火旺証・実熱証の者",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "大蒜"
  },
  {
   "id": "f2ecebc",
@@ -1910,10 +1538,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "大蒜(加熱)",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "大蒜(加熱)"
  },
  {
   "id": "fb0f9aa",
@@ -1925,10 +1550,7 @@
   "meridians": "脾・胃・肺・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "蒜苗",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "蒜苗"
  },
  {
   "id": "f4b2997",
@@ -1940,10 +1562,7 @@
   "meridians": "肺・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "葱",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "葱"
  },
  {
   "id": "f8f3174",
@@ -1955,10 +1574,7 @@
   "meridians": "胃・肝・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "山蒜",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "山蒜"
  },
  {
   "id": "f36f061",
@@ -1970,10 +1586,7 @@
   "meridians": "胃・大腸・肝・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "大白菜",
-  "icon": "hakusai",
-  "catIcon": "cat_yasai"
+  "note": "大白菜"
  },
  {
   "id": "f667845",
@@ -1985,10 +1598,7 @@
   "meridians": "肺・脾・胃・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "64",
-  "note": "羅勒",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "羅勒"
  },
  {
   "id": "fa06374",
@@ -2000,10 +1610,7 @@
   "meridians": "肝・脾・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "荷蘭芹",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "荷蘭芹"
  },
  {
   "id": "f27dbd7",
@@ -2013,10 +1620,7 @@
   "meridians": "",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "紅辣椒",
-  "icon": "kasai",
-  "catIcon": "cat_yasai"
+  "note": "紅辣椒"
  },
  {
   "id": "f042fd8",
@@ -2029,10 +1633,7 @@
   "meridians": "肺・脾・小腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "隼人瓜",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "隼人瓜"
  },
  {
   "id": "ff5452a",
@@ -2044,10 +1645,7 @@
   "meridians": "肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "糖蘿蔔・甜菜",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "糖蘿蔔・甜菜"
  },
  {
   "id": "f741fce",
@@ -2060,10 +1658,7 @@
   "meridians": "肝・心・胃・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "青椒",
-  "icon": "kasai",
-  "catIcon": "cat_yasai"
+  "note": "青椒"
  },
  {
   "id": "fcd279f",
@@ -2073,10 +1668,7 @@
   "meridians": "",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "平茸",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "平茸"
  },
  {
   "id": "fce447f",
@@ -2089,10 +1681,7 @@
   "meridians": "肝・心・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "蕗・款冬花",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "蕗・款冬花"
  },
  {
   "id": "f77fe8c",
@@ -2105,10 +1694,7 @@
   "meridians": "肺・大腸・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "66",
-  "note": "蕗の薹・蜂斗菜茎",
-  "icon": "kasai_hana",
-  "catIcon": "cat_yasai"
+  "note": "蕗の薹・蜂斗菜茎"
  },
  {
   "id": "f562ae6",
@@ -2120,10 +1706,7 @@
   "meridians": "脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "袋茸・草菇",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "袋茸・草菇"
  },
  {
   "id": "feaf406",
@@ -2135,10 +1718,7 @@
   "meridians": "肝・脾・腎",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "西蘭花",
-  "icon": "kasai_hana",
-  "catIcon": "cat_yasai"
+  "note": "西蘭花"
  },
  {
   "id": "f3daf11",
@@ -2150,10 +1730,7 @@
   "meridians": "肝・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "糸瓜",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "糸瓜"
  },
  {
   "id": "f3a424c",
@@ -2165,10 +1742,7 @@
   "meridians": "肝・大腸・小腸・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "菠薐草。※根に止渇・潤燥の効能あり",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "菠薐草"
  },
  {
   "id": "f03cd55",
@@ -2180,10 +1754,7 @@
   "meridians": "脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "舞茸",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "舞茸"
  },
  {
   "id": "f7f0a33",
@@ -2195,10 +1766,7 @@
   "meridians": "肝・脾・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "真菰筍。※注意:慢性下痢、脾胃虚弱の者",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "真菰筍"
  },
  {
   "id": "f2a74e8",
@@ -2210,10 +1778,7 @@
   "meridians": "大腸・小腸・胃・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "松傘蘑。※注意:気滞証の者",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "松傘蘑"
  },
  {
   "id": "f33f9c4",
@@ -2225,10 +1790,7 @@
   "meridians": "脾・腎・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "68",
-  "note": "松茸。※老廃物の排泄",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "松茸"
  },
  {
   "id": "f989628",
@@ -2240,10 +1802,7 @@
   "meridians": "肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "水菜",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "水菜"
  },
  {
   "id": "f43ed16",
@@ -2256,10 +1815,7 @@
   "meridians": "肝・肺・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "三つ葉・鴨児芹",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "三つ葉・鴨児芹"
  },
  {
   "id": "faa296e",
@@ -2271,10 +1827,7 @@
   "meridians": "肺・大腸・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "茗荷",
-  "icon": "kasai_hana",
-  "catIcon": "cat_yasai"
+  "note": "茗荷"
  },
  {
   "id": "f03a66f",
@@ -2286,10 +1839,7 @@
   "meridians": "肝・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "薄荷",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "薄荷"
  },
  {
   "id": "fe5026f",
@@ -2302,10 +1852,7 @@
   "meridians": "胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "芽キャベツ・小巻心菜",
-  "icon": "kekkyu",
-  "catIcon": "cat_yasai"
+  "note": "芽キャベツ・小巻心菜"
  },
  {
   "id": "f96dad3",
@@ -2317,10 +1864,7 @@
   "meridians": "脾・胃・膀胱",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "黄豆芽。※疣(ユウ)はイボ",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "黄豆芽"
  },
  {
   "id": "f1e3036",
@@ -2332,10 +1876,7 @@
   "meridians": "心・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "豆芽",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "豆芽"
  },
  {
   "id": "f4486a9",
@@ -2348,10 +1889,7 @@
   "meridians": "肺・肝・腎・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "70",
-  "note": "縞綱麻・台湾黄麻",
-  "icon": "hamono",
-  "catIcon": "cat_yasai"
+  "note": "縞綱麻・台湾黄麻"
  },
  {
   "id": "f484760",
@@ -2363,10 +1901,7 @@
   "meridians": "脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "山伏茸・猴頭菌",
-  "icon": "kinoko",
-  "catIcon": "cat_yasai"
+  "note": "山伏茸・猴頭菌"
  },
  {
   "id": "f9f5c8e",
@@ -2378,10 +1913,7 @@
   "meridians": "心・膀胱・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "干瓢・葫芦",
-  "icon": "uri",
-  "catIcon": "cat_yasai"
+  "note": "干瓢・葫芦"
  },
  {
   "id": "f61a87e",
@@ -2393,10 +1925,7 @@
   "meridians": "心・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "百合根。※乾したものがかんぴょう",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "百合根"
  },
  {
   "id": "fbc016c",
@@ -2409,10 +1938,7 @@
   "meridians": "肝・脾・腎・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "蓬葉・艾蒿。※注意:熱証の者",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "蓬葉・艾蒿"
  },
  {
   "id": "fd9259b",
@@ -2425,10 +1951,7 @@
   "meridians": "肺・胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "薤",
-  "icon": "rinkei",
-  "catIcon": "cat_yasai"
+  "note": "薤"
  },
  {
   "id": "f14661c",
@@ -2442,10 +1965,7 @@
   "meridians": "肺・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "二十日大根",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "二十日大根"
  },
  {
   "id": "f0e3702",
@@ -2458,10 +1978,7 @@
   "meridians": "胃・大腸・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "食用だいおう・大黄茎。※注意:多食。禁忌:妊産婦・授乳婦",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "食用だいおう・大黄茎"
  },
  {
   "id": "f9100d7",
@@ -2474,10 +1991,7 @@
   "meridians": "大腸・小腸・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "72",
-  "note": "生菜・サニーレタス",
-  "icon": "kekkyu",
-  "catIcon": "cat_yasai"
+  "note": "生菜・サニーレタス"
  },
  {
   "id": "fc952db",
@@ -2491,10 +2005,7 @@
   "meridians": "脾・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "香茅。※注意:妊婦(子宮収縮作用あり)",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "香茅"
  },
  {
   "id": "f183e29",
@@ -2506,10 +2017,7 @@
   "meridians": "肺・肝",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "蜜蜂花",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "蜜蜂花"
  },
  {
   "id": "f7f0572",
@@ -2521,10 +2029,7 @@
   "meridians": "心・肺・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "蓮藕。※生の絞り汁は清熱生津。藕節は平/甘渋、収斂・止血",
-  "icon": "turmeric",
-  "catIcon": "cat_yasai"
+  "note": "蓮藕"
  },
  {
   "id": "f2cf92b",
@@ -2536,10 +2041,7 @@
   "meridians": "心・肺・脾・胃",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "蓮藕(加熱)",
-  "icon": "turmeric",
-  "catIcon": "cat_yasai"
+  "note": "蓮藕(加熱)"
  },
  {
   "id": "f16e6e5",
@@ -2551,10 +2053,7 @@
   "meridians": "脾・肝・心・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "迷迭香。※催眠作用あり",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "迷迭香"
  },
  {
   "id": "f1d7457",
@@ -2566,10 +2065,7 @@
   "meridians": "脾・肺",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "月桂葉",
-  "icon": "kousou",
-  "catIcon": "cat_yasai"
+  "note": "月桂葉"
  },
  {
   "id": "f18bd44",
@@ -2582,10 +2078,7 @@
   "meridians": "肺・胃・脾",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "山葵",
-  "icon": "konsai",
-  "catIcon": "cat_yasai"
+  "note": "山葵"
  },
  {
   "id": "f3ada92",
@@ -2597,10 +2090,7 @@
   "meridians": "肝・胃・大腸",
   "cat15": "yasai",
   "cat5": "veg",
-  "page": "74",
-  "note": "蕨。※根も同様",
-  "icon": "keisai",
-  "catIcon": "cat_yasai"
+  "note": "蕨"
  },
  {
   "id": "f5095c9",
@@ -2613,10 +2103,7 @@
   "meridians": "肝・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "預知子・八月札",
-  "icon": "fusa",
-  "catIcon": "cat_kajitsu"
+  "note": "預知子・八月札"
  },
  {
   "id": "f88a7bb",
@@ -2629,10 +2116,7 @@
   "meridians": "脾・肝",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "酪梨",
-  "icon": "nettai",
-  "catIcon": "cat_kajitsu"
+  "note": "酪梨"
  },
  {
   "id": "fa430e0",
@@ -2645,10 +2129,7 @@
   "meridians": "肺・心",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "杏。※干したものは心の果",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "杏"
  },
  {
   "id": "fd5b7f9",
@@ -2661,10 +2142,7 @@
   "meridians": "脾・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "草莓",
-  "icon": "ichigo",
-  "catIcon": "cat_kajitsu"
+  "note": "草莓"
  },
  {
   "id": "f995404",
@@ -2676,10 +2154,7 @@
   "meridians": "肺・胃・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "無花果",
-  "icon": "ekika",
-  "catIcon": "cat_kajitsu"
+  "note": "無花果"
  },
  {
   "id": "f4858a6",
@@ -2692,10 +2167,7 @@
   "meridians": "肝・脾・肺・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "梅子",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "梅子"
  },
  {
   "id": "fb54c29",
@@ -2709,10 +2181,7 @@
   "meridians": "肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "橄欖",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "橄欖"
  },
  {
   "id": "f691b5b",
@@ -2725,10 +2194,7 @@
   "meridians": "肝・肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "76",
-  "note": "橙子・ネーブル。※皮(橙皮)は理気・化痰・健脾・導滞",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "橙子・ネーブル"
  },
  {
   "id": "fff0546",
@@ -2741,10 +2207,7 @@
   "meridians": "心・肺・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "柿子。※注意:脾胃虚寒の者",
-  "icon": "kaki",
-  "catIcon": "cat_kajitsu"
+  "note": "柿子"
  },
  {
   "id": "f9d7c2d",
@@ -2756,10 +2219,7 @@
   "meridians": "肺・脾・胃・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "柿餅。※柿霜(表面の白い粉)は生津・利咽",
-  "icon": "kaki",
-  "catIcon": "cat_kajitsu"
+  "note": "柿餅"
  },
  {
   "id": "f995980",
@@ -2773,10 +2233,7 @@
   "meridians": "肝・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "黒加侖",
-  "icon": "fusa",
-  "catIcon": "cat_kajitsu"
+  "note": "黒加侖"
  },
  {
   "id": "fd3eb8f",
@@ -2789,10 +2246,7 @@
   "meridians": "肝・脾・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "香母酢",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "香母酢"
  },
  {
   "id": "f94f814",
@@ -2805,10 +2259,7 @@
   "meridians": "肺・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "花梨",
-  "icon": "jinka",
-  "catIcon": "cat_kajitsu"
+  "note": "花梨"
  },
  {
   "id": "fce1139",
@@ -2821,10 +2272,7 @@
   "meridians": "脾・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "獼猴桃",
-  "icon": "nettai",
-  "catIcon": "cat_kajitsu"
+  "note": "獼猴桃"
  },
  {
   "id": "f9bd062",
@@ -2838,10 +2286,7 @@
   "meridians": "肺・肝・脾・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "金橘",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "金橘"
  },
  {
   "id": "f01b992",
@@ -2855,10 +2300,7 @@
   "meridians": "脾・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "78",
-  "note": "番石榴",
-  "icon": "jinka",
-  "catIcon": "cat_kajitsu"
+  "note": "番石榴"
  },
  {
   "id": "f99d474",
@@ -2871,10 +2313,7 @@
   "meridians": "肺・肝・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "茱萸",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "茱萸"
  },
  {
   "id": "fecd428",
@@ -2887,10 +2326,7 @@
   "meridians": "肝・腎・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "蔓越苺",
-  "icon": "fusa",
-  "catIcon": "cat_kajitsu"
+  "note": "蔓越苺"
  },
  {
   "id": "f7135fc",
@@ -2904,10 +2340,7 @@
   "meridians": "心・肝・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "西柚。※皮は清虚熱・降気・消食",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "西柚"
  },
  {
   "id": "f9394b3",
@@ -2920,10 +2353,7 @@
   "meridians": "肝・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "桑椹",
-  "icon": "fusa",
-  "catIcon": "cat_kajitsu"
+  "note": "桑椹"
  },
  {
   "id": "f7dbb42",
@@ -2935,10 +2365,7 @@
   "meridians": "心・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "椰子",
-  "icon": "kokonatsu",
-  "catIcon": "cat_kajitsu"
+  "note": "椰子"
  },
  {
   "id": "fd99a23",
@@ -2950,10 +2377,7 @@
   "meridians": "心・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "椰子水",
-  "icon": "kokonatsu",
-  "catIcon": "cat_kajitsu"
+  "note": "椰子水"
  },
  {
   "id": "f1dbb59",
@@ -2966,10 +2390,7 @@
   "meridians": "脾・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "櫻桃",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "櫻桃"
  },
  {
   "id": "f85cffc",
@@ -2983,10 +2404,7 @@
   "meridians": "肺・大腸・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "80",
-  "note": "石榴",
-  "icon": "ekika",
-  "catIcon": "cat_kajitsu"
+  "note": "石榴"
  },
  {
   "id": "f544fcb",
@@ -2999,10 +2417,7 @@
   "meridians": "脾・胃・肝",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "山楂子",
-  "icon": "jinka",
-  "catIcon": "cat_kajitsu"
+  "note": "山楂子"
  },
  {
   "id": "f61f3a1",
@@ -3015,10 +2430,7 @@
   "meridians": "肝・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "台湾香檬",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "台湾香檬"
  },
  {
   "id": "fffbfc5",
@@ -3030,10 +2442,7 @@
   "meridians": "心・胃・膀胱",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "西瓜。※天然の白虎湯ともいう。皮(白)は涼で利尿効果が増す",
-  "icon": "suika",
-  "catIcon": "cat_kajitsu"
+  "note": "西瓜"
  },
  {
   "id": "fa9d01d",
@@ -3046,10 +2455,7 @@
   "meridians": "胃・腎・肺",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "五斂子。※注意:脾胃虚寒の者",
-  "icon": "nettai",
-  "catIcon": "cat_kajitsu"
+  "note": "五斂子"
  },
  {
   "id": "ff03136",
@@ -3062,10 +2468,7 @@
   "meridians": "脾・肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "酢橘",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "酢橘"
  },
  {
   "id": "ffbc2ce",
@@ -3078,10 +2481,7 @@
   "meridians": "肝・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "李子",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "李子"
  },
  {
   "id": "f759e84",
@@ -3094,10 +2494,7 @@
   "meridians": "肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "雪花梨。※注意:脾胃虚寒の者",
-  "icon": "jinka",
-  "catIcon": "cat_kajitsu"
+  "note": "雪花梨"
  },
  {
   "id": "f5d1c56",
@@ -3109,10 +2506,7 @@
   "meridians": "脾・胃・心",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "82",
-  "note": "紅棗。※生のなつめは熱/甘辛。注意:多食",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "紅棗"
  },
  {
   "id": "f2da987",
@@ -3125,10 +2519,7 @@
   "meridians": "胃・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "鳳梨",
-  "icon": "nettai",
-  "catIcon": "cat_kajitsu"
+  "note": "鳳梨"
  },
  {
   "id": "f4e3db8",
@@ -3140,10 +2531,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "香蕉",
-  "icon": "banana",
-  "catIcon": "cat_kajitsu"
+  "note": "香蕉"
  },
  {
   "id": "fa73b55",
@@ -3155,10 +2543,7 @@
   "meridians": "肝・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "番木瓜",
-  "icon": "nettai",
-  "catIcon": "cat_kajitsu"
+  "note": "番木瓜"
  },
  {
   "id": "fc40ed0",
@@ -3171,10 +2556,7 @@
   "meridians": "脾・肺・肝",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "枇杷",
-  "icon": "jinka",
-  "catIcon": "cat_kajitsu"
+  "note": "枇杷"
  },
  {
   "id": "f233a85",
@@ -3188,10 +2570,7 @@
   "meridians": "肝・脾・胃・肺",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "仏手柑",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "仏手柑"
  },
  {
   "id": "fb2d76b",
@@ -3204,10 +2583,7 @@
   "meridians": "肺・脾・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "葡萄",
-  "icon": "fusa",
-  "catIcon": "cat_kajitsu"
+  "note": "葡萄"
  },
  {
   "id": "f53603b",
@@ -3220,10 +2596,7 @@
   "meridians": "肺・脾・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "藍苺",
-  "icon": "fusa",
-  "catIcon": "cat_kajitsu"
+  "note": "藍苺"
  },
  {
   "id": "fa20412",
@@ -3236,10 +2609,7 @@
   "meridians": "肝・脾・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "洋李",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "洋李"
  },
  {
   "id": "f1d8cd5",
@@ -3252,10 +2622,7 @@
   "meridians": "脾・肝",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "84",
-  "note": "文旦",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "文旦"
  },
  {
   "id": "f394381",
@@ -3268,10 +2635,7 @@
   "meridians": "肺・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "地面櫻桃・紅姑娘",
-  "icon": "kasai",
-  "catIcon": "cat_kajitsu"
+  "note": "地面櫻桃・紅姑娘"
  },
  {
   "id": "f5a5ae7",
@@ -3283,10 +2647,7 @@
   "meridians": "心・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "甜瓜・香瓜",
-  "icon": "suika",
-  "catIcon": "cat_kajitsu"
+  "note": "甜瓜・香瓜"
  },
  {
   "id": "fd7819f",
@@ -3299,10 +2660,7 @@
   "meridians": "肺・脾・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "芒果",
-  "icon": "nettai",
-  "catIcon": "cat_kajitsu"
+  "note": "芒果"
  },
  {
   "id": "f891aa6",
@@ -3315,10 +2673,7 @@
   "meridians": "肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "柑橘",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "柑橘"
  },
  {
   "id": "f29d09d",
@@ -3331,10 +2686,7 @@
   "meridians": "肝・肺",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "橘絡。みかんの白い筋",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "橘絡。みかんの白い筋"
  },
  {
   "id": "f45c4ce",
@@ -3346,10 +2698,7 @@
   "meridians": "心・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "白蘭瓜",
-  "icon": "suika",
-  "catIcon": "cat_kajitsu"
+  "note": "白蘭瓜"
  },
  {
   "id": "f6ce354",
@@ -3362,10 +2711,7 @@
   "meridians": "肝・肺・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "桃子。※外用:葉はあせも・肌荒れに有効",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "桃子"
  },
  {
   "id": "f2cedd9",
@@ -3378,10 +2724,7 @@
   "meridians": "肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "86",
-  "note": "楊梅。※注意:血熱火旺者の多食",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "楊梅"
  },
  {
   "id": "ffebe45",
@@ -3394,10 +2737,7 @@
   "meridians": "肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "柚子。※たねは外用:にきびなどに使用",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "柚子"
  },
  {
   "id": "f587f20",
@@ -3410,10 +2750,7 @@
   "meridians": "肺・脾・肝",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "柚子皮",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "柚子皮"
  },
  {
   "id": "ff9095e",
@@ -3426,10 +2763,7 @@
   "meridians": "脾・肝",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "茘枝。※注意:陰虚火旺の者",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "茘枝"
  },
  {
   "id": "fa8a2c2",
@@ -3442,10 +2776,7 @@
   "meridians": "肝・腎",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "山莓",
-  "icon": "fusa",
-  "catIcon": "cat_kajitsu"
+  "note": "山莓"
  },
  {
   "id": "f313df8",
@@ -3457,10 +2788,7 @@
   "meridians": "心・脾",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "龍眼。※注意:肝火及び湿滞の者",
-  "icon": "kakka",
-  "catIcon": "cat_kajitsu"
+  "note": "龍眼"
  },
  {
   "id": "f21bcb4",
@@ -3473,10 +2801,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "林檎・苹果",
-  "icon": "jinka",
-  "catIcon": "cat_kajitsu"
+  "note": "林檎・苹果"
  },
  {
   "id": "fabc22d",
@@ -3489,10 +2814,7 @@
   "meridians": "肺・胃",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "檸檬",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "檸檬"
  },
  {
   "id": "f641626",
@@ -3505,10 +2827,7 @@
   "meridians": "肝・胃・肺",
   "cat15": "kajitsu",
   "cat5": "fruit",
-  "page": "88",
-  "note": "檸檬皮",
-  "icon": "kankitsu",
-  "catIcon": "cat_kajitsu"
+  "note": "檸檬皮"
  },
  {
   "id": "f019c25",
@@ -3520,10 +2839,7 @@
   "meridians": "肝・肺・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "亜麻仁",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "亜麻仁"
  },
  {
   "id": "fc287c9",
@@ -3535,10 +2851,7 @@
   "meridians": "肺・心・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "扁桃・巴旦杏仁",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "扁桃・巴旦杏仁"
  },
  {
   "id": "f56f885",
@@ -3550,10 +2863,7 @@
   "meridians": "肺・脾・胃",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "荏胡麻",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "荏胡麻"
  },
  {
   "id": "f366c60",
@@ -3566,10 +2876,7 @@
   "meridians": "心・胃・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "可可",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "可可"
  },
  {
   "id": "fb1ee4b",
@@ -3581,10 +2888,7 @@
   "meridians": "脾・腎",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "腰果",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "腰果"
  },
  {
   "id": "f82097e",
@@ -3596,10 +2900,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "南瓜子。※薬効を高める為には皮ごと使用",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "南瓜子"
  },
  {
   "id": "fecaa11",
@@ -3611,10 +2912,7 @@
   "meridians": "肺・胃・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "榧実",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "榧実"
  },
  {
   "id": "f301f89",
@@ -3628,10 +2926,7 @@
   "meridians": "肺・腎",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "90",
-  "note": "白果。※注意:小毒あり。多量摂取と小児。生食は駆虫作用あり",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "白果"
  },
  {
   "id": "f5bdf65",
@@ -3643,10 +2938,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "栗子。※タンニンは渋皮に多いので渋皮を残して料理するとよい",
-  "icon": "kuri",
-  "catIcon": "cat_shujitsu"
+  "note": "栗子"
  },
  {
   "id": "f915524",
@@ -3658,10 +2950,7 @@
   "meridians": "腎・肺・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "胡桃",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "胡桃"
  },
  {
   "id": "f8d48a5",
@@ -3673,10 +2962,7 @@
   "meridians": "肝・腎",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "黒芝麻。※注意:便溏の者",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "黒芝麻"
  },
  {
   "id": "fd59590",
@@ -3689,10 +2975,7 @@
   "meridians": "肺・大腸・腎",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "芥子の実・罌栗子",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "芥子の実・罌栗子"
  },
  {
   "id": "fd14b2b",
@@ -3704,10 +2987,7 @@
   "meridians": "大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "白芝麻。※注意:便溏の者。多食は脾胃虚寒を発す。胡麻油は白胡麻が主原料",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "白芝麻"
  },
  {
   "id": "fc8d88d",
@@ -3719,10 +2999,7 @@
   "meridians": "肺・脾・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "西瓜子",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "西瓜子"
  },
  {
   "id": "f8de983",
@@ -3734,10 +3011,7 @@
   "meridians": "肺・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "甜杏仁・南杏仁。※杏仁には北杏仁(苦杏仁)と南杏(甜杏仁)の2種",
-  "icon": "kanka",
-  "catIcon": "cat_shujitsu"
+  "note": "甜杏仁・南杏仁"
  },
  {
   "id": "ff56629",
@@ -3750,10 +3024,7 @@
   "meridians": "心・脾・腎",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "92",
-  "note": "蓮子。※芯(蓮子心)は苦味が強いので料理では取り除く",
-  "icon": "kanka",
-  "catIcon": "cat_shujitsu"
+  "note": "蓮子"
  },
  {
   "id": "f059a20",
@@ -3765,10 +3036,7 @@
   "meridians": "腸・脾・胃",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "94",
-  "note": "菱の実・菱角。※生は清熱除煩解暑止渇、熟は補気健脾。注意:胃虚脾弱、胸腹痞脹者の多食",
-  "icon": "kanka",
-  "catIcon": "cat_shujitsu"
+  "note": "菱の実・菱角"
  },
  {
   "id": "ff9056d",
@@ -3780,10 +3048,7 @@
   "meridians": "脾・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "94",
-  "note": "向日葵の種・天葵子",
-  "icon": "shushi",
-  "catIcon": "cat_shujitsu"
+  "note": "向日葵の種・天葵子"
  },
  {
   "id": "f44305a",
@@ -3795,10 +3060,7 @@
   "meridians": "肝・脾・胃",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "94",
-  "note": "榛",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "榛"
  },
  {
   "id": "fbce403",
@@ -3810,10 +3072,7 @@
   "meridians": "肝・肺・大腸",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "94",
-  "note": "松子仁・海松子。※注意:便溏の者",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "松子仁・海松子"
  },
  {
   "id": "fd996fe",
@@ -3825,10 +3084,7 @@
   "meridians": "脾・肺",
   "cat15": "shujitsu",
   "cat5": "grain",
-  "page": "94",
-  "note": "落花生・花生。※薄皮ごと食すと補血・止血の作用あり",
-  "icon": "kenka",
-  "catIcon": "cat_shujitsu"
+  "note": "落花生・花生"
  },
  {
   "id": "f87795b",
@@ -3841,10 +3097,7 @@
   "meridians": "脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "石蓴",
-  "icon": "kaisou",
-  "catIcon": "cat_gyokai"
+  "note": "石蓴"
  },
  {
   "id": "fada239",
@@ -3856,10 +3109,7 @@
   "meridians": "脾・肝・胃・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "赤貝",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "赤貝"
  },
  {
   "id": "f0f9e6a",
@@ -3872,10 +3122,7 @@
   "meridians": "胃・肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "蟶貝",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "蟶貝"
  },
  {
   "id": "f538185",
@@ -3888,10 +3135,7 @@
   "meridians": "肝・腎・脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "浅蜊",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "浅蜊"
  },
  {
   "id": "f15820a",
@@ -3904,10 +3148,7 @@
   "meridians": "胃・脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "鰺",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鰺"
  },
  {
   "id": "fa5b448",
@@ -3920,10 +3161,7 @@
   "meridians": "肝・脾・腎・肺",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "穴子",
-  "icon": "unagi",
-  "catIcon": "cat_gyokai"
+  "note": "穴子"
  },
  {
   "id": "fa86312",
@@ -3935,10 +3173,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "鮎",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鮎"
  },
  {
   "id": "ff59fcb",
@@ -3950,10 +3185,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "96",
-  "note": "鮑魚",
-  "icon": "makigai",
-  "catIcon": "cat_gyokai"
+  "note": "鮑魚"
  },
  {
   "id": "f12d7b7",
@@ -3965,10 +3197,7 @@
   "meridians": "肝・腎・脾",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "鰻魚",
-  "icon": "unagi",
-  "catIcon": "cat_gyokai"
+  "note": "鰻魚"
  },
  {
   "id": "fa87f2c",
@@ -3981,10 +3210,7 @@
   "meridians": "肝・心・脾・肺・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "海胆。※生殖巣(雄の精巣・雌の卵巣)を食用",
-  "icon": "uni",
-  "catIcon": "cat_gyokai"
+  "note": "海胆"
  },
  {
   "id": "f07f964",
@@ -3997,10 +3223,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "明蝦",
-  "icon": "ebi",
-  "catIcon": "cat_gyokai"
+  "note": "明蝦"
  },
  {
   "id": "faae3cc",
@@ -4012,10 +3235,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "虎魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "虎魚"
  },
  {
   "id": "f32c4e5",
@@ -4028,10 +3248,7 @@
   "meridians": "肝・腎・脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "干貝",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "干貝"
  },
  {
   "id": "f334a4e",
@@ -4044,10 +3261,7 @@
   "meridians": "心・肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "牡蠣・蛎子",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "牡蠣・蛎子"
  },
  {
   "id": "f58de13",
@@ -4059,10 +3273,7 @@
   "meridians": "脾・肝",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "梶木鮪",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "梶木鮪"
  },
  {
   "id": "f0c6fe3",
@@ -4075,10 +3286,7 @@
   "meridians": "脾・肝・胃・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "100",
-  "note": "片口鰯・鰮魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "片口鰯・鰮魚"
  },
  {
   "id": "fca1c4d",
@@ -4090,10 +3298,7 @@
   "meridians": "腎・脾",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "松魚・鰹魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "松魚・鰹魚"
  },
  {
   "id": "f74775d",
@@ -4105,10 +3310,7 @@
   "meridians": "肝・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "海蟹",
-  "icon": "kani",
-  "catIcon": "cat_gyokai"
+  "note": "海蟹"
  },
  {
   "id": "f7abf68",
@@ -4121,10 +3323,7 @@
   "meridians": "肺・肝・腎・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "亀肉",
-  "icon": "kame",
-  "catIcon": "cat_gyokai"
+  "note": "亀肉"
  },
  {
   "id": "fa9d090",
@@ -4136,10 +3335,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "河蝦・手長蝦",
-  "icon": "ebi",
-  "catIcon": "cat_gyokai"
+  "note": "河蝦・手長蝦"
  },
  {
   "id": "f3273e3",
@@ -4152,10 +3348,7 @@
   "meridians": "肺・肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "石花菜・てんぐさ",
-  "icon": "kaisou",
-  "catIcon": "cat_gyokai"
+  "note": "石花菜・てんぐさ"
  },
  {
   "id": "f1fc584",
@@ -4167,10 +3360,7 @@
   "meridians": "肺・肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "海蜇",
-  "icon": "kurage",
-  "catIcon": "cat_gyokai"
+  "note": "海蜇"
  },
  {
   "id": "f17a8a2",
@@ -4182,10 +3372,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "黒鯛",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "黒鯛"
  },
  {
   "id": "ffb0954",
@@ -4197,10 +3384,7 @@
   "meridians": "肺・脾・胃・腎・胆",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "102",
-  "note": "鯉魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鯉魚"
  },
  {
   "id": "fe291ea",
@@ -4212,10 +3396,7 @@
   "meridians": "肝・胃・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "海帯",
-  "icon": "kaisou",
-  "catIcon": "cat_gyokai"
+  "note": "海帯"
  },
  {
   "id": "fdaffdd",
@@ -4227,10 +3408,7 @@
   "meridians": "脾・肺",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "果多魚・大馬哈魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "果多魚・大馬哈魚"
  },
  {
   "id": "fc88c58",
@@ -4243,10 +3421,7 @@
   "meridians": "脾・腎・肝",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "栄螺・海螺",
-  "icon": "makigai",
-  "catIcon": "cat_gyokai"
+  "note": "栄螺・海螺"
  },
  {
   "id": "f2f07c5",
@@ -4258,10 +3433,7 @@
   "meridians": "肝・脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "鯖魚・青花魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鯖魚・青花魚"
  },
  {
   "id": "fac0b43",
@@ -4273,10 +3445,7 @@
   "meridians": "肝・腎・脾",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "鮫魚・鯊",
-  "icon": "same",
-  "catIcon": "cat_gyokai"
+  "note": "鮫魚・鯊"
  },
  {
   "id": "fddf93e",
@@ -4289,10 +3458,7 @@
   "meridians": "腎・肝",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "鮫の魚肚",
-  "icon": "same",
-  "catIcon": "cat_gyokai"
+  "note": "鮫の魚肚"
  },
  {
   "id": "f5bfbac",
@@ -4304,10 +3470,7 @@
   "meridians": "脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "細魚・針魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "細魚・針魚"
  },
  {
   "id": "feb2b7e",
@@ -4319,10 +3482,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "104",
-  "note": "鰆・馬鮫・青箭魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鰆・馬鮫・青箭魚"
  },
  {
   "id": "f32215e",
@@ -4334,10 +3494,7 @@
   "meridians": "脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "秋刀魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "秋刀魚"
  },
  {
   "id": "f0ccc90",
@@ -4350,10 +3507,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "蜆",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "蜆"
  },
  {
   "id": "f5b1705",
@@ -4365,10 +3519,7 @@
   "meridians": "脾・肺・肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "柳葉魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "柳葉魚"
  },
  {
   "id": "fb3b18e",
@@ -4380,10 +3531,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "舌平目・牛舌魚",
-  "icon": "hirame",
-  "catIcon": "cat_gyokai"
+  "note": "舌平目・牛舌魚"
  },
  {
   "id": "f8ef984",
@@ -4395,10 +3543,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "白魚・銀魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "白魚・銀魚"
  },
  {
   "id": "f14fab8",
@@ -4410,10 +3555,7 @@
   "meridians": "心・脾・胃・肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "鱸・花鱸",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鱸・花鱸"
  },
  {
   "id": "fd18c72",
@@ -4425,10 +3567,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "甲魚・元魚。※大補陰之佳品",
-  "icon": "kame",
-  "catIcon": "cat_gyokai"
+  "note": "甲魚・元魚"
  },
  {
   "id": "f4b3dd4",
@@ -4440,10 +3579,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "106",
-  "note": "鯛魚・加吉魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鯛魚・加吉魚"
  },
  {
   "id": "f00d150",
@@ -4456,10 +3592,7 @@
   "meridians": "脾・肝",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "章魚・八帯魚",
-  "icon": "tako",
-  "catIcon": "cat_gyokai"
+  "note": "章魚・八帯魚"
  },
  {
   "id": "face48e",
@@ -4471,10 +3604,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "帯魚",
-  "icon": "unagi",
-  "catIcon": "cat_gyokai"
+  "note": "帯魚"
  },
  {
   "id": "f3d1c49",
@@ -4487,10 +3617,7 @@
   "meridians": "膀胱・大腸・胃・肝・脾",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "田螺・黄螺",
-  "icon": "makigai",
-  "catIcon": "cat_gyokai"
+  "note": "田螺・黄螺"
  },
  {
   "id": "f87289a",
@@ -4503,10 +3630,7 @@
   "meridians": "肝・腎・脾",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "大頭魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "大頭魚"
  },
  {
   "id": "f67d872",
@@ -4518,10 +3642,7 @@
   "meridians": "肺・脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "燕窩",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "燕窩"
  },
  {
   "id": "fa59daf",
@@ -4533,10 +3654,7 @@
   "meridians": "脾・肺",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "泥鰌・泥鰍",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "泥鰌・泥鰍"
  },
  {
   "id": "ffe13ea",
@@ -4548,10 +3666,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "飛魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "飛魚"
  },
  {
   "id": "f6eb6f9",
@@ -4563,10 +3678,7 @@
   "meridians": "心・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "刺参・海参",
-  "icon": "namako",
-  "catIcon": "cat_gyokai"
+  "note": "刺参・海参"
  },
  {
   "id": "f54f2cd",
@@ -4578,10 +3690,7 @@
   "meridians": "心・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "108",
-  "note": "※乾物は壮陽の効能有り",
-  "icon": "namako",
-  "catIcon": "cat_gyokai"
+  "note": ""
  },
  {
   "id": "fa7c793",
@@ -4593,10 +3702,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "鯰魚・鮎魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鯰魚・鮎魚"
  },
  {
   "id": "f14e1e9",
@@ -4608,10 +3714,7 @@
   "meridians": "胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "虹鱒",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "虹鱒"
  },
  {
   "id": "fffffa4",
@@ -4623,10 +3726,7 @@
   "meridians": "脾",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "鰊・鯡魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鰊・鯡魚"
  },
  {
   "id": "f9ce983",
@@ -4639,10 +3739,7 @@
   "meridians": "肺・脾・膀胱",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "紫菜・海苔",
-  "icon": "kaisou",
-  "catIcon": "cat_gyokai"
+  "note": "紫菜・海苔"
  },
  {
   "id": "f9a335d",
@@ -4655,10 +3752,7 @@
   "meridians": "脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "沙魚・鰕虎魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "沙魚・鰕虎魚"
  },
  {
   "id": "f5a310a",
@@ -4670,10 +3764,7 @@
   "meridians": "肝・腎・脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "羽太・石斑魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "羽太・石斑魚"
  },
  {
   "id": "fb15793",
@@ -4686,10 +3777,7 @@
   "meridians": "肝・胃・肺",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "蛤蜊・文蛤",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "蛤蜊・文蛤"
  },
  {
   "id": "fcb7f4a",
@@ -4701,10 +3789,7 @@
   "meridians": "肺・脾・大腸・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "鱧魚",
-  "icon": "unagi",
-  "catIcon": "cat_gyokai"
+  "note": "鱧魚"
  },
  {
   "id": "f1647a7",
@@ -4717,10 +3802,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "110",
-  "note": "鹿尾菜・羊栖菜",
-  "icon": "kaisou",
-  "catIcon": "cat_gyokai"
+  "note": "鹿尾菜・羊栖菜"
  },
  {
   "id": "f919ad9",
@@ -4732,10 +3814,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "比目魚・偏口魚",
-  "icon": "hirame",
-  "catIcon": "cat_gyokai"
+  "note": "比目魚・偏口魚"
  },
  {
   "id": "fb69cb4",
@@ -4747,10 +3826,7 @@
   "meridians": "腎・肺・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "魚翅。サメのヒレを加熱乾燥させたもの",
-  "icon": "same",
-  "catIcon": "cat_gyokai"
+  "note": "魚翅。サメのヒレを加熱乾燥させたもの"
  },
  {
   "id": "f1e086e",
@@ -4762,10 +3838,7 @@
   "meridians": "脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "河豚。※肝臓、卵巣は猛毒",
-  "icon": "fugu",
-  "catIcon": "cat_gyokai"
+  "note": "河豚"
  },
  {
   "id": "f589b84",
@@ -4777,10 +3850,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "鮒魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鮒魚"
  },
  {
   "id": "f404349",
@@ -4793,10 +3863,7 @@
   "meridians": "肝・脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "鰤魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鰤魚"
  },
  {
   "id": "ff0e5be",
@@ -4809,10 +3876,7 @@
   "meridians": "肝・脾・胃・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "帆立・扇貝",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "帆立・扇貝"
  },
  {
   "id": "f3a67ef",
@@ -4825,10 +3889,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "鰡魚。※からすみ(ぼらの卵巣を塩漬け後乾燥)",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鰡魚"
  },
  {
   "id": "f436122",
@@ -4840,10 +3901,7 @@
   "meridians": "肝・脾",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "112",
-  "note": "金槍魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "金槍魚"
  },
  {
   "id": "f021801",
@@ -4855,10 +3913,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "114",
-  "note": "鱒魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鱒魚"
  },
  {
   "id": "fbac2fe",
@@ -4871,10 +3926,7 @@
   "meridians": "肝・腎・心",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "114",
-  "note": "蟶子",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "蟶子"
  },
  {
   "id": "f8bd36d",
@@ -4887,10 +3939,7 @@
   "meridians": "脾・胃",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "114",
-  "note": "鯧魚",
-  "icon": "sakana",
-  "catIcon": "cat_gyokai"
+  "note": "鯧魚"
  },
  {
   "id": "f45adbc",
@@ -4902,10 +3951,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "114",
-  "note": "淡菜・ムール貝。※ムラサキ貝の別名",
-  "icon": "nimaigai",
-  "catIcon": "cat_gyokai"
+  "note": "淡菜・ムール貝"
  },
  {
   "id": "fb99b08",
@@ -4917,10 +3963,7 @@
   "meridians": "肝・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "114",
-  "note": "海蘊",
-  "icon": "kaisou",
-  "catIcon": "cat_gyokai"
+  "note": "海蘊"
  },
  {
   "id": "f41c2cb",
@@ -4932,10 +3975,7 @@
   "meridians": "脾・腎",
   "cat15": "gyokai",
   "cat5": "protein",
-  "page": "114",
-  "note": "裙帯菜",
-  "icon": "kaisou",
-  "catIcon": "cat_gyokai"
+  "note": "裙帯菜"
  },
  {
   "id": "fa4b5c2",
@@ -4947,11 +3987,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "狗肉。※注意:陰虚の者",
-  "icon": "cat_niku",
-  "catIcon": "cat_niku",
-  "visible": false
+  "note": "狗肉"
  },
  {
   "id": "f122dfe",
@@ -4963,10 +3999,7 @@
   "meridians": "肺・脾・胃・大腸",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "野猪肉",
-  "icon": "inoshishi",
-  "catIcon": "cat_niku"
+  "note": "野猪肉"
  },
  {
   "id": "f3779e2",
@@ -4978,10 +4011,7 @@
   "meridians": "肝・腎・肺",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "烏骨鶏",
-  "icon": "ukokkei",
-  "catIcon": "cat_niku"
+  "note": "烏骨鶏"
  },
  {
   "id": "f527a1c",
@@ -4993,10 +4023,7 @@
   "meridians": "肝・大腸・脾",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "兎肉。※注意:脾胃虚寒の者",
-  "icon": "usagi",
-  "catIcon": "cat_niku"
+  "note": "兎肉"
  },
  {
   "id": "fe68240",
@@ -5008,10 +4035,7 @@
   "meridians": "脾・大腸・心・肝・肺・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "鶉肉",
-  "icon": "uzura",
-  "catIcon": "cat_niku"
+  "note": "鶉肉"
  },
  {
   "id": "fc323f0",
@@ -5023,10 +4047,7 @@
   "meridians": "膀胱・腸・胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "蛙肉・田鶏・青蛙",
-  "icon": "kaeru",
-  "catIcon": "cat_niku"
+  "note": "蛙肉・田鶏・青蛙"
  },
  {
   "id": "f0a102f",
@@ -5039,10 +4060,7 @@
   "meridians": "肺・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "蛤士膜油・ハーシーマーユ",
-  "icon": "kaeru",
-  "catIcon": "cat_niku"
+  "note": "蛤士膜油・ハーシーマーユ"
  },
  {
   "id": "f34e93f",
@@ -5054,10 +4072,7 @@
   "meridians": "脾・肺",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "116",
-  "note": "鵞鳥肉・鵝肉",
-  "icon": "gachou",
-  "catIcon": "cat_niku"
+  "note": "鵞鳥肉・鵝肉"
  },
  {
   "id": "f12e9c6",
@@ -5070,10 +4085,7 @@
   "meridians": "脾・胃・肺・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "鴨肉。※鴨はマガモを指すが、アヒルと掛け合わせた合鴨が一般的",
-  "icon": "kamo",
-  "catIcon": "cat_niku"
+  "note": "鴨肉"
  },
  {
   "id": "f524a05",
@@ -5086,10 +4098,7 @@
   "meridians": "脾・胃・肝",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "雉肉・山鶏。※古書では微寒。春夏に捕穫したものは微毒あり",
-  "icon": "kiji",
-  "catIcon": "cat_niku"
+  "note": "雉肉・山鶏"
  },
  {
   "id": "f8a5f38",
@@ -5101,10 +4110,7 @@
   "meridians": "脾・胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "牛肉",
-  "icon": "ushi",
-  "catIcon": "cat_niku"
+  "note": "牛肉"
  },
  {
   "id": "f1c2116",
@@ -5116,10 +4122,7 @@
   "meridians": "脾・胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "牛肚。※第一胃ミノ、第二胃ハチノス、第三胃センマイ、第四胃アカセンマイ",
-  "icon": "i",
-  "catIcon": "cat_niku"
+  "note": "牛肚"
  },
  {
   "id": "fc5c1ed",
@@ -5131,10 +4134,7 @@
   "meridians": "心・肝",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "牛舌・牛タン",
-  "icon": "shita",
-  "catIcon": "cat_niku"
+  "note": "牛舌・牛タン"
  },
  {
   "id": "ff2f8b7",
@@ -5147,10 +4147,7 @@
   "meridians": "腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "牛の腎臓・キドニー",
-  "icon": "jinzou",
-  "catIcon": "cat_niku"
+  "note": "牛の腎臓・キドニー"
  },
  {
   "id": "fcb1b7c",
@@ -5162,10 +4159,7 @@
   "meridians": "肝・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "牛筋",
-  "icon": "suji",
-  "catIcon": "cat_niku"
+  "note": "牛筋"
  },
  {
   "id": "f7ce942",
@@ -5177,10 +4171,7 @@
   "meridians": "肝",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "118",
-  "note": "牛肝",
-  "icon": "reba",
-  "catIcon": "cat_niku"
+  "note": "牛肝"
  },
  {
   "id": "f07f6db",
@@ -5193,11 +4184,7 @@
   "meridians": "脾・肝・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "鯨肉",
-  "icon": "cat_niku",
-  "catIcon": "cat_niku",
-  "visible": false
+  "note": "鯨肉"
  },
  {
   "id": "f5868b4",
@@ -5209,10 +4196,7 @@
   "meridians": "脾・肝・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "熊肉",
-  "icon": "kuma",
-  "catIcon": "cat_niku"
+  "note": "熊肉"
  },
  {
   "id": "f26cdf8",
@@ -5225,10 +4209,7 @@
   "meridians": "脾・胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "熊掌",
-  "icon": "ashi",
-  "catIcon": "cat_niku"
+  "note": "熊掌"
  },
  {
   "id": "f582370",
@@ -5240,10 +4221,7 @@
   "meridians": "脾・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "鹿肉",
-  "icon": "shika",
-  "catIcon": "cat_niku"
+  "note": "鹿肉"
  },
  {
   "id": "f5ee11b",
@@ -5256,10 +4234,7 @@
   "meridians": "肝・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "鹿筋",
-  "icon": "suji",
-  "catIcon": "cat_niku"
+  "note": "鹿筋"
  },
  {
   "id": "f4374ea",
@@ -5269,10 +4244,7 @@
   "meridians": "",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "七面鳥・火鶏。古典文献での記載はなく近縁種のキジを参考とする",
-  "icon": "shichimenchou",
-  "catIcon": "cat_niku"
+  "note": "七面鳥・火鶏。古典文献での記載はなく近縁種のキジを参考とする"
  },
  {
   "id": "f9e584a",
@@ -5284,10 +4256,7 @@
   "meridians": "心・小腸・腎・膀胱",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "雀肉・麻雀肉。※注意:陰虚火旺の者",
-  "icon": "suzume",
-  "catIcon": "cat_niku"
+  "note": "雀肉・麻雀肉"
  },
  {
   "id": "fcc3e28",
@@ -5299,10 +4268,7 @@
   "meridians": "脾・胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "120",
-  "note": "鶏肉",
-  "icon": "niwatori",
-  "catIcon": "cat_niku"
+  "note": "鶏肉"
  },
  {
   "id": "f1f69cb",
@@ -5315,10 +4281,7 @@
   "meridians": "脾・胃・腎・小腸・膀胱",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "沙嚢",
-  "icon": "i",
-  "catIcon": "cat_niku"
+  "note": "沙嚢"
  },
  {
   "id": "f1032b2",
@@ -5331,10 +4294,7 @@
   "meridians": "肝・腎・脾",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "鶏肝",
-  "icon": "reba",
-  "catIcon": "cat_niku"
+  "note": "鶏肝"
  },
  {
   "id": "f6aea3d",
@@ -5346,10 +4306,7 @@
   "meridians": "肝・腎・肺",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "鴿肉",
-  "icon": "hato",
-  "catIcon": "cat_niku"
+  "note": "鴿肉"
  },
  {
   "id": "f1518d4",
@@ -5362,10 +4319,7 @@
   "meridians": "肝・脾・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "馬肉",
-  "icon": "uma",
-  "catIcon": "cat_niku"
+  "note": "馬肉"
  },
  {
   "id": "fd86dda",
@@ -5377,10 +4331,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "羊肉・ラム・マトン",
-  "icon": "hitsuji",
-  "catIcon": "cat_niku"
+  "note": "羊肉・ラム・マトン"
  },
  {
   "id": "ffe4d66",
@@ -5393,10 +4344,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "猪肉。※注意:湿熱・痰滞内蘊の者",
-  "icon": "buta",
-  "catIcon": "cat_niku"
+  "note": "猪肉"
  },
  {
   "id": "faa5263",
@@ -5409,10 +4357,7 @@
   "meridians": "胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "猪脚爪・とんそく",
-  "icon": "ashi",
-  "catIcon": "cat_niku"
+  "note": "猪脚爪・とんそく"
  },
  {
   "id": "fc9d37e",
@@ -5424,10 +4369,7 @@
   "meridians": "脾・胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "122",
-  "note": "猪肚・豚の胃・ガツ",
-  "icon": "i",
-  "catIcon": "cat_niku"
+  "note": "猪肚・豚の胃・ガツ"
  },
  {
   "id": "f7557cf",
@@ -5439,10 +4381,7 @@
   "meridians": "腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪皮",
-  "icon": "kawa",
-  "catIcon": "cat_niku"
+  "note": "猪皮"
  },
  {
   "id": "ff72c5f",
@@ -5455,10 +4394,7 @@
   "meridians": "心",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪心・ハツ",
-  "icon": "shinzou",
-  "catIcon": "cat_niku"
+  "note": "猪心・ハツ"
  },
  {
   "id": "fa59367",
@@ -5470,10 +4406,7 @@
   "meridians": "腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪腰子・マメ",
-  "icon": "jinzou",
-  "catIcon": "cat_niku"
+  "note": "猪腰子・マメ"
  },
  {
   "id": "fa87180",
@@ -5485,10 +4418,7 @@
   "meridians": "腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪髄",
-  "icon": "hone",
-  "catIcon": "cat_niku"
+  "note": "猪髄"
  },
  {
   "id": "f0e1068",
@@ -5500,10 +4430,7 @@
   "meridians": "大腸",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪腸・モツ",
-  "icon": "chou",
-  "catIcon": "cat_niku"
+  "note": "猪腸・モツ"
  },
  {
   "id": "fd54ac8",
@@ -5515,10 +4442,7 @@
   "meridians": "腎",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪脳",
-  "icon": "nou",
-  "catIcon": "cat_niku"
+  "note": "猪脳"
  },
  {
   "id": "fe23972",
@@ -5530,10 +4454,7 @@
   "meridians": "肺",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪肺・フワ",
-  "icon": "hai",
-  "catIcon": "cat_niku"
+  "note": "猪肺・フワ"
  },
  {
   "id": "f972dcd",
@@ -5546,10 +4467,7 @@
   "meridians": "肝・脾・胃",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "124",
-  "note": "猪肝",
-  "icon": "reba",
-  "catIcon": "cat_niku"
+  "note": "猪肝"
  },
  {
   "id": "ffe3c03",
@@ -5561,10 +4479,7 @@
   "meridians": "肝",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "126",
-  "note": "蛇肉",
-  "icon": "hebi",
-  "catIcon": "cat_niku"
+  "note": "蛇肉"
  },
  {
   "id": "fd98272",
@@ -5577,10 +4492,7 @@
   "meridians": "肝・脾",
   "cat15": "niku",
   "cat5": "protein",
-  "page": "126",
-  "note": "蝮蛇",
-  "icon": "hebi",
-  "catIcon": "cat_niku"
+  "note": "蝮蛇"
  },
  {
   "id": "f0ca073",
@@ -5592,10 +4504,7 @@
   "meridians": "肝・腎・脾",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "烏骨鶏蛋",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "烏骨鶏蛋"
  },
  {
   "id": "ffe16ed",
@@ -5607,10 +4516,7 @@
   "meridians": "脾・胃・肝・腎・肺",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "鶉蛋",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "鶉蛋"
  },
  {
   "id": "f6c0508",
@@ -5622,10 +4528,7 @@
   "meridians": "心・肺",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "鴨卵。合鴨の卵",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "鴨卵。合鴨の卵"
  },
  {
   "id": "fb26a01",
@@ -5637,10 +4540,7 @@
   "meridians": "肺・脾・胃・心・腎",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "鶏卵",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "鶏卵"
  },
  {
   "id": "f8ca3ca",
@@ -5652,10 +4552,7 @@
   "meridians": "心・腎",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "蛋黄・卵黄",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "蛋黄・卵黄"
  },
  {
   "id": "f678b38",
@@ -5667,10 +4564,7 @@
   "meridians": "心・肺・腎",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "蛋清・卵白",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "蛋清・卵白"
  },
  {
   "id": "ff75a5d",
@@ -5682,10 +4576,7 @@
   "meridians": "肺・腎",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "鹹蛋・シェンダン。アヒルの卵の塩漬",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "鹹蛋・シェンダン。アヒルの卵の塩漬"
  },
  {
   "id": "fb3b11f",
@@ -5700,10 +4591,7 @@
   "meridians": "肺・肝・大腸",
   "cat15": "tamago",
   "cat5": "protein",
-  "page": "128",
-  "note": "松花蛋・皮蛋",
-  "icon": "tamago_egg",
-  "catIcon": "cat_tamago"
+  "note": "松花蛋・皮蛋"
  },
  {
   "id": "f815b4c",
@@ -5715,10 +4603,7 @@
   "meridians": "心・肺・胃",
   "cat15": "nyuu",
   "cat5": "protein",
-  "page": "130",
-  "note": "牛奶",
-  "icon": "nyu",
-  "catIcon": "cat_nyuu"
+  "note": "牛奶"
  },
  {
   "id": "f3cb940",
@@ -5731,10 +4616,7 @@
   "meridians": "肺・肝・脾",
   "cat15": "nyuu",
   "cat5": "protein",
-  "page": "130",
-  "note": "奶酪",
-  "icon": "nyu",
-  "catIcon": "cat_nyuu"
+  "note": "奶酪"
  },
  {
   "id": "f7eb2ad",
@@ -5746,10 +4628,7 @@
   "meridians": "心・肺・胃",
   "cat15": "nyuu",
   "cat5": "protein",
-  "page": "130",
-  "note": "鮮奶油",
-  "icon": "nyu",
-  "catIcon": "cat_nyuu"
+  "note": "鮮奶油"
  },
  {
   "id": "fb5f51b",
@@ -5761,10 +4640,7 @@
   "meridians": "心・脾",
   "cat15": "nyuu",
   "cat5": "protein",
-  "page": "130",
-  "note": "馬奶",
-  "icon": "nyu",
-  "catIcon": "cat_nyuu"
+  "note": "馬奶"
  },
  {
   "id": "ff3ab88",
@@ -5776,10 +4652,7 @@
   "meridians": "心・肺",
   "cat15": "nyuu",
   "cat5": "protein",
-  "page": "130",
-  "note": "羊奶",
-  "icon": "nyu",
-  "catIcon": "cat_nyuu"
+  "note": "羊奶"
  },
  {
   "id": "fbcaaae",
@@ -5792,10 +4665,7 @@
   "meridians": "肺・脾・大腸",
   "cat15": "nyuu",
   "cat5": "protein",
-  "page": "130",
-  "note": "酸奶・酪",
-  "icon": "nyu",
-  "catIcon": "cat_nyuu"
+  "note": "酸奶・酪"
  },
  {
   "id": "f39dce7",
@@ -5810,10 +4680,7 @@
   "meridians": "肺・胃",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "橄欖油",
-  "icon": "abura",
-  "catIcon": "cat_yushi"
+  "note": "橄欖油"
  },
  {
   "id": "f2c7972",
@@ -5825,10 +4692,7 @@
   "meridians": "肺・大腸・腎",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "椰子油",
-  "icon": "abura",
-  "catIcon": "cat_yushi"
+  "note": "椰子油"
  },
  {
   "id": "febf6b1",
@@ -5840,10 +4704,7 @@
   "meridians": "大腸",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "胡麻油・香油。※注意:脾虚泄瀉の者",
-  "icon": "abura",
-  "catIcon": "cat_yushi"
+  "note": "胡麻油・香油"
  },
  {
   "id": "fded09d",
@@ -5855,10 +4716,7 @@
   "meridians": "大腸",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "黄豆油",
-  "icon": "abura",
-  "catIcon": "cat_yushi"
+  "note": "黄豆油"
  },
  {
   "id": "f5f2cd0",
@@ -5870,10 +4728,7 @@
   "meridians": "肝・脾・大腸",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "菜子油",
-  "icon": "abura",
-  "catIcon": "cat_yushi"
+  "note": "菜子油"
  },
  {
   "id": "f99fb14",
@@ -5885,10 +4740,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "鶏油",
-  "icon": "koshi_shi",
-  "catIcon": "cat_yushi"
+  "note": "鶏油"
  },
  {
   "id": "fd4779a",
@@ -5900,10 +4752,7 @@
   "meridians": "脾・肺・腎・大腸",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "奶油・醍醐油",
-  "icon": "koshi_shi",
-  "catIcon": "cat_yushi"
+  "note": "奶油・醍醐油"
  },
  {
   "id": "fba2b7a",
@@ -5915,10 +4764,7 @@
   "meridians": "脾・肺・大腸・胃",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "132",
-  "note": "落花生油・花生油",
-  "icon": "abura",
-  "catIcon": "cat_yushi"
+  "note": "落花生油・花生油"
  },
  {
   "id": "ff59eaf",
@@ -5930,10 +4776,7 @@
   "meridians": "脾・肺・大腸",
   "cat15": "yushi",
   "cat5": "season",
-  "page": "134",
-  "note": "猪脂・熟油。加熱した豚の油",
-  "icon": "koshi_shi",
-  "catIcon": "cat_yushi"
+  "note": "猪脂・熟油。加熱した豚の油"
  },
  {
   "id": "f3ef33b",
@@ -5945,10 +4788,7 @@
   "meridians": "脾・胃・肝",
   "cat15": "satou",
   "cat5": "season",
-  "page": "134",
-  "note": "紅糖",
-  "icon": "satou_cube",
-  "catIcon": "cat_satou"
+  "note": "紅糖"
  },
  {
   "id": "fd849b3",
@@ -5960,10 +4800,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "satou",
   "cat5": "season",
-  "page": "134",
-  "note": "氷糖・グラニュー糖",
-  "icon": "satou_cube",
-  "catIcon": "cat_satou"
+  "note": "氷糖・グラニュー糖"
  },
  {
   "id": "f9eb81d",
@@ -5975,10 +4812,7 @@
   "meridians": "肺・胃",
   "cat15": "satou",
   "cat5": "season",
-  "page": "134",
-  "note": "甘蔗",
-  "icon": "satou_cube",
-  "catIcon": "cat_satou"
+  "note": "甘蔗"
  },
  {
   "id": "f894cb2",
@@ -5990,10 +4824,7 @@
   "meridians": "脾・肺",
   "cat15": "satou",
   "cat5": "season",
-  "page": "134",
-  "note": "白糖",
-  "icon": "satou_cube",
-  "catIcon": "cat_satou"
+  "note": "白糖"
  },
  {
   "id": "f8d91bc",
@@ -6005,10 +4836,7 @@
   "meridians": "脾・胃・肝・肺",
   "cat15": "satou",
   "cat5": "season",
-  "page": "134",
-  "note": "甜菜糖。※てんさいは北海道、さとうきびは沖縄が主要産地",
-  "icon": "satou_cube",
-  "catIcon": "cat_satou"
+  "note": "甜菜糖"
  },
  {
   "id": "f52f25e",
@@ -6020,10 +4848,7 @@
   "meridians": "肝・腎・脾・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "138",
-  "note": "フェンネルシード・小茴香",
-  "icon": "spice_seed",
-  "catIcon": "cat_choumi"
+  "note": "フェンネルシード・小茴香"
  },
  {
   "id": "fb626ad",
@@ -6035,10 +4860,7 @@
   "meridians": "肺・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "138",
-  "note": "白芥子",
-  "icon": "spice_seed",
-  "catIcon": "cat_choumi"
+  "note": "白芥子"
  },
  {
   "id": "fd62cf9",
@@ -6050,10 +4872,7 @@
   "meridians": "肺・脾・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "138",
-  "note": "小豆蔲",
-  "icon": "spice_seed",
-  "catIcon": "cat_choumi"
+  "note": "小豆蔲"
  },
  {
   "id": "f70ef48",
@@ -6065,10 +4884,7 @@
   "meridians": "心・肺・肝・胃・三焦",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "138",
-  "note": "山梔子",
-  "icon": "kanpi",
-  "catIcon": "cat_choumi"
+  "note": "山梔子"
  },
  {
   "id": "f599c98",
@@ -6080,10 +4896,7 @@
   "meridians": "肝・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "138",
-  "note": "孜然",
-  "icon": "spice_seed",
-  "catIcon": "cat_choumi"
+  "note": "孜然"
  },
  {
   "id": "f341131",
@@ -6095,10 +4908,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "138",
-  "note": "丁香。※うこんと一緒に使用しない",
-  "icon": "clove",
-  "catIcon": "cat_choumi"
+  "note": "丁香"
  },
  {
   "id": "fb41ee4",
@@ -6110,10 +4920,7 @@
   "meridians": "胃・大腸",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "138",
-  "note": "胡椒。※注意:陰虚証の者",
-  "icon": "kosho",
-  "catIcon": "cat_choumi"
+  "note": "胡椒"
  },
  {
   "id": "f212d2a",
@@ -6125,10 +4932,7 @@
   "meridians": "肺・胃・脾",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "140",
-  "note": "香菜子・コリアンダーシード",
-  "icon": "spice_seed",
-  "catIcon": "cat_choumi"
+  "note": "香菜子・コリアンダーシード"
  },
  {
   "id": "f21af85",
@@ -6141,10 +4945,7 @@
   "meridians": "脾",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "140",
-  "note": "酒糟。清酒、みりんのもろみを絞った粕",
-  "icon": "jouzou_paste",
-  "catIcon": "cat_choumi"
+  "note": "酒糟。清酒、みりんのもろみを絞った粕"
  },
  {
   "id": "f4eef54",
@@ -6156,10 +4957,7 @@
   "meridians": "心・肝",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "140",
-  "note": "番紅花。※注意:妊婦および月経過多症の者は禁忌",
-  "icon": "clove",
-  "catIcon": "cat_choumi"
+  "note": "番紅花"
  },
  {
   "id": "f5e2f5f",
@@ -6171,10 +4969,7 @@
   "meridians": "脾・胃・腎",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "140",
-  "note": "花椒・蜀椒。※小毒。注意:陰虚火旺の者・妊婦。皮に局所麻酔及び鎮痛作用",
-  "icon": "kosho",
-  "catIcon": "cat_choumi"
+  "note": "花椒・蜀椒"
  },
  {
   "id": "f567d1a",
@@ -6186,10 +4981,7 @@
   "meridians": "脾・肝",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "140",
-  "note": "山椒",
-  "icon": "kosho",
-  "catIcon": "cat_choumi"
+  "note": "山椒"
  },
  {
   "id": "f206495",
@@ -6201,10 +4993,7 @@
   "meridians": "胃・腎・大腸・小腸",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "140",
-  "note": "塩。※外用:歯ぐき出血。天然塩",
-  "icon": "shio",
-  "catIcon": "cat_choumi"
+  "note": "塩"
  },
  {
   "id": "f61e7d2",
@@ -6217,10 +5006,7 @@
   "meridians": "腎・脾・心・肝",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "140",
-  "note": "桂皮",
-  "icon": "cinnamon",
-  "catIcon": "cat_choumi"
+  "note": "桂皮"
  },
  {
   "id": "f307146",
@@ -6232,10 +5018,7 @@
   "meridians": "胃・脾・腎",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "醤油・生抽",
-  "icon": "jouzou_eki",
-  "catIcon": "cat_choumi"
+  "note": "醤油・生抽"
  },
  {
   "id": "f2a0946",
@@ -6248,10 +5031,7 @@
   "meridians": "肝・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "醋。※注意:陰虚火旺の者(食べ過ぎると津液を失いやすい)",
-  "icon": "jouzou_eki",
-  "catIcon": "cat_choumi"
+  "note": "醋"
  },
  {
   "id": "f74b785",
@@ -6264,10 +5044,7 @@
   "meridians": "肝・脾",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "姜黄・ウコン",
-  "icon": "turmeric",
-  "catIcon": "cat_choumi"
+  "note": "姜黄・ウコン"
  },
  {
   "id": "f7c8067",
@@ -6280,10 +5057,7 @@
   "meridians": "脾・肺",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "陳皮",
-  "icon": "kanpi",
-  "catIcon": "cat_choumi"
+  "note": "陳皮"
  },
  {
   "id": "fe3ccc4",
@@ -6295,10 +5069,7 @@
   "meridians": "心・脾・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "辣椒。※注意:陰虚火旺の者",
-  "icon": "tougarashi",
-  "catIcon": "cat_choumi"
+  "note": "辣椒"
  },
  {
   "id": "f0763af",
@@ -6311,10 +5082,7 @@
   "meridians": "肺・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "豆豉。※塩分の少ないものは中薬の淡豆豉",
-  "icon": "jouzou_paste",
-  "catIcon": "cat_choumi"
+  "note": "豆豉"
  },
  {
   "id": "f87f961",
@@ -6326,10 +5094,7 @@
   "meridians": "胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "豆瓣醤",
-  "icon": "jouzou_paste",
-  "catIcon": "cat_choumi"
+  "note": "豆瓣醤"
  },
  {
   "id": "fc2a294",
@@ -6342,10 +5107,7 @@
   "meridians": "心・脾・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "142",
-  "note": "辣豆瓣醤",
-  "icon": "jouzou_paste",
-  "catIcon": "cat_choumi"
+  "note": "辣豆瓣醤"
  },
  {
   "id": "fb0f80b",
@@ -6357,10 +5119,7 @@
   "meridians": "脾・胃・大腸",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "144",
-  "note": "肉豆蔲",
-  "icon": "spice_seed",
-  "catIcon": "cat_choumi"
+  "note": "肉豆蔲"
  },
  {
   "id": "fdd007e",
@@ -6372,10 +5131,7 @@
   "meridians": "肝・腎・脾・胃",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "144",
-  "note": "八角・大茴香",
-  "icon": "hakkaku",
-  "catIcon": "cat_choumi"
+  "note": "八角・大茴香"
  },
  {
   "id": "f552961",
@@ -6388,10 +5144,7 @@
   "meridians": "脾・胃・心・腎",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "144",
-  "note": "味噌",
-  "icon": "jouzou_paste",
-  "catIcon": "cat_choumi"
+  "note": "味噌"
  },
  {
   "id": "fd43d2e",
@@ -6403,10 +5156,7 @@
   "meridians": "脾",
   "cat15": "choumi",
   "cat5": "season",
-  "page": "144",
-  "note": "味醂・甜料酒",
-  "icon": "jouzou_eki",
-  "catIcon": "cat_choumi"
+  "note": "味醂・甜料酒"
  },
  {
   "id": "f9fae25",
@@ -6419,10 +5169,7 @@
   "meridians": "脾・胃・肺",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "酒醸。※米麹の甘酒",
-  "icon": "amazake",
-  "catIcon": "cat_inryou"
+  "note": "酒醸"
  },
  {
   "id": "f8d0742",
@@ -6435,10 +5182,7 @@
   "meridians": "肝・脾",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "烏龍茶。※高発酵茶は温性に傾く",
-  "icon": "chaba",
-  "catIcon": "cat_inryou"
+  "note": "烏龍茶"
  },
  {
   "id": "fffd2da",
@@ -6450,10 +5194,7 @@
   "meridians": "肺",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "柿子葉",
-  "icon": "kousou",
-  "catIcon": "cat_inryou"
+  "note": "柿子葉"
  },
  {
   "id": "fd312ff",
@@ -6467,10 +5208,7 @@
   "meridians": "肝・肺・脾",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "春黄菊・徳國洋甘菊",
-  "icon": "hanacha",
-  "catIcon": "cat_inryou"
+  "note": "春黄菊・徳國洋甘菊"
  },
  {
   "id": "f19fd33",
@@ -6482,10 +5220,7 @@
   "meridians": "心・肝・脾・胃",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "金木犀・桂花",
-  "icon": "hanacha",
-  "catIcon": "cat_inryou"
+  "note": "金木犀・桂花"
  },
  {
   "id": "f88927c",
@@ -6498,10 +5233,7 @@
   "meridians": "肝・肺・脾",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "苦丁茶",
-  "icon": "chaba",
-  "catIcon": "cat_inryou"
+  "note": "苦丁茶"
  },
  {
   "id": "f1c547e",
@@ -6514,10 +5246,7 @@
   "meridians": "心・肺",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "紅茶",
-  "icon": "chaba",
-  "catIcon": "cat_inryou"
+  "note": "紅茶"
  },
  {
   "id": "fdfcb6e",
@@ -6529,10 +5258,7 @@
   "meridians": "心・肺・脾",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "146",
-  "note": "珈琲・咖啡",
-  "icon": "coffee",
-  "catIcon": "cat_inryou"
+  "note": "珈琲・咖啡"
  },
  {
   "id": "f8faf5b",
@@ -6545,10 +5271,7 @@
   "meridians": "肺・心・大腸・胃",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "可可",
-  "icon": "cacao",
-  "catIcon": "cat_inryou"
+  "note": "可可"
  },
  {
   "id": "f1fac4d",
@@ -6561,10 +5284,7 @@
   "meridians": "心・脾・肝",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "茉莉花",
-  "icon": "hanacha",
-  "catIcon": "cat_inryou"
+  "note": "茉莉花"
  },
  {
   "id": "f139488",
@@ -6576,10 +5296,7 @@
   "meridians": "心・肺・大腸",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "洛神花",
-  "icon": "hanacha",
-  "catIcon": "cat_inryou"
+  "note": "洛神花"
  },
  {
   "id": "ff5918a",
@@ -6593,10 +5310,7 @@
   "meridians": "肝・胆・腎",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "ハブ茶。※決明子の成熟種子を炒ったものがハブ茶",
-  "icon": "chaba",
-  "catIcon": "cat_inryou"
+  "note": "ハブ茶"
  },
  {
   "id": "f988daf",
@@ -6609,10 +5323,7 @@
   "meridians": "肝・胃",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "普洱茶。※熟茶は暖胃・解酒の効能あり。生茶は涼/苦甘",
-  "icon": "chaba",
-  "catIcon": "cat_inryou"
+  "note": "普洱茶"
  },
  {
   "id": "fd30225",
@@ -6625,10 +5336,7 @@
   "meridians": "肝・脾",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "玫瑰花。※和名はまはなす",
-  "icon": "hanacha",
-  "catIcon": "cat_inryou"
+  "note": "玫瑰花"
  },
  {
   "id": "f2109a2",
@@ -6640,10 +5348,7 @@
   "meridians": "心・肝・肺",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "薫衣草",
-  "icon": "hanacha",
-  "catIcon": "cat_inryou"
+  "note": "薫衣草"
  },
  {
   "id": "fa13b5c",
@@ -6656,10 +5361,7 @@
   "meridians": "心・肺・胃",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "緑茶",
-  "icon": "chaba",
-  "catIcon": "cat_inryou"
+  "note": "緑茶"
  },
  {
   "id": "f500fc6",
@@ -6671,10 +5373,7 @@
   "meridians": "肝・腎・胃",
   "cat15": "inryou",
   "cat5": "season",
-  "page": "148",
-  "note": "薔薇果・玫瑰果",
-  "icon": "hanacha",
-  "catIcon": "cat_inryou"
+  "note": "薔薇果・玫瑰果"
  },
  {
   "id": "f95939a",
@@ -6687,10 +5386,7 @@
   "meridians": "肝・心",
   "cat15": "alcohol",
   "cat5": "season",
-  "page": "150",
-  "note": "威士忌。穀物を糖化発酵させた蒸留酒",
-  "icon": "jouryushu",
-  "catIcon": "cat_alcohol"
+  "note": "威士忌。穀物を糖化発酵させた蒸留酒"
  },
  {
   "id": "fbdab55",
@@ -6704,10 +5400,7 @@
   "meridians": "心・肝・肺・胃",
   "cat15": "alcohol",
   "cat5": "season",
-  "page": "150",
-  "note": "醸造酒・日本酒・黄酒・紹興酒。酵母で発酵させアルコール分20%以下の酒",
-  "icon": "wasyu",
-  "catIcon": "cat_alcohol"
+  "note": "醸造酒・日本酒・黄酒・紹興酒。酵母で発酵させアルコール分20%以下の酒"
  },
  {
   "id": "f7278f0",
@@ -6720,10 +5413,7 @@
   "meridians": "胃・胆・心",
   "cat15": "alcohol",
   "cat5": "season",
-  "page": "150",
-  "note": "焼酎。穀物を糖化発酵させた蒸留酒",
-  "icon": "jouryushu",
-  "catIcon": "cat_alcohol"
+  "note": "焼酎。穀物を糖化発酵させた蒸留酒"
  },
  {
   "id": "f9224fb",
@@ -6736,10 +5426,7 @@
   "meridians": "肝・脾",
   "cat15": "alcohol",
   "cat5": "season",
-  "page": "150",
-  "note": "啤酒。麦芽をビール酵母で発酵させた醸造酒",
-  "icon": "beer",
-  "catIcon": "cat_alcohol"
+  "note": "啤酒。麦芽をビール酵母で発酵させた醸造酒"
  },
  {
   "id": "f748f90",
@@ -6754,9 +5441,6 @@
   "meridians": "心・肝・脾",
   "cat15": "alcohol",
   "cat5": "season",
-  "page": "150",
-  "note": "葡萄酒。ブドウを単発酵発酵させた酒",
-  "icon": "wine",
-  "catIcon": "cat_alcohol"
+  "note": "葡萄酒。ブドウを単発酵発酵させた酒"
  }
 ]

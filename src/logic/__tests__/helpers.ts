@@ -11,6 +11,8 @@ export function food(overrides: Partial<Food>): Food {
     cat15: 'yasai',
     cat5: 'veg',
     note: '',
+    icon: 'yasai',
+    catIcon: 'cat_yasai',
     ...overrides,
   };
 }

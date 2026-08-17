@@ -34,6 +34,14 @@ export interface Food {
   cat5: Cat5;
   /** 別名・漢字名(生物学上・言語上の事実のみ。中医学上の注意は持たない) */
   note: string;
+  /** 出典書籍のページ番号 */
+  page?: string;
+  /** 食材ごとのアイコンキー(src/components/icons/icons.ts の ICONS を参照) */
+  icon: string;
+  /** カテゴリアイコンキー(フォールバック用) */
+  catIcon: string;
+  /** false のときのみ存在。一覧から除外する */
+  visible?: boolean;
 }
 
 /** 全438件(参照のみ項目を含む) */

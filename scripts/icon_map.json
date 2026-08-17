@@ -1,0 +1,1756 @@
+{
+ "f254f72": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f956384": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f2c8ce8": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f92c59b": {
+  "icon": "mugi",
+  "catIcon": "cat_kokurui"
+ },
+ "f17f1c7": {
+  "icon": "mugi",
+  "catIcon": "cat_kokurui"
+ },
+ "fb6022a": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "fd3c039": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f57518d": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f4e5a04": {
+  "icon": "mugi",
+  "catIcon": "cat_kokurui"
+ },
+ "f9e92f8": {
+  "icon": "kona",
+  "catIcon": "cat_kokurui"
+ },
+ "f3b4ec8": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "fc8f67c": {
+  "icon": "mugi",
+  "catIcon": "cat_kokurui"
+ },
+ "ffdc68b": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f5fce7e": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f2977d3": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f078a1e": {
+  "icon": "fu",
+  "catIcon": "cat_kokurui"
+ },
+ "ffca0d0": {
+  "icon": "mugi",
+  "catIcon": "cat_kokurui"
+ },
+ "ff8cf24": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f011d61": {
+  "icon": "kome",
+  "catIcon": "cat_kokurui"
+ },
+ "f57103d": {
+  "icon": "denpun",
+  "catIcon": "cat_imo"
+ },
+ "f36a913": {
+  "icon": "konsai",
+  "catIcon": "cat_imo"
+ },
+ "f65abc9": {
+  "icon": "denpun",
+  "catIcon": "cat_imo"
+ },
+ "f3386cc": {
+  "icon": "denpun",
+  "catIcon": "cat_imo"
+ },
+ "f37e84a": {
+  "icon": "imo_root",
+  "catIcon": "cat_imo"
+ },
+ "f04511b": {
+  "icon": "imo_root",
+  "catIcon": "cat_imo"
+ },
+ "ff2c34f": {
+  "icon": "imo_root",
+  "catIcon": "cat_imo"
+ },
+ "fee6c33": {
+  "icon": "denpun",
+  "catIcon": "cat_imo"
+ },
+ "fa5392b": {
+  "icon": "imo_root",
+  "catIcon": "cat_imo"
+ },
+ "f0afb25": {
+  "icon": "imo_root",
+  "catIcon": "cat_imo"
+ },
+ "fd85c26": {
+  "icon": "imo_root",
+  "catIcon": "cat_imo"
+ },
+ "f4b2257": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "f878d86": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "fe33561": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "fb0fa9a": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "fb340d0": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "fd7a109": {
+  "icon": "tofu",
+  "catIcon": "cat_mame"
+ },
+ "fd25307": {
+  "icon": "tofu",
+  "catIcon": "cat_mame"
+ },
+ "f2e101f": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "f6d2445": {
+  "icon": "tofu",
+  "catIcon": "cat_mame"
+ },
+ "f5c6256": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "fd9910f": {
+  "icon": "tofu",
+  "catIcon": "cat_mame"
+ },
+ "f455504": {
+  "icon": "tofu",
+  "catIcon": "cat_mame"
+ },
+ "f264915": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "fff0c6d": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_mame"
+ },
+ "fd0f077": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f138677": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f1b6704": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "fb7bb83": {
+  "icon": "asupara",
+  "catIcon": "cat_yasai"
+ },
+ "f489d4c": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f34aeb4": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "fac2590": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "fa3e3a5": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f12c0f3": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f8cf2f2": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_yasai"
+ },
+ "fe851eb": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "fb76cf5": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_yasai"
+ },
+ "fd13208": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f455ab9": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f2147f0": {
+  "icon": "kasai",
+  "catIcon": "cat_yasai"
+ },
+ "f214a03": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f5f6d49": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f5ac0cd": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "f16256e": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f96ff21": {
+  "icon": "kasai_hana",
+  "catIcon": "cat_yasai"
+ },
+ "ff0caa4": {
+  "icon": "kasai_hana",
+  "catIcon": "cat_yasai"
+ },
+ "f6f65c5": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "fad4c08": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f7daf64": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f737fb9": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f3ef0d8": {
+  "icon": "kekkyu",
+  "catIcon": "cat_yasai"
+ },
+ "f0d5fa9": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "f577bfd": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "ffd69d8": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f6554f4": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_yasai"
+ },
+ "f044b7b": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f414e19": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "fbabeee": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f318b7d": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f38cdfb": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "fde6ccb": {
+  "icon": "kekkyu",
+  "catIcon": "cat_yasai"
+ },
+ "fa12a6c": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f23b71c": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f0a520f": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f9774bc": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_yasai"
+ },
+ "f2d8c0e": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f778dc0": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f0ef412": {
+  "icon": "kasai",
+  "catIcon": "cat_yasai"
+ },
+ "f483b6f": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "fe8a831": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "fd6ab1e": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f2be587": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f3796fb": {
+  "icon": "turmeric",
+  "catIcon": "cat_yasai"
+ },
+ "f0dcf70": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "fc041bc": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f3f54b6": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "f55dde1": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f5ea4e6": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f10ac5f": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f8542f8": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "fe62b3f": {
+  "icon": "mame_tsubu",
+  "catIcon": "cat_yasai"
+ },
+ "f46a1dc": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f0319fe": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f5c5c85": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "fb945cb": {
+  "icon": "takenoko",
+  "catIcon": "cat_yasai"
+ },
+ "f935835": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "fbcd86a": {
+  "icon": "kasai_hana",
+  "catIcon": "cat_yasai"
+ },
+ "fbec250": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f0daf3c": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "fb530ea": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "fe3f898": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "fcdc23e": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "f6ca3ad": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "fa24cd1": {
+  "icon": "mugi",
+  "catIcon": "cat_yasai"
+ },
+ "f633fac": {
+  "icon": "mugi",
+  "catIcon": "cat_yasai"
+ },
+ "f91d158": {
+  "icon": "kasai",
+  "catIcon": "cat_yasai"
+ },
+ "fb0ce9d": {
+  "icon": "shushi",
+  "catIcon": "cat_yasai"
+ },
+ "f7a3c71": {
+  "icon": "nasu",
+  "catIcon": "cat_yasai"
+ },
+ "f0fe9ca": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "ffc8c0e": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "faf06b5": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f9fd7db": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "f9b62f0": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f9484ef": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f321ec0": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f2ecebc": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "fb0f9aa": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f4b2997": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f8f3174": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f36f061": {
+  "icon": "hakusai",
+  "catIcon": "cat_yasai"
+ },
+ "f667845": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "fa06374": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f27dbd7": {
+  "icon": "kasai",
+  "catIcon": "cat_yasai"
+ },
+ "f042fd8": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "ff5452a": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f741fce": {
+  "icon": "kasai",
+  "catIcon": "cat_yasai"
+ },
+ "fcd279f": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "fce447f": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f77fe8c": {
+  "icon": "kasai_hana",
+  "catIcon": "cat_yasai"
+ },
+ "f562ae6": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "feaf406": {
+  "icon": "kasai_hana",
+  "catIcon": "cat_yasai"
+ },
+ "f3daf11": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "f3a424c": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f03cd55": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f7f0a33": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f2a74e8": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f33f9c4": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f989628": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f43ed16": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "faa296e": {
+  "icon": "kasai_hana",
+  "catIcon": "cat_yasai"
+ },
+ "f03a66f": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "fe5026f": {
+  "icon": "kekkyu",
+  "catIcon": "cat_yasai"
+ },
+ "f96dad3": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f1e3036": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f4486a9": {
+  "icon": "hamono",
+  "catIcon": "cat_yasai"
+ },
+ "f484760": {
+  "icon": "kinoko",
+  "catIcon": "cat_yasai"
+ },
+ "f9f5c8e": {
+  "icon": "uri",
+  "catIcon": "cat_yasai"
+ },
+ "f61a87e": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "fbc016c": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "fd9259b": {
+  "icon": "rinkei",
+  "catIcon": "cat_yasai"
+ },
+ "f14661c": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f0e3702": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f9100d7": {
+  "icon": "kekkyu",
+  "catIcon": "cat_yasai"
+ },
+ "fc952db": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f183e29": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f7f0572": {
+  "icon": "turmeric",
+  "catIcon": "cat_yasai"
+ },
+ "f2cf92b": {
+  "icon": "turmeric",
+  "catIcon": "cat_yasai"
+ },
+ "f16e6e5": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f1d7457": {
+  "icon": "kousou",
+  "catIcon": "cat_yasai"
+ },
+ "f18bd44": {
+  "icon": "konsai",
+  "catIcon": "cat_yasai"
+ },
+ "f3ada92": {
+  "icon": "keisai",
+  "catIcon": "cat_yasai"
+ },
+ "f5095c9": {
+  "icon": "fusa",
+  "catIcon": "cat_kajitsu"
+ },
+ "f88a7bb": {
+  "icon": "nettai",
+  "catIcon": "cat_kajitsu"
+ },
+ "fa430e0": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "fd5b7f9": {
+  "icon": "ichigo",
+  "catIcon": "cat_kajitsu"
+ },
+ "f995404": {
+  "icon": "ekika",
+  "catIcon": "cat_kajitsu"
+ },
+ "f4858a6": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "fb54c29": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f691b5b": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "fff0546": {
+  "icon": "kaki",
+  "catIcon": "cat_kajitsu"
+ },
+ "f9d7c2d": {
+  "icon": "kaki",
+  "catIcon": "cat_kajitsu"
+ },
+ "f995980": {
+  "icon": "fusa",
+  "catIcon": "cat_kajitsu"
+ },
+ "fd3eb8f": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f94f814": {
+  "icon": "jinka",
+  "catIcon": "cat_kajitsu"
+ },
+ "fce1139": {
+  "icon": "nettai",
+  "catIcon": "cat_kajitsu"
+ },
+ "f9bd062": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f01b992": {
+  "icon": "jinka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f99d474": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "fecd428": {
+  "icon": "fusa",
+  "catIcon": "cat_kajitsu"
+ },
+ "f7135fc": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f9394b3": {
+  "icon": "fusa",
+  "catIcon": "cat_kajitsu"
+ },
+ "f7dbb42": {
+  "icon": "kokonatsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "fd99a23": {
+  "icon": "kokonatsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f1dbb59": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f85cffc": {
+  "icon": "ekika",
+  "catIcon": "cat_kajitsu"
+ },
+ "f544fcb": {
+  "icon": "jinka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f61f3a1": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "fffbfc5": {
+  "icon": "suika",
+  "catIcon": "cat_kajitsu"
+ },
+ "fa9d01d": {
+  "icon": "nettai",
+  "catIcon": "cat_kajitsu"
+ },
+ "ff03136": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "ffbc2ce": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f759e84": {
+  "icon": "jinka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f5d1c56": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f2da987": {
+  "icon": "nettai",
+  "catIcon": "cat_kajitsu"
+ },
+ "f4e3db8": {
+  "icon": "banana",
+  "catIcon": "cat_kajitsu"
+ },
+ "fa73b55": {
+  "icon": "nettai",
+  "catIcon": "cat_kajitsu"
+ },
+ "fc40ed0": {
+  "icon": "jinka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f233a85": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "fb2d76b": {
+  "icon": "fusa",
+  "catIcon": "cat_kajitsu"
+ },
+ "f53603b": {
+  "icon": "fusa",
+  "catIcon": "cat_kajitsu"
+ },
+ "fa20412": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f1d8cd5": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f394381": {
+  "icon": "kasai",
+  "catIcon": "cat_kajitsu"
+ },
+ "f5a5ae7": {
+  "icon": "suika",
+  "catIcon": "cat_kajitsu"
+ },
+ "fd7819f": {
+  "icon": "nettai",
+  "catIcon": "cat_kajitsu"
+ },
+ "f891aa6": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f29d09d": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f45c4ce": {
+  "icon": "suika",
+  "catIcon": "cat_kajitsu"
+ },
+ "f6ce354": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f2cedd9": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "ffebe45": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f587f20": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "ff9095e": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "fa8a2c2": {
+  "icon": "fusa",
+  "catIcon": "cat_kajitsu"
+ },
+ "f313df8": {
+  "icon": "kakka",
+  "catIcon": "cat_kajitsu"
+ },
+ "f21bcb4": {
+  "icon": "jinka",
+  "catIcon": "cat_kajitsu"
+ },
+ "fabc22d": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f641626": {
+  "icon": "kankitsu",
+  "catIcon": "cat_kajitsu"
+ },
+ "f019c25": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "fc287c9": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "f56f885": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "f366c60": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "fb1ee4b": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "f82097e": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "fecaa11": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "f301f89": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "f5bdf65": {
+  "icon": "kuri",
+  "catIcon": "cat_shujitsu"
+ },
+ "f915524": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "f8d48a5": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "fd59590": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "fd14b2b": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "fc8d88d": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "f8de983": {
+  "icon": "kanka",
+  "catIcon": "cat_shujitsu"
+ },
+ "ff56629": {
+  "icon": "kanka",
+  "catIcon": "cat_shujitsu"
+ },
+ "f059a20": {
+  "icon": "kanka",
+  "catIcon": "cat_shujitsu"
+ },
+ "ff9056d": {
+  "icon": "shushi",
+  "catIcon": "cat_shujitsu"
+ },
+ "f44305a": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "fbce403": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "fd996fe": {
+  "icon": "kenka",
+  "catIcon": "cat_shujitsu"
+ },
+ "f87795b": {
+  "icon": "kaisou",
+  "catIcon": "cat_gyokai"
+ },
+ "fada239": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f0f9e6a": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f538185": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f15820a": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fa5b448": {
+  "icon": "unagi",
+  "catIcon": "cat_gyokai"
+ },
+ "fa86312": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "ff59fcb": {
+  "icon": "makigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f12d7b7": {
+  "icon": "unagi",
+  "catIcon": "cat_gyokai"
+ },
+ "fa87f2c": {
+  "icon": "uni",
+  "catIcon": "cat_gyokai"
+ },
+ "f07f964": {
+  "icon": "ebi",
+  "catIcon": "cat_gyokai"
+ },
+ "faae3cc": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f32c4e5": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f334a4e": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f58de13": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f0c6fe3": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fca1c4d": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f74775d": {
+  "icon": "kani",
+  "catIcon": "cat_gyokai"
+ },
+ "f7abf68": {
+  "icon": "kame",
+  "catIcon": "cat_gyokai"
+ },
+ "fa9d090": {
+  "icon": "ebi",
+  "catIcon": "cat_gyokai"
+ },
+ "f3273e3": {
+  "icon": "kaisou",
+  "catIcon": "cat_gyokai"
+ },
+ "f1fc584": {
+  "icon": "kurage",
+  "catIcon": "cat_gyokai"
+ },
+ "f17a8a2": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "ffb0954": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fe291ea": {
+  "icon": "kaisou",
+  "catIcon": "cat_gyokai"
+ },
+ "fdaffdd": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fc88c58": {
+  "icon": "makigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f2f07c5": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fac0b43": {
+  "icon": "same",
+  "catIcon": "cat_gyokai"
+ },
+ "fddf93e": {
+  "icon": "same",
+  "catIcon": "cat_gyokai"
+ },
+ "f5bfbac": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "feb2b7e": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f32215e": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f0ccc90": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f5b1705": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fb3b18e": {
+  "icon": "hirame",
+  "catIcon": "cat_gyokai"
+ },
+ "f8ef984": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f14fab8": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fd18c72": {
+  "icon": "kame",
+  "catIcon": "cat_gyokai"
+ },
+ "f4b3dd4": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f00d150": {
+  "icon": "tako",
+  "catIcon": "cat_gyokai"
+ },
+ "face48e": {
+  "icon": "unagi",
+  "catIcon": "cat_gyokai"
+ },
+ "f3d1c49": {
+  "icon": "makigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f87289a": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f67d872": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fa59daf": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "ffe13ea": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f6eb6f9": {
+  "icon": "namako",
+  "catIcon": "cat_gyokai"
+ },
+ "f54f2cd": {
+  "icon": "namako",
+  "catIcon": "cat_gyokai"
+ },
+ "fa7c793": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f14e1e9": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fffffa4": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f9ce983": {
+  "icon": "kaisou",
+  "catIcon": "cat_gyokai"
+ },
+ "f9a335d": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f5a310a": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fb15793": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "fcb7f4a": {
+  "icon": "unagi",
+  "catIcon": "cat_gyokai"
+ },
+ "f1647a7": {
+  "icon": "kaisou",
+  "catIcon": "cat_gyokai"
+ },
+ "f919ad9": {
+  "icon": "hirame",
+  "catIcon": "cat_gyokai"
+ },
+ "fb69cb4": {
+  "icon": "same",
+  "catIcon": "cat_gyokai"
+ },
+ "f1e086e": {
+  "icon": "fugu",
+  "catIcon": "cat_gyokai"
+ },
+ "f589b84": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f404349": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "ff0e5be": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f3a67ef": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f436122": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f021801": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "fbac2fe": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "f8bd36d": {
+  "icon": "sakana",
+  "catIcon": "cat_gyokai"
+ },
+ "f45adbc": {
+  "icon": "nimaigai",
+  "catIcon": "cat_gyokai"
+ },
+ "fb99b08": {
+  "icon": "kaisou",
+  "catIcon": "cat_gyokai"
+ },
+ "f41c2cb": {
+  "icon": "kaisou",
+  "catIcon": "cat_gyokai"
+ },
+ "fa4b5c2": {
+  "icon": "cat_niku",
+  "catIcon": "cat_niku",
+  "visible": false
+ },
+ "f122dfe": {
+  "icon": "inoshishi",
+  "catIcon": "cat_niku"
+ },
+ "f3779e2": {
+  "icon": "ukokkei",
+  "catIcon": "cat_niku"
+ },
+ "f527a1c": {
+  "icon": "usagi",
+  "catIcon": "cat_niku"
+ },
+ "fe68240": {
+  "icon": "uzura",
+  "catIcon": "cat_niku"
+ },
+ "fc323f0": {
+  "icon": "kaeru",
+  "catIcon": "cat_niku"
+ },
+ "f0a102f": {
+  "icon": "kaeru",
+  "catIcon": "cat_niku"
+ },
+ "f34e93f": {
+  "icon": "gachou",
+  "catIcon": "cat_niku"
+ },
+ "f12e9c6": {
+  "icon": "kamo",
+  "catIcon": "cat_niku"
+ },
+ "f524a05": {
+  "icon": "kiji",
+  "catIcon": "cat_niku"
+ },
+ "f8a5f38": {
+  "icon": "ushi",
+  "catIcon": "cat_niku"
+ },
+ "f1c2116": {
+  "icon": "i",
+  "catIcon": "cat_niku"
+ },
+ "fc5c1ed": {
+  "icon": "shita",
+  "catIcon": "cat_niku"
+ },
+ "ff2f8b7": {
+  "icon": "jinzou",
+  "catIcon": "cat_niku"
+ },
+ "fcb1b7c": {
+  "icon": "suji",
+  "catIcon": "cat_niku"
+ },
+ "f7ce942": {
+  "icon": "reba",
+  "catIcon": "cat_niku"
+ },
+ "f07f6db": {
+  "icon": "cat_niku",
+  "catIcon": "cat_niku",
+  "visible": false
+ },
+ "f5868b4": {
+  "icon": "kuma",
+  "catIcon": "cat_niku"
+ },
+ "f26cdf8": {
+  "icon": "ashi",
+  "catIcon": "cat_niku"
+ },
+ "f582370": {
+  "icon": "shika",
+  "catIcon": "cat_niku"
+ },
+ "f5ee11b": {
+  "icon": "suji",
+  "catIcon": "cat_niku"
+ },
+ "f4374ea": {
+  "icon": "shichimenchou",
+  "catIcon": "cat_niku"
+ },
+ "f9e584a": {
+  "icon": "suzume",
+  "catIcon": "cat_niku"
+ },
+ "fcc3e28": {
+  "icon": "niwatori",
+  "catIcon": "cat_niku"
+ },
+ "f1f69cb": {
+  "icon": "i",
+  "catIcon": "cat_niku"
+ },
+ "f1032b2": {
+  "icon": "reba",
+  "catIcon": "cat_niku"
+ },
+ "f6aea3d": {
+  "icon": "hato",
+  "catIcon": "cat_niku"
+ },
+ "f1518d4": {
+  "icon": "uma",
+  "catIcon": "cat_niku"
+ },
+ "fd86dda": {
+  "icon": "hitsuji",
+  "catIcon": "cat_niku"
+ },
+ "ffe4d66": {
+  "icon": "buta",
+  "catIcon": "cat_niku"
+ },
+ "faa5263": {
+  "icon": "ashi",
+  "catIcon": "cat_niku"
+ },
+ "fc9d37e": {
+  "icon": "i",
+  "catIcon": "cat_niku"
+ },
+ "f7557cf": {
+  "icon": "kawa",
+  "catIcon": "cat_niku"
+ },
+ "ff72c5f": {
+  "icon": "shinzou",
+  "catIcon": "cat_niku"
+ },
+ "fa59367": {
+  "icon": "jinzou",
+  "catIcon": "cat_niku"
+ },
+ "fa87180": {
+  "icon": "hone",
+  "catIcon": "cat_niku"
+ },
+ "f0e1068": {
+  "icon": "chou",
+  "catIcon": "cat_niku"
+ },
+ "fd54ac8": {
+  "icon": "nou",
+  "catIcon": "cat_niku"
+ },
+ "fe23972": {
+  "icon": "hai",
+  "catIcon": "cat_niku"
+ },
+ "f972dcd": {
+  "icon": "reba",
+  "catIcon": "cat_niku"
+ },
+ "ffe3c03": {
+  "icon": "hebi",
+  "catIcon": "cat_niku"
+ },
+ "fd98272": {
+  "icon": "hebi",
+  "catIcon": "cat_niku"
+ },
+ "f0ca073": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "ffe16ed": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "f6c0508": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "fb26a01": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "f8ca3ca": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "f678b38": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "ff75a5d": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "fb3b11f": {
+  "icon": "tamago_egg",
+  "catIcon": "cat_tamago"
+ },
+ "f815b4c": {
+  "icon": "nyu",
+  "catIcon": "cat_nyuu"
+ },
+ "f3cb940": {
+  "icon": "nyu",
+  "catIcon": "cat_nyuu"
+ },
+ "f7eb2ad": {
+  "icon": "nyu",
+  "catIcon": "cat_nyuu"
+ },
+ "fb5f51b": {
+  "icon": "nyu",
+  "catIcon": "cat_nyuu"
+ },
+ "ff3ab88": {
+  "icon": "nyu",
+  "catIcon": "cat_nyuu"
+ },
+ "fbcaaae": {
+  "icon": "nyu",
+  "catIcon": "cat_nyuu"
+ },
+ "f39dce7": {
+  "icon": "abura",
+  "catIcon": "cat_yushi"
+ },
+ "f2c7972": {
+  "icon": "abura",
+  "catIcon": "cat_yushi"
+ },
+ "febf6b1": {
+  "icon": "abura",
+  "catIcon": "cat_yushi"
+ },
+ "fded09d": {
+  "icon": "abura",
+  "catIcon": "cat_yushi"
+ },
+ "f5f2cd0": {
+  "icon": "abura",
+  "catIcon": "cat_yushi"
+ },
+ "f99fb14": {
+  "icon": "koshi_shi",
+  "catIcon": "cat_yushi"
+ },
+ "fd4779a": {
+  "icon": "koshi_shi",
+  "catIcon": "cat_yushi"
+ },
+ "fba2b7a": {
+  "icon": "abura",
+  "catIcon": "cat_yushi"
+ },
+ "ff59eaf": {
+  "icon": "koshi_shi",
+  "catIcon": "cat_yushi"
+ },
+ "f3ef33b": {
+  "icon": "satou_cube",
+  "catIcon": "cat_satou"
+ },
+ "fd849b3": {
+  "icon": "satou_cube",
+  "catIcon": "cat_satou"
+ },
+ "f9eb81d": {
+  "icon": "satou_cube",
+  "catIcon": "cat_satou"
+ },
+ "f894cb2": {
+  "icon": "satou_cube",
+  "catIcon": "cat_satou"
+ },
+ "f8d91bc": {
+  "icon": "satou_cube",
+  "catIcon": "cat_satou"
+ },
+ "f52f25e": {
+  "icon": "spice_seed",
+  "catIcon": "cat_choumi"
+ },
+ "fb626ad": {
+  "icon": "spice_seed",
+  "catIcon": "cat_choumi"
+ },
+ "fd62cf9": {
+  "icon": "spice_seed",
+  "catIcon": "cat_choumi"
+ },
+ "f70ef48": {
+  "icon": "kanpi",
+  "catIcon": "cat_choumi"
+ },
+ "f599c98": {
+  "icon": "spice_seed",
+  "catIcon": "cat_choumi"
+ },
+ "f341131": {
+  "icon": "clove",
+  "catIcon": "cat_choumi"
+ },
+ "fb41ee4": {
+  "icon": "kosho",
+  "catIcon": "cat_choumi"
+ },
+ "f212d2a": {
+  "icon": "spice_seed",
+  "catIcon": "cat_choumi"
+ },
+ "f21af85": {
+  "icon": "jouzou_paste",
+  "catIcon": "cat_choumi"
+ },
+ "f4eef54": {
+  "icon": "clove",
+  "catIcon": "cat_choumi"
+ },
+ "f5e2f5f": {
+  "icon": "kosho",
+  "catIcon": "cat_choumi"
+ },
+ "f567d1a": {
+  "icon": "kosho",
+  "catIcon": "cat_choumi"
+ },
+ "f206495": {
+  "icon": "shio",
+  "catIcon": "cat_choumi"
+ },
+ "f61e7d2": {
+  "icon": "cinnamon",
+  "catIcon": "cat_choumi"
+ },
+ "f307146": {
+  "icon": "jouzou_eki",
+  "catIcon": "cat_choumi"
+ },
+ "f2a0946": {
+  "icon": "jouzou_eki",
+  "catIcon": "cat_choumi"
+ },
+ "f74b785": {
+  "icon": "turmeric",
+  "catIcon": "cat_choumi"
+ },
+ "f7c8067": {
+  "icon": "kanpi",
+  "catIcon": "cat_choumi"
+ },
+ "fe3ccc4": {
+  "icon": "tougarashi",
+  "catIcon": "cat_choumi"
+ },
+ "f0763af": {
+  "icon": "jouzou_paste",
+  "catIcon": "cat_choumi"
+ },
+ "f87f961": {
+  "icon": "jouzou_paste",
+  "catIcon": "cat_choumi"
+ },
+ "fc2a294": {
+  "icon": "jouzou_paste",
+  "catIcon": "cat_choumi"
+ },
+ "fb0f80b": {
+  "icon": "spice_seed",
+  "catIcon": "cat_choumi"
+ },
+ "fdd007e": {
+  "icon": "hakkaku",
+  "catIcon": "cat_choumi"
+ },
+ "f552961": {
+  "icon": "jouzou_paste",
+  "catIcon": "cat_choumi"
+ },
+ "fd43d2e": {
+  "icon": "jouzou_eki",
+  "catIcon": "cat_choumi"
+ },
+ "f9fae25": {
+  "icon": "amazake",
+  "catIcon": "cat_inryou"
+ },
+ "f8d0742": {
+  "icon": "chaba",
+  "catIcon": "cat_inryou"
+ },
+ "fffd2da": {
+  "icon": "kousou",
+  "catIcon": "cat_inryou"
+ },
+ "fd312ff": {
+  "icon": "hanacha",
+  "catIcon": "cat_inryou"
+ },
+ "f19fd33": {
+  "icon": "hanacha",
+  "catIcon": "cat_inryou"
+ },
+ "f88927c": {
+  "icon": "chaba",
+  "catIcon": "cat_inryou"
+ },
+ "f1c547e": {
+  "icon": "chaba",
+  "catIcon": "cat_inryou"
+ },
+ "fdfcb6e": {
+  "icon": "coffee",
+  "catIcon": "cat_inryou"
+ },
+ "f8faf5b": {
+  "icon": "cacao",
+  "catIcon": "cat_inryou"
+ },
+ "f1fac4d": {
+  "icon": "hanacha",
+  "catIcon": "cat_inryou"
+ },
+ "f139488": {
+  "icon": "hanacha",
+  "catIcon": "cat_inryou"
+ },
+ "ff5918a": {
+  "icon": "chaba",
+  "catIcon": "cat_inryou"
+ },
+ "f988daf": {
+  "icon": "chaba",
+  "catIcon": "cat_inryou"
+ },
+ "fd30225": {
+  "icon": "hanacha",
+  "catIcon": "cat_inryou"
+ },
+ "f2109a2": {
+  "icon": "hanacha",
+  "catIcon": "cat_inryou"
+ },
+ "fa13b5c": {
+  "icon": "chaba",
+  "catIcon": "cat_inryou"
+ },
+ "f500fc6": {
+  "icon": "hanacha",
+  "catIcon": "cat_inryou"
+ },
+ "f95939a": {
+  "icon": "jouryushu",
+  "catIcon": "cat_alcohol"
+ },
+ "fbdab55": {
+  "icon": "wasyu",
+  "catIcon": "cat_alcohol"
+ },
+ "f7278f0": {
+  "icon": "jouryushu",
+  "catIcon": "cat_alcohol"
+ },
+ "f9224fb": {
+  "icon": "beer",
+  "catIcon": "cat_alcohol"
+ },
+ "f748f90": {
+  "icon": "wine",
+  "catIcon": "cat_alcohol"
+ }
+}
