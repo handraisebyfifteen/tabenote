@@ -1,0 +1,7 @@
+name = "tabenote-ai"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+# シークレットはファイルに書かず、以下で登録する:
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put REVENUECAT_API_KEY   (課金を有効にするとき)

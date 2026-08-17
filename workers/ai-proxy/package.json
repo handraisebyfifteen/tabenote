@@ -1,0 +1,16 @@
+{
+  "name": "tabenote-ai-proxy",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.116.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250801.0",
+    "typescript": "~6.0.3",
+    "wrangler": "^4.0.0"
+  }
+}

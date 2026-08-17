@@ -1,0 +1,5884 @@
+[
+ {
+  "id": "f254f72",
+  "name": "あかまい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "赤米・紅米"
+ },
+ {
+  "id": "f956384",
+  "name": "あわ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "粟"
+ },
+ {
+  "id": "f2c8ce8",
+  "name": "うるちまい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "粳米・白米。※粥は益精強志"
+ },
+ {
+  "id": "f92c59b",
+  "name": "えんばく",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "燕麦・オートミール"
+ },
+ {
+  "id": "f17f1c7",
+  "name": "おおむぎ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "大麦"
+ },
+ {
+  "id": "fb6022a",
+  "name": "きび",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "黍"
+ },
+ {
+  "id": "fd3c039",
+  "name": "くろまい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "黒米"
+ },
+ {
+  "id": "f57518d",
+  "name": "げんまい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肝・腎",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "32",
+  "note": "玄米。※脾胃虚弱者は慎用。炒ってから粥にして食す"
+ },
+ {
+  "id": "f4e5a04",
+  "name": "こむぎ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾・腎",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "小麦。※実は温性で皮は涼性。全粒粉は涼性"
+ },
+ {
+  "id": "f9e92f8",
+  "name": "こむぎこ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾・腎",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "小麦粉"
+ },
+ {
+  "id": "f3b4ec8",
+  "name": "こめこうじ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "米麹"
+ },
+ {
+  "id": "fc8f67c",
+  "name": "そば",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "蕎麦。※脾胃虚寒の者は注意"
+ },
+ {
+  "id": "ffdc68b",
+  "name": "はとむぎ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "淡"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "薏苡仁。※妊娠初期は注意"
+ },
+ {
+  "id": "f5fce7e",
+  "name": "はつがげんまい",
+  "nature": "微寒",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "発芽玄米"
+ },
+ {
+  "id": "f2977d3",
+  "name": "ひえ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "稗"
+ },
+ {
+  "id": "f078a1e",
+  "name": "ふ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "34",
+  "note": "麩"
+ },
+ {
+  "id": "ffca0d0",
+  "name": "ふすま",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "36",
+  "note": "小麦麩"
+ },
+ {
+  "id": "ff8cf24",
+  "name": "べにこうじ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肝・大腸",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "36",
+  "note": "紅麹"
+ },
+ {
+  "id": "f011d61",
+  "name": "もちごめ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "kokurui",
+  "cat5": "grain",
+  "page": "36",
+  "note": "糯米。※痰湿証者の常食に注意"
+ },
+ {
+  "id": "f57103d",
+  "name": "かたくりこ",
+  "nature": "",
+  "flavors": [],
+  "meridians": "",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "36",
+  "note": "片栗粉"
+ },
+ {
+  "id": "f36a913",
+  "name": "きくいも",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "微苦"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "36",
+  "note": "菊芋"
+ },
+ {
+  "id": "f65abc9",
+  "name": "コーンスターチ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "36",
+  "note": "玉米澱粉"
+ },
+ {
+  "id": "f3386cc",
+  "name": "こんにゃく",
+  "nature": "寒",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肺・大腸",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "36",
+  "note": "蒟蒻"
+ },
+ {
+  "id": "f37e84a",
+  "name": "さつまいも",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "38",
+  "note": "薩摩芋"
+ },
+ {
+  "id": "f04511b",
+  "name": "さといも",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "38",
+  "note": "里芋"
+ },
+ {
+  "id": "ff2c34f",
+  "name": "じゃがいも",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・大腸",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "38",
+  "note": "馬鈴薯。※生汁には解毒・消炎作用あり"
+ },
+ {
+  "id": "fee6c33",
+  "name": "タピオカ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "38",
+  "note": "木薯澱粉"
+ },
+ {
+  "id": "fa5392b",
+  "name": "むかご",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腎",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "38",
+  "note": "零余子"
+ },
+ {
+  "id": "f0afb25",
+  "name": "やつがしら",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "38",
+  "note": "八つ頭"
+ },
+ {
+  "id": "fd85c26",
+  "name": "やまいも",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・腎",
+  "cat15": "imo",
+  "cat5": "grain",
+  "page": "38",
+  "note": "山薬・自然薯・長芋"
+ },
+ {
+  "id": "f4b2257",
+  "name": "あずき",
+  "nature": "微寒",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "心・小腸・脾",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "小豆"
+ },
+ {
+  "id": "f878d86",
+  "name": "いんげんまめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "隠元豆"
+ },
+ {
+  "id": "fe33561",
+  "name": "くろまめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "黒大豆。※煮汁は利咽。煮食は偏涼、炒食は偏温。皮に養血平肝・除熱・止汗"
+ },
+ {
+  "id": "fb0fa9a",
+  "name": "ささげ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "大角豆"
+ },
+ {
+  "id": "fb340d0",
+  "name": "だいず",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "大豆"
+ },
+ {
+  "id": "fd7a109",
+  "name": "とうにゅう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "豆乳"
+ },
+ {
+  "id": "fd25307",
+  "name": "とうふ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "豆腐"
+ },
+ {
+  "id": "f2e101f",
+  "name": "なたまめ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・胃・腎",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "40",
+  "note": "刀豆。※福神漬けに利用"
+ },
+ {
+  "id": "f6d2445",
+  "name": "なっとう",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "42",
+  "note": "納豆"
+ },
+ {
+  "id": "f5c6256",
+  "name": "ひよこまめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・大腸",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "42",
+  "note": "別名ガルバンゾー"
+ },
+ {
+  "id": "fd9910f",
+  "name": "ふにゅう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・脾",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "42",
+  "note": "腐乳。豆腐に紅麹をつけ発酵させた調味料"
+ },
+ {
+  "id": "f455504",
+  "name": "ゆば",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "淡"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "42",
+  "note": "湯葉"
+ },
+ {
+  "id": "f264915",
+  "name": "りょくとう",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・胃",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "42",
+  "note": "緑豆。※清熱解毒の力は豆皮にある"
+ },
+ {
+  "id": "fff0c6d",
+  "name": "レンズマメ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "渋"
+  ],
+  "meridians": "脾",
+  "cat15": "mame",
+  "cat5": "grain",
+  "page": "42",
+  "note": "扁豆・眼鏡豆"
+ },
+ {
+  "id": "fd0f077",
+  "name": "あおねぎ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "44",
+  "note": "青葱・九条葱"
+ },
+ {
+  "id": "f138677",
+  "name": "あさつき",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "44",
+  "note": "浅葱"
+ },
+ {
+  "id": "f1b6704",
+  "name": "あしたば",
+  "nature": "寒",
+  "flavors": [
+   "鹹",
+   "微苦"
+  ],
+  "meridians": "心・肺・肝・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "44",
+  "note": "明日葉"
+ },
+ {
+  "id": "fb7bb83",
+  "name": "アスパラガス",
+  "nature": "平",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "44",
+  "note": "※中医飲食営養学では微温性・抗癌、中医薬膳学では寒性・清熱生津・利水の記述"
+ },
+ {
+  "id": "f489d4c",
+  "name": "アロエ",
+  "nature": "寒",
+  "flavors": [
+   "苦"
+  ],
+  "meridians": "心・肝・胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "44",
+  "note": "※禁忌:妊婦。皮は苦味が強く緩下作用"
+ },
+ {
+  "id": "f34aeb4",
+  "name": "ういきょう",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "44",
+  "note": "茴香(茎・葉)。※魚の臭みを消す"
+ },
+ {
+  "id": "fac2590",
+  "name": "うど",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肝・腎・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "44",
+  "note": "独活"
+ },
+ {
+  "id": "fa3e3a5",
+  "name": "えごまのは",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": "荏葉"
+ },
+ {
+  "id": "f12c0f3",
+  "name": "エシャレット",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肺・胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": ""
+ },
+ {
+  "id": "f8cf2f2",
+  "name": "えだまめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": "枝豆"
+ },
+ {
+  "id": "fe851eb",
+  "name": "えのきだけ",
+  "nature": "微温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・腎・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": "金針菇"
+ },
+ {
+  "id": "fb76cf5",
+  "name": "えんどう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": "豌豆"
+ },
+ {
+  "id": "fd13208",
+  "name": "エリンギ",
+  "nature": "微寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": "杏鮑菇"
+ },
+ {
+  "id": "f455ab9",
+  "name": "おかひじき",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": "陸鹿尾菜"
+ },
+ {
+  "id": "f2147f0",
+  "name": "オクラ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "腎・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "46",
+  "note": "秋葵"
+ },
+ {
+  "id": "f214a03",
+  "name": "オレガノ",
+  "nature": "涼",
+  "flavors": [
+   "辛",
+   "微苦"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "牛至"
+ },
+ {
+  "id": "f5f6d49",
+  "name": "かぶ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "苦",
+   "辛"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "蕪菁。※生食は涼性、熱食は温性にかたむく"
+ },
+ {
+  "id": "f5ac0cd",
+  "name": "かぼちゃ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "南瓜"
+ },
+ {
+  "id": "f16256e",
+  "name": "からしな",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "芥菜"
+ },
+ {
+  "id": "f96ff21",
+  "name": "カリフラワー",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾・腎・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "花椰菜"
+ },
+ {
+  "id": "ff0caa4",
+  "name": "きくか",
+  "nature": "微寒",
+  "flavors": [
+   "辛",
+   "甘",
+   "苦"
+  ],
+  "meridians": "肝・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "菊花。※黄菊花は疏散風熱、白菊花は平肝明目"
+ },
+ {
+  "id": "f6f65c5",
+  "name": "きくらげ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "黒木耳"
+ },
+ {
+  "id": "fad4c08",
+  "name": "しろきくらげ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "淡"
+  ],
+  "meridians": "肺・胃・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "48",
+  "note": "銀耳"
+ },
+ {
+  "id": "f7daf64",
+  "name": "きにら",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "心・肝・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": "韮黄"
+ },
+ {
+  "id": "f737fb9",
+  "name": "きのめ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": "花椒葉・木の芽"
+ },
+ {
+  "id": "f3ef0d8",
+  "name": "キャベツ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・膀胱・胃・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": "甘藍"
+ },
+ {
+  "id": "f0d5fa9",
+  "name": "きゅうり",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・小腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": "胡瓜。※注意:多食"
+ },
+ {
+  "id": "f577bfd",
+  "name": "きんしんさい",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": "金針菜。※生は小毒なので加熱し多食を控える。禁忌:皮膚掻痒の者"
+ },
+ {
+  "id": "ffd69d8",
+  "name": "くうしんさい",
+  "nature": "寒",
+  "flavors": [
+   "微甘"
+  ],
+  "meridians": "腸・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": "空心菜"
+ },
+ {
+  "id": "f6554f4",
+  "name": "グリーンピース",
+  "nature": "",
+  "flavors": [],
+  "meridians": "",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": ""
+ },
+ {
+  "id": "f044b7b",
+  "name": "クレソン",
+  "nature": "微寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "50",
+  "note": "水田芥"
+ },
+ {
+  "id": "f414e19",
+  "name": "くろくわい",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "52",
+  "note": "荸薺"
+ },
+ {
+  "id": "fbabeee",
+  "name": "くわい",
+  "nature": "微寒",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "心・肝・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "52",
+  "note": "慈菇"
+ },
+ {
+  "id": "f318b7d",
+  "name": "こうさい",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "52",
+  "note": "香菜・パクチー"
+ },
+ {
+  "id": "f38cdfb",
+  "name": "こごみ",
+  "nature": "涼",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "52",
+  "note": "莢果蕨"
+ },
+ {
+  "id": "fde6ccb",
+  "name": "コールラビ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾・肺・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "52",
+  "note": "蕪茎藍"
+ },
+ {
+  "id": "fa12a6c",
+  "name": "ごぼう",
+  "nature": "微涼",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肺・胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "52",
+  "note": "牛蒡"
+ },
+ {
+  "id": "f23b71c",
+  "name": "こまつな",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "肺・肝・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "52",
+  "note": "小松菜"
+ },
+ {
+  "id": "f0a520f",
+  "name": "ザーサイ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・脾・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "搾菜"
+ },
+ {
+  "id": "f9774bc",
+  "name": "さやいんげん",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "菜豆"
+ },
+ {
+  "id": "f2d8c0e",
+  "name": "しいたけ(生)",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "香菇"
+ },
+ {
+  "id": "f778dc0",
+  "name": "しいたけ(干)",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "冬菇・花菇。※冬から春の肉厚を冬菇、薄手で開かないうちのものを香信"
+ },
+ {
+  "id": "f0ef412",
+  "name": "ししとうがらし",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "脾・心・肝・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "獅子唐辛子"
+ },
+ {
+  "id": "f483b6f",
+  "name": "しそ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "紫蘇。※効能は赤紫蘇が強い。解魚蟹毒"
+ },
+ {
+  "id": "fe8a831",
+  "name": "しめじ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "口蘑"
+ },
+ {
+  "id": "fd6ab1e",
+  "name": "しゅんぎく",
+  "nature": "平",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "肝・肺・心・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "54",
+  "note": "春菊・蒿"
+ },
+ {
+  "id": "f2be587",
+  "name": "じゅんさい",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "蓴菜"
+ },
+ {
+  "id": "f3796fb",
+  "name": "しょうが",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "生姜。※注意:陰虚内熱の者。生は辛散の効能が強く、熱は温中に傾く。皮は涼で利水消腫"
+ },
+ {
+  "id": "f0dcf70",
+  "name": "しろうり",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・膀胱・大腸・小腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "白瓜"
+ },
+ {
+  "id": "fc041bc",
+  "name": "ずいき",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "芋頭茎。※乾かした物がいもがら"
+ },
+ {
+  "id": "f3f54b6",
+  "name": "ズッキーニ",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "西葫芦"
+ },
+ {
+  "id": "f55dde1",
+  "name": "セージ",
+  "nature": "涼",
+  "flavors": [
+   "苦",
+   "辛"
+  ],
+  "meridians": "肝・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "鼠尾草"
+ },
+ {
+  "id": "f5ea4e6",
+  "name": "せり",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "肺・胃・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "水芹"
+ },
+ {
+  "id": "f10ac5f",
+  "name": "セロリ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "肝・胃・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "56",
+  "note": "芹菜"
+ },
+ {
+  "id": "f8542f8",
+  "name": "ぜんまい",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "脾・大腸・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "薇。※寒性でありながら活血と止血の働きを併せもつ"
+ },
+ {
+  "id": "fe62b3f",
+  "name": "そらまめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "空豆"
+ },
+ {
+  "id": "f46a1dc",
+  "name": "だいこん",
+  "nature": "涼",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "大根。※生は冷やす作用が強いが加熱すると温める作用。注意:脾胃虚弱者の生食・多食"
+ },
+ {
+  "id": "f0319fe",
+  "name": "タイム",
+  "nature": "涼",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "百里香"
+ },
+ {
+  "id": "f5c5c85",
+  "name": "たかな",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・胃・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "高菜"
+ },
+ {
+  "id": "fb945cb",
+  "name": "たけのこ",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "筍。※注意:胃潰瘍、慢性腎炎、泌尿系結石の者"
+ },
+ {
+  "id": "f935835",
+  "name": "たまねぎ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "玉葱"
+ },
+ {
+  "id": "fbcd86a",
+  "name": "たらのめ",
+  "nature": "寒",
+  "flavors": [
+   "苦"
+  ],
+  "meridians": "心",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "58",
+  "note": "楤の芽"
+ },
+ {
+  "id": "fbec250",
+  "name": "チャービル",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "60",
+  "note": "セルフィーユ・細葉"
+ },
+ {
+  "id": "f0daf3c",
+  "name": "ちんげんさい",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・肺・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "60",
+  "note": "青梗菜"
+ },
+ {
+  "id": "fb530ea",
+  "name": "つるむらさき",
+  "nature": "寒",
+  "flavors": [
+   "酸"
+  ],
+  "meridians": "心・肝・脾・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "60",
+  "note": "落葵"
+ },
+ {
+  "id": "fe3f898",
+  "name": "ディル",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・胃・肝・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "60",
+  "note": "草茴香"
+ },
+ {
+  "id": "fcdc23e",
+  "name": "とうがん",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "淡"
+  ],
+  "meridians": "肺・大腸・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "60",
+  "note": "冬瓜"
+ },
+ {
+  "id": "f6ca3ad",
+  "name": "とうみょう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "60",
+  "note": "豆苗"
+ },
+ {
+  "id": "fa24cd1",
+  "name": "とうもろこし",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "大腸・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "60",
+  "note": "玉蜀黍。※根や葉を煎じて飲むと尿路結石を改善"
+ },
+ {
+  "id": "f633fac",
+  "name": "とうもろこしのひげ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・膀胱・心・小腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "玉米鬚。※乾燥したものを生薬として使用"
+ },
+ {
+  "id": "f91d158",
+  "name": "とまと",
+  "nature": "微寒",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "番茄"
+ },
+ {
+  "id": "fb0ce9d",
+  "name": "とんぶり",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "腎・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "地膚子"
+ },
+ {
+  "id": "f7a3c71",
+  "name": "なす",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "茄子"
+ },
+ {
+  "id": "f0fe9ca",
+  "name": "なずな",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "薺・ぺんぺん草"
+ },
+ {
+  "id": "ffc8c0e",
+  "name": "なのはな",
+  "nature": "涼",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "肺・肝・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "菜の花・油菜花"
+ },
+ {
+  "id": "faf06b5",
+  "name": "なめこ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "渋"
+  ],
+  "meridians": "脾・腎・心",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "朴蕈"
+ },
+ {
+  "id": "f9fd7db",
+  "name": "にがうり",
+  "nature": "寒",
+  "flavors": [
+   "苦"
+  ],
+  "meridians": "心・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "62",
+  "note": "苦瓜・ゴーヤ。※たね 甘/苦 益気壮陽"
+ },
+ {
+  "id": "f9b62f0",
+  "name": "にら",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・胃・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "韮菜"
+ },
+ {
+  "id": "f9484ef",
+  "name": "にんじん",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "人参・紅蘿蔔"
+ },
+ {
+  "id": "f321ec0",
+  "name": "にんにく(生)",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "大蒜。※注意:陰虚火旺証・実熱証の者"
+ },
+ {
+  "id": "f2ecebc",
+  "name": "にんにく(熱)",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "大蒜(加熱)"
+ },
+ {
+  "id": "fb0f9aa",
+  "name": "にんにくのくき",
+  "nature": "微温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・胃・肺・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "蒜苗"
+ },
+ {
+  "id": "f4b2997",
+  "name": "ねぎ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "葱"
+ },
+ {
+  "id": "f8f3174",
+  "name": "のびる",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "胃・肝・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "山蒜"
+ },
+ {
+  "id": "f36f061",
+  "name": "はくさい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃・大腸・肝・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "大白菜"
+ },
+ {
+  "id": "f667845",
+  "name": "バジル",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾・胃・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "64",
+  "note": "羅勒"
+ },
+ {
+  "id": "fa06374",
+  "name": "パセリ",
+  "nature": "涼",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・脾・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "荷蘭芹"
+ },
+ {
+  "id": "f27dbd7",
+  "name": "パプリカ",
+  "nature": "",
+  "flavors": [],
+  "meridians": "",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "紅辣椒"
+ },
+ {
+  "id": "f042fd8",
+  "name": "はやとうり",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "淡"
+  ],
+  "meridians": "肺・脾・小腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "隼人瓜"
+ },
+ {
+  "id": "ff5452a",
+  "name": "ビーツ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "糖蘿蔔・甜菜"
+ },
+ {
+  "id": "f741fce",
+  "name": "ピーマン",
+  "nature": "平",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "肝・心・胃・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "青椒"
+ },
+ {
+  "id": "fcd279f",
+  "name": "ひらたけ",
+  "nature": "",
+  "flavors": [],
+  "meridians": "",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "平茸"
+ },
+ {
+  "id": "fce447f",
+  "name": "ふき",
+  "nature": "涼",
+  "flavors": [
+   "苦",
+   "辛"
+  ],
+  "meridians": "肝・心・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "蕗・款冬花"
+ },
+ {
+  "id": "f77fe8c",
+  "name": "ふきのとう",
+  "nature": "温",
+  "flavors": [
+   "苦",
+   "辛"
+  ],
+  "meridians": "肺・大腸・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "66",
+  "note": "蕗の薹・蜂斗菜茎"
+ },
+ {
+  "id": "f562ae6",
+  "name": "ふくろだけ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "袋茸・草菇"
+ },
+ {
+  "id": "feaf406",
+  "name": "ブロッコリー",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾・腎",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "西蘭花"
+ },
+ {
+  "id": "f3daf11",
+  "name": "へちま",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "糸瓜"
+ },
+ {
+  "id": "f3a424c",
+  "name": "ほうれんそう",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・大腸・小腸・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "菠薐草。※根に止渇・潤燥の効能あり"
+ },
+ {
+  "id": "f03cd55",
+  "name": "まいたけ",
+  "nature": "微温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "舞茸"
+ },
+ {
+  "id": "f7f0a33",
+  "name": "まこもだけ",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "真菰筍。※注意:慢性下痢、脾胃虚弱の者"
+ },
+ {
+  "id": "f2a74e8",
+  "name": "マッシュルーム",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "大腸・小腸・胃・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "松傘蘑。※注意:気滞証の者"
+ },
+ {
+  "id": "f33f9c4",
+  "name": "まつたけ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "68",
+  "note": "松茸。※老廃物の排泄"
+ },
+ {
+  "id": "f989628",
+  "name": "みずな",
+  "nature": "平",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "水菜"
+ },
+ {
+  "id": "f43ed16",
+  "name": "みつば",
+  "nature": "平",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "肝・肺・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "三つ葉・鴨児芹"
+ },
+ {
+  "id": "faa296e",
+  "name": "みょうが",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・大腸・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "茗荷"
+ },
+ {
+  "id": "f03a66f",
+  "name": "ミント",
+  "nature": "涼",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "薄荷"
+ },
+ {
+  "id": "fe5026f",
+  "name": "めきゃべつ",
+  "nature": "平",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "芽キャベツ・小巻心菜"
+ },
+ {
+  "id": "f96dad3",
+  "name": "もやし(大豆)",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・膀胱",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "黄豆芽。※疣(ユウ)はイボ"
+ },
+ {
+  "id": "f1e3036",
+  "name": "もやし(緑豆)",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "豆芽"
+ },
+ {
+  "id": "f4486a9",
+  "name": "モロヘイヤ",
+  "nature": "微温",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "肺・肝・腎・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "70",
+  "note": "縞綱麻・台湾黄麻"
+ },
+ {
+  "id": "f484760",
+  "name": "やまぶしたけ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "山伏茸・猴頭菌"
+ },
+ {
+  "id": "f9f5c8e",
+  "name": "ゆうがお",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・膀胱・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "干瓢・葫芦"
+ },
+ {
+  "id": "f61a87e",
+  "name": "ゆりね",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "百合根。※乾したものがかんぴょう"
+ },
+ {
+  "id": "fbc016c",
+  "name": "よもぎ",
+  "nature": "温",
+  "flavors": [
+   "苦",
+   "辛"
+  ],
+  "meridians": "肝・脾・腎・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "蓬葉・艾蒿。※注意:熱証の者"
+ },
+ {
+  "id": "fd9259b",
+  "name": "らっきょう",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肺・胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "薤"
+ },
+ {
+  "id": "f14661c",
+  "name": "ラディッシュ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "辛",
+   "苦"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "二十日大根"
+ },
+ {
+  "id": "f0e3702",
+  "name": "ルバーブ",
+  "nature": "寒",
+  "flavors": [
+   "苦",
+   "酸"
+  ],
+  "meridians": "胃・大腸・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "食用だいおう・大黄茎。※注意:多食。禁忌:妊産婦・授乳婦"
+ },
+ {
+  "id": "f9100d7",
+  "name": "レタス",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "大腸・小腸・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "72",
+  "note": "生菜・サニーレタス"
+ },
+ {
+  "id": "fc952db",
+  "name": "レモングラス",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸",
+   "辛"
+  ],
+  "meridians": "脾・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "香茅。※注意:妊婦(子宮収縮作用あり)"
+ },
+ {
+  "id": "f183e29",
+  "name": "レモンバーム",
+  "nature": "涼",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・肝",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "蜜蜂花"
+ },
+ {
+  "id": "f7f0572",
+  "name": "れんこん(生)",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "蓮藕。※生の絞り汁は清熱生津。藕節は平/甘渋、収斂・止血"
+ },
+ {
+  "id": "f2cf92b",
+  "name": "れんこん(熱)",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺・脾・胃",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "蓮藕(加熱)"
+ },
+ {
+  "id": "f16e6e5",
+  "name": "ローズマリー",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・肝・心・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "迷迭香。※催眠作用あり"
+ },
+ {
+  "id": "f1d7457",
+  "name": "ローリエ",
+  "nature": "微温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "月桂葉"
+ },
+ {
+  "id": "f18bd44",
+  "name": "わさび",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肺・胃・脾",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "山葵"
+ },
+ {
+  "id": "f3ada92",
+  "name": "わらび",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・胃・大腸",
+  "cat15": "yasai",
+  "cat5": "veg",
+  "page": "74",
+  "note": "蕨。※根も同様"
+ },
+ {
+  "id": "f5095c9",
+  "name": "あけび",
+  "nature": "平",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "肝・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "預知子・八月札"
+ },
+ {
+  "id": "f88a7bb",
+  "name": "アボカド",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・肝",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "酪梨"
+ },
+ {
+  "id": "fa430e0",
+  "name": "あんず",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・心",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "杏。※干したものは心の果"
+ },
+ {
+  "id": "fd5b7f9",
+  "name": "いちご",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "微酸"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "草莓"
+ },
+ {
+  "id": "f995404",
+  "name": "いちじく",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・胃・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "無花果"
+ },
+ {
+  "id": "f4858a6",
+  "name": "うめ",
+  "nature": "平",
+  "flavors": [
+   "渋",
+   "酸"
+  ],
+  "meridians": "肝・脾・肺・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "梅子"
+ },
+ {
+  "id": "fb54c29",
+  "name": "オリーブ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "渋",
+   "酸"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "橄欖"
+ },
+ {
+  "id": "f691b5b",
+  "name": "オレンジ",
+  "nature": "微温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "76",
+  "note": "橙子・ネーブル。※皮(橙皮)は理気・化痰・健脾・導滞"
+ },
+ {
+  "id": "fff0546",
+  "name": "かき",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "渋"
+  ],
+  "meridians": "心・肺・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "柿子。※注意:脾胃虚寒の者"
+ },
+ {
+  "id": "f9d7c2d",
+  "name": "かき(干)",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・胃・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "柿餅。※柿霜(表面の白い粉)は生津・利咽"
+ },
+ {
+  "id": "f995980",
+  "name": "カシス",
+  "nature": "涼",
+  "flavors": [
+   "酸",
+   "渋",
+   "微甘"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "黒加侖"
+ },
+ {
+  "id": "fd3eb8f",
+  "name": "かぼす",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・脾・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "香母酢"
+ },
+ {
+  "id": "f94f814",
+  "name": "かりん",
+  "nature": "平",
+  "flavors": [
+   "酸",
+   "渋"
+  ],
+  "meridians": "肺・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "花梨"
+ },
+ {
+  "id": "fce1139",
+  "name": "キウイフルーツ",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "獼猴桃"
+ },
+ {
+  "id": "f9bd062",
+  "name": "きんかん",
+  "nature": "温",
+  "flavors": [
+   "酸",
+   "甘",
+   "辛"
+  ],
+  "meridians": "肺・肝・脾・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "金橘"
+ },
+ {
+  "id": "f01b992",
+  "name": "グアバ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸",
+   "渋"
+  ],
+  "meridians": "脾・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "78",
+  "note": "番石榴"
+ },
+ {
+  "id": "f99d474",
+  "name": "ぐみ",
+  "nature": "温",
+  "flavors": [
+   "酸",
+   "甘"
+  ],
+  "meridians": "肺・肝・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "茱萸"
+ },
+ {
+  "id": "fecd428",
+  "name": "クランベリー",
+  "nature": "平",
+  "flavors": [
+   "酸",
+   "甘"
+  ],
+  "meridians": "肝・腎・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "蔓越苺"
+ },
+ {
+  "id": "f7135fc",
+  "name": "グレープフルーツ",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "酸",
+   "苦"
+  ],
+  "meridians": "心・肝・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "西柚。※皮は清虚熱・降気・消食"
+ },
+ {
+  "id": "f9394b3",
+  "name": "くわのみ",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "桑椹"
+ },
+ {
+  "id": "f7dbb42",
+  "name": "ココナッツ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "椰子"
+ },
+ {
+  "id": "fd99a23",
+  "name": "ココナッツウォーター",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "椰子水"
+ },
+ {
+  "id": "f1dbb59",
+  "name": "さくらんぼ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "櫻桃"
+ },
+ {
+  "id": "f85cffc",
+  "name": "ざくろ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸",
+   "渋"
+  ],
+  "meridians": "肺・大腸・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "80",
+  "note": "石榴"
+ },
+ {
+  "id": "f544fcb",
+  "name": "さんざし",
+  "nature": "微温",
+  "flavors": [
+   "酸",
+   "甘"
+  ],
+  "meridians": "脾・胃・肝",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "山楂子"
+ },
+ {
+  "id": "f61f3a1",
+  "name": "シークワーサー",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "台湾香檬"
+ },
+ {
+  "id": "fffbfc5",
+  "name": "すいか",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・胃・膀胱",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "西瓜。※天然の白虎湯ともいう。皮(白)は涼で利尿効果が増す"
+ },
+ {
+  "id": "fa9d01d",
+  "name": "スターフルーツ",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "胃・腎・肺",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "五斂子。※注意:脾胃虚寒の者"
+ },
+ {
+  "id": "ff03136",
+  "name": "すだち",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "酢橘"
+ },
+ {
+  "id": "ffbc2ce",
+  "name": "すもも",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "李子"
+ },
+ {
+  "id": "f759e84",
+  "name": "なし",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "微酸"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "雪花梨。※注意:脾胃虚寒の者"
+ },
+ {
+  "id": "f5d1c56",
+  "name": "なつめ(干)",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・心",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "82",
+  "note": "紅棗。※生のなつめは熱/甘辛。注意:多食"
+ },
+ {
+  "id": "f2da987",
+  "name": "パイナップル",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "微酸"
+  ],
+  "meridians": "胃・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "鳳梨"
+ },
+ {
+  "id": "f4e3db8",
+  "name": "バナナ",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "香蕉"
+ },
+ {
+  "id": "fa73b55",
+  "name": "パパイア",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "番木瓜"
+ },
+ {
+  "id": "fc40ed0",
+  "name": "びわ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・肺・肝",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "枇杷"
+ },
+ {
+  "id": "f233a85",
+  "name": "ぶっしゅかん",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "苦",
+   "酸"
+  ],
+  "meridians": "肝・脾・胃・肺",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "仏手柑"
+ },
+ {
+  "id": "fb2d76b",
+  "name": "ぶどう",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・脾・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "葡萄"
+ },
+ {
+  "id": "f53603b",
+  "name": "ブルーベリー",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・脾・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "藍苺"
+ },
+ {
+  "id": "fa20412",
+  "name": "プルーン",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・脾・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "洋李"
+ },
+ {
+  "id": "f1d8cd5",
+  "name": "ぶんたん",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・肝",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "84",
+  "note": "文旦"
+ },
+ {
+  "id": "f394381",
+  "name": "ほおずき",
+  "nature": "寒",
+  "flavors": [
+   "酸",
+   "苦"
+  ],
+  "meridians": "肺・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "地面櫻桃・紅姑娘"
+ },
+ {
+  "id": "f5a5ae7",
+  "name": "まくわうり",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "甜瓜・香瓜"
+ },
+ {
+  "id": "fd7819f",
+  "name": "マンゴー",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・脾・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "芒果"
+ },
+ {
+  "id": "f891aa6",
+  "name": "みかん",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "柑橘"
+ },
+ {
+  "id": "f29d09d",
+  "name": "みかんのきつらく",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "肝・肺",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "橘絡。みかんの白い筋"
+ },
+ {
+  "id": "f45c4ce",
+  "name": "メロン",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "白蘭瓜"
+ },
+ {
+  "id": "f6ce354",
+  "name": "もも",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・肺・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "桃子。※外用:葉はあせも・肌荒れに有効"
+ },
+ {
+  "id": "f2cedd9",
+  "name": "やまもも",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "86",
+  "note": "楊梅。※注意:血熱火旺者の多食"
+ },
+ {
+  "id": "ffebe45",
+  "name": "ゆず",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "柚子。※たねは外用:にきびなどに使用"
+ },
+ {
+  "id": "f587f20",
+  "name": "ゆず(皮)",
+  "nature": "温",
+  "flavors": [
+   "苦",
+   "辛"
+  ],
+  "meridians": "肺・脾・肝",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "柚子皮"
+ },
+ {
+  "id": "ff9095e",
+  "name": "ライチ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・肝",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "茘枝。※注意:陰虚火旺の者"
+ },
+ {
+  "id": "fa8a2c2",
+  "name": "ラズベリー",
+  "nature": "微温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "山莓"
+ },
+ {
+  "id": "f313df8",
+  "name": "りゅうがん",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "龍眼。※注意:肝火及び湿滞の者"
+ },
+ {
+  "id": "f21bcb4",
+  "name": "りんご",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "林檎・苹果"
+ },
+ {
+  "id": "fabc22d",
+  "name": "レモン",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "檸檬"
+ },
+ {
+  "id": "f641626",
+  "name": "レモン(皮)",
+  "nature": "微温",
+  "flavors": [
+   "酸",
+   "微苦"
+  ],
+  "meridians": "肝・胃・肺",
+  "cat15": "kajitsu",
+  "cat5": "fruit",
+  "page": "88",
+  "note": "檸檬皮"
+ },
+ {
+  "id": "f019c25",
+  "name": "あまに",
+  "nature": "微温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・肺・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "亜麻仁"
+ },
+ {
+  "id": "fc287c9",
+  "name": "アーモンド",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・心・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "扁桃・巴旦杏仁"
+ },
+ {
+  "id": "f56f885",
+  "name": "えごま",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾・胃",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "荏胡麻"
+ },
+ {
+  "id": "f366c60",
+  "name": "カカオ",
+  "nature": "平",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "心・胃・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "可可"
+ },
+ {
+  "id": "fb1ee4b",
+  "name": "カシューナッツ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "腰果"
+ },
+ {
+  "id": "f82097e",
+  "name": "かぼちゃのたね",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "南瓜子。※薬効を高める為には皮ごと使用"
+ },
+ {
+  "id": "fecaa11",
+  "name": "かやのみ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・胃・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "榧実"
+ },
+ {
+  "id": "f301f89",
+  "name": "ぎんなん",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "苦",
+   "渋"
+  ],
+  "meridians": "肺・腎",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "90",
+  "note": "白果。※注意:小毒あり。多量摂取と小児。生食は駆虫作用あり"
+ },
+ {
+  "id": "f5bdf65",
+  "name": "くり",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "栗子。※タンニンは渋皮に多いので渋皮を残して料理するとよい"
+ },
+ {
+  "id": "f915524",
+  "name": "くるみ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腎・肺・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "胡桃"
+ },
+ {
+  "id": "f8d48a5",
+  "name": "くろごま",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "黒芝麻。※注意:便溏の者"
+ },
+ {
+  "id": "fd59590",
+  "name": "けしのみ",
+  "nature": "平",
+  "flavors": [
+   "酸",
+   "渋"
+  ],
+  "meridians": "肺・大腸・腎",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "芥子の実・罌栗子"
+ },
+ {
+  "id": "fd14b2b",
+  "name": "しろごま",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "白芝麻。※注意:便溏の者。多食は脾胃虚寒を発す。胡麻油は白胡麻が主原料"
+ },
+ {
+  "id": "fc8d88d",
+  "name": "すいかのたね",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "西瓜子"
+ },
+ {
+  "id": "f8de983",
+  "name": "てんきょうにん",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "甜杏仁・南杏仁。※杏仁には北杏仁(苦杏仁)と南杏(甜杏仁)の2種"
+ },
+ {
+  "id": "ff56629",
+  "name": "はすのみ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "渋"
+  ],
+  "meridians": "心・脾・腎",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "92",
+  "note": "蓮子。※芯(蓮子心)は苦味が強いので料理では取り除く"
+ },
+ {
+  "id": "f059a20",
+  "name": "ひしのみ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腸・脾・胃",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "94",
+  "note": "菱の実・菱角。※生は清熱除煩解暑止渇、熟は補気健脾。注意:胃虚脾弱、胸腹痞脹者の多食"
+ },
+ {
+  "id": "ff9056d",
+  "name": "ひまわりのたね",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "94",
+  "note": "向日葵の種・天葵子"
+ },
+ {
+  "id": "f44305a",
+  "name": "ヘーゼルナッツ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾・胃",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "94",
+  "note": "榛"
+ },
+ {
+  "id": "fbce403",
+  "name": "まつのみ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・肺・大腸",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "94",
+  "note": "松子仁・海松子。※注意:便溏の者"
+ },
+ {
+  "id": "fd996fe",
+  "name": "らっかせい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "shujitsu",
+  "cat5": "grain",
+  "page": "94",
+  "note": "落花生・花生。※薄皮ごと食すと補血・止血の作用あり"
+ },
+ {
+  "id": "f87795b",
+  "name": "あおさ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "石蓴"
+ },
+ {
+  "id": "fada239",
+  "name": "あかがい",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肝・胃・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "赤貝"
+ },
+ {
+  "id": "f0f9e6a",
+  "name": "あげまきがい",
+  "nature": "寒",
+  "flavors": [
+   "鹹",
+   "甘"
+  ],
+  "meridians": "胃・肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "蟶貝"
+ },
+ {
+  "id": "f538185",
+  "name": "あさり",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・腎・脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "浅蜊"
+ },
+ {
+  "id": "f15820a",
+  "name": "あじ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "胃・脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "鰺"
+ },
+ {
+  "id": "fa5b448",
+  "name": "あなご",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・脾・腎・肺",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "穴子"
+ },
+ {
+  "id": "fa86312",
+  "name": "あゆ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "鮎"
+ },
+ {
+  "id": "ff59fcb",
+  "name": "あわび",
+  "nature": "温",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "96",
+  "note": "鮑魚"
+ },
+ {
+  "id": "f12d7b7",
+  "name": "うなぎ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・脾",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "鰻魚"
+ },
+ {
+  "id": "fa87f2c",
+  "name": "うに",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・心・脾・肺・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "海胆。※生殖巣(雄の精巣・雌の卵巣)を食用"
+ },
+ {
+  "id": "f07f964",
+  "name": "えび",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "明蝦"
+ },
+ {
+  "id": "faae3cc",
+  "name": "おこぜ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "虎魚"
+ },
+ {
+  "id": "f32c4e5",
+  "name": "かいばしら(干)",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・腎・脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "干貝"
+ },
+ {
+  "id": "f334a4e",
+  "name": "かき",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "心・肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "牡蠣・蛎子"
+ },
+ {
+  "id": "f58de13",
+  "name": "かじきまぐろ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肝",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "梶木鮪"
+ },
+ {
+  "id": "f0c6fe3",
+  "name": "かたくちいわし",
+  "nature": "温",
+  "flavors": [
+   "鹹",
+   "甘"
+  ],
+  "meridians": "脾・肝・胃・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "100",
+  "note": "片口鰯・鰮魚"
+ },
+ {
+  "id": "fca1c4d",
+  "name": "かつお",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腎・脾",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "松魚・鰹魚"
+ },
+ {
+  "id": "f74775d",
+  "name": "かに",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肝・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "海蟹"
+ },
+ {
+  "id": "f7abf68",
+  "name": "かめ",
+  "nature": "平",
+  "flavors": [
+   "鹹",
+   "甘"
+  ],
+  "meridians": "肺・肝・腎・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "亀肉"
+ },
+ {
+  "id": "fa9d090",
+  "name": "かわえび",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "河蝦・手長蝦"
+ },
+ {
+  "id": "f3273e3",
+  "name": "かんてん",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "淡"
+  ],
+  "meridians": "肺・肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "石花菜・てんぐさ"
+ },
+ {
+  "id": "f1fc584",
+  "name": "くらげ",
+  "nature": "平",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肺・肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "海蜇"
+ },
+ {
+  "id": "f17a8a2",
+  "name": "くろだい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "黒鯛"
+ },
+ {
+  "id": "ffb0954",
+  "name": "こい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・胃・腎・胆",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "102",
+  "note": "鯉魚"
+ },
+ {
+  "id": "fe291ea",
+  "name": "こんぶ",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肝・胃・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "海帯"
+ },
+ {
+  "id": "fdaffdd",
+  "name": "さけ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "果多魚・大馬哈魚"
+ },
+ {
+  "id": "fc88c58",
+  "name": "さざえ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・腎・肝",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "栄螺・海螺"
+ },
+ {
+  "id": "f2f07c5",
+  "name": "さば",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "鯖魚・青花魚"
+ },
+ {
+  "id": "fac0b43",
+  "name": "さめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・脾",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "鮫魚・鯊"
+ },
+ {
+  "id": "fddf93e",
+  "name": "さめのきも",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "腎・肝",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "鮫の魚肚"
+ },
+ {
+  "id": "f5bfbac",
+  "name": "さより",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "細魚・針魚"
+ },
+ {
+  "id": "feb2b7e",
+  "name": "さわら",
+  "nature": "微温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "104",
+  "note": "鰆・馬鮫・青箭魚"
+ },
+ {
+  "id": "f32215e",
+  "name": "さんま",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "秋刀魚"
+ },
+ {
+  "id": "f0ccc90",
+  "name": "しじみ",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "蜆"
+ },
+ {
+  "id": "f5b1705",
+  "name": "ししゃも",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺・肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "柳葉魚"
+ },
+ {
+  "id": "fb3b18e",
+  "name": "したびらめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "舌平目・牛舌魚"
+ },
+ {
+  "id": "f8ef984",
+  "name": "しらうお",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "白魚・銀魚"
+ },
+ {
+  "id": "f14fab8",
+  "name": "すずき",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾・胃・肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "鱸・花鱸"
+ },
+ {
+  "id": "fd18c72",
+  "name": "すっぽん",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "甲魚・元魚。※大補陰之佳品"
+ },
+ {
+  "id": "f4b3dd4",
+  "name": "たい",
+  "nature": "微温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "106",
+  "note": "鯛魚・加吉魚"
+ },
+ {
+  "id": "f00d150",
+  "name": "たこ",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・肝",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "章魚・八帯魚"
+ },
+ {
+  "id": "face48e",
+  "name": "たちうお",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "帯魚"
+ },
+ {
+  "id": "f3d1c49",
+  "name": "たにし",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "膀胱・大腸・胃・肝・脾",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "田螺・黄螺"
+ },
+ {
+  "id": "f87289a",
+  "name": "たら",
+  "nature": "平",
+  "flavors": [
+   "鹹",
+   "甘"
+  ],
+  "meridians": "肝・腎・脾",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "大頭魚"
+ },
+ {
+  "id": "f67d872",
+  "name": "つばめのす",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "燕窩"
+ },
+ {
+  "id": "fa59daf",
+  "name": "どじょう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "泥鰌・泥鰍"
+ },
+ {
+  "id": "ffe13ea",
+  "name": "とびうお",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "飛魚"
+ },
+ {
+  "id": "f6eb6f9",
+  "name": "なまこ(鮮)",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "心・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "刺参・海参"
+ },
+ {
+  "id": "f54f2cd",
+  "name": "なまこ(乾)",
+  "nature": "温",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "心・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "108",
+  "note": "※乾物は壮陽の効能有り"
+ },
+ {
+  "id": "fa7c793",
+  "name": "なまず",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "鯰魚・鮎魚"
+ },
+ {
+  "id": "f14e1e9",
+  "name": "にじます",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "虹鱒"
+ },
+ {
+  "id": "fffffa4",
+  "name": "にしん",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "鰊・鯡魚"
+ },
+ {
+  "id": "f9ce983",
+  "name": "のり",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肺・脾・膀胱",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "紫菜・海苔"
+ },
+ {
+  "id": "f9a335d",
+  "name": "はぜ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "沙魚・鰕虎魚"
+ },
+ {
+  "id": "f5a310a",
+  "name": "はた",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "羽太・石斑魚"
+ },
+ {
+  "id": "fb15793",
+  "name": "はまぐり",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・胃・肺",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "蛤蜊・文蛤"
+ },
+ {
+  "id": "fcb7f4a",
+  "name": "はも",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・大腸・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "鱧魚"
+ },
+ {
+  "id": "f1647a7",
+  "name": "ひじき",
+  "nature": "寒",
+  "flavors": [
+   "苦",
+   "鹹"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "110",
+  "note": "鹿尾菜・羊栖菜"
+ },
+ {
+  "id": "f919ad9",
+  "name": "ひらめ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "比目魚・偏口魚"
+ },
+ {
+  "id": "fb69cb4",
+  "name": "ふかひれ",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腎・肺・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "魚翅。サメのヒレを加熱乾燥させたもの"
+ },
+ {
+  "id": "f1e086e",
+  "name": "ふぐ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "河豚。※肝臓、卵巣は猛毒"
+ },
+ {
+  "id": "f589b84",
+  "name": "ふな",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "鮒魚"
+ },
+ {
+  "id": "f404349",
+  "name": "ぶり",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肝・脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "鰤魚"
+ },
+ {
+  "id": "ff0e5be",
+  "name": "ほたて",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・脾・胃・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "帆立・扇貝"
+ },
+ {
+  "id": "f3a67ef",
+  "name": "ぼら",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "鰡魚。※からすみ(ぼらの卵巣を塩漬け後乾燥)"
+ },
+ {
+  "id": "f436122",
+  "name": "まぐろ",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "112",
+  "note": "金槍魚"
+ },
+ {
+  "id": "f021801",
+  "name": "ます",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "114",
+  "note": "鱒魚"
+ },
+ {
+  "id": "fbac2fe",
+  "name": "まてがい",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・腎・心",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "114",
+  "note": "蟶子"
+ },
+ {
+  "id": "f8bd36d",
+  "name": "まながつお",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "淡"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "114",
+  "note": "鯧魚"
+ },
+ {
+  "id": "f45adbc",
+  "name": "むーるがい",
+  "nature": "温",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "114",
+  "note": "淡菜・ムール貝。※ムラサキ貝の別名"
+ },
+ {
+  "id": "fb99b08",
+  "name": "もずく",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "114",
+  "note": "海蘊"
+ },
+ {
+  "id": "f41c2cb",
+  "name": "わかめ",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "gyokai",
+  "cat5": "protein",
+  "page": "114",
+  "note": "裙帯菜"
+ },
+ {
+  "id": "fa4b5c2",
+  "name": "いぬにく",
+  "nature": "温",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "狗肉。※注意:陰虚の者"
+ },
+ {
+  "id": "f122dfe",
+  "name": "いのししにく",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・胃・大腸",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "野猪肉"
+ },
+ {
+  "id": "f3779e2",
+  "name": "うこっけいにく",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・肺",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "烏骨鶏"
+ },
+ {
+  "id": "f527a1c",
+  "name": "うさぎにく",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・大腸・脾",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "兎肉。※注意:脾胃虚寒の者"
+ },
+ {
+  "id": "fe68240",
+  "name": "うずらにく",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・大腸・心・肝・肺・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "鶉肉"
+ },
+ {
+  "id": "fc323f0",
+  "name": "かえるにく",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "膀胱・腸・胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "蛙肉・田鶏・青蛙"
+ },
+ {
+  "id": "f0a102f",
+  "name": "かえるのらんかん",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肺・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "蛤士膜油・ハーシーマーユ"
+ },
+ {
+  "id": "f34e93f",
+  "name": "がちょうにく",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "116",
+  "note": "鵞鳥肉・鵝肉"
+ },
+ {
+  "id": "f12e9c6",
+  "name": "かもにく",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃・肺・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "鴨肉。※鴨はマガモを指すが、アヒルと掛け合わせた合鴨が一般的"
+ },
+ {
+  "id": "f524a05",
+  "name": "きじにく",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・胃・肝",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "雉肉・山鶏。※古書では微寒。春夏に捕穫したものは微毒あり"
+ },
+ {
+  "id": "f8a5f38",
+  "name": "ぎゅうにく",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "牛肉"
+ },
+ {
+  "id": "f1c2116",
+  "name": "ぎゅうのい",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "牛肚。※第一胃ミノ、第二胃ハチノス、第三胃センマイ、第四胃アカセンマイ"
+ },
+ {
+  "id": "fc5c1ed",
+  "name": "ぎゅうのした",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肝",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "牛舌・牛タン"
+ },
+ {
+  "id": "ff2f8b7",
+  "name": "ぎゅうのじんぞう",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "牛の腎臓・キドニー"
+ },
+ {
+  "id": "fcb1b7c",
+  "name": "ぎゅうのすじ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "牛筋"
+ },
+ {
+  "id": "f7ce942",
+  "name": "ぎゅうのレバー",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "118",
+  "note": "牛肝"
+ },
+ {
+  "id": "f07f6db",
+  "name": "くじらにく",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "脾・肝・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "鯨肉"
+ },
+ {
+  "id": "f5868b4",
+  "name": "くまにく",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肝・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "熊肉"
+ },
+ {
+  "id": "f26cdf8",
+  "name": "くまのて",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "熊掌"
+ },
+ {
+  "id": "f582370",
+  "name": "しかにく",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "鹿肉"
+ },
+ {
+  "id": "f5ee11b",
+  "name": "しかのすじ",
+  "nature": "温",
+  "flavors": [
+   "鹹",
+   "淡"
+  ],
+  "meridians": "肝・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "鹿筋"
+ },
+ {
+  "id": "f4374ea",
+  "name": "しちめんちょう",
+  "nature": "",
+  "flavors": [],
+  "meridians": "",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "七面鳥・火鶏。古典文献での記載はなく近縁種のキジを参考とする"
+ },
+ {
+  "id": "f9e584a",
+  "name": "すずめにく",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・小腸・腎・膀胱",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "雀肉・麻雀肉。※注意:陰虚火旺の者"
+ },
+ {
+  "id": "fcc3e28",
+  "name": "とりにく",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "120",
+  "note": "鶏肉"
+ },
+ {
+  "id": "f1f69cb",
+  "name": "とりのすなぎも",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "渋"
+  ],
+  "meridians": "脾・胃・腎・小腸・膀胱",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "沙嚢"
+ },
+ {
+  "id": "f1032b2",
+  "name": "とりのレバー",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "肝・腎・脾",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "鶏肝"
+ },
+ {
+  "id": "f6aea3d",
+  "name": "はとにく",
+  "nature": "平",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肝・腎・肺",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "鴿肉"
+ },
+ {
+  "id": "f1518d4",
+  "name": "ばにく",
+  "nature": "微寒",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肝・脾・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "馬肉"
+ },
+ {
+  "id": "fd86dda",
+  "name": "ひつじにく",
+  "nature": "熱",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "羊肉・ラム・マトン"
+ },
+ {
+  "id": "ffe4d66",
+  "name": "ぶたにく",
+  "nature": "微寒",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "猪肉。※注意:湿熱・痰滞内蘊の者"
+ },
+ {
+  "id": "faa5263",
+  "name": "ぶたのあし",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "猪脚爪・とんそく"
+ },
+ {
+  "id": "fc9d37e",
+  "name": "ぶたのい",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "122",
+  "note": "猪肚・豚の胃・ガツ"
+ },
+ {
+  "id": "f7557cf",
+  "name": "ぶたのかわ",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪皮"
+ },
+ {
+  "id": "ff72c5f",
+  "name": "ぶたのしんぞう",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "心",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪心・ハツ"
+ },
+ {
+  "id": "fa59367",
+  "name": "ぶたのじんぞう",
+  "nature": "平",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪腰子・マメ"
+ },
+ {
+  "id": "fa87180",
+  "name": "ぶたのずい",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪髄"
+ },
+ {
+  "id": "f0e1068",
+  "name": "ぶたのちょう",
+  "nature": "微寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "大腸",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪腸・モツ"
+ },
+ {
+  "id": "fd54ac8",
+  "name": "ぶたののう",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "腎",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪脳"
+ },
+ {
+  "id": "fe23972",
+  "name": "ぶたのはい",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪肺・フワ"
+ },
+ {
+  "id": "f972dcd",
+  "name": "ぶたのレバー",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "肝・脾・胃",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "124",
+  "note": "猪肝"
+ },
+ {
+  "id": "ffe3c03",
+  "name": "へびにく",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "126",
+  "note": "蛇肉"
+ },
+ {
+  "id": "fd98272",
+  "name": "まむし",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "niku",
+  "cat5": "protein",
+  "page": "126",
+  "note": "蝮蛇"
+ },
+ {
+  "id": "f0ca073",
+  "name": "うこっけいのたまご",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肝・腎・脾",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "烏骨鶏蛋"
+ },
+ {
+  "id": "ffe16ed",
+  "name": "うずらのたまご",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肝・腎・肺",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "鶉蛋"
+ },
+ {
+  "id": "f6c0508",
+  "name": "かものたまご",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "鴨卵。合鴨の卵"
+ },
+ {
+  "id": "fb26a01",
+  "name": "けいらん",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・脾・胃・心・腎",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "鶏卵"
+ },
+ {
+  "id": "f8ca3ca",
+  "name": "けいらんおう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・腎",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "蛋黄・卵黄"
+ },
+ {
+  "id": "f678b38",
+  "name": "けいらんぱく",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺・腎",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "蛋清・卵白"
+ },
+ {
+  "id": "ff75a5d",
+  "name": "しおたまご",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "肺・腎",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "鹹蛋・シェンダン。アヒルの卵の塩漬"
+ },
+ {
+  "id": "fb3b11f",
+  "name": "ピータン",
+  "nature": "寒",
+  "flavors": [
+   "甘",
+   "鹹",
+   "辛",
+   "渋"
+  ],
+  "meridians": "肺・肝・大腸",
+  "cat15": "tamago",
+  "cat5": "protein",
+  "page": "128",
+  "note": "松花蛋・皮蛋"
+ },
+ {
+  "id": "f815b4c",
+  "name": "ぎゅうにゅう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺・胃",
+  "cat15": "nyuu",
+  "cat5": "protein",
+  "page": "130",
+  "note": "牛奶"
+ },
+ {
+  "id": "f3cb940",
+  "name": "チーズ",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・肝・脾",
+  "cat15": "nyuu",
+  "cat5": "protein",
+  "page": "130",
+  "note": "奶酪"
+ },
+ {
+  "id": "f7eb2ad",
+  "name": "なまクリーム",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺・胃",
+  "cat15": "nyuu",
+  "cat5": "protein",
+  "page": "130",
+  "note": "鮮奶油"
+ },
+ {
+  "id": "fb5f51b",
+  "name": "ばにゅう",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・脾",
+  "cat15": "nyuu",
+  "cat5": "protein",
+  "page": "130",
+  "note": "馬奶"
+ },
+ {
+  "id": "ff3ab88",
+  "name": "ようにゅう",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肺",
+  "cat15": "nyuu",
+  "cat5": "protein",
+  "page": "130",
+  "note": "羊奶"
+ },
+ {
+  "id": "fbcaaae",
+  "name": "ヨーグルト",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "酸"
+  ],
+  "meridians": "肺・脾・大腸",
+  "cat15": "nyuu",
+  "cat5": "protein",
+  "page": "130",
+  "note": "酸奶・酪"
+ },
+ {
+  "id": "f39dce7",
+  "name": "オリーブオイル",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "酸",
+   "辛",
+   "渋"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "橄欖油"
+ },
+ {
+  "id": "f2c7972",
+  "name": "ココナッツオイル",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・大腸・腎",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "椰子油"
+ },
+ {
+  "id": "febf6b1",
+  "name": "ごまあぶら",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "大腸",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "胡麻油・香油。※注意:脾虚泄瀉の者"
+ },
+ {
+  "id": "fded09d",
+  "name": "だいずあぶら",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "大腸",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "黄豆油"
+ },
+ {
+  "id": "f5f2cd0",
+  "name": "なたねあぶら",
+  "nature": "平",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・脾・大腸",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "菜子油"
+ },
+ {
+  "id": "f99fb14",
+  "name": "にわとりのあぶら",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "鶏油"
+ },
+ {
+  "id": "fd4779a",
+  "name": "バター",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺・腎・大腸",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "奶油・醍醐油"
+ },
+ {
+  "id": "fba2b7a",
+  "name": "ピーナツあぶら",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺・大腸・胃",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "132",
+  "note": "落花生油・花生油"
+ },
+ {
+  "id": "ff59eaf",
+  "name": "ラード",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺・大腸",
+  "cat15": "yushi",
+  "cat5": "season",
+  "page": "134",
+  "note": "猪脂・熟油。加熱した豚の油"
+ },
+ {
+  "id": "f3ef33b",
+  "name": "くろざとう",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肝",
+  "cat15": "satou",
+  "cat5": "season",
+  "page": "134",
+  "note": "紅糖"
+ },
+ {
+  "id": "fd849b3",
+  "name": "こおりざとう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "satou",
+  "cat5": "season",
+  "page": "134",
+  "note": "氷糖・グラニュー糖"
+ },
+ {
+  "id": "f9eb81d",
+  "name": "さとうきび",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "satou",
+  "cat5": "season",
+  "page": "134",
+  "note": "甘蔗"
+ },
+ {
+  "id": "f894cb2",
+  "name": "しろざとう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "satou",
+  "cat5": "season",
+  "page": "134",
+  "note": "白糖"
+ },
+ {
+  "id": "f8d91bc",
+  "name": "てんさいとう",
+  "nature": "平",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾・胃・肝・肺",
+  "cat15": "satou",
+  "cat5": "season",
+  "page": "134",
+  "note": "甜菜糖。※てんさいは北海道、さとうきびは沖縄が主要産地"
+ },
+ {
+  "id": "f52f25e",
+  "name": "ういきょうのたね",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・腎・脾・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "138",
+  "note": "フェンネルシード・小茴香"
+ },
+ {
+  "id": "fb626ad",
+  "name": "からし",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "138",
+  "note": "白芥子"
+ },
+ {
+  "id": "fd62cf9",
+  "name": "カルダモン",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・脾・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "138",
+  "note": "小豆蔲"
+ },
+ {
+  "id": "f70ef48",
+  "name": "くちなしのみ",
+  "nature": "寒",
+  "flavors": [
+   "苦"
+  ],
+  "meridians": "心・肺・肝・胃・三焦",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "138",
+  "note": "山梔子"
+ },
+ {
+  "id": "f599c98",
+  "name": "クミン",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "138",
+  "note": "孜然"
+ },
+ {
+  "id": "f341131",
+  "name": "クローブ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "138",
+  "note": "丁香。※うこんと一緒に使用しない"
+ },
+ {
+  "id": "fb41ee4",
+  "name": "こしょう",
+  "nature": "熱",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "胃・大腸",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "138",
+  "note": "胡椒。※注意:陰虚証の者"
+ },
+ {
+  "id": "f212d2a",
+  "name": "コリアンダー(種)",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肺・胃・脾",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "140",
+  "note": "香菜子・コリアンダーシード"
+ },
+ {
+  "id": "f21af85",
+  "name": "さけかす",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "140",
+  "note": "酒糟。清酒、みりんのもろみを絞った粕"
+ },
+ {
+  "id": "f4eef54",
+  "name": "サフラン",
+  "nature": "寒",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肝",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "140",
+  "note": "番紅花。※注意:妊婦および月経過多症の者は禁忌"
+ },
+ {
+  "id": "f5e2f5f",
+  "name": "さんしょう(中国)",
+  "nature": "熱",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・胃・腎",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "140",
+  "note": "花椒・蜀椒。※小毒。注意:陰虚火旺の者・妊婦。皮に局所麻酔及び鎮痛作用"
+ },
+ {
+  "id": "f567d1a",
+  "name": "さんしょう(和)",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・肝",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "140",
+  "note": "山椒"
+ },
+ {
+  "id": "f206495",
+  "name": "しお",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "胃・腎・大腸・小腸",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "140",
+  "note": "塩。※外用:歯ぐき出血。天然塩"
+ },
+ {
+  "id": "f61e7d2",
+  "name": "シナモン",
+  "nature": "熱",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "腎・脾・心・肝",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "140",
+  "note": "桂皮"
+ },
+ {
+  "id": "f307146",
+  "name": "しょうゆ",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "胃・脾・腎",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "醤油・生抽"
+ },
+ {
+  "id": "f2a0946",
+  "name": "す",
+  "nature": "温",
+  "flavors": [
+   "酸",
+   "苦"
+  ],
+  "meridians": "肝・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "醋。※注意:陰虚火旺の者(食べ過ぎると津液を失いやすい)"
+ },
+ {
+  "id": "f74b785",
+  "name": "ターメリック",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "姜黄・ウコン"
+ },
+ {
+  "id": "f7c8067",
+  "name": "ちんぴ",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "脾・肺",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "陳皮"
+ },
+ {
+  "id": "fe3ccc4",
+  "name": "とうがらし",
+  "nature": "熱",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "心・脾・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "辣椒。※注意:陰虚火旺の者"
+ },
+ {
+  "id": "f0763af",
+  "name": "とうち",
+  "nature": "寒",
+  "flavors": [
+   "鹹",
+   "苦"
+  ],
+  "meridians": "肺・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "豆豉。※塩分の少ないものは中薬の淡豆豉"
+ },
+ {
+  "id": "f87f961",
+  "name": "とうばんじゃん",
+  "nature": "寒",
+  "flavors": [
+   "鹹"
+  ],
+  "meridians": "胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "豆瓣醤"
+ },
+ {
+  "id": "fc2a294",
+  "name": "らーとうばんじゃん",
+  "nature": "温",
+  "flavors": [
+   "鹹",
+   "辛"
+  ],
+  "meridians": "心・脾・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "142",
+  "note": "辣豆瓣醤"
+ },
+ {
+  "id": "fb0f80b",
+  "name": "ナツメグ",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "脾・胃・大腸",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "144",
+  "note": "肉豆蔲"
+ },
+ {
+  "id": "fdd007e",
+  "name": "はっかく",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "肝・腎・脾・胃",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "144",
+  "note": "八角・大茴香"
+ },
+ {
+  "id": "f552961",
+  "name": "みそ",
+  "nature": "平",
+  "flavors": [
+   "甘",
+   "鹹"
+  ],
+  "meridians": "脾・胃・心・腎",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "144",
+  "note": "味噌"
+ },
+ {
+  "id": "fd43d2e",
+  "name": "みりん",
+  "nature": "温",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "脾",
+  "cat15": "choumi",
+  "cat5": "season",
+  "page": "144",
+  "note": "味醂・甜料酒"
+ },
+ {
+  "id": "f9fae25",
+  "name": "あまざけ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "辛"
+  ],
+  "meridians": "脾・胃・肺",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "酒醸。※米麹の甘酒"
+ },
+ {
+  "id": "f8d0742",
+  "name": "うーろんちゃ",
+  "nature": "涼",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "烏龍茶。※高発酵茶は温性に傾く"
+ },
+ {
+  "id": "fffd2da",
+  "name": "かきのは",
+  "nature": "寒",
+  "flavors": [
+   "苦"
+  ],
+  "meridians": "肺",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "柿子葉"
+ },
+ {
+  "id": "fd312ff",
+  "name": "カモミール",
+  "nature": "涼",
+  "flavors": [
+   "甘",
+   "辛",
+   "微苦"
+  ],
+  "meridians": "肝・肺・脾",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "春黄菊・徳國洋甘菊"
+ },
+ {
+  "id": "f19fd33",
+  "name": "きんもくせい",
+  "nature": "温",
+  "flavors": [
+   "辛"
+  ],
+  "meridians": "心・肝・脾・胃",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "金木犀・桂花"
+ },
+ {
+  "id": "f88927c",
+  "name": "くていちゃ",
+  "nature": "寒",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "肝・肺・脾",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "苦丁茶"
+ },
+ {
+  "id": "f1c547e",
+  "name": "こうちゃ",
+  "nature": "温",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "心・肺",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "紅茶"
+ },
+ {
+  "id": "fdfcb6e",
+  "name": "コーヒー",
+  "nature": "平",
+  "flavors": [
+   "苦"
+  ],
+  "meridians": "心・肺・脾",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "146",
+  "note": "珈琲・咖啡"
+ },
+ {
+  "id": "f8faf5b",
+  "name": "ココア・カカオ",
+  "nature": "平",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "肺・心・大腸・胃",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "可可"
+ },
+ {
+  "id": "f1fac4d",
+  "name": "ジャスミン",
+  "nature": "温",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "心・脾・肝",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "茉莉花"
+ },
+ {
+  "id": "f139488",
+  "name": "ハイビスカス",
+  "nature": "涼",
+  "flavors": [
+   "酸"
+  ],
+  "meridians": "心・肺・大腸",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "洛神花"
+ },
+ {
+  "id": "ff5918a",
+  "name": "はぶちゃ",
+  "nature": "微寒",
+  "flavors": [
+   "甘",
+   "苦",
+   "鹹"
+  ],
+  "meridians": "肝・胆・腎",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "ハブ茶。※決明子の成熟種子を炒ったものがハブ茶"
+ },
+ {
+  "id": "f988daf",
+  "name": "プーアールちゃ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "苦"
+  ],
+  "meridians": "肝・胃",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "普洱茶。※熟茶は暖胃・解酒の効能あり。生茶は涼/苦甘"
+ },
+ {
+  "id": "fd30225",
+  "name": "まいかいか",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "微苦"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "玫瑰花。※和名はまはなす"
+ },
+ {
+  "id": "f2109a2",
+  "name": "ラベンダー",
+  "nature": "涼",
+  "flavors": [
+   "甘"
+  ],
+  "meridians": "心・肝・肺",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "薫衣草"
+ },
+ {
+  "id": "fa13b5c",
+  "name": "りょくちゃ",
+  "nature": "涼",
+  "flavors": [
+   "苦",
+   "甘"
+  ],
+  "meridians": "心・肺・胃",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "緑茶"
+ },
+ {
+  "id": "f500fc6",
+  "name": "ローズヒップ",
+  "nature": "涼",
+  "flavors": [
+   "酸"
+  ],
+  "meridians": "肝・腎・胃",
+  "cat15": "inryou",
+  "cat5": "season",
+  "page": "148",
+  "note": "薔薇果・玫瑰果"
+ },
+ {
+  "id": "f95939a",
+  "name": "ウイスキー",
+  "nature": "熱",
+  "flavors": [
+   "辛",
+   "苦"
+  ],
+  "meridians": "肝・心",
+  "cat15": "alcohol",
+  "cat5": "season",
+  "page": "150",
+  "note": "威士忌。穀物を糖化発酵させた蒸留酒"
+ },
+ {
+  "id": "fbdab55",
+  "name": "さけ",
+  "nature": "温",
+  "flavors": [
+   "甘",
+   "辛",
+   "苦"
+  ],
+  "meridians": "心・肝・肺・胃",
+  "cat15": "alcohol",
+  "cat5": "season",
+  "page": "150",
+  "note": "醸造酒・日本酒・黄酒・紹興酒。酵母で発酵させアルコール分20%以下の酒"
+ },
+ {
+  "id": "f7278f0",
+  "name": "しょうちゅう",
+  "nature": "熱",
+  "flavors": [
+   "辛",
+   "甘"
+  ],
+  "meridians": "胃・胆・心",
+  "cat15": "alcohol",
+  "cat5": "season",
+  "page": "150",
+  "note": "焼酎。穀物を糖化発酵させた蒸留酒"
+ },
+ {
+  "id": "f9224fb",
+  "name": "ビール",
+  "nature": "寒",
+  "flavors": [
+   "苦",
+   "辛"
+  ],
+  "meridians": "肝・脾",
+  "cat15": "alcohol",
+  "cat5": "season",
+  "page": "150",
+  "note": "啤酒。麦芽をビール酵母で発酵させた醸造酒"
+ },
+ {
+  "id": "f748f90",
+  "name": "ワイン",
+  "nature": "温",
+  "flavors": [
+   "酸",
+   "甘",
+   "渋",
+   "辛"
+  ],
+  "meridians": "心・肝・脾",
+  "cat15": "alcohol",
+  "cat5": "season",
+  "page": "150",
+  "note": "葡萄酒。ブドウを単発酵発酵させた酒"
+ }
+]

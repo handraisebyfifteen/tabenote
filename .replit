@@ -1,46 +1,39 @@
-modules = ["nodejs-20", "web", "postgresql-16"]
-run = "npm run dev"
-hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+modules = ["nodejs-20", "web"]
+run = "npx expo start --web --port 8081"
+hidden = [".config", ".git", "node_modules", ".expo", "dist"]
 
 [nix]
 channel = "stable-24_05"
-
-[deployment]
-deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["npm", "run", "start"]
 
 [[ports]]
 localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 40867
-externalPort = 3000
+localPort = 8081
+externalPort = 8081
 
-[env]
-PORT = "5000"
+[[ports]]
+localPort = 8082
+externalPort = 3002
+
+[[ports]]
+localPort = 8090
+externalPort = 3001
 
 [workflows]
-runButton = "Project"
+runButton = "tabenote"
 
 [[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Start application"
-
-[[workflows.workflow]]
-name = "Start application"
+name = "tabenote"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev"
-waitForPort = 5000
+args = "npx expo start --web --port 8081"
+waitForPort = 8081
 
-[agent]
-integrations = ["javascript_anthropic==1.0.0", "javascript_database==1.0.0"]
+[deployment]
+deploymentTarget = "static"
+publicDir = "dist"
+build = ["npx", "expo", "export", "--platform", "web"]
