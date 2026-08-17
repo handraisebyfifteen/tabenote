@@ -9,6 +9,7 @@ import { LanguageProvider, useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { BillingProvider, useBilling } from '@/lib/BillingContext';
 import { DisplayProvider } from '@/lib/DisplayContext';
+import { SoundProvider } from '@/lib/SoundContext';
 
 function RootStack() {
   const { lang } = useLang();
@@ -66,11 +67,13 @@ function ThemedRoot() {
 export default function RootLayout() {
   return (
     <DisplayProvider>
-      <LanguageProvider>
-        <BillingProvider>
-          <ThemedRoot />
-        </BillingProvider>
-      </LanguageProvider>
+      <SoundProvider>
+        <LanguageProvider>
+          <BillingProvider>
+            <ThemedRoot />
+          </BillingProvider>
+        </LanguageProvider>
+      </SoundProvider>
     </DisplayProvider>
   );
 }

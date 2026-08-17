@@ -180,6 +180,13 @@ export interface Strings {
     followSystem: string;
     largeText: string;
     largeTextNote: string;
+    /** 音(効果音の音量) */
+    sound: string;
+    soundNote: string;
+    soundOff: string;
+    soundLow: string;
+    soundMid: string;
+    soundHigh: string;
     references: string;
     referencesBody: string;
     disclaimer: string;
@@ -495,6 +502,12 @@ const ja: Strings = {
     followSystem: '端末の設定に戻す',
     largeText: '大きく表示',
     largeTextNote: '文字を大きくし、組み合わせのマスを3列から2列にします',
+    sound: '効果音',
+    soundNote: '組み合わせで食材を決めたときの音です。選ぶと試しに鳴ります(マナーモード中は鳴りません)',
+    soundOff: '消音',
+    soundLow: '小',
+    soundMid: '中',
+    soundHigh: '大',
     references: '参考文献',
     referencesBody:
       '本アプリの性・味・帰経・分類は、中医学で広く共有されている伝統的な分類を、複数の一般的な資料にあたって事実データとして整理したものです。特定の書籍の解説・構成・文章を再現したものではありません。\n\n別名・漢字名は、生物学上・言語上の一般知識に基づきます。\n\n本アプリは効能・適応(症状への応用)を扱いません。解説文はすべてアプリ側で独自に書き起こしています。',
@@ -834,6 +847,13 @@ const en: Strings = {
     followSystem: 'Follow device setting',
     largeText: 'Larger display',
     largeTextNote: 'Enlarges the text and drops the ingredient grid from three columns to two',
+    sound: 'Sound effect',
+    soundNote:
+      'Plays when you pick an ingredient in Combine. Tap a level to hear it (stays quiet while your device is on silent)',
+    soundOff: 'Off',
+    soundLow: 'Low',
+    soundMid: 'Medium',
+    soundHigh: 'High',
     references: 'References',
     referencesBody:
       'The nature, flavor, meridian, and category data in this app organizes the traditional classifications widely shared in Chinese dietary theory, compiled as factual data from a range of general sources. It does not reproduce the commentary, structure, or text of any particular book.\n\nAlternate names and kanji names are based on common biological and linguistic knowledge.\n\nThis app does not cover efficacy or indications. All explanatory text is written independently for this app.',

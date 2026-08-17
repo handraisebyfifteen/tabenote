@@ -1,6 +1,6 @@
 /**
  * 設定(指示書 6-4/申請準備指示書 Phase 5)。
- * 月額プラン/復元/購読管理・表示(配色と文字サイズ)・言語・参考文献・免責・
+ * 月額プラン/復元/購読管理・表示(配色と文字サイズ)・効果音・言語・参考文献・免責・
  * 規約とポリシー・お問い合わせ・データのエクスポート・バージョン。
  * 課金の導線は、APIキー未設定のときとWebでは出さない(食材名の英語データは未整備。言語欄に注記)。
  * 規約・ポリシーへの導線はアプリ内から常に必要(Schedule 2 §3.8(b))なので課金の有効無効に関わらず出す。
@@ -29,11 +29,13 @@ import {
 } from '@/constants/site';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useSelectSound } from '@/hooks/use-select-sound';
 import { useLang } from '@/i18n/LanguageContext';
-import { getStrings } from '@/i18n/strings';
+import { getStrings, type Strings } from '@/i18n/strings';
 import type { Lang } from '@/i18n/terms';
 import { useBilling } from '@/lib/BillingContext';
 import { useDisplay } from '@/lib/DisplayContext';
+import { sfxGain, useSound, VOLUME_ORDER, type SfxVolume } from '@/lib/SoundContext';
 import { loadUserData } from '@/lib/storage';
 
 const LANG_OPTIONS: { value: Lang; label: string }[] = [
@@ -41,7 +43,15 @@ const LANG_OPTIONS: { value: Lang; label: string }[] = [
   { value: 'en', label: 'English' },
 ];
 
-/** 選択中を示す緑(言語チップ・スイッチ共通) */
+/** 音量の段の見出し(VOLUME_ORDER の順に並べる) */
+const VOLUME_LABELS: Record<SfxVolume, (t: Strings) => string> = {
+  off: (t) => t.settings.soundOff,
+  low: (t) => t.settings.soundLow,
+  mid: (t) => t.settings.soundMid,
+  high: (t) => t.settings.soundHigh,
+};
+
+/** 選択中を示す緑(チップ・スイッチ共通) */
 const ACCENT = '#8FAF8B';
 
 export default function SettingsScreen() {
@@ -52,6 +62,8 @@ export default function SettingsScreen() {
 
   const { enabled: billingOn, active, restore } = useBilling();
   const { themePref, setThemePref, textSize, setTextSize } = useDisplay();
+  const { volume, setVolume } = useSound();
+  const playSelect = useSelectSound();
 
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [restoring, setRestoring] = useState(false);
@@ -183,14 +195,43 @@ export default function SettingsScreen() {
         </Text>
       </View>
 
+      {/* 効果音の音量。選んだ段でその場で鳴らして、耳で決められるようにする */}
+      <View style={[styles.row, { backgroundColor: c.backgroundElement }]}>
+        <Text style={[styles.title, { color: c.text }]}>{t.settings.sound}</Text>
+        <View style={styles.chipRow}>
+          {VOLUME_ORDER.map((option) => (
+            <Pressable
+              key={option}
+              style={[
+                styles.chip,
+                { backgroundColor: volume === option ? ACCENT : c.backgroundSelected },
+              ]}
+              onPress={() => {
+                setVolume(option);
+                playSelect(sfxGain(option));
+              }}
+            >
+              <Text
+                style={{ color: volume === option ? '#fff' : c.text, fontSize: 13 }}
+              >
+                {VOLUME_LABELS[option](t)}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+        <Text style={[styles.note, { color: c.textSecondary }]}>
+          {t.settings.soundNote}
+        </Text>
+      </View>
+
       <View style={[styles.row, { backgroundColor: c.backgroundElement }]}>
         <Text style={[styles.title, { color: c.text }]}>{t.settings.language}</Text>
-        <View style={styles.langRow}>
+        <View style={styles.chipRow}>
           {LANG_OPTIONS.map((option) => (
             <Pressable
               key={option.value}
               style={[
-                styles.langChip,
+                styles.chip,
                 {
                   backgroundColor:
                     lang === option.value ? ACCENT : c.backgroundSelected,
@@ -308,8 +349,9 @@ const styles = StyleSheet.create({
   },
   // スイッチを右端に置いたまま、長いラベル(英語)を折り返させる
   switchLabel: { flex: 1 },
-  langRow: { flexDirection: 'row', gap: 8, marginTop: 8, marginBottom: 4 },
-  langChip: {
+  // 言語と効果音の音量で共用する選択チップ
+  chipRow: { flexDirection: 'row', gap: 8, marginTop: 8, marginBottom: 4 },
+  chip: {
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 7,

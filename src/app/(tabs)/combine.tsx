@@ -46,6 +46,7 @@ import {
   type Food,
 } from '@/data/foods';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useSelectSound } from '@/hooks/use-select-sound';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import {
@@ -219,6 +220,7 @@ export default function CombineScreen() {
   const { lang } = useLang();
   const t = getStrings(lang);
   const { gridColumns } = useDisplay();
+  const playSelect = useSelectSound();
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [query, setQuery] = useState('');
@@ -366,6 +368,8 @@ export default function CombineScreen() {
       setFocusedId(null);
       // ポートレートも決定に合わせて弱く点灯させる(タイルの点灯と同時)
       setDecideFlash((n) => n + 1);
+      // 点灯と同じ瞬間に決定音。目と耳で一度に「決まった」と分かるようにする
+      playSelect();
     } else {
       setFocusedId(id);
     }
