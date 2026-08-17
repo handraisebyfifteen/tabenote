@@ -4,12 +4,16 @@
  *
  * 組み合わせ画面のキャラ選択の音を、ファミコンの矩形波の流儀で合成する。
  *
- *   cursor.wav  1タップ目・カーソル「キコ」  D#5 → B5
- *   select.wav  2タップ目・決定「キコーン」  D#5 → C6
+ *   cursor.wav   1タップ目・カーソル「キコ」      D#5 → B5
+ *   select.wav   2タップ目・決定「キコーン」      D#5 → C6
+ *   confirm.wav  3クリック目・決定ボタン「キコーン↑」D#5 → E6
+ *
+ * 立ち上がりの「キ」はどれも D#5 で揃え、行き先だけを B5 → C6 → E6 と
+ * 上げていく。同じ楽器のまま、押し進むごとに音が上へ抜けていく並び。
  *
  * 音源を外から持ってくると権利の出所を追えなくなる(指示書 8-5)ので、
  * 素材は置かず、このスクリプトが唯一の出所になる。鳴りを変えたいときは
- * 下の VARIANTS・CURSOR_SFX をいじって作り直す。
+ * 下の VARIANTS・CURSOR_SFX・CONFIRM_SFX をいじって作り直す。
  *
  * 使い方:
  *   node ./scripts/gen-sfx.js                    採用中のものを assets/sfx/ へ
@@ -141,6 +145,33 @@ const CURSOR_SFX = {
   ],
 };
 
+/**
+ * 決定ボタンの音「キコーン↑」。3クリック目(選び終えて助言へ進む)に鳴る。
+ *
+ * 立ち上がりは他の2つと同じ D#5。行き先だけ、決定音の C6 よりさらに上の E6
+ * (D#5 の1オクターブと半音上)へ跳ばす。
+ * B5 で止まる → C6 で収まる → E6 で上へ抜ける、の3段目。
+ *
+ * 最後の一押しなので、決定音より下(E5)に芯を敷いて重心を作り、
+ * 余韻も長め(0.55秒)に引く。押したら画面が変わるので、鳴り切らなくてよい。
+ */
+const CONFIRM_SFX = {
+  gain: 0.55,
+  layers: [
+    // 「キ」: 3つの音で共通の立ち上がり
+    { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
+    { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
+    // 「コーン↑」の芯。うなりで余韻を揺らすのは決定音と同じ作り
+    { note: 'E6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 5 },
+    { note: 'E6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 5 },
+    // 1オクターブ下。ここだけ下を足して、3段目をいちばん太くする
+    { note: 'E5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.45, decay: 5 },
+    // 5度と1オクターブ上。上ほど速く減らして、頭だけきらめかせる
+    { note: 'B6', duty: 0.25, start: 0.055, dur: 0.36, gain: 0.5, decay: 9 },
+    { note: 'E7', duty: 0.125, start: 0.06, dur: 0.2, gain: 0.26, decay: 16 },
+  ],
+};
+
 /** 1レイヤーを合成してバッファへ足し込む */
 function renderLayer(out, layer) {
   const tune = Math.pow(2, (layer.octave ?? 0) + (layer.detune ?? 0) / 1200);
@@ -217,8 +248,10 @@ if (variantsIndex !== -1) {
     write(path.join(dir, `select-${name}.wav`), sfx);
   }
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
+  write(path.join(dir, 'confirm.wav'), CONFIRM_SFX);
 } else {
   const dir = path.join(__dirname, '..', 'assets', 'sfx');
   write(path.join(dir, 'select.wav'), VARIANTS[SELECTED]);
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
+  write(path.join(dir, 'confirm.wav'), CONFIRM_SFX);
 }

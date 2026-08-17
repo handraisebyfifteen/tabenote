@@ -1,15 +1,19 @@
 /**
- * 効果音の鳴らし口。キャラ選択の2つの音を持つ。
+ * 効果音の鳴らし口。組み合わせ画面の3つの音を持つ。
  *
- *   cursor  1タップ目・カーソル「キコ」  D#5 → B5
- *   select  2タップ目・決定「キコーン」  D#5 → C6
+ *   cursor   1タップ目・カーソル「キコ」        D#5 → B5
+ *   select   2タップ目・決定「キコーン」        D#5 → C6
+ *   confirm  3クリック目・決定ボタン「キコーン↑」 D#5 → E6
+ *
+ * 「キ」は3つとも D#5 で同じ。行き先だけ B5 → C6 → E6 と上がるので、
+ * 押し進むほど音が上へ抜ける。
  *
  * 波形は scripts/gen-sfx.js が作る(assets/sfx/*.wav)。
  *
  * プレイヤーは音ごとにアプリで1つだけ持つ。画面ごとに作ると、
  *   ・組み合わせ画面と設定画面で二重に読み込むことになる
  *   ・画面に入るたび作り直しになり、最初のタップが鳴らないことがある
- * ため、初回に作って以後使い回す(合わせて 55KB の短い音なので抱えたままでよい)。
+ * ため、初回に作って以後使い回す(合わせて 110KB の短い音なので抱えたままでよい)。
  *
  * 鳴らしかたの約束:
  *   マナーモード中でも鳴らす(playsInSilentMode: true)。
@@ -25,11 +29,12 @@
  */
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
 
-export type SfxName = 'cursor' | 'select';
+export type SfxName = 'cursor' | 'select' | 'confirm';
 
 const SOURCES: Record<SfxName, number> = {
   cursor: require('../../assets/sfx/cursor.wav'),
   select: require('../../assets/sfx/select.wav'),
+  confirm: require('../../assets/sfx/confirm.wav'),
 };
 
 const players: Partial<Record<SfxName, AudioPlayer>> = {};

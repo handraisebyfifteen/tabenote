@@ -390,6 +390,9 @@ export default function CombineScreen() {
 
   const decide = () => {
     if (selectedIds.length === 0 || decideNavTimer.current !== null) return;
+    // 3クリック目の音とバイブ。カーソル(B)→決定(C)から一段上がった「キコーン↑」で、
+    // 画面が助言へ変わることを耳でも伝える。演出を省く設定でも、押した合図は残す
+    feedback.confirm();
     const go = async () => {
       decideNavTimer.current = null;
       await recordSelections(selectedIds);

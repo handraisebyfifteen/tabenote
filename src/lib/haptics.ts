@@ -19,3 +19,11 @@ export function cursorHaptic(): void {
 export function decideHaptic(): void {
   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
 }
+
+/**
+ * 3クリック目・決定ボタンを押したとき。いちばん重く突く。
+ * 画面が助言へ変わる合図なので、選ぶ最中の2つとは別の手ざわりにする。
+ */
+export function confirmHaptic(): void {
+  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy).catch(() => {});
+}
