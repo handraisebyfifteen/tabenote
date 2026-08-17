@@ -64,6 +64,10 @@ export default function HomeScreen() {
 
   const picks = seasonalPicks(seasonInfo.season, dayNum, PICK_COUNT);
 
+  /** 季節の推奨をそのまま五角形にしたもの(この季節が向かう形) */
+  const seasonTotals = emptyTotals();
+  for (const flavor of seasonInfo.recommendation.flavors) seasonTotals[flavor] = 1;
+
   // 画面の高さに合わせる。低い端末でも下のカードが顔を出す高さに抑える
   const sceneHeight = Math.max(260, Math.min(380, windowHeight * 0.46));
 

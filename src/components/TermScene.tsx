@@ -302,6 +302,7 @@ interface Props {
 }
 
 export default function TermScene({ termIndex, height, children }: Props) {
+  'use no memo';
   const scene = getTermScene(termIndex);
   const reduced = useReducedMotion();
   const [width, setWidth] = React.useState(0);
