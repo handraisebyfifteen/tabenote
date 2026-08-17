@@ -146,31 +146,87 @@ const CURSOR_SFX = {
 };
 
 /**
- * 決定ボタンの音「キコーン↑」。3クリック目(選び終えて助言へ進む)に鳴る。
+ * 決定ボタンの音「キコーン↑」の候補。3クリック目(選び終えて助言へ進む)に鳴る。
  *
- * 立ち上がりは他の2つと同じ D#5。行き先だけ、決定音の C6 よりさらに上の E6
- * (D#5 の1オクターブと半音上)へ跳ばす。
+ * 骨格はどれも同じで、立ち上がりは他の2つと同じ D#5。行き先だけ、決定音の C6 より
+ * さらに上の E6(D#5 の1オクターブと半音上)へ跳ばす。
  * B5 で止まる → C6 で収まる → E6 で上へ抜ける、の3段目。
  *
- * 最後の一押しなので、決定音より下(E5)に芯を敷いて重心を作り、
- * 余韻も長め(0.55秒)に引く。押したら画面が変わるので、鳴り切らなくてよい。
+ * 最後の一押しなので、下に E5 を敷いて重心を作り、余韻も長め(0.55秒)に引く。
+ * 押したら画面が変わるので、鳴り切らなくてよい。
+ * 違うのは、E6 の上に何を重ねるか。
+ *
+ * ここでオクターブ上(E7)へ伸ばさないことにした理由が2つある。
+ *
+ *   折り返しの汚れ。この矩形波はアンチエイリアスをしていないので、高い音ほど
+ *   ナイキストを超えた倍音が低い方へ折り返る。E7 を duty 0.125 で鳴らすと
+ *   倍音でない成分が 11%(280/450/730/900Hz)出て、どれも E の和音の外。
+ *   決定音の C7 でも同じことは起きるが、E7 のほうが濁りが多い。
+ *
+ *   帯域。2637Hz は耳の感度がいちばん高いあたりで、スマホの小さいスピーカーも
+ *   この帯を持ち上げる。狙いは「上へ抜ける」で「刺さる」ではない。
  */
-const CONFIRM_SFX = {
-  gain: 0.55,
-  layers: [
-    // 「キ」: 3つの音で共通の立ち上がり
-    { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
-    { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
-    // 「コーン↑」の芯。うなりで余韻を揺らすのは決定音と同じ作り
-    { note: 'E6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 5 },
-    { note: 'E6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 5 },
-    // 1オクターブ下。ここだけ下を足して、3段目をいちばん太くする
-    { note: 'E5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.45, decay: 5 },
-    // 5度と1オクターブ上。上ほど速く減らして、頭だけきらめかせる
-    { note: 'B6', duty: 0.25, start: 0.055, dur: 0.36, gain: 0.5, decay: 9 },
-    { note: 'E7', duty: 0.125, start: 0.06, dur: 0.2, gain: 0.26, decay: 16 },
-  ],
+const CONFIRM_VARIANTS = {
+  /**
+   * 上へ伸ばす代わりに G#6(3度)を足して、E メジャーの三和音にする。
+   * 決定音の C6+G6+C7 は3度のない骨組みの和音。3クリック目だけ3度が入るので、
+   * 音を高くせずに「決まった」の明るさだけが増える。
+   * ……のだが、味つけが増えるぶん昔のゲーム機らしさは薄れるので、採らなかった。
+   */
+  triad: {
+    gain: 0.55,
+    layers: [
+      // 「キ」: 3つの音で共通の立ち上がり
+      { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
+      { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
+      // 「コーン↑」の芯。うなりで余韻を揺らすのは決定音と同じ作り
+      { note: 'E6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 5 },
+      { note: 'E6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 5 },
+      // 1オクターブ下。ここだけ下を足して、3段目をいちばん太くする
+      { note: 'E5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.45, decay: 5 },
+      // 3度と5度。上ほど速く減らして、頭だけきらめかせる
+      { note: 'G#6', duty: 0.25, start: 0.055, dur: 0.3, gain: 0.42, decay: 11 },
+      { note: 'B6', duty: 0.25, start: 0.055, dur: 0.36, gain: 0.5, decay: 9 },
+    ],
+  },
+
+  /**
+   * オクターブ上を残す案。E7 を duty 0.5 にすると倍音が奇数だけになり、
+   * 折り返しの汚れが 11% → 5% まで減る。そのぶん薄く短くしてある。
+   */
+  octave: {
+    gain: 0.55,
+    layers: [
+      { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
+      { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
+      { note: 'E6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 5 },
+      { note: 'E6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 5 },
+      { note: 'E5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.45, decay: 5 },
+      { note: 'B6', duty: 0.25, start: 0.055, dur: 0.36, gain: 0.5, decay: 9 },
+      { note: 'E7', duty: 0.5, start: 0.06, dur: 0.14, gain: 0.2, decay: 18 },
+    ],
+  },
+
+  /**
+   * 採用中。上物は5度の B6 まで、行き先は E6 のまま伸ばさない。
+   * 重ねが少ないぶん折り返しの濁りがなく、矩形波の素の鳴りが残る。
+   * 3段目を華やかにするより、昔のゲーム機の素っ気なさに寄せた。
+   */
+  plain: {
+    gain: 0.55,
+    layers: [
+      { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
+      { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
+      { note: 'E6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 5 },
+      { note: 'E6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 5 },
+      { note: 'E5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.45, decay: 5 },
+      { note: 'B6', duty: 0.25, start: 0.055, dur: 0.36, gain: 0.55, decay: 9 },
+    ],
+  },
 };
+
+/** 採用中の候補(assets へ書き出すのはこれ) */
+const CONFIRM_SELECTED = 'plain';
 
 /** 1レイヤーを合成してバッファへ足し込む */
 function renderLayer(out, layer) {
@@ -247,11 +303,13 @@ if (variantsIndex !== -1) {
   for (const [name, sfx] of Object.entries(VARIANTS)) {
     write(path.join(dir, `select-${name}.wav`), sfx);
   }
+  for (const [name, sfx] of Object.entries(CONFIRM_VARIANTS)) {
+    write(path.join(dir, `confirm-${name}.wav`), sfx);
+  }
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
-  write(path.join(dir, 'confirm.wav'), CONFIRM_SFX);
 } else {
   const dir = path.join(__dirname, '..', 'assets', 'sfx');
   write(path.join(dir, 'select.wav'), VARIANTS[SELECTED]);
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
-  write(path.join(dir, 'confirm.wav'), CONFIRM_SFX);
+  write(path.join(dir, 'confirm.wav'), CONFIRM_VARIANTS[CONFIRM_SELECTED]);
 }
