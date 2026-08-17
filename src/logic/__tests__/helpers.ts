@@ -10,7 +10,6 @@ export function food(overrides: Partial<Food>): Food {
     meridians: '脾・胃',
     cat15: 'yasai',
     cat5: 'veg',
-    page: '0',
     note: '',
     ...overrides,
   };

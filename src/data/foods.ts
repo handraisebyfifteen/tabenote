@@ -32,7 +32,7 @@ export interface Food {
   meridians: string;
   cat15: Cat15;
   cat5: Cat5;
-  page: string;
+  /** 別名・漢字名(生物学上・言語上の事実のみ。中医学上の注意は持たない) */
   note: string;
 }
 

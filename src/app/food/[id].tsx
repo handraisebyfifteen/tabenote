@@ -197,11 +197,6 @@ export default function FoodDetailScreen() {
         {!refOnly && food.note !== '' && (
           <AttrRow label={t.food.noteLabel} value={food.note} color={c} />
         )}
-        {food.page !== '' && (
-          <Text style={[styles.source, { color: c.textSecondary }]}>
-            {t.food.source(food.page)}
-          </Text>
-        )}
       </View>
 
       <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
@@ -260,7 +255,6 @@ const styles = StyleSheet.create({
   attrRow: { flexDirection: 'row', gap: 12 },
   attrLabel: { fontSize: 14, width: 76, lineHeight: 21 },
   attrValue: { fontSize: 14, flex: 1, lineHeight: 21 },
-  source: { fontSize: 11, marginTop: 4, textAlign: 'right' },
   memoTitle: { fontSize: 12 },
   memoInput: {
     fontSize: 15,

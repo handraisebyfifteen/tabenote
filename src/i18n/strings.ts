@@ -137,7 +137,6 @@ export interface Strings {
     meridiansLabel: string;
     categoryLabel: string;
     noteLabel: string;
-    source(page: string): string;
     memoTitle: string;
     memoPlaceholder: string;
     memoHint: string;
@@ -414,8 +413,7 @@ const ja: Strings = {
     flavorLabel: '味',
     meridiansLabel: '帰経',
     categoryLabel: '分類',
-    noteLabel: '備考',
-    source: (page) => `参考資料 p.${page}`,
+    noteLabel: '別名',
     memoTitle: '自分のメモ',
     memoPlaceholder: '調べたこと・体感・自分の解釈など、自由に。',
     memoHint: '書くのは持ち主。入力を終えると自動で保存されます。',
@@ -443,7 +441,7 @@ const ja: Strings = {
     languageNote: '食材名は現在日本語のみです',
     references: '参考文献',
     referencesBody:
-      '本アプリの性・味・帰経・分類のデータは、中医学で一般に知られている内容を、以下の資料を参考に整理したものです。\n\n・『薬膳食典 食物性味表 ―食養生の知恵―(第2版)』一般社団法人 日本中医食養学会 編著/日本中医学院 監修\n・『増補新版 薬膳・漢方 食材&食べ合わせ手帖』喩静・植木もも子 監修(西東社)\n・『新版 毎日使える薬膳&漢方の食材事典』阪口珠未(ナツメ社)\n・『実用中医薬膳学』辰巳洋(東洋学術出版社)ほか同著者の著作\n\n解説文はアプリ側で独自に書き起こしており、特定の書籍の解説や体系をそのまま再現するものではありません。',
+      '本アプリの性・味・帰経・分類は、中医学で広く共有されている伝統的な分類を、複数の一般的な資料にあたって事実データとして整理したものです。特定の書籍の解説・構成・文章を再現したものではありません。\n\n別名・漢字名は、生物学上・言語上の一般知識に基づきます。\n\n本アプリは効能・適応(症状への応用)を扱いません。解説文はすべてアプリ側で独自に書き起こしています。',
     disclaimer: '免責',
     disclaimerBody:
       'tabenote は、中医学で伝統的に用いられてきた食材の分類(性・味・帰経)を情報として示すアプリです。\n\n効能を約束したり、症状の改善を示唆したりするものではなく、医師の診断・治療の代わりにはなりません。体調に不安があるときは医療機関にご相談ください。\n\n食物アレルギーや体質に関わる判断は、必ずご自身で行ってください。',
@@ -702,8 +700,7 @@ const en: Strings = {
     flavorLabel: 'Flavor',
     meridiansLabel: 'Meridians',
     categoryLabel: 'Category',
-    noteLabel: 'Notes',
-    source: (page) => `Reference p.${page}`,
+    noteLabel: 'Also known as',
     memoTitle: 'My notes',
     memoPlaceholder: 'Anything you learn, feel, or interpret — in your own words.',
     memoHint: 'This page is yours to write. Saved automatically when you finish.',
@@ -731,7 +728,7 @@ const en: Strings = {
     languageNote: 'Ingredient names are currently Japanese only',
     references: 'References',
     referencesBody:
-      'The nature, flavor, meridian, and category data in this app organizes what is commonly known in Chinese dietary theory, consulting the following sources:\n\n• Yakuzen Shokuten: Shokumotsu Seimihyō — Shokuyōjō no Chie, 2nd ed. (薬膳食典 食物性味表), compiled by the Nihon Chūi Shokuyō Gakkai, supervised by Nihon Chūi Gakuin\n• Zōho Shinpan: Yakuzen–Kanpō Shokuzai & Tabeawase Techō (増補新版 薬膳・漢方 食材&食べ合わせ手帖), supervised by Yu Jing and Momoko Ueki (Seitosha)\n• Shinpan: Mainichi Tsukaeru Yakuzen & Kanpō no Shokuzai Jiten (新版 毎日使える薬膳&漢方の食材事典), by Tamami Sakaguchi (Natsumesha)\n• Jitsuyō Chūi Yakuzengaku (実用中医薬膳学), by Nami Tatsumi (Tōyō Gakujutsu Shuppansha), and other works by the same author\n\nAll explanatory text is written independently for this app; it does not reproduce any single book’s commentary or structure.',
+      'The nature, flavor, meridian, and category data in this app organizes the traditional classifications widely shared in Chinese dietary theory, compiled as factual data from a range of general sources. It does not reproduce the commentary, structure, or text of any particular book.\n\nAlternate names and kanji names are based on common biological and linguistic knowledge.\n\nThis app does not cover efficacy or indications. All explanatory text is written independently for this app.',
     disclaimer: 'Disclaimer',
     disclaimerBody:
       'tabenote presents the traditional classifications of ingredients used in Chinese medicine — nature, flavor, meridians — as information.\n\nIt makes no promises about effects, does not suggest that symptoms will improve, and is no substitute for diagnosis or treatment by a physician. If you have health concerns, please consult a medical professional.\n\nDecisions involving food allergies or your own constitution are always yours to make.',
