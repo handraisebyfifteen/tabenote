@@ -111,23 +111,32 @@
 
       **撮りかた**: 購読ゲートがあるので、そのままではシミュレータで中の画面を撮れない
       (シミュレータの StoreKit はプランを返さず、ペイウォールが「取得できませんでした」で止まる)。
-      `.env.local` に `EXPO_PUBLIC_SKIP_PAYWALL=1` を足して Metro を再起動すると、
-      課金機能ごと無効になってゲートが外れる(`src/lib/billing.ts`。`__DEV__` 限定なので
-      本番ビルドには効かない)。撮り終えたら消すこと。
+      抜け道は `src/lib/billing.ts` の3つの環境変数で、eas.json のプロファイルが渡す。
 
-      ただし**AI献立提案の画面だけは撮れない**。Worker が `appUserId` で購読を確認するため、
-      課金を無効にすると弾かれる。
+      | プロファイル | 渡すもの | 撮れるもの |
+      |---|---|---|
+      | `screenshot-app` | `EXPO_PUBLIC_SKIP_PAYWALL=1` | 中の画面(**AI欄を除く**) |
+      | `screenshot-subscriber` | `EXPO_PUBLIC_DEV_APP_USER_ID` | 中の画面 + **AI献立提案** |
+      | `screenshot` | `EXPO_PUBLIC_MOCK_PLAN_PRICE` | 価格の出たペイウォール |
 
-      AI画面まで一度に撮るなら、`SKIP_PAYWALL` の代わりにこちら:
-      RevenueCat → Customers で適当な App User ID(例 `test_user`)に
-      promotional entitlement `pro` を付け、その ID を `.env.local` の
-      `EXPO_PUBLIC_DEV_APP_USER_ID` に書く。課金機能を生かしたまま購読者として起動するので、
-      ゲートも開くし中継サーバーの購読確認も通る。付与は期限付き(A day なら24時間)なので、
-      切れたら付け直す。
+      ```
+      npx eas-cli build -p ios --profile screenshot-app
+      ```
 
-      なお、上の2つはどちらも `__DEV__` 限定なので、**EAS の simulator ビルドでは効かない**
-      (`developmentClient` を付けていないリリースビルドで `__DEV__` が false になる)。
-      EAS のビルドを撮影に使うなら次項のプロファイルを使うか、ローカルで Metro を動かすこと。
+      `screenshot-app` は課金機能ごと無効にする。確実に開くが、`appUserId` が無くなるので
+      **AI献立提案は中継サーバーに弾かれる**。
+
+      `screenshot-subscriber` は課金を生かしたまま購読者として起動する。使う前に
+      RevenueCat → Customers でその App User ID(既定は `test_user`)に
+      promotional entitlement `pro` を付けておくこと。匿名IDのままだと権利が届かない。
+      付与は期限付き(A day なら24時間)なので、切れたら付け直す。
+      このプロファイルは `EXPO_PUBLIC_RC_IOS_KEY` が EAS 側に設定されている前提。
+
+      いずれも `__DEV__` を条件にしていない(simulator ビルドはリリースビルドで
+      `__DEV__` が false になるため)。代わりに `__DEV__ || !Device.isDevice` で守ってあり、
+      **「リリースビルド かつ 実機」= App Store に出る条件では、3つとも無効になる**。
+      環境変数が本番に紛れ込んでも実機では効かないので、`production` 側で打ち消す必要はない
+      (EAS は `env` に空文字を許さないため、そもそも上書きでは書けない)。
 - [ ] **App内課金の審査用スクリーンショット**を各サブスクリプション商品に添付した
 
       App Store Connect のサブスクリプション商品ページ →「App 審査情報」にある添付欄。

@@ -22,6 +22,18 @@
         "EXPO_PUBLIC_MOCK_PLAN_PRICE": "¥1,500"
       }
     },
+    "screenshot-app": {
+      "extends": "simulator",
+      "env": {
+        "EXPO_PUBLIC_SKIP_PAYWALL": "1"
+      }
+    },
+    "screenshot-subscriber": {
+      "extends": "simulator",
+      "env": {
+        "EXPO_PUBLIC_DEV_APP_USER_ID": "test_user"
+      }
+    },
     "production": {
       "autoIncrement": true
     }

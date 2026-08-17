@@ -12,6 +12,7 @@
  * Expo Go では SDK が Preview API Mode(ネイティブ呼び出しをJSのモックに差し替える)
  * で動くため画面遷移の確認はできるが、実際の購入は開発ビルドが必要。
  */
+import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 import type { CustomerInfo, PurchasesError, PurchasesPackage } from 'react-native-purchases';
 
@@ -40,29 +41,39 @@ function sdk(): PurchasesApi | null {
 }
 
 /**
- * スクリーンショット撮影用の抜け道(開発ビルド限定)。
+ * 以下3つの抜け道を効かせてよい状況か。
  *
- * シミュレータや、まだ審査に出していない商品では StoreKit がプランを返さないため、
- * APIキー入りのビルドだとゲートの向こうへ行けず、画面を撮れない。
- * .env.local に EXPO_PUBLIC_SKIP_PAYWALL=1 を置くと課金機能ごと無効になり、
- * ゲートも課金の導線も出なくなる(= キー未設定と同じ状態)。
+ * 開発ビルドか、シミュレータで動いているときだけ許す。撮影に使う EAS の simulator 系
+ * プロファイルはリリースビルドなので `__DEV__` だけでは足りないが、App Store に出る
+ * ビルドは「リリース かつ 実機」なので、この条件には決して当てはまらない。
  *
- * __DEV__ でしか見ないので、本番ビルドに紛れ込んでも効かない。
+ * つまり環境変数が本番ビルドに紛れ込んでも、実機では無効になる。eas.json 側で
+ * 打ち消す必要はない(そもそも EAS は env に空文字を許さない)。
  */
-const SKIP_PAYWALL = __DEV__ && process.env.EXPO_PUBLIC_SKIP_PAYWALL === '1';
+const HATCHES_ALLOWED = __DEV__ || !Device.isDevice;
 
 /**
- * 開発中に「購読者」として起動するための App User ID(開発ビルド限定)。
+ * スクリーンショット撮影用の抜け道。
+ *
+ * シミュレータや、まだ審査に出していない商品では StoreKit がプランを返さないため、
+ * APIキー入りのビルドだとゲートの向こうへ行けず、中の画面を撮れない。
+ * EXPO_PUBLIC_SKIP_PAYWALL=1 を渡すと課金機能ごと無効になり、
+ * ゲートも課金の導線も出なくなる(= キー未設定と同じ状態)。
+ */
+const SKIP_PAYWALL = HATCHES_ALLOWED && process.env.EXPO_PUBLIC_SKIP_PAYWALL === '1';
+
+/**
+ * 「購読者」として起動するための App User ID(撮影・動作確認用)。
  *
  * RevenueCat ダッシュボードで promotional entitlement を付けても、既定のアプリは
- * 匿名ID($RCAnonymousID:…)で動くので権利が届かない。付けた相手の ID をここに書くと、
+ * 匿名ID($RCAnonymousID:…)で動くので権利が届かない。付けた相手の ID を渡すと、
  * その人として configure して、購読済みの状態で起動できる。
  *
  * SKIP_PAYWALL と違い課金機能は生きたままなので、appUserId が中継サーバーへ渡り、
- * AI献立提案も通る(スクリーンショットはこちらの経路で全画面撮れる)。
+ * AI献立提案も通る(AI欄まで撮るならこちらの経路)。
  * 両方を同時に設定した場合は SKIP_PAYWALL が勝つ(課金機能ごと無効になるため)。
  */
-const DEV_APP_USER_ID = __DEV__
+const DEV_APP_USER_ID = HATCHES_ALLOWED
   ? (process.env.EXPO_PUBLIC_DEV_APP_USER_ID ?? '').trim()
   : '';
 
@@ -73,14 +84,12 @@ const DEV_APP_USER_ID = __DEV__
  * シミュレータには StoreKit の商品情報が無いので「取得できませんでした」で止まる。
  * 価格表記(例: ¥700)を渡すと、その月額1本だけを並べた状態で撮れる。
  *
- * SKIP_PAYWALL と違い __DEV__ を条件にしていない。EAS の simulator プロファイルは
- * リリースビルドで __DEV__ が false になり、あちらの抜け道が効かないため。
- * 値はビルド時に焼き込まれるので、本番ビルドの環境変数に入れない限り有効にならない。
- *
  * この状態では RevenueCat を一切呼ばない(購入も復元も成立しない)。撮影以外に使わないこと。
  * 表示は実際の価格と一致させること。違う価格を審査に出すと不正確な申請になる。
  */
-const MOCK_PLAN_PRICE = (process.env.EXPO_PUBLIC_MOCK_PLAN_PRICE ?? '').trim();
+const MOCK_PLAN_PRICE = HATCHES_ALLOWED
+  ? (process.env.EXPO_PUBLIC_MOCK_PLAN_PRICE ?? '').trim()
+  : '';
 const MOCK_PLAN: BillingPlan | null =
   MOCK_PLAN_PRICE === ''
     ? null
