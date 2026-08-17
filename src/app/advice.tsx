@@ -8,7 +8,7 @@
  * AIの献立アイデア(フェーズ9。AI_PROXY_URL 未設定なら出さない) / 手帳に保存。
  * 「補うなら」の候補は、お気に入り・選択履歴・季節の推奨(性)を優先する(logic/suggest)。
  */
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
@@ -170,12 +170,32 @@ export default function AdviceScreen() {
           ? t.advice.cookingWarm
           : t.advice.cookingBalanced;
 
+  // 履歴が無いとき(URL を直接開いた・Web でリロードした)は back が効かないので、
+  // 組み合わせ画面に置き換えて戻す。行き止まりにしない
+  const canGoBack = router.canGoBack();
+  const close = () => {
+    if (canGoBack) router.back();
+    else router.replace('/(tabs)/combine');
+  };
+
   return (
     <ScrollView
       style={{ backgroundColor: c.background }}
       contentContainerStyle={styles.container}
     >
       <PageHead {...t.meta.advice} path="/advice" />
+      {/* 履歴が無いときはヘッダに閉じるボタンを出す(モーダルの戻る矢印が出ないため) */}
+      {!canGoBack && (
+        <Stack.Screen
+          options={{
+            headerLeft: () => (
+              <Pressable onPress={close} hitSlop={10}>
+                <Text style={{ color: c.text, fontSize: 16 }}>{t.advice.close}</Text>
+              </Pressable>
+            ),
+          }}
+        />
+      )}
 
       <View style={styles.pentagonArea}>
         <FlavorPentagon
@@ -298,7 +318,7 @@ export default function AdviceScreen() {
       </Pressable>
 
       {saved && (
-        <Pressable onPress={() => router.back()}>
+        <Pressable onPress={close}>
           <Text style={[styles.backLink, { color: c.textSecondary }]}>
             {t.advice.close}
           </Text>

@@ -189,6 +189,8 @@ export interface Strings {
     exportShareTitle: string;
     exportFailTitle: string;
     exportFailBody: string;
+    about: string;
+    aboutNote: string;
   };
 
   /** ペイウォール(指示書 7章「課金設計」) */
@@ -233,6 +235,35 @@ export interface Strings {
   };
 
   /**
+   * 紹介ページ(/about)。公開サイトのランディングを兼ねる(指示書外)。
+   * 文面は App Store の説明文(docs/asc-metadata.md)と揃える。
+   * 効能・症状・点数に踏み込まない制約は本文と同じく適用する(指示書 2章・9章)。
+   */
+  about: {
+    screenTitle: string;
+    /** App Store のサブタイトルと同じもの */
+    tagline: string;
+    lead: string;
+    sections: { title: string; body: string }[];
+    /** 「効能は書かない」方針。このアプリの立場なので独立した枠で示す */
+    policyTitle: string;
+    policyBody: string;
+    /** webだけに出すCTA(ネイティブでは既に使っているので出さない) */
+    tryWeb: string;
+    appStore: string;
+    /** APP_STORE_URL が未定の間の表示 */
+    appStoreSoon: string;
+  };
+
+  /** Web 初回訪問の歓迎カード(ネイティブの初回は onboarding が受け持つ) */
+  welcome: {
+    title: string;
+    body: string;
+    about: string;
+    start: string;
+  };
+
+  /**
    * 公開サイト(tabenote.app)の <head>。
    * 効能・症状・点数に踏み込まない制約は本文と同じく適用する(指示書 2章・9章)。
    */
@@ -242,6 +273,7 @@ export interface Strings {
     notebook: PageMeta;
     advice: PageMeta;
     settings: PageMeta;
+    about: PageMeta;
     food(name: string, attrs: FoodMetaAttrs): PageMeta;
   };
 }
@@ -469,6 +501,8 @@ const ja: Strings = {
     disclaimer: '免責',
     disclaimerBody:
       'tabenote は、中医学で伝統的に用いられてきた食材の分類(性・味・帰経)を情報として示すアプリです。\n\n効能を約束したり、症状の改善を示唆したりするものではなく、医師の診断・治療の代わりにはなりません。体調に不安があるときは医療機関にご相談ください。\n\n食物アレルギーや体質に関わる判断は、必ずご自身で行ってください。',
+    about: 'tabenoteについて',
+    aboutNote: 'アプリの紹介ページを開きます',
     exportTitle: 'データのエクスポート',
     exportNote: 'お気に入り・メモ・保存した組み合わせを書き出します',
     exportShareTitle: 'tabenote データ',
@@ -521,6 +555,43 @@ const ja: Strings = {
     skip: 'スキップ',
   },
 
+  about: {
+    screenTitle: 'tabenoteについて',
+    tagline: '薬膳の手帳。書くのは、あなた',
+    lead: 'tabenote(タベノート)は、中医学で伝統的に用いられてきた食材の分類を、図と言葉で確かめるための手帳です。',
+    sections: [
+      {
+        title: '選んだ食材が、ひとつの図形になる',
+        body: '食材を選ぶと、その組み合わせの五味(酸・苦・甘・辛・鹹)の構成と、性(寒熱)の傾向が、ひとつの五角形として表示されます。何が多くて何が足りないのか、形で分かります。',
+      },
+      {
+        title: '438品目の図鑑',
+        body: '収録した食材それぞれについて、五味・性・帰経・分類を掲載。★を付けたり、自分の言葉でメモを残したりできます。',
+      },
+      {
+        title: '二十四節気と、五季',
+        body: 'いまがどの節気にあたるか、五季(春・夏・長夏・秋・冬)のどこにいるかを表示し、その季節にすすめられる味をお知らせします。',
+      },
+      {
+        title: 'AIによる献立のアイデア',
+        body: '選んだ食材といまの季節から、料理の方向性までのアイデアを提案します。',
+      },
+    ],
+    policyTitle: '効能は、アプリが書きません',
+    policyBody:
+      'tabenote が表示するのは、五味・性・帰経・分類という事実データまでです。「効く」「治る」といった効能や、症状・病名は扱いません。点数も付けません。解釈と記録は、持ち主であるあなたが自分の言葉で書きます。本アプリは医師の診断・治療の代わりにはなりません。',
+    tryWeb: 'ブラウザでこのまま使ってみる',
+    appStore: 'App Store で入手',
+    appStoreSoon: 'iOS版は App Store で準備中です',
+  },
+
+  welcome: {
+    title: 'tabenoteへようこそ',
+    body: '薬膳の手帳です。食材を選ぶと、五味と性がひとつの五角形になります。二十四節気に合わせて、いまの季節にすすめられる味も。',
+    about: 'tabenoteについて',
+    start: 'このまま使ってみる',
+  },
+
   meta: {
     home: {
       title: 'tabenote — 薬膳手帳',
@@ -545,6 +616,11 @@ const ja: Strings = {
     settings: {
       title: '設定 | tabenote',
       description: '表示言語の切り替え、参考文献、データの書き出し、免責事項。',
+    },
+    about: {
+      title: 'tabenoteについて | tabenote',
+      description:
+        '中医学で伝統的に用いられてきた食材の分類を、図と言葉で確かめる薬膳手帳。五角形の図、438品目の図鑑、二十四節気と五季、AIの献立案。効能はアプリが書きません。',
     },
     food: (name, a) => {
       const facts = [
@@ -764,6 +840,8 @@ const en: Strings = {
     disclaimer: 'Disclaimer',
     disclaimerBody:
       'tabenote presents the traditional classifications of ingredients used in Chinese medicine — nature, flavor, meridians — as information.\n\nIt makes no promises about effects, does not suggest that symptoms will improve, and is no substitute for diagnosis or treatment by a physician. If you have health concerns, please consult a medical professional.\n\nDecisions involving food allergies or your own constitution are always yours to make.',
+    about: 'About tabenote',
+    aboutNote: 'Opens the introduction page',
     exportTitle: 'Export data',
     exportNote: 'Writes out your favorites, notes, and saved combinations',
     exportShareTitle: 'tabenote data',
@@ -816,6 +894,44 @@ const en: Strings = {
     skip: 'Skip',
   },
 
+  about: {
+    screenTitle: 'About tabenote',
+    tagline: 'A notebook for yakuzen. You write the rest.',
+    lead:
+      'tabenote is a notebook for checking the traditional ingredient classifications of Chinese dietary theory, in shapes and words.',
+    sections: [
+      {
+        title: 'Your ingredients become one shape',
+        body: 'Pick ingredients, and the combination’s five flavors (sour, bitter, sweet, pungent, salty) and thermal nature are drawn as a single pentagon. What is abundant and what is missing — the shape tells you.',
+      },
+      {
+        title: 'An index of 438 ingredients',
+        body: 'Each ingredient lists its five flavors, nature, meridians, and category. Star the ones you like and keep notes in your own words.',
+      },
+      {
+        title: 'The 24 solar terms, and five seasons',
+        body: 'See which solar term today falls in, where you are among the five seasons (spring, summer, late summer, autumn, winter), and which flavors are favored right now.',
+      },
+      {
+        title: 'AI menu ideas',
+        body: 'From the ingredients you picked and the current season, AI suggests directions a dish could take.',
+      },
+    ],
+    policyTitle: 'The app never writes effects',
+    policyBody:
+      'What tabenote shows stops at factual data — five flavors, nature, meridians, category. It does not speak of curing or healing, and it handles no symptoms or conditions. No scores, either. The interpretation and the record are yours to write, in your own words. This app is no substitute for diagnosis or treatment by a physician.',
+    tryWeb: 'Try it right here in your browser',
+    appStore: 'Get it on the App Store',
+    appStoreSoon: 'The iOS app is on its way to the App Store',
+  },
+
+  welcome: {
+    title: 'Welcome to tabenote',
+    body: 'A notebook for yakuzen. Pick ingredients and their five flavors and nature become one pentagon — with the flavors favored by the current solar term.',
+    about: 'About tabenote',
+    start: 'Start using it',
+  },
+
   meta: {
     home: {
       title: 'tabenote — a notebook for Chinese dietary theory',
@@ -840,6 +956,11 @@ const en: Strings = {
     settings: {
       title: 'Settings | tabenote',
       description: 'Display language, references, data export, and the disclaimer.',
+    },
+    about: {
+      title: 'About | tabenote',
+      description:
+        'A yakuzen notebook that shows the traditional classifications of ingredients — five flavors, nature, meridians, category — as shapes and words. A pentagon chart, an index of 438 ingredients, the 24 solar terms and five seasons, and AI menu ideas. The app never writes effects.',
     },
     food: (name, a) => {
       const facts = [

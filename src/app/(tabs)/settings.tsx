@@ -216,6 +216,16 @@ export default function SettingsScreen() {
 
       <Pressable
         style={[styles.row, { backgroundColor: c.backgroundElement }]}
+        onPress={() => router.push('/about')}
+      >
+        <Text style={[styles.title, { color: c.text }]}>{t.settings.about}</Text>
+        <Text style={[styles.note, { color: c.textSecondary }]}>
+          {t.settings.aboutNote}
+        </Text>
+      </Pressable>
+
+      <Pressable
+        style={[styles.row, { backgroundColor: c.backgroundElement }]}
         onPress={() => toggleSection('references')}
       >
         <Text style={[styles.title, { color: c.text }]}>{t.settings.references}</Text>

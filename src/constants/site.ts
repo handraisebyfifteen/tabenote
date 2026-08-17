@@ -40,3 +40,9 @@ export const TOKUSHO_URL = `${SITE_URL}/tokusho`;
 
 /** iOS の購読管理(Apple の共通URL)。解約はアプリからは行えないため、ここへ誘導する */
 export const MANAGE_SUBSCRIPTION_URL = 'https://apps.apple.com/account/subscriptions';
+
+/**
+ * App Store の製品ページ。審査通過後に判明するURLをここに入れる。
+ * null の間、紹介ページ(/about)は入手ボタンの代わりに「準備中」を出す。
+ */
+export const APP_STORE_URL: string | null = null;

@@ -42,6 +42,8 @@ function RootStack() {
         name="paywall"
         options={{ presentation: 'modal', title: t.paywall.screenTitle }}
       />
+      {/* 公開サイトのランディングを兼ねる紹介ページ */}
+      <Stack.Screen name="about" options={{ title: t.about.screenTitle }} />
       {/* タイトルは画面側が食材名を設定する */}
       <Stack.Screen name="food/[id]" options={{ title: '' }} />
     </Stack>

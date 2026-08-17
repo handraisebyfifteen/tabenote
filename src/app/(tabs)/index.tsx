@@ -21,6 +21,7 @@ import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
 import PageHead from '@/components/PageHead';
 import TermScene from '@/components/TermScene';
+import WelcomeCard from '@/components/WelcomeCard';
 import { Text } from '@/components/Type';
 import { Colors } from '@/constants/theme';
 import { getTermText } from '@/data/solarTermTexts';
@@ -108,6 +109,9 @@ export default function HomeScreen() {
       </TermScene>
 
       <View style={styles.body}>
+        {/* web の初回訪問だけ。中身の条件判定はカード側が持つ */}
+        <WelcomeCard />
+
         <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
           <View style={styles.seasonRow}>
             {/* 組み合わせ画面と同じ文法: 点線 = 季節のおすすめの味。
