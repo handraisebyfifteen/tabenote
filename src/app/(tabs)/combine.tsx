@@ -30,6 +30,7 @@ import FiveElementsChart from '@/components/FiveElementsChart';
 import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
 import FoodTile from '@/components/FoodTile';
+import NatureScale from '@/components/NatureScale';
 import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
 import { getFoodEmoji } from '@/data/foodEmoji';
@@ -338,6 +339,24 @@ export default function CombineScreen() {
           seasonFlavors={seasonRec.flavors}
           axisLabels={fiveFlavorAxisLabels(lang)}
           size={180}
+        />
+        {/* 五角形の横に性(寒熱)のスケール。タイルと五角形の色の意味の凡例 */}
+        <NatureScale
+          natureLevel={natureLevel}
+          labels={
+            [...NATURE_LEGEND]
+              .reverse()
+              .map((item) => natureLabel(item.nature, lang)) as [
+              string,
+              string,
+              string,
+              string,
+              string,
+            ]
+          }
+          height={140}
+          markerColor={c.text}
+          labelColor={c.textSecondary}
         />
         {/* 左上: 季節の設定。点線の推奨形とリフレッシュ並びが従う。既定は今日 */}
         <Pressable

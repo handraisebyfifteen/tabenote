@@ -50,7 +50,8 @@ export default function FoodTile({
           {
             borderColor: color,
             backgroundColor: color + (selected ? '38' : '16'),
-            borderWidth: selected ? 3 : focused ? 2 : 1.25,
+            // 普通(1.25)だと性の色が判別しづらいため、ボールド(3)手前の 2 を既定にする
+            borderWidth: selected ? 3.5 : focused ? 2.75 : 2,
           },
           pressed && { transform: [{ scale: 0.94 }] },
         ]}
