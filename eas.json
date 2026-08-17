@@ -16,6 +16,12 @@
         "simulator": true
       }
     },
+    "screenshot": {
+      "extends": "simulator",
+      "env": {
+        "EXPO_PUBLIC_MOCK_PLAN_PRICE": "¥1,500"
+      }
+    },
     "production": {
       "autoIncrement": true
     }

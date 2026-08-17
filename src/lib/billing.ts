@@ -39,20 +39,74 @@ function sdk(): PurchasesApi | null {
   return sdkCache;
 }
 
+/**
+ * スクリーンショット撮影用の抜け道(開発ビルド限定)。
+ *
+ * シミュレータや、まだ審査に出していない商品では StoreKit がプランを返さないため、
+ * APIキー入りのビルドだとゲートの向こうへ行けず、画面を撮れない。
+ * .env.local に EXPO_PUBLIC_SKIP_PAYWALL=1 を置くと課金機能ごと無効になり、
+ * ゲートも課金の導線も出なくなる(= キー未設定と同じ状態)。
+ *
+ * __DEV__ でしか見ないので、本番ビルドに紛れ込んでも効かない。
+ */
+const SKIP_PAYWALL = __DEV__ && process.env.EXPO_PUBLIC_SKIP_PAYWALL === '1';
+
+/**
+ * 開発中に「購読者」として起動するための App User ID(開発ビルド限定)。
+ *
+ * RevenueCat ダッシュボードで promotional entitlement を付けても、既定のアプリは
+ * 匿名ID($RCAnonymousID:…)で動くので権利が届かない。付けた相手の ID をここに書くと、
+ * その人として configure して、購読済みの状態で起動できる。
+ *
+ * SKIP_PAYWALL と違い課金機能は生きたままなので、appUserId が中継サーバーへ渡り、
+ * AI献立提案も通る(スクリーンショットはこちらの経路で全画面撮れる)。
+ * 両方を同時に設定した場合は SKIP_PAYWALL が勝つ(課金機能ごと無効になるため)。
+ */
+const DEV_APP_USER_ID = __DEV__
+  ? (process.env.EXPO_PUBLIC_DEV_APP_USER_ID ?? '').trim()
+  : '';
+
+/**
+ * ペイウォールを撮影するためのダミープラン(撮影専用ビルド限定)。
+ *
+ * App内課金の審査用スクリーンショットには価格の出たペイウォールが要るが、
+ * シミュレータには StoreKit の商品情報が無いので「取得できませんでした」で止まる。
+ * 価格表記(例: ¥700)を渡すと、その月額1本だけを並べた状態で撮れる。
+ *
+ * SKIP_PAYWALL と違い __DEV__ を条件にしていない。EAS の simulator プロファイルは
+ * リリースビルドで __DEV__ が false になり、あちらの抜け道が効かないため。
+ * 値はビルド時に焼き込まれるので、本番ビルドの環境変数に入れない限り有効にならない。
+ *
+ * この状態では RevenueCat を一切呼ばない(購入も復元も成立しない)。撮影以外に使わないこと。
+ * 表示は実際の価格と一致させること。違う価格を審査に出すと不正確な申請になる。
+ */
+const MOCK_PLAN_PRICE = (process.env.EXPO_PUBLIC_MOCK_PLAN_PRICE ?? '').trim();
+const MOCK_PLAN: BillingPlan | null =
+  MOCK_PLAN_PRICE === ''
+    ? null
+    : { id: 'mock.monthly', period: 'monthly', priceString: MOCK_PLAN_PRICE, trial: null };
+
 /** 課金機能が使える状態か。false の間はUIを出さず、常に未購入として扱う */
 export function billingEnabled(): boolean {
-  return Platform.OS !== 'web' && API_KEY !== '';
+  if (Platform.OS === 'web' || SKIP_PAYWALL) return false;
+  // 撮影用のダミープランは、APIキーが無くてもゲートとペイウォールを出す
+  return API_KEY !== '' || MOCK_PLAN !== null;
 }
 
 let configured = false;
 
 /** アプリ起動時に一度だけ呼ぶ。無効なら何もしない */
 export async function configureBilling(): Promise<void> {
-  if (configured || !billingEnabled()) return;
+  if (configured || !billingEnabled() || MOCK_PLAN !== null) return;
   const P = sdk();
   if (P === null) return;
   if (__DEV__) await P.setLogLevel(P.LOG_LEVEL.DEBUG);
-  P.configure({ apiKey: API_KEY });
+  if (DEV_APP_USER_ID !== '') {
+    console.warn(`[billing] 開発用の App User ID で起動: ${DEV_APP_USER_ID}`);
+    P.configure({ apiKey: API_KEY, appUserID: DEV_APP_USER_ID });
+  } else {
+    P.configure({ apiKey: API_KEY });
+  }
   configured = true;
 }
 
@@ -72,7 +126,7 @@ const NOT_SUBSCRIBED: SubscriptionStatus = { active: false, appUserId: null };
 /** 現在の購読状態を取り直す。失敗しても落とさず未購読を返す */
 export async function getSubscriptionStatus(): Promise<SubscriptionStatus> {
   const P = sdk();
-  if (P === null || !billingEnabled()) return NOT_SUBSCRIBED;
+  if (P === null || !billingEnabled() || MOCK_PLAN !== null) return NOT_SUBSCRIBED;
   try {
     await configureBilling();
     const [info, appUserId] = await Promise.all([P.getCustomerInfo(), P.getAppUserID()]);
@@ -113,6 +167,7 @@ function toPlan(pkg: PurchasesPackage): BillingPlan {
  * ダッシュボード未設定・通信失敗のときは空配列(ペイウォールは「取得できない」表示にする)。
  */
 export async function getPlans(): Promise<BillingPlan[]> {
+  if (MOCK_PLAN !== null) return [MOCK_PLAN];
   const P = sdk();
   if (P === null || !billingEnabled()) return [];
   await configureBilling();
@@ -127,6 +182,8 @@ export type PurchaseOutcome = 'purchased' | 'cancelled' | 'failed';
 
 /** プランを購入する。ユーザーのキャンセルは失敗と区別する(エラー表示を出さないため) */
 export async function purchasePlan(planId: string): Promise<PurchaseOutcome> {
+  // 撮影用のダミープランは購入できない。cancelled にしてエラー表示を出さない
+  if (MOCK_PLAN !== null) return 'cancelled';
   const P = sdk();
   if (P === null || !billingEnabled()) return 'failed';
   try {
@@ -144,7 +201,7 @@ export async function purchasePlan(planId: string): Promise<PurchaseOutcome> {
 /** 購入の復元。復元後に有効な entitlement があれば true */
 export async function restorePurchases(): Promise<boolean> {
   const P = sdk();
-  if (P === null || !billingEnabled()) return false;
+  if (P === null || !billingEnabled() || MOCK_PLAN !== null) return false;
   await configureBilling();
   const info = await P.restorePurchases();
   return hasEntitlement(info);
@@ -156,7 +213,7 @@ export async function restorePurchases(): Promise<boolean> {
  */
 export function onSubscriptionChange(listener: (active: boolean) => void): () => void {
   const P = sdk();
-  if (P === null || !billingEnabled()) return () => {};
+  if (P === null || !billingEnabled() || MOCK_PLAN !== null) return () => {};
   const handler = (info: CustomerInfo) => listener(hasEntitlement(info));
   P.addCustomerInfoUpdateListener(handler);
   return () => {

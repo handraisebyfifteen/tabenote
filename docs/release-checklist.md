@@ -108,6 +108,44 @@
       (自動更新サブスクリプションでは Apple の必須要件)
 - [ ] サポートURL / プライバシーポリシーURL を入力した
 - [ ] スクリーンショット(6.9インチ・6.5インチ)を登録した
+
+      **撮りかた**: 購読ゲートがあるので、そのままではシミュレータで中の画面を撮れない
+      (シミュレータの StoreKit はプランを返さず、ペイウォールが「取得できませんでした」で止まる)。
+      `.env.local` に `EXPO_PUBLIC_SKIP_PAYWALL=1` を足して Metro を再起動すると、
+      課金機能ごと無効になってゲートが外れる(`src/lib/billing.ts`。`__DEV__` 限定なので
+      本番ビルドには効かない)。撮り終えたら消すこと。
+
+      ただし**AI献立提案の画面だけは撮れない**。Worker が `appUserId` で購読を確認するため、
+      課金を無効にすると弾かれる。
+
+      AI画面まで一度に撮るなら、`SKIP_PAYWALL` の代わりにこちら:
+      RevenueCat → Customers で適当な App User ID(例 `test_user`)に
+      promotional entitlement `pro` を付け、その ID を `.env.local` の
+      `EXPO_PUBLIC_DEV_APP_USER_ID` に書く。課金機能を生かしたまま購読者として起動するので、
+      ゲートも開くし中継サーバーの購読確認も通る。付与は期限付き(A day なら24時間)なので、
+      切れたら付け直す。
+
+      なお、上の2つはどちらも `__DEV__` 限定なので、**EAS の simulator ビルドでは効かない**
+      (`developmentClient` を付けていないリリースビルドで `__DEV__` が false になる)。
+      EAS のビルドを撮影に使うなら次項のプロファイルを使うか、ローカルで Metro を動かすこと。
+- [ ] **App内課金の審査用スクリーンショット**を各サブスクリプション商品に添付した
+
+      App Store Connect のサブスクリプション商品ページ →「App 審査情報」にある添付欄。
+      未添付だと商品を審査に提出できない。審査担当者が課金の提示場所を確認するためのもので、
+      価格の出たペイウォールを撮る。
+
+      実機であれば、商品が「提出準備完了」になっていて RevenueCat の Offering が
+      設定済みなら実価格が取れるので、そちらで撮るのが本筋。
+
+      シミュレータで撮るなら `EXPO_PUBLIC_MOCK_PLAN_PRICE` にダミー価格を渡す
+      (`src/lib/billing.ts`)。EAS では `screenshot` プロファイルがそれを渡す:
+
+      ```
+      npx eas-cli build -p ios --profile screenshot
+      ```
+
+      `eas.json` の値は App Store Connect の実価格に合わせて更新すること。画面にそのまま出る。
+      このモードでは RevenueCat を一切呼ばないので購入も復元も動かない。撮影専用。
 - [ ] 審査メモに、購読しないと中身が見えないアプリである旨と、
       確認用のサンドボックスアカウント(または動作の説明)を書いた
 - [ ] 文面は `docs/asc-metadata.md` のドラフトを使う
