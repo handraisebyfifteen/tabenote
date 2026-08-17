@@ -65,23 +65,6 @@ import { loadUserData, recordSelections, toggleFavorite } from '@/lib/storage';
 /** よく使う層に自動で上がる件数の上限(お気に入りを除く) */
 const AUTO_QUICK_LIMIT = 20;
 
-/**
- * 同じタイルへの2連続タップ(400ms以内)を判定する。
- * モジュールスコープに置くのは React Compiler の純粋性検査を満たすため
- * (レンダー内で Date.now() を呼べない)。画面は1つなので共有で問題ない。
- */
-const isSecondTap = (() => {
-  let lastId = '';
-  let lastTime = 0;
-  return (id: string): boolean => {
-    const now = Date.now();
-    const double = lastId === id && now - lastTime < 400;
-    lastId = double ? '' : id;
-    lastTime = double ? 0 : now;
-    return double;
-  };
-})();
-
 /** 「★よく使う」を表すタブ値(15分類と排他) */
 type CatTab = Cat15 | 'quick' | null;
 
@@ -284,9 +267,9 @@ export default function CombineScreen() {
     );
   };
 
-  /** 1タップ = カーソル、同じタイルの2タップ目 = 決定(選択のトグル) */
+  /** 1タップ = カーソル、カーソル中のタイルへの2タップ目 = 決定(時間制限なし) */
   const onTile = (id: string) => {
-    if (isSecondTap(id)) {
+    if (focusedId === id) {
       toggle(id);
       // 決定したタイルはグリッドから抜けるので、カーソルも外す
       setFocusedId(null);

@@ -13,6 +13,16 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+/** 性の色(#RRGGBB)を白に寄せて明るくする。カーソル/選択の枠を「光った」見た目にするため */
+function brighten(hex: string, ratio: number): string {
+  const n = parseInt(hex.slice(1), 16);
+  const mix = (v: number) => Math.round(v + (255 - v) * ratio);
+  const r = mix((n >> 16) & 0xff);
+  const g = mix((n >> 8) & 0xff);
+  const b = mix(n & 0xff);
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
+}
+
 interface Props {
   /** 表示名(言語解決済み) */
   name: string;
@@ -48,11 +58,14 @@ export default function FoodTile({
         style={({ pressed }) => [
           styles.tile,
           {
-            borderColor: color,
-            backgroundColor: color + (selected ? '38' : '16'),
+            // カーソル/選択中は枠を白寄りに明るくして「点灯」を分からせる
+            borderColor: focused || selected ? brighten(color, 0.45) : color,
+            backgroundColor: color + (selected ? '38' : focused ? '2A' : '16'),
             // 普通(1.25)だと性の色が判別しづらいため、ボールド(3)手前の 2 を既定にする
-            borderWidth: selected ? 3.5 : focused ? 2.75 : 2,
+            borderWidth: selected ? 3.5 : focused ? 3 : 2,
           },
+          // 発光。boxShadow は New Architecture 前提(Expo 57 の既定)
+          (focused || selected) && { boxShadow: `0 0 12px 2px ${color}` },
           pressed && { transform: [{ scale: 0.94 }] },
         ]}
       >
