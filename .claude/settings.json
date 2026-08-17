@@ -17,7 +17,11 @@
       "Bash(BROWSER=none EXPO_UNSTABLE_HEADLESS=1 npx expo start --web --port 5000)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5000)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5000)",
-      "Bash(/nix/store/5afrhwm7zqn1vb7p5z1mc2rkh2grsfgz-ungoogled-chromium-138.0.7204.100/bin/chromium --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=414,1500 --virtual-time-budget=30000 --screenshot=/tmp/claude-1000/-home-runner-workspace/e8e08ef1-dd41-45b5-803b-d89b59845f53/scratchpad/home1.png http://127.0.0.1:5000/)"
+      "Bash(/nix/store/5afrhwm7zqn1vb7p5z1mc2rkh2grsfgz-ungoogled-chromium-138.0.7204.100/bin/chromium --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=414,1500 --virtual-time-budget=30000 --screenshot=/tmp/claude-1000/-home-runner-workspace/e8e08ef1-dd41-45b5-803b-d89b59845f53/scratchpad/home1.png http://127.0.0.1:5000/)",
+      "Bash(/nix/store/5afrhwm7zqn1vb7p5z1mc2rkh2grsfgz-ungoogled-chromium-138.0.7204.100/bin/chromium --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=430,4400 --virtual-time-budget=40000 --screenshot=/tmp/claude-1000/-home-runner-workspace/e8e08ef1-dd41-45b5-803b-d89b59845f53/scratchpad/scenes.png http://127.0.0.1:5000/scenes)",
+      "Bash(/nix/store/5afrhwm7zqn1vb7p5z1mc2rkh2grsfgz-ungoogled-chromium-138.0.7204.100/bin/chromium --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=430,1000 --virtual-time-budget=30000 --screenshot=/tmp/claude-1000/-home-runner-workspace/e8e08ef1-dd41-45b5-803b-d89b59845f53/scratchpad/home2.png http://127.0.0.1:5000/)",
+      "Bash(/nix/store/5afrhwm7zqn1vb7p5z1mc2rkh2grsfgz-ungoogled-chromium-138.0.7204.100/bin/chromium --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=430,900 --virtual-time-budget=25000 --screenshot=/tmp/claude-1000/-home-runner-workspace/e8e08ef1-dd41-45b5-803b-d89b59845f53/scratchpad/settings.png http://127.0.0.1:5000/settings)",
+      "Bash(/nix/store/5afrhwm7zqn1vb7p5z1mc2rkh2grsfgz-ungoogled-chromium-138.0.7204.100/bin/chromium --headless --no-sandbox --disable-gpu --hide-scrollbars --window-size=430,1150 --virtual-time-budget=30000 --screenshot=/tmp/claude-1000/-home-runner-workspace/e8e08ef1-dd41-45b5-803b-d89b59845f53/scratchpad/final3.png http://127.0.0.1:5000/)"
     ]
   },
   "enabledPlugins": {

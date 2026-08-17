@@ -84,8 +84,8 @@ export const TERM_SCENES: TermScene[] = [
       { color: '#575F69', y: 0.89, amp: 10, freq: 3, phase: 3.0 },
     ],
     layers: [
-      { kind: 'rain', shape: 'line', color: '#D9E3EC', count: 26, size: 16, duration: 3.2, opacity: 0.5 },
-      { kind: 'drift', shape: 'band', color: '#C6CFD8', count: 3, size: 26, duration: 14, opacity: 0.25 },
+      { kind: 'rain', shape: 'line', color: '#D9E3EC', count: 44, size: 20, duration: 3.2, opacity: 0.22 },
+      { kind: 'drift', shape: 'band', color: '#C6CFD8', count: 4, size: 64, duration: 14, opacity: 0.22 },
     ],
     accent: '#5B7690',
   },
@@ -99,7 +99,7 @@ export const TERM_SCENES: TermScene[] = [
     ],
     layers: [
       { kind: 'rise', shape: 'round', color: '#C9D98C', count: 14, size: 6, duration: 9, opacity: 0.8 },
-      { kind: 'drift', shape: 'band', color: '#E4DFC2', count: 2, size: 22, duration: 15, opacity: 0.2 },
+      { kind: 'drift', shape: 'band', color: '#E4DFC2', count: 3, size: 56, duration: 15, opacity: 0.2 },
     ],
     accent: '#6C8146',
   },
@@ -140,7 +140,7 @@ export const TERM_SCENES: TermScene[] = [
       { color: '#31432D', y: 0.87, amp: 12, freq: 3, phase: 0.6 },
     ],
     layers: [
-      { kind: 'rain', shape: 'line', color: '#D5E4DE', count: 30, size: 20, duration: 2.6, opacity: 0.45 },
+      { kind: 'rain', shape: 'line', color: '#D5E4DE', count: 48, size: 24, duration: 2.6, opacity: 0.24 },
       { kind: 'fall', shape: 'leaf', color: '#93B06F', count: 8, size: 10, duration: 11, opacity: 0.75, spin: 300 },
     ],
     accent: '#4E7A5A',
@@ -183,7 +183,7 @@ export const TERM_SCENES: TermScene[] = [
     ],
     layers: [
       { kind: 'fall', shape: 'leaf', color: '#E0CE8A', count: 14, size: 11, duration: 10, opacity: 0.85, spin: 240 },
-      { kind: 'rain', shape: 'line', color: '#D3DCE2', count: 14, size: 14, duration: 3.6, opacity: 0.3 },
+      { kind: 'rain', shape: 'line', color: '#D3DCE2', count: 22, size: 16, duration: 3.6, opacity: 0.18 },
     ],
     accent: '#87783E',
   },
@@ -210,7 +210,7 @@ export const TERM_SCENES: TermScene[] = [
       { color: '#2F5540', y: 0.88, amp: 11, freq: 3, phase: 3.6 },
     ],
     layers: [
-      { kind: 'drift', shape: 'band', color: '#FFF4D8', count: 4, size: 20, duration: 13, opacity: 0.3 },
+      { kind: 'drift', shape: 'band', color: '#FFF4D8', count: 5, size: 60, duration: 13, opacity: 0.26 },
       { kind: 'rise', shape: 'round', color: '#FFF0CC', count: 12, size: 7, duration: 9, opacity: 0.6 },
     ],
     accent: '#C98545',
@@ -224,7 +224,7 @@ export const TERM_SCENES: TermScene[] = [
       { color: '#3B4A32', y: 0.87, amp: 10, freq: 2, phase: 2.4 },
     ],
     layers: [
-      { kind: 'drift', shape: 'band', color: '#FFE9BE', count: 5, size: 16, duration: 10, opacity: 0.35 },
+      { kind: 'drift', shape: 'band', color: '#FFE9BE', count: 6, size: 46, duration: 10, opacity: 0.3 },
       { kind: 'rise', shape: 'round', color: '#FFF6DE', count: 16, size: 8, duration: 7, opacity: 0.55 },
     ],
     accent: '#C6583B',
@@ -238,7 +238,7 @@ export const TERM_SCENES: TermScene[] = [
       { color: '#31302D', y: 0.9, amp: 11, freq: 3, phase: 1.0 },
     ],
     layers: [
-      { kind: 'drift', shape: 'band', color: '#F7CFA6', count: 5, size: 12, duration: 16, opacity: 0.4 },
+      { kind: 'drift', shape: 'band', color: '#F7CFA6', count: 6, size: 34, duration: 16, opacity: 0.42 },
       { kind: 'fall', shape: 'leaf', color: '#D8A26A', count: 8, size: 10, duration: 12, opacity: 0.75, spin: 420 },
     ],
     accent: '#BB6C3D',
@@ -253,7 +253,7 @@ export const TERM_SCENES: TermScene[] = [
     ],
     layers: [
       { kind: 'rise', shape: 'round', color: '#F4C79A', count: 12, size: 5, duration: 10, opacity: 0.7 },
-      { kind: 'drift', shape: 'band', color: '#E8B490', count: 3, size: 14, duration: 15, opacity: 0.3 },
+      { kind: 'drift', shape: 'band', color: '#E8B490', count: 4, size: 40, duration: 15, opacity: 0.34 },
     ],
     accent: '#AC6048',
   },
@@ -267,7 +267,7 @@ export const TERM_SCENES: TermScene[] = [
     ],
     layers: [
       { kind: 'twinkle', shape: 'round', color: '#FFFFFF', count: 18, size: 5, duration: 7, opacity: 0.85 },
-      { kind: 'drift', shape: 'band', color: '#E6E9E0', count: 4, size: 22, duration: 17, opacity: 0.3 },
+      { kind: 'drift', shape: 'band', color: '#E6E9E0', count: 5, size: 66, duration: 17, opacity: 0.3 },
     ],
     accent: '#78907F',
   },
@@ -323,7 +323,7 @@ export const TERM_SCENES: TermScene[] = [
     ],
     layers: [
       { kind: 'fall', shape: 'leaf', color: '#A98D66', count: 10, size: 10, duration: 11, opacity: 0.7, spin: 420 },
-      { kind: 'drift', shape: 'band', color: '#D3D0C4', count: 3, size: 20, duration: 16, opacity: 0.25 },
+      { kind: 'drift', shape: 'band', color: '#D3D0C4', count: 4, size: 58, duration: 16, opacity: 0.24 },
     ],
     accent: '#786854',
   },
@@ -337,7 +337,7 @@ export const TERM_SCENES: TermScene[] = [
     ],
     layers: [
       { kind: 'fall', shape: 'round', color: '#FFFFFF', count: 14, size: 6, duration: 12, opacity: 0.8 },
-      { kind: 'drift', shape: 'band', color: '#D8DEE6', count: 3, size: 18, duration: 15, opacity: 0.25 },
+      { kind: 'drift', shape: 'band', color: '#D8DEE6', count: 4, size: 54, duration: 15, opacity: 0.24 },
     ],
     accent: '#6B83A3',
   },

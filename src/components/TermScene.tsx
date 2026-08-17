@@ -11,6 +11,7 @@
  *
  * 「視差効果を減らす」設定のときは静止画として描く。
  */
+import { useFocusEffect } from 'expo-router';
 import React, { useMemo } from 'react';
 import { StyleSheet, View, type LayoutChangeEvent } from 'react-native';
 import Animated, {
@@ -85,13 +86,23 @@ function fallFrames(travel: number, sway: number, spin: number): CSSAnimationKey
   };
 }
 
-/** 上から下へ速く、少し斜めに */
+/** 上から下へ速く、少し斜めに(粒じたいも進む向きへ傾ける) */
 function rainFrames(travel: number, slant: number): CSSAnimationKeyframes {
   return {
-    '0%': { opacity: 0, transform: [{ translateY: 0 }, { translateX: 0 }] },
+    '0%': {
+      opacity: 0,
+      transform: [{ translateY: 0 }, { translateX: 0 }, { rotate: '-12deg' }],
+    },
     '15%': { opacity: 1 },
     '80%': { opacity: 1 },
-    '100%': { opacity: 0, transform: [{ translateY: travel }, { translateX: slant }] },
+    '100%': {
+      opacity: 0,
+      transform: [
+        { translateY: travel },
+        { translateX: slant },
+        { rotate: '-12deg' },
+      ],
+    },
   };
 }
 
@@ -152,7 +163,7 @@ function shapeStyle(layer: ParticleLayer, size: number) {
         borderBottomRightRadius: size,
       };
     case 'line':
-      return { width: 1.5, height: size, borderRadius: 1 };
+      return { width: 1.2, height: size, borderRadius: 1 };
     case 'band':
       return { height: size, borderRadius: size / 2 };
     default:
@@ -166,9 +177,11 @@ interface ParticleProps {
   w: number;
   h: number;
   still: boolean;
+  /** 別のタブを見ている間は止める */
+  paused: boolean;
 }
 
-function Particle({ layer, seed, w, h, still }: ParticleProps) {
+function Particle({ layer, seed, w, h, still, paused }: ParticleProps) {
   const r1 = rand(seed);
   const r2 = rand(seed + 17.3);
   const r3 = rand(seed + 41.9);
@@ -198,8 +211,7 @@ function Particle({ layer, seed, w, h, still }: ParticleProps) {
     case 'rain': {
       base.left = r4 * w;
       base.top = -size;
-      base.transform = [{ rotate: '10deg' }];
-      frames = rainFrames(h + size * 2, h * 0.18);
+      frames = rainFrames(h + size * 2, -h * 0.2);
       break;
     }
     case 'rise': {
@@ -215,14 +227,34 @@ function Particle({ layer, seed, w, h, still }: ParticleProps) {
       break;
     }
     default: {
-      // drift: 画面の幅より広い帯を、ゆっくり横に流す
-      base.width = w * (0.4 + r1 * 0.35);
-      base.left = -w * 0.5;
-      base.top = h * (0.12 + r2 * 0.6);
-      frames = driftFrames(w * 1.6);
+      // drift: 靄・雲・陽炎。画面幅より広い帯にして、層として見せる
+      base.backgroundColor = undefined;
+      base.width = w * (0.95 + r1 * 0.6);
+      base.left = -w * 0.8;
+      base.top = h * (0.1 + r2 * 0.62);
+      frames = driftFrames(w * 1.9);
       break;
     }
   }
+
+  // 帯は単色の矩形だと硬い線に見えるので、四方に溶ける楕円のぼかしで描く
+  const band =
+    layer.kind === 'drift' ? (
+      <Svg width={base.width as number} height={size}>
+        <Defs>
+          <RadialGradient id={`band${seed}`} cx="50%" cy="50%" rx="50%" ry="50%">
+            <Stop offset="0" stopColor={layer.color} stopOpacity="1" />
+            <Stop offset="0.55" stopColor={layer.color} stopOpacity="0.5" />
+            <Stop offset="1" stopColor={layer.color} stopOpacity="0" />
+          </RadialGradient>
+        </Defs>
+        <Rect
+          width={base.width as number}
+          height={size}
+          fill={`url(#band${seed})`}
+        />
+      </Svg>
+    ) : null;
 
   if (still) {
     // 動きを止めるときは、ループの途中で固まった一枚として見せる
@@ -234,7 +266,7 @@ function Particle({ layer, seed, w, h, still }: ParticleProps) {
     } else if (layer.kind === 'drift') {
       frozen.left = (frozen.left as number) + w * 1.2 * r3;
     }
-    return <View style={frozen} />;
+    return <View style={frozen}>{band}</View>;
   }
 
   return (
@@ -246,8 +278,11 @@ function Particle({ layer, seed, w, h, still }: ParticleProps) {
         animationIterationCount: 'infinite',
         animationTimingFunction: layer.kind === 'twinkle' ? 'ease-in-out' : 'linear',
         animationDelay: `${delay.toFixed(2)}s`,
+        animationPlayState: paused ? 'paused' : 'running',
       }}
-    />
+    >
+      {band}
+    </Animated.View>
   );
 }
 
@@ -271,6 +306,15 @@ export default function TermScene({ termIndex, height, children }: Props) {
   const reduced = useReducedMotion();
   const [width, setWidth] = React.useState(0);
 
+  // 別のタブを見ている間まで回し続けない
+  const [focused, setFocused] = React.useState(true);
+  useFocusEffect(
+    React.useCallback(() => {
+      setFocused(true);
+      return () => setFocused(false);
+    }, []),
+  );
+
   const onLayout = (e: LayoutChangeEvent) => {
     const w = e.nativeEvent.layout.width;
     setWidth((prev) => (Math.abs(prev - w) > 1 ? w : prev));
@@ -287,10 +331,11 @@ export default function TermScene({ termIndex, height, children }: Props) {
           w={width}
           h={height}
           still={reduced}
+          paused={!focused}
         />
       )),
     );
-  }, [scene, termIndex, width, height, reduced]);
+  }, [scene, termIndex, width, height, reduced, focused]);
 
   const orb = scene.orb;
   const orbR = orb ? orb.r * height : 0;
@@ -330,6 +375,7 @@ export default function TermScene({ termIndex, height, children }: Props) {
                         animationDuration: '10s',
                         animationIterationCount: 'infinite',
                         animationTimingFunction: 'ease-in-out',
+                        animationPlayState: focused ? 'running' : 'paused',
                       }),
                 }}
               >
@@ -357,10 +403,12 @@ export default function TermScene({ termIndex, height, children }: Props) {
             pointerEvents="none"
           >
             <Defs>
+              {/* 文字を読ませるための下側の陰。稜線を潰さない程度に留める */}
               <LinearGradient id={scrimId} x1="0" y1="0" x2="0" y2="1">
                 <Stop offset="0" stopColor="#000000" stopOpacity="0" />
-                <Stop offset="0.55" stopColor="#000000" stopOpacity="0.18" />
-                <Stop offset="1" stopColor="#000000" stopOpacity="0.62" />
+                <Stop offset="0.5" stopColor="#000000" stopOpacity="0.08" />
+                <Stop offset="0.75" stopColor="#000000" stopOpacity="0.26" />
+                <Stop offset="1" stopColor="#000000" stopOpacity="0.58" />
               </LinearGradient>
             </Defs>
             {scene.ridges.map((ridge, i) => (

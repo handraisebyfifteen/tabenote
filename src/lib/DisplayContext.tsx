@@ -2,7 +2,7 @@
  * 表示の設定(設定画面「表示」)。配色と文字サイズを持つ。
  *
  *   配色: 'system'(端末に合わせる・既定) / 'light' / 'dark'
- *   文字: 'standard'(既定) / 'large'
+ *   表示: 'standard'(既定) / 'large'
  *
  * どちらも AsyncStorage に永続化する。実際の配色の参照は
  * useColorScheme(@/hooks/use-color-scheme)、倍率は useTextScale を使う。
@@ -18,8 +18,19 @@ export type TextSize = 'standard' | 'large';
 const THEME_KEY = 'tabenote/theme/v1';
 const TEXT_SIZE_KEY = 'tabenote/textSize/v1';
 
-/** 「大きく」を選んだときの倍率。行間も同じ率で伸びる */
-const LARGE_TEXT_SCALE = 1.15;
+/**
+ * 「大きく」を選んだときの倍率。行間も同じ率で伸びる。
+ * iOS のダイナミックタイプで拡大側の上限に当たる 1.3 に合わせている。
+ */
+const LARGE_TEXT_SCALE = 1.3;
+
+/**
+ * 組み合わせタブのマスの列数。
+ *
+ * 文字だけ大きくして 3 列のままにすると、名前が枠に詰まって前より見にくくなる。
+ * 一度に見える数を減らして 1 マスを大きくするところまでが「大きく表示」。
+ */
+const GRID_COLUMNS = { standard: 3, large: 2 } as const;
 
 type DisplayValue = {
   /** 端末に合わせるか、明示的に固定しているか */
@@ -30,6 +41,8 @@ type DisplayValue = {
   textSize: TextSize;
   setTextSize: (size: TextSize) => void;
   textScale: number;
+  /** 組み合わせタブのマスの列数(表示の大きさに連動する) */
+  gridColumns: number;
 };
 
 const DisplayContext = createContext<DisplayValue>({
@@ -39,6 +52,7 @@ const DisplayContext = createContext<DisplayValue>({
   textSize: 'standard',
   setTextSize: () => {},
   textScale: 1,
+  gridColumns: GRID_COLUMNS.standard,
 });
 
 export function DisplayProvider({ children }: { children: React.ReactNode }) {
@@ -78,6 +92,7 @@ export function DisplayProvider({ children }: { children: React.ReactNode }) {
         textSize,
         setTextSize,
         textScale: textSize === 'large' ? LARGE_TEXT_SCALE : 1,
+        gridColumns: GRID_COLUMNS[textSize],
       }}
     >
       {children}

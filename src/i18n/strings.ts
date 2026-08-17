@@ -461,8 +461,8 @@ const ja: Strings = {
     darkModeSystemNote: '端末の設定に合わせています',
     darkModeFixedNote: 'この端末での表示を固定しています',
     followSystem: '端末の設定に戻す',
-    largeText: '文字を大きく',
-    largeTextNote: '本文と見出しを少し大きく表示します',
+    largeText: '大きく表示',
+    largeTextNote: '文字を大きくし、組み合わせのマスを3列から2列にします',
     references: '参考文献',
     referencesBody:
       '本アプリの性・味・帰経・分類は、中医学で広く共有されている伝統的な分類を、複数の一般的な資料にあたって事実データとして整理したものです。特定の書籍の解説・構成・文章を再現したものではありません。\n\n別名・漢字名は、生物学上・言語上の一般知識に基づきます。\n\n本アプリは効能・適応(症状への応用)を扱いません。解説文はすべてアプリ側で独自に書き起こしています。',
@@ -756,8 +756,8 @@ const en: Strings = {
     darkModeSystemNote: 'Following your device setting',
     darkModeFixedNote: 'Set manually on this device',
     followSystem: 'Follow device setting',
-    largeText: 'Larger text',
-    largeTextNote: 'Slightly enlarges body text and headings',
+    largeText: 'Larger display',
+    largeTextNote: 'Enlarges the text and drops the ingredient grid from three columns to two',
     references: 'References',
     referencesBody:
       'The nature, flavor, meridian, and category data in this app organizes the traditional classifications widely shared in Chinese dietary theory, compiled as factual data from a range of general sources. It does not reproduce the commentary, structure, or text of any particular book.\n\nAlternate names and kanji names are based on common biological and linguistic knowledge.\n\nThis app does not cover efficacy or indications. All explanatory text is written independently for this app.',

@@ -59,6 +59,7 @@ import {
   type FiveSeason,
 } from '@/logic/season';
 import { complementOrder } from '@/logic/suggest';
+import { useDisplay } from '@/lib/DisplayContext';
 import { loadUserData, recordSelections, toggleFavorite } from '@/lib/storage';
 
 /** よく使う層に自動で上がる件数の上限(お気に入りを除く) */
@@ -157,6 +158,7 @@ export default function CombineScreen() {
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
   const { lang } = useLang();
   const t = getStrings(lang);
+  const { gridColumns } = useDisplay();
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [query, setQuery] = useState('');
@@ -607,7 +609,9 @@ export default function CombineScreen() {
         style={styles.list}
         data={listFoods}
         keyExtractor={(f) => f.id}
-        numColumns={3}
+        // numColumns は動的に変えられないので、列数が変わったら key で作り直す
+        key={`grid-${gridColumns}`}
+        numColumns={gridColumns}
         contentContainerStyle={styles.gridContent}
         ListEmptyComponent={
           cat === 'quick' && query.trim() === '' ? (
@@ -618,6 +622,7 @@ export default function CombineScreen() {
         }
         renderItem={({ item }) => (
           <FoodTile
+            columns={gridColumns}
             name={foodName(item, lang)}
             emoji={getFoodEmoji(item.name)}
             color={natureColor(natureValue(item))}

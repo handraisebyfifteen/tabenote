@@ -64,10 +64,6 @@ export default function HomeScreen() {
 
   const picks = seasonalPicks(seasonInfo.season, dayNum, PICK_COUNT);
 
-  /** 季節の推奨をそのまま五角形にしたもの(この季節が向かう形) */
-  const seasonTotals = emptyTotals();
-  for (const flavor of seasonInfo.recommendation.flavors) seasonTotals[flavor] = 1;
-
   // 画面の高さに合わせる。低い端末でも下のカードが顔を出す高さに抑える
   const sceneHeight = Math.max(260, Math.min(380, windowHeight * 0.46));
 
@@ -111,9 +107,12 @@ export default function HomeScreen() {
       <View style={styles.body}>
         <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
           <View style={styles.seasonRow}>
+            {/* 組み合わせ画面と同じ文法: 点線 = 季節のおすすめの味。
+                塗りは「自分が選んだ構成」の意味なので、ここでは描かない */}
             <FlavorPentagon
-              totals={seasonTotals}
-              natureLevel={seasonInfo.recommendation.natureLevels[0]}
+              totals={emptyTotals()}
+              natureLevel={null}
+              seasonFlavors={seasonInfo.recommendation.flavors}
               axisLabels={fiveFlavorAxisLabels(lang)}
               size={124}
               labelColor={c.textSecondary}
@@ -143,11 +142,8 @@ export default function HomeScreen() {
           <Text style={[styles.sectionTitle, { color: c.textSecondary }]}>
             {t.home.seasonFoodsTitle}
           </Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.picks}
-          >
+          {/* 横スクロールにすると隠れた食材に気づけないので、折り返して全部見せる */}
+          <View style={styles.picks}>
             {picks.map((food) => (
               <Pressable
                 key={food.id}
@@ -174,7 +170,7 @@ export default function HomeScreen() {
                 </Text>
               </Pressable>
             ))}
-          </ScrollView>
+          </View>
           <Text style={[styles.hint, { color: c.textSecondary }]}>
             {t.home.seasonFoodsHint}
           </Text>
@@ -264,7 +260,12 @@ const styles = StyleSheet.create({
   seasonLabel: { fontSize: 22, fontWeight: '600' },
   seasonDetail: { fontSize: 13, marginTop: 4, lineHeight: 19 },
 
-  picks: { gap: 14, paddingVertical: 12, paddingRight: 4 },
+  picks: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    paddingVertical: 12,
+  },
   pick: { alignItems: 'center', width: 62, gap: 5 },
   pickName: { fontSize: 11, textAlign: 'center' },
   hint: { fontSize: 11 },
