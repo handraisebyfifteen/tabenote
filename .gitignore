@@ -42,3 +42,16 @@ example
 /ios
 /android
 /tabenote-legal/
+
+# Replit のシステムフォルダ。
+# git はシステムの core.excludesFile (/etc/.gitignore) でこれらを無視するが、
+# EAS CLI は未追跡ファイルを集める際にこのファイルしか解釈せず core.excludesFile を
+# 見ないため、ここに書かないと数GBがビルドの tarball に混入する。
+.cache/
+.config/
+.local/
+.upm/
+.agents/
+.breakpoints
+.env
+*.log
