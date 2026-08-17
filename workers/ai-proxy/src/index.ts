@@ -63,9 +63,13 @@ function isValidRequest(body: unknown): body is SuggestRequest {
   );
 }
 
+/** アプリ側の src/lib/billing.ts の ENTITLEMENT_ID と一致させる */
+const ENTITLEMENT_ID = 'pro';
+
 /**
  * RevenueCat の購読確認。
  * Authorization: Bearer <app_user_id> を受け取り、有効な entitlement を持つか確認する。
+ * 見るのは pro だけ(過去に作った別の entitlement で通ってしまわないように)。
  * REVENUECAT_API_KEY 未設定の間(開発中)はスキップして許可する。
  */
 async function hasActiveSubscription(request: Request, env: Env): Promise<boolean> {
@@ -77,15 +81,18 @@ async function hasActiveSubscription(request: Request, env: Env): Promise<boolea
     `https://api.revenuecat.com/v1/subscribers/${encodeURIComponent(appUserId)}`,
     { headers: { authorization: `Bearer ${env.REVENUECAT_API_KEY}` } },
   );
-  if (!res.ok) return false;
+  if (!res.ok) {
+    // キーの権限不足・貼り間違い等の切り分け用(wrangler tail で見る)
+    console.error('revenuecat_error', res.status, (await res.text()).slice(0, 300));
+    return false;
+  }
   const data = (await res.json()) as {
     subscriber?: { entitlements?: Record<string, { expires_date: string | null }> };
   };
-  const entitlements = data.subscriber?.entitlements ?? {};
-  const now = Date.now();
-  return Object.values(entitlements).some(
-    (e) => e.expires_date === null || Date.parse(e.expires_date) > now,
-  );
+  const pro = data.subscriber?.entitlements?.[ENTITLEMENT_ID];
+  if (pro === undefined) return false;
+  // expires_date が null なら無期限(買い切り・生涯)
+  return pro.expires_date === null || Date.parse(pro.expires_date) > Date.now();
 }
 
 export default {
@@ -114,23 +121,30 @@ export default {
     }
 
     const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
-    const message = await client.messages.create({
-      model: MODEL,
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      messages: [
-        {
-          role: 'user',
-          content: JSON.stringify({
-            foods: body.foods,
-            season: body.season,
-            recommendedFlavors: body.recommendedFlavors ?? [],
-            missingFlavors: body.missingFlavors ?? [],
-            lang: body.lang ?? 'ja',
-          }),
-        },
-      ],
-    });
+    let message: Anthropic.Message;
+    try {
+      message = await client.messages.create({
+        model: MODEL,
+        max_tokens: 1024,
+        system: SYSTEM_PROMPT,
+        messages: [
+          {
+            role: 'user',
+            content: JSON.stringify({
+              foods: body.foods,
+              season: body.season,
+              recommendedFlavors: body.recommendedFlavors ?? [],
+              missingFlavors: body.missingFlavors ?? [],
+              lang: body.lang ?? 'ja',
+            }),
+          },
+        ],
+      });
+    } catch (err) {
+      // キー無効・レート超過など上流のエラー。詳細はログ(wrangler tail)で見る
+      console.error('anthropic_error', err instanceof Error ? err.message : err);
+      return jsonResponse({ error: 'upstream_error' }, 502);
+    }
 
     const text = message.content.find((block) => block.type === 'text');
     return jsonResponse({ suggestion: text?.type === 'text' ? text.text : '' });

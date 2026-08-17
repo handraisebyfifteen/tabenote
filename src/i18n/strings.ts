@@ -27,6 +27,28 @@ export interface Strings {
     allTab: string;
     quickEmpty: string;
     decide(count: number): string;
+    /** 何もカーソルが乗っていないときのグリッド操作ヒント */
+    gridHint: string;
+    /** 1タップ目(カーソル)のあとに出す決定ヒント */
+    focusHint: string;
+    /** 季節ボタン・季節モーダルの見出し */
+    seasonLabel: string;
+    /** 今日の季節のチップに付ける印 */
+    seasonToday: string;
+    /** 季節モーダルの補足(今日を選ぶと自動追従に戻る) */
+    seasonModalNote: string;
+    /** ？ボタンで開く五行解説の見出し */
+    helpTitle: string;
+    /** 解説: 塗りの五角形(五味の合計) */
+    helpPentagon: string;
+    /** 解説: 点線(選んだ季節のおすすめの味) */
+    helpDashed: string;
+    /** 解説: 相生・相克図の読みかた(赤=相生、青=相克) */
+    helpCycle: string;
+    /** 解説: タイルの枠色 = 性 */
+    helpNature: string;
+    /** モーダルを閉じる */
+    close: string;
   };
 
   advice: {
@@ -34,6 +56,7 @@ export interface Strings {
     flavorsTitle: string;
     flavorFact(dominant: FiveFlavor[], missing: FiveFlavor[]): string;
     categoriesTitle: string;
+    /** missing は調味料・飲み物を除いた主な4分類の不足(coverage.adviceMissingCats) */
     categoryFact(missing: Cat5[]): string;
     seasonTitle: string;
     seasonFact(seasonLabel: string, flavors: FiveFlavor[]): string;
@@ -42,11 +65,20 @@ export interface Strings {
     fillTitle: string;
     fillFlavorLabel(flavor: FiveFlavor): string;
     fillCatLabel(cat: Cat5): string;
+    /** 候補を次の窓に入れ替えるボタン */
+    fillMore: string;
     fillNote: string;
     cookingTitle: string;
     cookingCool: string;
     cookingWarm: string;
     cookingBalanced: string;
+    /** AI献立提案(フェーズ9)。表現の制約(効能・症状・点数を出さない)はサーバー側で強制 */
+    aiTitle: string;
+    aiButton: string;
+    aiRetryButton: string;
+    aiLoading: string;
+    aiError: string;
+    aiNote: string;
     save: string;
     savedDone: string;
     close: string;
@@ -68,6 +100,14 @@ export interface Strings {
     deleteCancel: string;
     deleteConfirm: string;
     zukanPlaceholder(count: number): string;
+    /** 組み合わせタイムラインの日付見出し */
+    dateHeading(d: Date): string;
+    /** 図鑑のフィルタ: すべて / ★お気に入り / メモあり */
+    filterAll: string;
+    filterStarred: string;
+    filterMemo: string;
+    /** ★・メモありフィルタで1件もないとき */
+    filterEmpty: string;
   };
 
   guide: {
@@ -106,7 +146,23 @@ export interface Strings {
 
   settings: {
     billing: string;
+    /** 未購読のときの説明 */
     billingNote: string;
+    /** 購読中のときの説明 */
+    billingActiveNote: string;
+    restore: string;
+    restoreNote: string;
+    restoreDoneTitle: string;
+    restoreDoneBody: string;
+    restoreNoneBody: string;
+    restoreFailBody: string;
+    manageSubscription: string;
+    manageSubscriptionNote: string;
+    terms: string;
+    privacy: string;
+    contact: string;
+    contactNote: string;
+    version: string;
     language: string;
     languageNote: string;
     references: string;
@@ -119,6 +175,74 @@ export interface Strings {
     exportFailTitle: string;
     exportFailBody: string;
   };
+
+  /** ペイウォール(指示書 7章「課金設計」) */
+  /**
+   * 購読案内(申請準備指示書 2章)。プランは「tabenote 月額プラン」1本のみ。
+   * 「プレミアム」「PRO」「アップグレード」「アンロック」は使わない(指示書の禁止事項)。
+   * 請求される総額(priceString)が画面で最も目立つこと(Apple の要件)。
+   */
+  paywall: {
+    screenTitle: string;
+    /** プラン名。サブスクの表示名(App Store Connect)と揃える */
+    planName: string;
+    lead: string;
+    includedTitle: string;
+    /** できることの列挙。\n 区切りで箇条書きにする */
+    includedBody: string;
+    /** 価格の直下に置く期間の説明 */
+    periodNote: string;
+    subscribe: string;
+    /** 自動更新・解約方法の説明(ボタンの下) */
+    renewalNote: string;
+    restore: string;
+    loading: string;
+    unavailable: string;
+    retry: string;
+    alreadySubscribed: string;
+    failTitle: string;
+    failBody: string;
+    restoreDoneTitle: string;
+    restoreDoneBody: string;
+    restoreNoneBody: string;
+    restoreFailBody: string;
+    terms: string;
+    privacy: string;
+  };
+
+  /** 初回起動のオンボーディング(3枚)→ 購読案内(Guideline 4.2 対策) */
+  onboarding: {
+    pages: { title: string; body: string }[];
+    next: string;
+    skip: string;
+  };
+
+  /**
+   * 公開サイト(tabenote.app)の <head>。
+   * 効能・症状・点数に踏み込まない制約は本文と同じく適用する(指示書 2章・9章)。
+   */
+  meta: {
+    home: PageMeta;
+    combine: PageMeta;
+    notebook: PageMeta;
+    advice: PageMeta;
+    settings: PageMeta;
+    food(name: string, attrs: FoodMetaAttrs): PageMeta;
+  };
+}
+
+/** ページ1枚分の <title> と meta description */
+export interface PageMeta {
+  title: string;
+  description: string;
+}
+
+/** 食材ページの説明文に入れる事実。参照のみ項目では nature が空文字で来る */
+export interface FoodMetaAttrs {
+  nature: string;
+  flavors: string;
+  meridians: string;
+  category: string;
 }
 
 const WEEKDAYS_JA = ['日', '月', '火', '水', '木', '金', '土'];
@@ -159,6 +283,20 @@ const ja: Strings = {
     allTab: 'すべて',
     quickEmpty: '★を付けた食材と、「決定」した食材がここに並びます。',
     decide: (count) => (count > 0 ? `決定(${count}品)` : '決定'),
+    gridHint: 'タップでえらぶ・もう一度で決定・長押しで★',
+    focusHint: 'もう一度タップで決定',
+    seasonLabel: '季節',
+    seasonToday: '今日',
+    seasonModalNote: '「今日」の付いた季節を選ぶと、日付に合わせて自動で切り替わります。',
+    helpTitle: '五角形の見かた',
+    helpPentagon:
+      '五角形の5つの角は五味(酸・苦・甘・辛・鹹)です。選んだ食材の味を足し合わせた形が、緑の塗りで描かれます。',
+    helpDashed:
+      '点線は、いま選んでいる季節にすすめられる味の形です。薬膳では五味を五行(木・火・土・金・水)に対応させ、季節(春・夏・土用・秋・冬)ごとに合う味を考えます。',
+    helpCycle:
+      '外側の赤い矢印は相生(そうせい)といい、となりの行を生み育てる流れを表します。内側の青い矢印は相克(そうこく)といい、行きすぎないようたがいにおさえ合う関係を表します。',
+    helpNature: '食材タイルの枠の色は性(体を温める・冷やす方向)を表します。',
+    close: '閉じる',
   },
 
   advice: {
@@ -174,9 +312,8 @@ const ja: Strings = {
     categoriesTitle: '5つの分類',
     categoryFact: (missing) =>
       missing.length === 0
-        ? '5つの分類すべてから選ばれています。'
-        : `5つの分類のうち${5 - missing.length}つから選ばれています。` +
-          `${missing.map((k) => cat5Label(k, 'ja')).join('、')}が入っていません。`,
+        ? '主な4つの分類(穀類・豆、野菜、果実、肉・魚)がすべて入っています。'
+        : `${missing.map((k) => cat5Label(k, 'ja')).join('、')}が入っていません。`,
     seasonTitle: '季節との関係',
     seasonFact: (label, flavors) =>
       `いまは${label}。${flavors.join('味・')}味が推奨される季節です。点線は季節の推奨の形です。`,
@@ -186,6 +323,7 @@ const ja: Strings = {
     fillTitle: '補うなら',
     fillFlavorLabel: (f) => `${f}味`,
     fillCatLabel: (c) => cat5Label(c, 'ja'),
+    fillMore: '↻ ほかの候補',
     fillNote:
       '候補は ★お気に入り・よく使う食材・季節の推奨(性)を優先しています。タップで図鑑が開きます。',
     cookingTitle: '調理の方向性',
@@ -194,6 +332,12 @@ const ja: Strings = {
     cookingWarm:
       '温かい側に寄った構成です。長い煮込みより、冷製やさっと仕上げる調理のほうが釣り合います。',
     cookingBalanced: '寒熱の偏りが小さい構成です。調理法は自由に選べます。',
+    aiTitle: 'AIの献立アイデア',
+    aiButton: 'この組み合わせで献立のアイデアを聞く',
+    aiRetryButton: 'ほかのアイデアを聞く',
+    aiLoading: '考えています…',
+    aiError: '提案を取得できませんでした。通信環境を確認して、もう一度お試しください。',
+    aiNote: 'AIによる提案は、料理名と方向性のアイデアです。分量や厳密な手順は示しません。',
     save: '手帳に保存',
     savedDone: '手帳に保存しました ✓',
     close: '閉じる',
@@ -216,6 +360,12 @@ const ja: Strings = {
     deleteCancel: 'やめる',
     deleteConfirm: '削除する',
     zukanPlaceholder: (count) => `図鑑をさがす(全${count}品目)`,
+    dateHeading: (d) =>
+      `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日(${WEEKDAYS_JA[d.getDay()]})`,
+    filterAll: 'すべて',
+    filterStarred: '★ お気に入り',
+    filterMemo: 'メモあり',
+    filterEmpty: '★を付けた食材や、メモを書いた食材がここに並びます。',
   },
 
   guide: {
@@ -273,8 +423,22 @@ const ja: Strings = {
   },
 
   settings: {
-    billing: '課金 / 復元',
-    billingNote: 'フェーズ8(RevenueCat)で実装予定',
+    billing: '月額プラン',
+    billingNote: 'ご利用には月額プランのご登録が必要です',
+    billingActiveNote: 'ご登録中です。プランの内容を確認できます',
+    restore: '購入を復元',
+    restoreNote: '機種変更などで購読が引き継がれていないとき',
+    restoreDoneTitle: '購入の復元',
+    restoreDoneBody: '購読を復元しました。',
+    restoreNoneBody: '復元できる購読が見つかりませんでした。',
+    restoreFailBody: '復元に失敗しました。通信環境を確認してください。',
+    manageSubscription: 'サブスクリプションの管理',
+    manageSubscriptionNote: '解約もこちらから(Apple の管理画面が開きます)',
+    terms: '利用規約',
+    privacy: 'プライバシーポリシー',
+    contact: 'お問い合わせ',
+    contactNote: 'よくある質問とサポートページを開きます',
+    version: 'バージョン',
     language: '言語',
     languageNote: '食材名は現在日本語のみです',
     references: '参考文献',
@@ -288,6 +452,94 @@ const ja: Strings = {
     exportShareTitle: 'tabenote データ',
     exportFailTitle: 'エクスポート',
     exportFailBody: 'データの書き出しに失敗しました。',
+  },
+
+  paywall: {
+    screenTitle: '月額プラン',
+    planName: 'tabenote 月額プラン',
+    lead: 'tabenote のご利用には月額プランのご登録が必要です。',
+    includedTitle: 'プランでできること',
+    includedBody:
+      '選んだ食材の組み合わせを五味・性の五角形で確かめる\n438品目の食材の図鑑(五味・性・帰経・分類)\n二十四節気と五季、いまの季節に合う味の表示\n食材に★とメモ、組み合わせを手帳に保存\n選んだ食材と季節から、AIが献立のアイデアを提案',
+    periodNote: '1か月ごとの自動更新',
+    subscribe: '登録する',
+    renewalNote:
+      '期間終了の24時間前までに解約しない限り、自動的に更新されます。お支払いは Apple アカウントに請求されます。解約は、iPhoneの「設定」→ Apple アカウント →「サブスクリプション」からいつでも行えます。',
+    restore: '購入を復元',
+    loading: 'プランを読み込んでいます…',
+    unavailable: 'いまプランを取得できませんでした。通信環境を確認して、もう一度お試しください。',
+    retry: 'もう一度読み込む',
+    alreadySubscribed: 'ご登録中です。すべての機能をご利用いただけます。',
+    failTitle: '月額プラン',
+    failBody: '手続きを完了できませんでした。しばらくしてからお試しください。',
+    restoreDoneTitle: '購入の復元',
+    restoreDoneBody: '購読を復元しました。',
+    restoreNoneBody: '復元できる購読が見つかりませんでした。',
+    restoreFailBody: '復元に失敗しました。通信環境を確認してください。',
+    terms: '利用規約',
+    privacy: 'プライバシーポリシー',
+  },
+
+  onboarding: {
+    pages: [
+      {
+        title: '食材を、図で確かめる',
+        body: '食材を選ぶと、その組み合わせの五味(酸・苦・甘・辛・鹹)の構成と性(寒熱)の傾向が、ひとつの五角形になります。中医学で伝統的に用いられてきた分類を、事実として示します。',
+      },
+      {
+        title: '手帳に、自分の言葉で',
+        body: '気に入った組み合わせは手帳に保存。438品目の図鑑には★とメモが付けられます。効能はアプリが書きません。書くのは、持ち主です。',
+      },
+      {
+        title: '季節と、AIの献立案',
+        body: '二十四節気と五季に合わせて、いまの季節にすすめられる味を表示。選んだ食材からは、AIが料理の方向性までのアイデアを提案します。',
+      },
+    ],
+    next: '次へ',
+    skip: 'スキップ',
+  },
+
+  meta: {
+    home: {
+      title: 'tabenote — 薬膳手帳',
+      description:
+        '二十四節気と五季を表示し、選んだ食材の組み合わせを五味・性・帰経・分類の事実として示す薬膳手帳。効能はアプリが書かず、持ち主が書きます。',
+    },
+    combine: {
+      title: '組み合わせ | tabenote',
+      description:
+        '食材を選ぶと、その組み合わせの五味の構成・性の偏り・5つの分類の網羅を五角形の図で示します。',
+    },
+    notebook: {
+      title: '手帳 | tabenote',
+      description:
+        '保存した組み合わせ、★を付けた食材の図鑑、五行と五味・五臓・節気の見取り図をまとめる手帳。',
+    },
+    advice: {
+      title: 'アドバイス | tabenote',
+      description:
+        '選んだ食材の五味の過不足、5つの分類の網羅、季節との関係、性の釣り合い、調理の方向性を事実として示します。',
+    },
+    settings: {
+      title: '設定 | tabenote',
+      description: '表示言語の切り替え、参考文献、データの書き出し、免責事項。',
+    },
+    food: (name, a) => {
+      const facts = [
+        a.nature !== '' ? `性は${a.nature}` : '',
+        a.flavors !== '' ? `味は${a.flavors}` : '',
+        a.meridians !== '' ? `帰経は${a.meridians}` : '',
+      ]
+        .filter((s) => s !== '')
+        .join('、');
+      return {
+        title: `${name} | tabenote`,
+        description:
+          facts !== ''
+            ? `${name}(${a.category})の性・味・帰経。${facts}。tabenote の食材図鑑。`
+            : `${name}(${a.category})を tabenote の食材図鑑で見る。`,
+      };
+    },
   },
 };
 
@@ -315,6 +567,22 @@ const en: Strings = {
     allTab: 'All',
     quickEmpty: 'Ingredients you star, or pick and “Decide” with, will appear here.',
     decide: (count) => (count > 0 ? `Decide (${count})` : 'Decide'),
+    gridHint: 'Tap to preview · tap again to add · hold to ★',
+    focusHint: 'Tap again to add',
+    seasonLabel: 'Season',
+    seasonToday: 'today',
+    seasonModalNote:
+      'Pick the season marked “today” to follow the calendar automatically.',
+    helpTitle: 'Reading the pentagon',
+    helpPentagon:
+      'The five corners are the five flavors (sour, bitter, sweet, pungent, salty). The green shape adds up the flavors of the foods you picked.',
+    helpDashed:
+      'The dashed line is the flavor shape suggested for the selected season. Yakuzen maps the five flavors to the five elements (wood, fire, earth, metal, water) and pairs each season with its flavors.',
+    helpCycle:
+      'The red outer arrows are the generating cycle (shēng): each element nurtures the next. The blue inner arrows are the overcoming cycle (kè): each element keeps another in check.',
+    helpNature:
+      'The border color of each food tile shows its nature (warming vs. cooling direction).',
+    close: 'Close',
   },
 
   advice: {
@@ -330,9 +598,8 @@ const en: Strings = {
     categoriesTitle: 'Five groups',
     categoryFact: (missing) =>
       missing.length === 0
-        ? 'Drawn from all five groups.'
-        : `Drawn from ${5 - missing.length} of the five groups — ` +
-          `${listEn(missing.map((k) => cat5Label(k, 'en')))} not yet included.`,
+        ? 'All four main groups (grains & beans, vegetables, fruits, meat & fish) are present.'
+        : `${capitalize(listEn(missing.map((k) => cat5Label(k, 'en').toLowerCase())))} not yet included.`,
     seasonTitle: 'The season',
     seasonFact: (label, flavors) =>
       `It is now ${label}. ${capitalize(flavorsEn(flavors))} flavors are favored this season — ` +
@@ -343,6 +610,7 @@ const en: Strings = {
     fillTitle: 'To fill the gaps',
     fillFlavorLabel: (f) => fiveFlavorLabel(f, 'en'),
     fillCatLabel: (c) => cat5Label(c, 'en'),
+    fillMore: '↻ More ideas',
     fillNote:
       "Candidates favor your ★ favorites, frequently used ingredients, and the season's recommended nature. Tap to open the encyclopedia.",
     cookingTitle: 'Cooking direction',
@@ -351,6 +619,12 @@ const en: Strings = {
     cookingWarm:
       'This combination leans warm. Chilled or quickly finished preparations balance it better than long simmering.',
     cookingBalanced: 'Hot and cold sit evenly here. Any cooking method works.',
+    aiTitle: 'AI menu ideas',
+    aiButton: 'Ask for menu ideas with this combination',
+    aiRetryButton: 'Ask for other ideas',
+    aiLoading: 'Thinking…',
+    aiError: 'Could not get a suggestion. Please check your connection and try again.',
+    aiNote: 'AI suggestions are dish names and directions only — no amounts or strict recipes.',
     save: 'Save to notebook',
     savedDone: 'Saved to notebook ✓',
     close: 'Close',
@@ -373,6 +647,12 @@ const en: Strings = {
     deleteCancel: 'Cancel',
     deleteConfirm: 'Delete',
     zukanPlaceholder: (count) => `Search the encyclopedia (${count} entries)`,
+    dateHeading: (d) =>
+      `${WEEKDAYS_EN[d.getDay()]}, ${MONTHS_EN[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`,
+    filterAll: 'All',
+    filterStarred: '★ Favorites',
+    filterMemo: 'With memos',
+    filterEmpty: 'Foods you star or write memos on will collect here.',
   },
 
   guide: {
@@ -431,8 +711,22 @@ const en: Strings = {
   },
 
   settings: {
-    billing: 'Subscription / Restore',
-    billingNote: 'Planned for phase 8 (RevenueCat)',
+    billing: 'Monthly Plan',
+    billingNote: 'A monthly plan is required to use tabenote',
+    billingActiveNote: 'You are subscribed. View the plan details here.',
+    restore: 'Restore purchases',
+    restoreNote: 'If your subscription did not carry over to a new device',
+    restoreDoneTitle: 'Restore purchases',
+    restoreDoneBody: 'Your subscription has been restored.',
+    restoreNoneBody: 'No subscription was found to restore.',
+    restoreFailBody: 'Could not restore. Please check your connection.',
+    manageSubscription: 'Manage subscription',
+    manageSubscriptionNote: 'Cancel here too (opens Apple’s management page)',
+    terms: 'Terms of Use',
+    privacy: 'Privacy Policy',
+    contact: 'Contact us',
+    contactNote: 'Opens the FAQ and support page',
+    version: 'Version',
     language: 'Language',
     languageNote: 'Ingredient names are currently Japanese only',
     references: 'References',
@@ -446,6 +740,94 @@ const en: Strings = {
     exportShareTitle: 'tabenote data',
     exportFailTitle: 'Export',
     exportFailBody: 'Could not export your data.',
+  },
+
+  paywall: {
+    screenTitle: 'Monthly Plan',
+    planName: 'tabenote Monthly Plan',
+    lead: 'A monthly plan is required to use tabenote.',
+    includedTitle: 'What you can do',
+    includedBody:
+      'See any combination of ingredients as a pentagon of the five flavors and nature\nAn encyclopedia of 438 ingredients (flavor, nature, meridians, category)\nThe 24 solar terms, the five seasons, and the flavors favored right now\nStar ingredients, write notes, save combinations to your notebook\nAI menu ideas from the ingredients you picked and the season',
+    periodNote: 'Renews automatically every month',
+    subscribe: 'Subscribe',
+    renewalNote:
+      'Renews automatically unless cancelled at least 24 hours before the end of the current period. Payment is charged to your Apple Account. Cancel any time in Settings → Apple Account → Subscriptions on your iPhone.',
+    restore: 'Restore purchases',
+    loading: 'Loading the plan…',
+    unavailable: 'Could not load the plan. Please check your connection and try again.',
+    retry: 'Try again',
+    alreadySubscribed: 'You are subscribed. Every feature is available.',
+    failTitle: 'Monthly Plan',
+    failBody: 'The purchase could not be completed. Please try again later.',
+    restoreDoneTitle: 'Restore purchases',
+    restoreDoneBody: 'Your subscription has been restored.',
+    restoreNoneBody: 'No subscription was found to restore.',
+    restoreFailBody: 'Could not restore. Please check your connection.',
+    terms: 'Terms of Use',
+    privacy: 'Privacy Policy',
+  },
+
+  onboarding: {
+    pages: [
+      {
+        title: 'See your ingredients as a shape',
+        body: 'Pick ingredients, and their combined five flavors (sour, bitter, sweet, pungent, salty) and thermal nature become one pentagon. The traditional classifications of Chinese dietary theory, shown as facts.',
+      },
+      {
+        title: 'A notebook, in your own words',
+        body: 'Save the combinations you like. Star any of the 438 ingredients and write your own notes. The app never writes effects — the owner does.',
+      },
+      {
+        title: 'Seasons, and AI menu ideas',
+        body: 'The 24 solar terms and five seasons show which flavors are favored right now. From your chosen ingredients, AI suggests dish ideas and directions.',
+      },
+    ],
+    next: 'Next',
+    skip: 'Skip',
+  },
+
+  meta: {
+    home: {
+      title: 'tabenote — a notebook for Chinese dietary theory',
+      description:
+        'Shows the current solar term and season, and describes what a set of ingredients is made of — five flavors, nature, meridians, category. The app states the facts; you write the rest.',
+    },
+    combine: {
+      title: 'Combine | tabenote',
+      description:
+        'Pick ingredients and see the flavor makeup, the warm–cool balance, and which of the five categories are covered, drawn as a pentagon.',
+    },
+    notebook: {
+      title: 'Notebook | tabenote',
+      description:
+        'Your saved combinations, the ingredients you starred, and a guide to the five phases, flavors, organs, and solar terms.',
+    },
+    advice: {
+      title: 'Advice | tabenote',
+      description:
+        'What the chosen ingredients over- and under-cover across the five flavors and five categories, how they sit against the season, and which way the cooking leans.',
+    },
+    settings: {
+      title: 'Settings | tabenote',
+      description: 'Display language, references, data export, and the disclaimer.',
+    },
+    food: (name, a) => {
+      const facts = [
+        a.nature !== '' ? `nature ${a.nature}` : '',
+        a.flavors !== '' ? `flavor ${a.flavors}` : '',
+        a.meridians !== '' ? `meridians ${a.meridians}` : '',
+      ]
+        .filter((s) => s !== '')
+        .join(', ');
+      return {
+        title: `${name} | tabenote`,
+        description:
+          facts !== ''
+            ? `${name} (${a.category}) — ${capitalize(facts)}. From the ingredient index in tabenote.`
+            : `${name} (${a.category}) in the tabenote ingredient index.`,
+      };
+    },
   },
 };
 

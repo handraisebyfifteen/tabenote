@@ -179,10 +179,34 @@ const FOUR_SEASON_EN: Record<Exclude<FiveSeason, 'doyo'>, string> = {
 
 export function fiveSeasonName(info: FiveSeasonInfo, lang: Lang): string {
   if (lang === 'ja') return fiveSeasonLabel(info);
-  if (info.season === 'doyo' && info.doyoParent) {
-    return `Long Summer (${FOUR_SEASON_EN[info.doyoParent].toLowerCase()} doyō)`;
+  if (info.season === 'doyo') {
+    // doyoParent がない場合(手動で季節を選んだときなど)は総称で返す
+    return info.doyoParent
+      ? `Long Summer (${FOUR_SEASON_EN[info.doyoParent].toLowerCase()} doyō)`
+      : 'Long Summer (doyō)';
   }
   return FOUR_SEASON_EN[info.season as Exclude<FiveSeason, 'doyo'>];
+}
+
+/** 季節切り替えチップの短いラベル(組み合わせ画面の季節の枠) */
+const FIVE_SEASON_CHIP_JA: Record<FiveSeason, string> = {
+  spring: '春',
+  summer: '夏',
+  doyo: '土用',
+  autumn: '秋',
+  winter: '冬',
+};
+
+const FIVE_SEASON_CHIP_EN: Record<FiveSeason, string> = {
+  spring: 'Spring',
+  summer: 'Summer',
+  doyo: 'Doyō',
+  autumn: 'Autumn',
+  winter: 'Winter',
+};
+
+export function fiveSeasonChipLabel(season: FiveSeason, lang: Lang): string {
+  return lang === 'ja' ? FIVE_SEASON_CHIP_JA[season] : FIVE_SEASON_CHIP_EN[season];
 }
 
 /** 季節の推奨の性の言い方(ja は season.ts の natureText をそのまま使う) */

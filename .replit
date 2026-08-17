@@ -22,6 +22,10 @@ localPort = 8090
 externalPort = 3001
 
 [[ports]]
+localPort = 8097
+externalPort = 3000
+
+[[ports]]
 localPort = 8099
 externalPort = 8099
 
@@ -40,4 +44,4 @@ waitForPort = 8081
 [deployment]
 deploymentTarget = "static"
 publicDir = "dist"
-build = ["npx", "expo", "export", "--platform", "web"]
+build = ["npm", "run", "build:web"]

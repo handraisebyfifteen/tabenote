@@ -4,13 +4,14 @@
  * 出す内容は「事実」と「比較」と「料理としての釣り合い」のみ。
  * 効能・症状・点数は出さない(指示書 2章)。
  *
- * 五味の過不足 / 5大分類の過不足 / 季節との関係 / 正反対の検知 / 補うなら / 調理法の方向性 / 手帳に保存。
+ * 五味の過不足 / 5大分類の過不足 / 季節との関係 / 正反対の検知 / 補うなら / 調理法の方向性 /
+ * AIの献立アイデア(フェーズ9。AI_PROXY_URL 未設定なら出さない) / 手帳に保存。
  * 「補うなら」の候補は、お気に入り・選択履歴・季節の推奨(性)を優先する(logic/suggest)。
- * AIによる献立提案(有料)はフェーズ9で実装する。
  */
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
+  ActivityIndicator,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -20,6 +21,7 @@ import {
 } from 'react-native';
 
 import FlavorPentagon from '@/components/FlavorPentagon';
+import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
 import { getFood, type Food } from '@/data/foods';
 import { useLang } from '@/i18n/LanguageContext';
@@ -31,15 +33,22 @@ import {
   joinFoodNames,
 } from '@/i18n/terms';
 import { aggregateFlavors, dominantFlavors, missingFlavors } from '@/logic/flavors';
-import { missingCats } from '@/logic/coverage';
+import { adviceMissingCats } from '@/logic/coverage';
 import { averageNatureLevel } from '@/logic/nature';
 import { findOppositePair } from '@/logic/opposites';
-import { getFiveSeason } from '@/logic/season';
+import {
+  SEASON_RECOMMENDATIONS,
+  getFiveSeason,
+  type FiveSeason,
+  type FiveSeasonInfo,
+} from '@/logic/season';
 import {
   EMPTY_SUGGESTION_CONTEXT,
   fillSuggestions,
   type SuggestionContext,
 } from '@/logic/suggest';
+import { aiEnabled, suggestMenu } from '@/lib/ai';
+import { useBilling } from '@/lib/BillingContext';
 import { addSavedCombo, loadUserData } from '@/lib/storage';
 
 export default function AdviceScreen() {
@@ -48,7 +57,10 @@ export default function AdviceScreen() {
   const { lang } = useLang();
   const t = getStrings(lang);
 
-  const { ids } = useLocalSearchParams<{ ids: string }>();
+  const { ids, season: seasonParam } = useLocalSearchParams<{
+    ids: string;
+    season?: string;
+  }>();
   const foods = useMemo(
     () =>
       (ids ?? '')
@@ -62,9 +74,21 @@ export default function AdviceScreen() {
   const natureLevel = useMemo(() => averageNatureLevel(foods), [foods]);
   const missing = missingFlavors(totals);
   const dominant = dominantFlavors(totals);
-  const missingCategories = missingCats(foods);
+  const missingCategories = adviceMissingCats(foods);
   const opposite = useMemo(() => findOppositePair(foods), [foods]);
-  const seasonInfo = useMemo(() => getFiveSeason(new Date()), []);
+  // 組み合わせ画面の「季節の枠」で選んだ季節に従う。無指定・今日と同じなら今日の判定
+  const seasonInfo = useMemo<FiveSeasonInfo>(() => {
+    const today = getFiveSeason(new Date());
+    const s = seasonParam as FiveSeason | undefined;
+    if (
+      s !== undefined &&
+      s !== today.season &&
+      Object.hasOwn(SEASON_RECOMMENDATIONS, s)
+    ) {
+      return { season: s, recommendation: SEASON_RECOMMENDATIONS[s] };
+    }
+    return today;
+  }, [seasonParam]);
 
   const [saved, setSaved] = useState(false);
 
@@ -86,10 +110,39 @@ export default function AdviceScreen() {
     };
   }, [seasonInfo]);
 
+  /** 「ほかの候補」ボタンで進めるページ。候補の窓をずらす */
+  const [suggestPage, setSuggestPage] = useState(0);
   const suggestions = useMemo(
-    () => (foods.length > 0 ? fillSuggestions(foods, suggestionCtx) : null),
-    [foods, suggestionCtx],
+    () => (foods.length > 0 ? fillSuggestions(foods, suggestionCtx, suggestPage) : null),
+    [foods, suggestionCtx, suggestPage],
   );
+
+  // AIの献立アイデア(フェーズ9)。表現の制約はサーバー側(workers/ai-proxy)で強制する
+  const { appUserId } = useBilling();
+  const [aiText, setAiText] = useState<string | null>(null);
+  const [aiBusy, setAiBusy] = useState(false);
+  const [aiError, setAiError] = useState(false);
+
+  const askAi = async () => {
+    if (aiBusy) return;
+    setAiBusy(true);
+    setAiError(false);
+    try {
+      const text = await suggestMenu({
+        foods: foods.map((f) => foodName(f, lang)),
+        season: fiveSeasonName(seasonInfo, lang),
+        recommendedFlavors: seasonInfo.recommendation.flavors,
+        missingFlavors: missing,
+        lang,
+        appUserId: appUserId ?? undefined,
+      });
+      setAiText(text);
+    } catch {
+      setAiError(true);
+    } finally {
+      setAiBusy(false);
+    }
+  };
 
   const save = async () => {
     if (saved) return;
@@ -122,6 +175,8 @@ export default function AdviceScreen() {
       style={{ backgroundColor: c.background }}
       contentContainerStyle={styles.container}
     >
+      <PageHead {...t.meta.advice} path="/advice" />
+
       <View style={styles.pentagonArea}>
         <FlavorPentagon
           totals={totals}
@@ -180,6 +235,12 @@ export default function AdviceScreen() {
               color={c}
             />
           ))}
+          <Pressable
+            style={[styles.fillMore, { backgroundColor: c.backgroundSelected }]}
+            onPress={() => setSuggestPage((p) => p + 1)}
+          >
+            <Text style={{ color: c.text, fontSize: 13 }}>{t.advice.fillMore}</Text>
+          </Pressable>
           <Text style={[styles.suggestNote, { color: c.textSecondary }]}>
             {t.advice.fillNote}
           </Text>
@@ -190,6 +251,42 @@ export default function AdviceScreen() {
         <Section title={t.advice.cookingTitle} color={c}>
           {cookingText}
         </Section>
+      )}
+
+      {aiEnabled() && (
+        <View style={[styles.section, { backgroundColor: c.backgroundElement }]}>
+          <Text style={[styles.sectionTitle, { color: c.textSecondary }]}>
+            {t.advice.aiTitle}
+          </Text>
+          {aiText !== null && (
+            <Text style={[styles.sectionBody, { color: c.text }]}>{aiText}</Text>
+          )}
+          {aiError && (
+            <Text style={[styles.sectionBody, { color: c.textSecondary }]}>
+              {t.advice.aiError}
+            </Text>
+          )}
+          {aiBusy ? (
+            <View style={styles.aiLoading}>
+              <ActivityIndicator color={c.textSecondary} />
+              <Text style={{ color: c.textSecondary, fontSize: 13 }}>
+                {t.advice.aiLoading}
+              </Text>
+            </View>
+          ) : (
+            <Pressable
+              style={[styles.aiButton, { backgroundColor: c.backgroundSelected }]}
+              onPress={askAi}
+            >
+              <Text style={{ color: c.text, fontSize: 13 }}>
+                {aiText === null && !aiError ? t.advice.aiButton : t.advice.aiRetryButton}
+              </Text>
+            </Pressable>
+          )}
+          <Text style={[styles.suggestNote, { color: c.textSecondary }]}>
+            {t.advice.aiNote}
+          </Text>
+        </View>
       )}
 
       <Pressable
@@ -271,7 +368,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
-  suggestNote: { fontSize: 11, lineHeight: 16, marginTop: 8 },
+  fillMore: {
+    alignSelf: 'flex-start',
+    borderRadius: 14,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginTop: 8,
+  },
+  aiButton: {
+    alignSelf: 'flex-start',
+    borderRadius: 14,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginTop: 4,
+  },
+  aiLoading: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 4 },
+  suggestNote: { fontSize: 11, lineHeight: 16, marginTop: 4 },
   saveButton: {
     backgroundColor: '#8FAF8B',
     borderRadius: 12,

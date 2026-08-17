@@ -92,8 +92,11 @@ const FOUR_SEASON_LABELS: Record<FourSeason, string> = {
 };
 
 export function fiveSeasonLabel(info: FiveSeasonInfo): string {
-  if (info.season === 'doyo' && info.doyoParent) {
-    return `長夏(${FOUR_SEASON_LABELS[info.doyoParent]}土用)`;
+  if (info.season === 'doyo') {
+    // doyoParent がない場合(手動で季節を選んだときなど)は総称で返す
+    return info.doyoParent
+      ? `長夏(${FOUR_SEASON_LABELS[info.doyoParent]}土用)`
+      : '長夏(土用)';
   }
   return FOUR_SEASON_LABELS[info.season as FourSeason];
 }

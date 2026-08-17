@@ -16,9 +16,12 @@ import {
   useColorScheme,
 } from 'react-native';
 
-import FlavorPentagon from '@/components/FlavorPentagon';
+import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
+import FoodThumb from '@/components/FoodThumb';
+import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
-import { getFood, isReferenceOnly } from '@/data/foods';
+import { getFoodEmoji } from '@/data/foodEmoji';
+import { FOODS, getFood, isReferenceOnly } from '@/data/foods';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import {
@@ -33,6 +36,14 @@ import {
 import { aggregateFlavors } from '@/logic/flavors';
 import { natureValue } from '@/logic/nature';
 import { loadUserData, setFoodNote, toggleFavorite } from '@/lib/storage';
+
+/**
+ * web の静的書き出しで全食材ぶんのHTMLを作る(書き出し時に Node.js で1度だけ動く)。
+ * これが無いと /food/[id].html だけが出力され、tabenote.app/food/xxx の直リンクが 404 になる。
+ */
+export async function generateStaticParams(): Promise<Record<string, string>[]> {
+  return FOODS.map((food) => ({ id: food.id }));
+}
 
 export default function FoodDetailScreen() {
   const scheme = useColorScheme();
@@ -107,8 +118,23 @@ export default function FoodDetailScreen() {
       keyboardShouldPersistTaps="handled"
     >
       <Stack.Screen options={{ title: foodName(food, lang) }} />
+      <PageHead
+        {...t.meta.food(foodName(food, lang), {
+          nature: food.nature !== '' ? natureLabel(food.nature, lang) : '',
+          flavors: food.flavors.length > 0 ? flavorsLabel(food.flavors, lang) : '',
+          meridians: food.meridians !== '' ? meridiansLabel(food.meridians, lang) : '',
+          category: cat15Label(food.cat15, lang),
+        })}
+        path={`/food/${food.id}`}
+      />
 
       <View style={styles.header}>
+        <FoodThumb
+          name={foodName(food, lang)}
+          emoji={getFoodEmoji(food.name)}
+          color={natureColor(refOnly ? null : natureValue(food))}
+          size={48}
+        />
         <View style={styles.headerName}>
           <Text style={[styles.name, { color: c.text }]}>{foodName(food, lang)}</Text>
           {lang === 'en' && (
@@ -219,7 +245,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    gap: 12,
   },
   headerName: { flex: 1, gap: 2 },
   name: { fontSize: 26, fontWeight: '700' },

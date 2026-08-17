@@ -15,3 +15,12 @@ export function missingCats(foods: Food[]): Cat5[] {
   const present = new Set(foods.map((f) => f.cat5));
   return ALL_CAT5.filter((c) => !present.has(c));
 }
+
+/**
+ * アドバイスで「入っていません」と指摘する分類。
+ * 調味料・飲み物は調理の過程で自然に加わるため、不足として数えない
+ * (数えると「調味料が入っていません」という空振りの指摘になる)。
+ */
+export function adviceMissingCats(foods: Food[]): Cat5[] {
+  return missingCats(foods).filter((c) => c !== 'season');
+}

@@ -3,12 +3,12 @@
  *
  * 実体は workers/ai-proxy(Cloudflare Worker)。アプリはAPIキーを持たない。
  * AI_PROXY_URL を設定するまでこの機能は無効(aiEnabled() が false)。
- * UIへの組み込みは課金(フェーズ8)のゲートと合わせて行う。
+ * 呼び出し側は useBilling() の isPro でゲートし、appUserId をそのまま渡す(lib/BillingContext)。
  */
 import type { Lang } from '@/i18n/terms';
 
-/** デプロイ後に Worker の URL を設定する(例: 'https://tabenote-ai.xxx.workers.dev') */
-export const AI_PROXY_URL = '';
+/** Worker の URL(例: 'https://tabenote-ai.xxx.workers.dev')。.env.local / EAS の環境変数で渡す */
+export const AI_PROXY_URL = process.env.EXPO_PUBLIC_AI_PROXY_URL ?? '';
 
 export function aiEnabled(): boolean {
   return AI_PROXY_URL !== '';

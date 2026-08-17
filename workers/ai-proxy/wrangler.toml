@@ -1,6 +1,8 @@
 name = "tabenote-ai"
 main = "src/index.ts"
 compatibility_date = "2026-08-01"
+# @anthropic-ai/sdk が node:fs / node:path を参照するため必須
+compatibility_flags = ["nodejs_compat"]
 
 # シークレットはファイルに書かず、以下で登録する:
 #   npx wrangler secret put ANTHROPIC_API_KEY

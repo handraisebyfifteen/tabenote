@@ -12,6 +12,7 @@ import {
   FlatList,
   Pressable,
   ScrollView,
+  SectionList,
   StyleSheet,
   Text,
   TextInput,
@@ -20,20 +21,33 @@ import {
 } from 'react-native';
 
 import { natureColor } from '@/components/FlavorPentagon';
+import FoodThumb from '@/components/FoodThumb';
+import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
+import { getFoodEmoji } from '@/data/foodEmoji';
 import { FOODS, getFood, isReferenceOnly, searchFoods } from '@/data/foods';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { cat15Label, foodName, natureLabel } from '@/i18n/terms';
 import { natureValue } from '@/logic/nature';
 import {
+  EMPTY_USER_DATA,
   deleteSavedCombo,
   loadUserData,
+  toggleFavorite,
   updateSavedCombo,
   type SavedCombo,
+  type UserData,
 } from '@/lib/storage';
 
 type Segment = 'combos' | 'zukan' | 'guide';
+
+/** 保存した組み合わせの日付 'YYYY-MM-DD' を Date にする(見出しの整形用) */
+function parseYmd(ymd: string): Date | null {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd);
+  if (m === null) return null;
+  return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+}
 
 export default function NotebookScreen() {
   const scheme = useColorScheme();
@@ -42,13 +56,13 @@ export default function NotebookScreen() {
   const t = getStrings(lang);
 
   const [segment, setSegment] = useState<Segment>('combos');
-  const [combos, setCombos] = useState<SavedCombo[]>([]);
+  const [data, setData] = useState<UserData>(EMPTY_USER_DATA);
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
       loadUserData().then((d) => {
-        if (active) setCombos(d.savedCombos);
+        if (active) setData(d);
       });
       return () => {
         active = false;
@@ -64,6 +78,8 @@ export default function NotebookScreen() {
 
   return (
     <View style={[styles.screen, { backgroundColor: c.background }]}>
+      <PageHead {...t.meta.notebook} path="/notebook" />
+
       <View style={styles.segmentRow}>
         {segments.map((s) => (
           <Pressable
@@ -90,8 +106,16 @@ export default function NotebookScreen() {
         ))}
       </View>
 
-      {segment === 'combos' && <CombosSection combos={combos} onChange={setCombos} />}
-      {segment === 'zukan' && <ZukanSection />}
+      {segment === 'combos' && (
+        <CombosSection combos={data.savedCombos} onChange={setData} />
+      )}
+      {segment === 'zukan' && (
+        <ZukanSection
+          favorites={data.favorites}
+          notes={data.notes}
+          onChange={setData}
+        />
+      )}
       {segment === 'guide' && <GuideSection />}
     </View>
   );
@@ -104,7 +128,7 @@ function CombosSection({
   onChange,
 }: {
   combos: SavedCombo[];
-  onChange: (combos: SavedCombo[]) => void;
+  onChange: (data: UserData) => void;
 }) {
   const scheme = useColorScheme();
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
@@ -145,7 +169,7 @@ function CombosSection({
       s.persistedName = name;
       s.persistedMemo = s.memo;
       const write = updateSavedCombo(s.comboId, { name, memo: s.memo });
-      if (updateUi) write.then((d) => onChange(d.savedCombos));
+      if (updateUi) write.then(onChange);
     },
     [onChange],
   );
@@ -184,11 +208,24 @@ function CombosSection({
             draftState.current = { ...emptyDraft };
           }
           const d = await deleteSavedCombo(combo.id);
-          onChange(d.savedCombos);
+          onChange(d);
         },
       },
     ]);
   };
+
+  // 手帳らしく日付ごとの見出しでまとめる(新しい日付が上、同じ日の中も新しいものが上)
+  const sections = useMemo(() => {
+    const byDate = new Map<string, SavedCombo[]>();
+    for (const combo of combos) {
+      const arr = byDate.get(combo.date) ?? [];
+      arr.unshift(combo);
+      byDate.set(combo.date, arr);
+    }
+    return [...byDate.entries()]
+      .sort((a, b) => (a[0] < b[0] ? 1 : -1))
+      .map(([date, data]) => ({ date, data }));
+  }, [combos]);
 
   if (combos.length === 0) {
     return (
@@ -201,10 +238,19 @@ function CombosSection({
   }
 
   return (
-    <FlatList
-      data={combos}
+    <SectionList
+      sections={sections}
       keyExtractor={(combo) => combo.id}
       contentContainerStyle={styles.list}
+      stickySectionHeadersEnabled={false}
+      renderSectionHeader={({ section }) => {
+        const d = parseYmd(section.date);
+        return (
+          <Text style={[styles.dateHeading, { color: c.textSecondary }]}>
+            {d !== null ? t.notebook.dateHeading(d) : section.date}
+          </Text>
+        );
+      }}
       renderItem={({ item }) => {
         const expanded = expandedId === item.id;
         return (
@@ -224,12 +270,12 @@ function CombosSection({
             ) : (
               <Text style={[styles.comboName, { color: c.text }]}>{item.name}</Text>
             )}
-            <Text style={[styles.comboDate, { color: c.textSecondary }]}>{item.date}</Text>
             <Text style={[styles.comboFoods, { color: c.text }]}>
               {item.foodIds
                 .map((id) => {
                   const food = getFood(id);
-                  return food ? foodName(food, lang) : undefined;
+                  if (food === undefined) return undefined;
+                  return `${getFoodEmoji(food.name) ?? ''}${foodName(food, lang)}`;
                 })
                 .filter(Boolean)
                 .join(lang === 'ja' ? '・' : ', ')}
@@ -298,18 +344,37 @@ function CombosSection({
 
 /* ---------------- 図鑑 ---------------- */
 
-function ZukanSection() {
+type ZukanFilter = 'all' | 'starred' | 'memo';
+
+function ZukanSection({
+  favorites,
+  notes,
+  onChange,
+}: {
+  favorites: string[];
+  notes: Record<string, string>;
+  onChange: (data: UserData) => void;
+}) {
   const scheme = useColorScheme();
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
   const { lang } = useLang();
   const t = getStrings(lang);
 
   const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState<ZukanFilter>('all');
 
-  const foods = useMemo(
-    () => (query.trim() === '' ? FOODS : searchFoods(query)),
-    [query],
-  );
+  const foods = useMemo(() => {
+    const base = query.trim() === '' ? FOODS : searchFoods(query);
+    if (filter === 'starred') return base.filter((f) => favorites.includes(f.id));
+    if (filter === 'memo') return base.filter((f) => (notes[f.id] ?? '').trim() !== '');
+    return base;
+  }, [query, filter, favorites, notes]);
+
+  const filters: { key: ZukanFilter; label: string }[] = [
+    { key: 'all', label: t.notebook.filterAll },
+    { key: 'starred', label: t.notebook.filterStarred },
+    { key: 'memo', label: t.notebook.filterMemo },
+  ];
 
   return (
     <View style={styles.zukan}>
@@ -320,31 +385,64 @@ function ZukanSection() {
         value={query}
         onChangeText={setQuery}
       />
+      <View style={styles.filterRow}>
+        {filters.map((f) => (
+          <Pressable
+            key={f.key}
+            style={[
+              styles.filterChip,
+              {
+                backgroundColor:
+                  filter === f.key ? '#8FAF8B' : c.backgroundElement,
+              },
+            ]}
+            onPress={() => setFilter(f.key)}
+          >
+            <Text style={{ color: filter === f.key ? '#fff' : c.text, fontSize: 13 }}>
+              {f.label}
+            </Text>
+          </Pressable>
+        ))}
+      </View>
       <FlatList
         data={foods}
         keyExtractor={(f) => f.id}
+        ListEmptyComponent={
+          filter !== 'all' && query.trim() === '' ? (
+            <Text style={[styles.emptyText, styles.filterEmpty, { color: c.textSecondary }]}>
+              {t.notebook.filterEmpty}
+            </Text>
+          ) : null
+        }
         renderItem={({ item }) => {
           const refOnly = isReferenceOnly(item);
+          const memo = (notes[item.id] ?? '').trim();
           return (
             <Pressable
               style={styles.zukanRow}
               onPress={() => router.push(`/food/${item.id}`)}
+              onLongPress={() => toggleFavorite(item.id).then(onChange)}
             >
-              <View
-                style={[
-                  styles.dot,
-                  {
-                    backgroundColor: refOnly
-                      ? c.backgroundSelected
-                      : natureColor(natureValue(item)),
-                  },
-                ]}
+              <FoodThumb
+                name={foodName(item, lang)}
+                emoji={getFoodEmoji(item.name)}
+                color={natureColor(refOnly ? null : natureValue(item))}
               />
-              <Text
-                style={[styles.zukanName, { color: refOnly ? c.textSecondary : c.text }]}
-              >
-                {foodName(item, lang)}
-              </Text>
+              <View style={styles.zukanName}>
+                <Text style={{ color: refOnly ? c.textSecondary : c.text, fontSize: 15 }}>
+                  {favorites.includes(item.id) ? '★ ' : ''}
+                  {foodName(item, lang)}
+                  {memo !== '' ? ' ✎' : ''}
+                </Text>
+                {filter === 'memo' && memo !== '' && (
+                  <Text
+                    style={[styles.zukanMemo, { color: c.textSecondary }]}
+                    numberOfLines={1}
+                  >
+                    {memo}
+                  </Text>
+                )}
+              </View>
               {item.nature !== '' && (
                 <Text style={[styles.zukanNature, { color: c.textSecondary }]}>
                   {natureLabel(item.nature, lang)}
@@ -472,7 +570,8 @@ const styles = StyleSheet.create({
   empty: { flex: 1, justifyContent: 'center', padding: 32 },
   emptyText: { fontSize: 14, lineHeight: 22, textAlign: 'center' },
   list: { padding: 16, gap: 12 },
-  card: { borderRadius: 12, padding: 16, gap: 4 },
+  dateHeading: { fontSize: 12, marginTop: 8, marginBottom: 2 },
+  card: { borderRadius: 12, padding: 16, gap: 4, marginBottom: 10 },
   comboName: { fontSize: 16, fontWeight: '600' },
   comboNameInput: {
     fontSize: 16,
@@ -482,7 +581,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 6,
   },
-  comboDate: { fontSize: 12 },
   comboActions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   comboFoods: { fontSize: 14, marginTop: 4, lineHeight: 20 },
   comboMemoPreview: { fontSize: 13, marginTop: 6, lineHeight: 19 },
@@ -502,6 +600,18 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   zukan: { flex: 1 },
+  filterRow: {
+    flexDirection: 'row',
+    gap: 8,
+    paddingHorizontal: 16,
+    paddingBottom: 8,
+  },
+  filterChip: {
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  filterEmpty: { paddingHorizontal: 32, paddingTop: 32 },
   search: {
     marginHorizontal: 16,
     marginBottom: 8,
@@ -517,8 +627,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     gap: 10,
   },
-  dot: { width: 10, height: 10, borderRadius: 5 },
-  zukanName: { fontSize: 15, flex: 1 },
+  zukanName: { flex: 1, gap: 2 },
+  zukanMemo: { fontSize: 12 },
   zukanNature: { fontSize: 12 },
   zukanCat: { fontSize: 11 },
   guide: { padding: 16, gap: 12 },

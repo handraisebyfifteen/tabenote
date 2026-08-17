@@ -13,6 +13,7 @@ import {
   useColorScheme,
 } from 'react-native';
 
+import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
 import { getTermText } from '@/data/solarTermTexts';
 import { useLang } from '@/i18n/LanguageContext';
@@ -43,6 +44,8 @@ export default function HomeScreen() {
       style={{ backgroundColor: c.background }}
       contentContainerStyle={styles.container}
     >
+      <PageHead {...t.meta.home} path="/" />
+
       <Text style={[styles.date, { color: c.textSecondary }]}>
         {t.home.dateLabel(now)}
       </Text>
