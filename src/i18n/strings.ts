@@ -106,6 +106,9 @@ export interface Strings {
     deleteMessage(name: string): string;
     deleteCancel: string;
     deleteConfirm: string;
+    /** 組み合わせの検索窓と、1件も当たらなかったとき */
+    combosPlaceholder(count: number): string;
+    combosSearchEmpty: string;
     zukanPlaceholder(count: number): string;
     /** 組み合わせタイムラインの日付見出し */
     dateHeading(d: Date): string;
@@ -420,6 +423,8 @@ const ja: Strings = {
     deleteMessage: (name) => `「${name}」を手帳から削除しますか?`,
     deleteCancel: 'やめる',
     deleteConfirm: '削除する',
+    combosPlaceholder: (count) => `組み合わせをさがす(全${count}件)`,
+    combosSearchEmpty: '見つかりませんでした。名前・メモ・食材の名前・日付で探せます。',
     zukanPlaceholder: (count) => `図鑑をさがす(全${count}品目)`,
     dateHeading: (d) =>
       `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日(${WEEKDAYS_JA[d.getDay()]})`,
@@ -534,7 +539,7 @@ const ja: Strings = {
     lead: 'tabenote のご利用には月額プランのご登録が必要です。',
     includedTitle: 'プランでできること',
     includedBody:
-      '選んだ食材の組み合わせを五味・性の五角形で確かめる\n438品目の食材の図鑑(五味・性・帰経・分類)\n二十四節気と五季、いまの季節に合う味の表示\n食材に★とメモ、組み合わせを手帳に保存\n選んだ食材と季節から、AIが献立のアイデアを提案',
+      '選んだ食材の組み合わせを五味・性の五角形で確かめる\n435品目の食材の図鑑(五味・性・帰経・分類)\n二十四節気と五季、いまの季節に合う味の表示\n食材に★とメモ、組み合わせを手帳に保存\n選んだ食材と季節から、AIが献立のアイデアを提案',
     periodNote: '1か月ごとの自動更新',
     subscribe: '登録する',
     renewalNote:
@@ -562,7 +567,7 @@ const ja: Strings = {
       },
       {
         title: '手帳に、自分の言葉で',
-        body: '気に入った組み合わせは手帳に保存。438品目の図鑑には★とメモが付けられます。効能はアプリが書きません。書くのは、持ち主です。',
+        body: '気に入った組み合わせは手帳に保存。435品目の図鑑には★とメモが付けられます。効能はアプリが書きません。書くのは、持ち主です。',
       },
       {
         title: '季節と、AIの献立案',
@@ -583,7 +588,7 @@ const ja: Strings = {
         body: '食材を選ぶと、その組み合わせの五味(酸・苦・甘・辛・鹹)の構成と、性(寒熱)の傾向が、ひとつの五角形として表示されます。何が多くて何が足りないのか、形で分かります。',
       },
       {
-        title: '438品目の図鑑',
+        title: '435品目の図鑑',
         body: '収録した食材それぞれについて、五味・性・帰経・分類を掲載。★を付けたり、自分の言葉でメモを残したりできます。',
       },
       {
@@ -638,7 +643,7 @@ const ja: Strings = {
     about: {
       title: 'tabenoteについて | tabenote',
       description:
-        '中医学で伝統的に用いられてきた食材の分類を、図と言葉で確かめる薬膳手帳。五角形の図、438品目の図鑑、二十四節気と五季、AIの献立案。効能はアプリが書きません。',
+        '中医学で伝統的に用いられてきた食材の分類を、図と言葉で確かめる薬膳手帳。五角形の図、435品目の図鑑、二十四節気と五季、AIの献立案。効能はアプリが書きません。',
     },
     food: (name, a) => {
       const facts = [
@@ -766,6 +771,9 @@ const en: Strings = {
     deleteMessage: (name) => `Remove “${name}” from your notebook?`,
     deleteCancel: 'Cancel',
     deleteConfirm: 'Delete',
+    combosPlaceholder: (count) => `Search your combinations (${count} saved)`,
+    combosSearchEmpty:
+      'Nothing matched. You can search by name, notes, ingredient names, or date.',
     zukanPlaceholder: (count) => `Search the encyclopedia (${count} entries)`,
     dateHeading: (d) =>
       `${WEEKDAYS_EN[d.getDay()]}, ${MONTHS_EN[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`,
@@ -883,7 +891,7 @@ const en: Strings = {
     lead: 'A monthly plan is required to use tabenote.',
     includedTitle: 'What you can do',
     includedBody:
-      'See any combination of ingredients as a pentagon of the five flavors and nature\nAn encyclopedia of 438 ingredients (flavor, nature, meridians, category)\nThe 24 solar terms, the five seasons, and the flavors favored right now\nStar ingredients, write notes, save combinations to your notebook\nAI menu ideas from the ingredients you picked and the season',
+      'See any combination of ingredients as a pentagon of the five flavors and nature\nAn encyclopedia of 435 ingredients (flavor, nature, meridians, category)\nThe 24 solar terms, the five seasons, and the flavors favored right now\nStar ingredients, write notes, save combinations to your notebook\nAI menu ideas from the ingredients you picked and the season',
     periodNote: 'Renews automatically every month',
     subscribe: 'Subscribe',
     renewalNote:
@@ -911,7 +919,7 @@ const en: Strings = {
       },
       {
         title: 'A notebook, in your own words',
-        body: 'Save the combinations you like. Star any of the 438 ingredients and write your own notes. The app never writes effects — the owner does.',
+        body: 'Save the combinations you like. Star any of the 435 ingredients and write your own notes. The app never writes effects — the owner does.',
       },
       {
         title: 'Seasons, and AI menu ideas',
@@ -933,7 +941,7 @@ const en: Strings = {
         body: 'Pick ingredients, and the combination’s five flavors (sour, bitter, sweet, pungent, salty) and thermal nature are drawn as a single pentagon. What is abundant and what is missing — the shape tells you.',
       },
       {
-        title: 'An index of 438 ingredients',
+        title: 'An index of 435 ingredients',
         body: 'Each ingredient lists its five flavors, nature, meridians, and category. Star the ones you like and keep notes in your own words.',
       },
       {
@@ -988,7 +996,7 @@ const en: Strings = {
     about: {
       title: 'About | tabenote',
       description:
-        'A yakuzen notebook that shows the traditional classifications of ingredients — five flavors, nature, meridians, category — as shapes and words. A pentagon chart, an index of 438 ingredients, the 24 solar terms and five seasons, and AI menu ideas. The app never writes effects.',
+        'A yakuzen notebook that shows the traditional classifications of ingredients — five flavors, nature, meridians, category — as shapes and words. A pentagon chart, an index of 435 ingredients, the 24 solar terms and five seasons, and AI menu ideas. The app never writes effects.',
     },
     food: (name, a) => {
       const facts = [

@@ -4,9 +4,14 @@ import {
   ALL_CAT5,
   FOODS,
   SELECTABLE_FOODS,
+  VISIBLE_FOODS,
+  getFood,
   searchFoods,
   toHiragana,
 } from '../../data/foods';
+
+/** 一覧に出さない3件。データからは消さないので FOODS には残る */
+const HIDDEN = ['いぬにく', 'くじらにく', 'はとにく'];
 
 describe('参照データ(tabenote_foods.json)', () => {
   it('438件ある', () => {
@@ -23,7 +28,24 @@ describe('参照データ(tabenote_foods.json)', () => {
     expect(referenceOnly.map((f) => f.name).sort()).toEqual(
       ['かたくりこ', 'グリーンピース', 'しちめんちょう', 'パプリカ', 'ひらたけ'].sort(),
     );
-    expect(SELECTABLE_FOODS.length).toBe(433);
+    // 438 -(非表示3 + 参照のみ5)
+    expect(SELECTABLE_FOODS.length).toBe(430);
+  });
+
+  it('非表示の3件は一覧・検索に出ないが、ID からは引ける', () => {
+    expect(FOODS.filter((f) => f.visible === false).map((f) => f.name).sort()).toEqual(
+      [...HIDDEN].sort(),
+    );
+    expect(VISIBLE_FOODS.length).toBe(435);
+    for (const name of HIDDEN) {
+      const food = FOODS.find((f) => f.name === name)!;
+      expect(VISIBLE_FOODS).not.toContain(food);
+      expect(SELECTABLE_FOODS).not.toContain(food);
+      // 名前で直接引いても出さない
+      expect(searchFoods(name).map((f) => f.id)).not.toContain(food.id);
+      // 保存済みの手帳・★が参照先を失わないよう、ID からは今までどおり引ける
+      expect(getFood(food.id)).toBe(food);
+    }
   });
 
   it('nature / flavors / cat15 / cat5 がすべて定義済みの値', () => {

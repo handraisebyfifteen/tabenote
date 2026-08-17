@@ -137,7 +137,13 @@ function main() {
     );
   }
 
-  const list = [...urls].sort();
+  // 一覧から外した食材(visible: false)は sitemap に載せない。アプリの図鑑・検索に
+  // 出さないのに、検索エンジンには出し続けるのでは非表示にした意味がないため。
+  // ページ自体は残す。保存済みの手帳から辿るリンクを切らないため(取りこぼし検査も上のまま)
+  const hidden = new Set(
+    foods.filter((f) => f.visible === false).map((f) => `${siteUrl}/food/${f.id}`),
+  );
+  const list = [...urls].filter((u) => !hidden.has(u)).sort();
   if (list.length > MAX_URLS) {
     throw new Error(`URLが ${list.length} 件で上限 ${MAX_URLS} を超えた(分割が必要)`);
   }
@@ -153,7 +159,10 @@ function main() {
   fs.writeFileSync(path.join(OUT_DIR, 'sitemap.xml'), xml);
 
   console.log(`間引き: ${pruned.length > 0 ? pruned.join(', ') : 'なし'}`);
-  console.log(`sitemap.xml: ${list.length} URL(うち食材 ${foods.length} 件)`);
+  console.log(
+    `sitemap.xml: ${list.length} URL` +
+      `(うち食材 ${foods.length - hidden.size} 件 / 非表示 ${hidden.size} 件は除外)`,
+  );
 }
 
 main();

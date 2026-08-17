@@ -1387,7 +1387,8 @@
  },
  "f6aea3d": {
   "icon": "hato",
-  "catIcon": "cat_niku"
+  "catIcon": "cat_niku",
+  "visible": false
  },
  "f1518d4": {
   "icon": "uma",

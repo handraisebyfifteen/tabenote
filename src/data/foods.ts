@@ -40,15 +40,23 @@ export interface Food {
   icon: string;
   /** カテゴリアイコンキー(フォールバック用) */
   catIcon: string;
-  /** false のときのみ存在。一覧から除外する */
+  /**
+   * false のときのみ存在。一覧・検索から除外する。
+   * いぬにく・くじらにく・はとにくの3件。出典書籍には載っている項目なので
+   * データからは消さない(消すと出典との対応が崩れ、ID を持つ既存の手帳・★も
+   * 参照先を失う)。表に出さないだけにして、getFood では今までどおり引ける。
+   */
   visible?: boolean;
 }
 
-/** 全438件(参照のみ項目を含む) */
+/** 出典どおりの全438件(非表示3件・参照のみ5件を含む)。ID から引くときの母集合 */
 export const FOODS = rawFoods as Food[];
 
-/** 選択可能な食材(nature が空の「参照のみ項目」5件を除く) */
-export const SELECTABLE_FOODS: Food[] = FOODS.filter((f) => f.nature !== '');
+/** 画面に出す食材(visible: false の3件を除く) */
+export const VISIBLE_FOODS: Food[] = FOODS.filter((f) => f.visible !== false);
+
+/** 選択可能な食材(さらに nature が空の「参照のみ項目」5件を除く) */
+export const SELECTABLE_FOODS: Food[] = VISIBLE_FOODS.filter((f) => f.nature !== '');
 
 const byId = new Map<string, Food>(FOODS.map((f) => [f.id, f]));
 
@@ -102,11 +110,14 @@ export function toHiragana(s: string): string {
   );
 }
 
-/** 名前・別名(note 内)・英語名に対する部分一致検索 */
+/**
+ * 名前・別名(note 内)・英語名に対する部分一致検索。
+ * 非表示の食材は、名前で直接引かれても出さない。
+ */
 export function searchFoods(query: string): Food[] {
   const q = toHiragana(query.trim().toLowerCase());
   if (q === '') return [];
-  return FOODS.filter((f) => {
+  return VISIBLE_FOODS.filter((f) => {
     const name = toHiragana(f.name.toLowerCase());
     const note = toHiragana((f.note ?? '').toLowerCase());
     const en = (FOOD_NAMES_EN[f.id] ?? '').toLowerCase();

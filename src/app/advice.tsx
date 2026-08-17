@@ -317,13 +317,18 @@ export default function AdviceScreen() {
         <Text style={styles.saveText}>{saved ? t.advice.savedDone : t.advice.save}</Text>
       </Pressable>
 
-      {saved && (
-        <Pressable onPress={close}>
-          <Text style={[styles.backLink, { color: c.textSecondary }]}>
-            {t.advice.close}
-          </Text>
-        </Pressable>
-      )}
+      {/*
+        保存ボタンの下に、いつでも押せる閉じるボタンを置く。
+        モーダルの戻る矢印やスワイプでも閉じられるが、画面の終わりが「保存」だけだと
+        保存しないと先へ進めないように見える。保存せずに見ただけで閉じるほうが多いので、
+        出口は保存と同じ場所に、同じ大きさで並べる(色は控えめにして主従だけ付ける)。
+      */}
+      <Pressable
+        style={[styles.closeButton, { backgroundColor: c.backgroundElement }]}
+        onPress={close}
+      >
+        <Text style={[styles.closeText, { color: c.text }]}>{t.advice.close}</Text>
+      </Pressable>
     </ScrollView>
   );
 }
@@ -413,5 +418,7 @@ const styles = StyleSheet.create({
   },
   saveDone: { opacity: 0.6 },
   saveText: { color: '#fff', fontSize: 16, fontWeight: '600' },
-  backLink: { textAlign: 'center', padding: 8, fontSize: 14 },
+  // 保存ボタンと同じ形。塗りだけ弱くして、押し間違えても失うものがないほうを従にする
+  closeButton: { borderRadius: 12, paddingVertical: 14, alignItems: 'center' },
+  closeText: { fontSize: 16 },
 });

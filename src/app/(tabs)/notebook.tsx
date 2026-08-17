@@ -23,7 +23,14 @@ import { getFoodEmoji } from '@/data/foodEmoji';
 import PageHead from '@/components/PageHead';
 import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
-import { FOODS, getFood, isReferenceOnly, searchFoods } from '@/data/foods';
+import {
+  VISIBLE_FOODS,
+  getFood,
+  isReferenceOnly,
+  searchFoods,
+  toHiragana,
+} from '@/data/foods';
+import { FOOD_NAMES_EN } from '@/data/foodNamesEn';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
@@ -52,6 +59,28 @@ function parseYmd(ymd: string): Date | null {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd);
   if (m === null) return null;
   return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+}
+
+/**
+ * 組み合わせ1件を検索対象の文字列にする。
+ *
+ * 探すときに手がかりになるのは、自分で付けた名前とメモ、それに「何が入っていたか」。
+ * 食材名は保存されていない(ID だけ)ので、ここで引き直す。日本語名・別名・英語名を
+ * すべて含めるので、表示中の言語と違う言葉で打っても引ける。日付('2026-08-17')も
+ * 入れて、月で絞る使いかたに応えておく。
+ *
+ * 一覧から外した食材でも、その人が保存した記録には残る。名前で引けなくなるほうが
+ * 不便なので、ここでは分け隔てなく対象にする。
+ */
+function comboHaystack(combo: SavedCombo): string {
+  const foods = combo.foodIds.map((id) => {
+    const food = getFood(id);
+    if (food === undefined) return '';
+    return `${food.name} ${food.note ?? ''} ${FOOD_NAMES_EN[food.id] ?? ''}`;
+  });
+  return toHiragana(
+    `${combo.name} ${combo.memo} ${combo.date} ${foods.join(' ')}`.toLowerCase(),
+  );
 }
 
 export default function NotebookScreen() {
@@ -141,6 +170,7 @@ function CombosSection({
   const t = getStrings(lang);
 
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
   const [memoDraft, setMemoDraftUi] = useState('');
   const [nameDraft, setNameDraftUi] = useState('');
   // blur を経ずに閉じても編集が消えないよう、最新値と保存済み値を ref に持つ
@@ -238,10 +268,29 @@ function CombosSection({
     ]);
   };
 
+  /**
+   * 検索で絞る前に、開いているカードの編集を書き込んでから閉じる。
+   * 絞り込みでカードごと消えると blur を経ずに消えてしまい、書きかけが宙に浮く。
+   */
+  const onQueryChange = (text: string) => {
+    if (expandedId !== null) {
+      persistDraft(true);
+      setExpandedId(null);
+      draftState.current = { ...emptyDraft };
+    }
+    setQuery(text);
+  };
+
+  const matched = useMemo(() => {
+    const q = toHiragana(query.trim().toLowerCase());
+    if (q === '') return combos;
+    return combos.filter((combo) => comboHaystack(combo).includes(q));
+  }, [combos, query]);
+
   // 手帳らしく日付ごとの見出しでまとめる(新しい日付が上、同じ日の中も新しいものが上)
   const sections = useMemo(() => {
     const byDate = new Map<string, SavedCombo[]>();
-    for (const combo of combos) {
+    for (const combo of matched) {
       const arr = byDate.get(combo.date) ?? [];
       arr.unshift(combo);
       byDate.set(combo.date, arr);
@@ -249,7 +298,7 @@ function CombosSection({
     return [...byDate.entries()]
       .sort((a, b) => (a[0] < b[0] ? 1 : -1))
       .map(([date, data]) => ({ date, data }));
-  }, [combos]);
+  }, [matched]);
 
   if (combos.length === 0) {
     return (
@@ -262,107 +311,126 @@ function CombosSection({
   }
 
   return (
-    <SectionList
-      sections={sections}
-      keyExtractor={(combo) => combo.id}
-      contentContainerStyle={styles.list}
-      stickySectionHeadersEnabled={false}
-      renderSectionHeader={({ section }) => {
-        const d = parseYmd(section.date);
-        return (
-          <Text style={[styles.dateHeading, { color: c.textSecondary }]}>
-            {d !== null ? t.notebook.dateHeading(d) : section.date}
+    <View style={styles.combos}>
+      {/*
+        名前・メモ・食材名・日付で絞る。保存が増えるほど日付をたどるのが辛くなるので、
+        図鑑と同じ形の検索窓を同じ位置に置く(手帳の中で探しかたを揃える)
+      */}
+      <TextInput
+        style={[styles.search, { backgroundColor: c.backgroundElement, color: c.text }]}
+        placeholder={t.notebook.combosPlaceholder(combos.length)}
+        placeholderTextColor={c.textSecondary}
+        value={query}
+        onChangeText={onQueryChange}
+      />
+      <SectionList
+        sections={sections}
+        keyExtractor={(combo) => combo.id}
+        contentContainerStyle={styles.list}
+        stickySectionHeadersEnabled={false}
+        keyboardShouldPersistTaps="handled"
+        ListEmptyComponent={
+          <Text style={[styles.emptyText, styles.filterEmpty, { color: c.textSecondary }]}>
+            {t.notebook.combosSearchEmpty}
           </Text>
-        );
-      }}
-      renderItem={({ item }) => {
-        const expanded = expandedId === item.id;
-        return (
-          <Pressable
-            style={[styles.card, { backgroundColor: c.backgroundElement }]}
-            onPress={() => onCardPress(item)}
-          >
-            {expanded ? (
-              <TextInput
-                style={[styles.comboNameInput, { color: c.text, borderColor: c.backgroundSelected }]}
-                value={nameDraft}
-                onChangeText={setNameDraft}
-                onBlur={() => persistDraft(true)}
-                placeholder={t.notebook.namePlaceholder}
-                placeholderTextColor={c.textSecondary}
-              />
-            ) : (
-              <Text style={[styles.comboName, { color: c.text }]}>{item.name}</Text>
-            )}
-            <Text style={[styles.comboFoods, { color: c.text }]}>
-              {item.foodIds
-                .map((id) => {
-                  const food = getFood(id);
-                  if (food === undefined) return undefined;
-                  return `${getFoodEmoji(food.name) ?? ''}${foodName(food, lang)}`;
-                })
-                .filter(Boolean)
-                .join(lang === 'ja' ? '・' : ', ')}
+        }
+        renderSectionHeader={({ section }) => {
+          const d = parseYmd(section.date);
+          return (
+            <Text style={[styles.dateHeading, { color: c.textSecondary }]}>
+              {d !== null ? t.notebook.dateHeading(d) : section.date}
             </Text>
-            {!expanded && item.memo !== '' && (
-              <Text style={[styles.comboMemoPreview, { color: c.textSecondary }]} numberOfLines={2}>
-                {item.memo}
-              </Text>
-            )}
-            {expanded && (
-              <View style={styles.comboDetail}>
+          );
+        }}
+        renderItem={({ item }) => {
+          const expanded = expandedId === item.id;
+          return (
+            <Pressable
+              style={[styles.card, { backgroundColor: c.backgroundElement }]}
+              onPress={() => onCardPress(item)}
+            >
+              {expanded ? (
                 <TextInput
-                  style={[styles.comboMemoInput, { color: c.text, borderColor: c.backgroundSelected }]}
-                  multiline
-                  value={memoDraft}
-                  onChangeText={setMemoDraft}
+                  style={[styles.comboNameInput, { color: c.text, borderColor: c.backgroundSelected }]}
+                  value={nameDraft}
+                  onChangeText={setNameDraft}
                   onBlur={() => persistDraft(true)}
-                  placeholder={t.notebook.memoPlaceholder}
+                  placeholder={t.notebook.namePlaceholder}
                   placeholderTextColor={c.textSecondary}
                 />
-                <View style={styles.comboActions}>
-                  <Pressable
-                    style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
-                    onPress={() => {
-                      persistDraft(true);
-                      router.push({
-                        pathname: '/(tabs)/combine',
-                        params: { ids: item.foodIds.join(',') },
-                      });
-                    }}
-                  >
-                    <Text style={{ color: c.text, fontSize: 13 }}>
-                      {t.notebook.openInCombine}
-                    </Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
-                    onPress={() =>
-                      router.push({
-                        pathname: '/advice',
-                        params: { ids: item.foodIds.join(',') },
-                      })
-                    }
-                  >
-                    <Text style={{ color: c.text, fontSize: 13 }}>
-                      {t.notebook.viewComposition}
-                    </Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
-                    onPress={() => remove(item)}
-                  >
-                    <Text style={{ color: '#C9563D', fontSize: 13 }}>
-                      {t.notebook.deleteAction}
-                    </Text>
-                  </Pressable>
+              ) : (
+                <Text style={[styles.comboName, { color: c.text }]}>{item.name}</Text>
+              )}
+              <Text style={[styles.comboFoods, { color: c.text }]}>
+                {item.foodIds
+                  .map((id) => {
+                    const food = getFood(id);
+                    if (food === undefined) return undefined;
+                    return `${getFoodEmoji(food.name) ?? ''}${foodName(food, lang)}`;
+                  })
+                  .filter(Boolean)
+                  .join(lang === 'ja' ? '・' : ', ')}
+              </Text>
+              {!expanded && item.memo !== '' && (
+                <Text style={[styles.comboMemoPreview, { color: c.textSecondary }]} numberOfLines={2}>
+                  {item.memo}
+                </Text>
+              )}
+              {expanded && (
+                <View style={styles.comboDetail}>
+                  <TextInput
+                    style={[styles.comboMemoInput, { color: c.text, borderColor: c.backgroundSelected }]}
+                    multiline
+                    value={memoDraft}
+                    onChangeText={setMemoDraft}
+                    onBlur={() => persistDraft(true)}
+                    placeholder={t.notebook.memoPlaceholder}
+                    placeholderTextColor={c.textSecondary}
+                  />
+                  <View style={styles.comboActions}>
+                    <Pressable
+                      style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
+                      onPress={() => {
+                        persistDraft(true);
+                        router.push({
+                          pathname: '/(tabs)/combine',
+                          params: { ids: item.foodIds.join(',') },
+                        });
+                      }}
+                    >
+                      <Text style={{ color: c.text, fontSize: 13 }}>
+                        {t.notebook.openInCombine}
+                      </Text>
+                    </Pressable>
+                    <Pressable
+                      style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
+                      onPress={() =>
+                        router.push({
+                          pathname: '/advice',
+                          params: { ids: item.foodIds.join(',') },
+                        })
+                      }
+                    >
+                      <Text style={{ color: c.text, fontSize: 13 }}>
+                        {t.notebook.viewComposition}
+                      </Text>
+                    </Pressable>
+                    <Pressable
+                      style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
+                      onPress={() => remove(item)}
+                    >
+                      <Text style={{ color: '#C9563D', fontSize: 13 }}>
+                        {t.notebook.deleteAction}
+                      </Text>
+                    </Pressable>
+                  </View>
                 </View>
-              </View>
-            )}
-          </Pressable>
-        );
-      }}
-    />
+              )}
+            </Pressable>
+          );
+        }}
+      />
+    </View>
   );
 }
 
@@ -388,7 +456,7 @@ function ZukanSection({
   const [filter, setFilter] = useState<ZukanFilter>('all');
 
   const foods = useMemo(() => {
-    const base = query.trim() === '' ? FOODS : searchFoods(query);
+    const base = query.trim() === '' ? VISIBLE_FOODS : searchFoods(query);
     if (filter === 'starred') return base.filter((f) => favorites.includes(f.id));
     if (filter === 'memo') return base.filter((f) => (notes[f.id] ?? '').trim() !== '');
     return base;
@@ -408,7 +476,7 @@ function ZukanSection({
     <View style={styles.zukan}>
       <TextInput
         style={[styles.search, { backgroundColor: c.backgroundElement, color: c.text }]}
-        placeholder={t.notebook.zukanPlaceholder(FOODS.length)}
+        placeholder={t.notebook.zukanPlaceholder(VISIBLE_FOODS.length)}
         placeholderTextColor={c.textSecondary}
         value={query}
         onChangeText={setQuery}
@@ -642,6 +710,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
+  combos: { flex: 1 },
   zukan: { flex: 1 },
   filterRow: {
     flexDirection: 'row',
