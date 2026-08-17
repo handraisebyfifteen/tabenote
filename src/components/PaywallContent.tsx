@@ -17,11 +17,11 @@ import {
   StyleSheet,
   Text,
   View,
-  useColorScheme,
 } from 'react-native';
 
 import { PRIVACY_URL, TERMS_URL } from '@/constants/site';
 import { Colors, MaxContentWidth } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { useBilling } from '@/lib/BillingContext';

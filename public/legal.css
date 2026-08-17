@@ -1,0 +1,214 @@
+/* tabenote-legal 共通スタイル。
+   外部フォント・CDNに依存しない(オフラインでも崩れない)。
+   ダークモードは prefers-color-scheme で追従する。 */
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f4f4f6;
+  --text: #1c1c1e;
+  --text-soft: #5c6066;
+  --accent: #4e7a4a;
+  --border: #e0e1e6;
+  --link: #2b6cb0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101113;
+    --bg-soft: #1c1d21;
+    --text: #ececee;
+    --text-soft: #a8acb4;
+    --accent: #8faf8b;
+    --border: #2e3135;
+    --link: #79aee7;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.85;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px 64px;
+}
+
+header.site {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+header.site .wrap {
+  padding-top: 24px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 20px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+nav.pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 13px;
+}
+
+nav.pages a {
+  color: var(--text-soft);
+  text-decoration: none;
+}
+
+nav.pages a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+nav.pages a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+.meta-dates {
+  color: var(--text-soft);
+  font-size: 13px;
+  margin: 0 0 32px;
+}
+
+h2 {
+  font-size: 19px;
+  line-height: 1.5;
+  margin: 40px 0 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 16px;
+  margin: 24px 0 8px;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+ul,
+ol {
+  margin: 0 0 16px;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+a {
+  color: var(--link);
+}
+
+.note {
+  background: var(--bg-soft);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--text-soft);
+  margin: 0 0 16px;
+}
+
+.faq dt {
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.faq dd {
+  margin: 6px 0 0 0;
+  color: var(--text);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-soft);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+footer.site {
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+
+footer.site .wrap {
+  padding-top: 20px;
+  padding-bottom: 32px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+footer.site nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-bottom: 8px;
+}
+
+footer.site a {
+  color: var(--text-soft);
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 17px;
+  }
+}
+
+/* 公開サイト(tabenote.app)へ戻る導線 */
+.backlink {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 13px;
+}

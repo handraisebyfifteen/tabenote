@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
-import { useColorScheme as useRNColorScheme } from 'react-native';
-
 /**
- * To support static rendering, this value needs to be re-calculated on the client side for web
+ * useColorScheme の静的書き出し(web)対応版。Metro が web ビルドでのみこちらを解決する。
+ *
+ * 静的HTMLはライトで書き出される。React はハイドレーション時にインラインスタイルの
+ * 食い違いを修復しないため、React Native の useColorScheme をそのまま使うと
+ * ダーク端末で「初期表示はライトのまま・後から開いた画面だけダーク」に割れる。
+ * サーバースナップショットをライトに固定してハイドレートし、マウント直後に
+ * クライアントの実際の設定へ再レンダーする。
  */
-export function useColorScheme() {
-  const [hasHydrated, setHasHydrated] = useState(false);
+import { useSyncExternalStore } from 'react';
+import { Appearance } from 'react-native';
 
-  useEffect(() => {
-    setHasHydrated(true);
-  }, []);
+function subscribe(onChange: () => void) {
+  const sub = Appearance.addChangeListener(onChange);
+  return () => sub.remove();
+}
 
-  const colorScheme = useRNColorScheme();
-
-  if (hasHydrated) {
-    return colorScheme;
-  }
-
-  return 'light';
+export function useColorScheme(): 'light' | 'dark' {
+  return useSyncExternalStore(
+    subscribe,
+    () => (Appearance.getColorScheme() === 'dark' ? 'dark' : 'light'),
+    () => 'light', // 静的書き出し(サーバー)は常にライト
+  );
 }

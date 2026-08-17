@@ -1,8 +1,9 @@
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
-import { ActivityIndicator, View, useColorScheme } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 import Onboarding from '@/components/Onboarding';
 import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { LanguageProvider, useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { BillingProvider, useBilling } from '@/lib/BillingContext';

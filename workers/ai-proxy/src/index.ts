@@ -70,7 +70,14 @@ const ENTITLEMENT_ID = 'pro';
  * RevenueCat の購読確認。
  * Authorization: Bearer <app_user_id> を受け取り、有効な entitlement を持つか確認する。
  * 見るのは pro だけ(過去に作った別の entitlement で通ってしまわないように)。
+ *
  * REVENUECAT_API_KEY 未設定の間(開発中)はスキップして許可する。
+ * 裏を返すと、キーを入れ忘れた本番はエンドポイントが開放されたままになる
+ * (誰でも ANTHROPIC_API_KEY 経由で Claude を叩けてしまう)。
+ * docs/release-checklist.md の該当項目を必ず確認すること。
+ *
+ * キーは v1 API (/v1/subscribers) を叩けるもの = 権限を絞らない secret key が要る。
+ * 権限を制限したキーは v2 専用で、v1 には 401 "Invalid API Key" で弾かれる。
  */
 async function hasActiveSubscription(request: Request, env: Env): Promise<boolean> {
   if (!env.REVENUECAT_API_KEY) return true;

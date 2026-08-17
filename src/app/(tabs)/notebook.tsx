@@ -17,7 +17,6 @@ import {
   Text,
   TextInput,
   View,
-  useColorScheme,
 } from 'react-native';
 
 import { natureColor } from '@/components/FlavorPentagon';
@@ -26,6 +25,7 @@ import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
 import { getFoodEmoji } from '@/data/foodEmoji';
 import { FOODS, getFood, isReferenceOnly, searchFoods } from '@/data/foods';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { cat15Label, foodName, natureLabel } from '@/i18n/terms';

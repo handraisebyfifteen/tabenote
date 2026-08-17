@@ -22,7 +22,6 @@ import {
   Text,
   TextInput,
   View,
-  useColorScheme,
 } from 'react-native';
 
 import Svg, { Polygon as SvgPolygon, Text as SvgText } from 'react-native-svg';
@@ -42,6 +41,7 @@ import {
   type Cat15,
   type Food,
 } from '@/data/foods';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import {

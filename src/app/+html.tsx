@@ -42,6 +42,15 @@ export default function Root({ children }: PropsWithChildren) {
         <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
 
         <ScrollViewStyleReset />
+
+        {/* ブラウザ既定の黒いフォーカスリングをブランド色に置き換える(全入力欄共通)。
+            色はアプリのアクセント(#8FAF8B)。theme.ts は import できないため直書き */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html:
+              'input:focus, textarea:focus { outline: 2px solid #8FAF8B; outline-offset: 1px; }',
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>

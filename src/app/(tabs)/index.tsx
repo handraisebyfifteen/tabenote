@@ -10,12 +10,12 @@ import {
   StyleSheet,
   Text,
   View,
-  useColorScheme,
 } from 'react-native';
 
 import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
 import { getTermText } from '@/data/solarTermTexts';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { fiveSeasonName } from '@/i18n/terms';

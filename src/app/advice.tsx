@@ -17,13 +17,13 @@ import {
   StyleSheet,
   Text,
   View,
-  useColorScheme,
 } from 'react-native';
 
 import FlavorPentagon from '@/components/FlavorPentagon';
 import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
 import { getFood, type Food } from '@/data/foods';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import {

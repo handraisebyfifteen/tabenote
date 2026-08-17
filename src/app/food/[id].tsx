@@ -13,7 +13,6 @@ import {
   Text,
   TextInput,
   View,
-  useColorScheme,
 } from 'react-native';
 
 import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
@@ -22,6 +21,7 @@ import PageHead from '@/components/PageHead';
 import { Colors } from '@/constants/theme';
 import { getFoodEmoji } from '@/data/foodEmoji';
 import { FOODS, getFood, isReferenceOnly } from '@/data/foods';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import {
@@ -187,7 +187,11 @@ export default function FoodDetailScreen() {
         />
         <AttrRow
           label={t.food.categoryLabel}
-          value={`${cat15Label(food.cat15, lang)}(${cat5Label(food.cat5, lang)})`}
+          value={
+            cat15Label(food.cat15, lang) === cat5Label(food.cat5, lang)
+              ? cat15Label(food.cat15, lang)
+              : `${cat15Label(food.cat15, lang)}(${cat5Label(food.cat5, lang)})`
+          }
           color={c}
         />
         {!refOnly && food.note !== '' && (

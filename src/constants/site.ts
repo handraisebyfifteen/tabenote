@@ -19,16 +19,24 @@ export const OG_IMAGE_HEIGHT = '630';
 export const THEME_COLOR = '#208AEF';
 
 /**
- * 法務ページ(tabenote-legal リポジトリ、GitHub Pages で公開)。
- * 譲渡やドメイン変更のときは、ここだけ差し替えれば全画面に反映される。
- * 公開前に3つとも実際に開けることを確認すること(404のままだと審査に落ちる)。
+ * 法務ページ。実体は public/ の静的HTML(support/privacy/terms/tokusho)で、
+ * web ビルドで dist の直下に配られ、この公開サイトの一部として出る。
+ *
+ * 画面(expo-router)ではなく素のHTMLにしてあるのは、購読ゲートの外に置くため。
+ * 規約とポリシーは、購読していない人にも必ず開けなければならない。
+ *
+ * ドメインを変えるときは SITE_URL を直せばここも追従する。
+ * ただし静的HTML側の <link rel="canonical"> は手書きなので、そちらも直すこと
+ * (食い違ったまま build:web すると postbuild-web.js が検知して落ちる)。
+ * 公開前に4つとも実際に開けることを確認する(404のままだと審査に落ちる)。
  */
-const LEGAL_BASE_URL = 'https://handraisebyfifteen.github.io/tabenote-legal';
 
 /** サポートページ(App Store Connect の「サポートURL」と同じもの) */
-export const SUPPORT_URL = `${LEGAL_BASE_URL}/`;
-export const TERMS_URL = `${LEGAL_BASE_URL}/terms.html`;
-export const PRIVACY_URL = `${LEGAL_BASE_URL}/privacy.html`;
+export const SUPPORT_URL = `${SITE_URL}/support`;
+export const TERMS_URL = `${SITE_URL}/terms`;
+export const PRIVACY_URL = `${SITE_URL}/privacy`;
+/** 特定商取引法に基づく表記。App Store では必須ではない(tokusho.html の注記を参照) */
+export const TOKUSHO_URL = `${SITE_URL}/tokusho`;
 
 /** iOS の購読管理(Apple の共通URL)。解約はアプリからは行えないため、ここへ誘導する */
 export const MANAGE_SUBSCRIPTION_URL = 'https://apps.apple.com/account/subscriptions';

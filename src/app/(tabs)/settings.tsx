@@ -17,7 +17,6 @@ import {
   StyleSheet,
   Text,
   View,
-  useColorScheme,
 } from 'react-native';
 
 import PageHead from '@/components/PageHead';
@@ -28,6 +27,7 @@ import {
   TERMS_URL,
 } from '@/constants/site';
 import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import type { Lang } from '@/i18n/terms';

@@ -38,7 +38,19 @@ eas build --profile development -p ios    # EAS の開発ビルド
 ダッシュボード側で必要なもの: entitlement `pro`(内部識別子。UIには出さない)、
 月額商品 `tabenote.premium.monthly` を紐付けた Offering(`current` に設定)。
 識別子は `src/lib/billing.ts` の `ENTITLEMENT_ID` と対応する。
-法務ページのURLは `src/constants/site.ts` の1箇所にまとまっている(tabenote-legal リポジトリ)。
+法務ページ(サポート / プライバシーポリシー / 利用規約 / 特商法表記)は `public/` の
+静的HTMLで、`npm run build:web` で `dist` の直下に出て `tabenote.app` から配信される。
+購読ゲートの外に置くため、あえて expo-router の画面にしていない。
+URLの定義は `src/constants/site.ts` の1箇所。
+
+## リリース前に
+
+提出のたびに [docs/release-checklist.md](docs/release-checklist.md) を上から確認する。
+特に **AI中継サーバーの `REVENUECAT_API_KEY`** は、未設定だと購読チェックが丸ごと
+スキップされ、エンドポイントが誰でも叩ける状態のまま出てしまう。
+
+App Store Connect に入れる説明文・キーワードのドラフトは
+[docs/asc-metadata.md](docs/asc-metadata.md) にある。
 
 ## ディレクトリ
 
