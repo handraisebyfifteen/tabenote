@@ -7,9 +7,12 @@
  *   cursor.wav   1タップ目・カーソル「キコ」      D#5 → B5
  *   select.wav   2タップ目・決定「キコーン」      D#5 → C6
  *   confirm.wav  3クリック目・決定ボタン「キコーン↑」D#5 → E6
+ *   remove.wav   チップで食材を外す「キロ」       D5 → C#5
+ *   ki.wav       季節・五行ボタン「キ」          D#5 のみ
  *
- * 立ち上がりの「キ」はどれも D#5 で揃え、行き先だけを B5 → C6 → E6 と
+ * 選ぶ3つは立ち上がりの「キ」を D#5 で揃え、行き先だけを B5 → C6 → E6 と
  * 上げていく。同じ楽器のまま、押し進むごとに音が上へ抜けていく並び。
+ * 取り消しだけは半音低い D5 から C#5 へ下がり、向きの逆で「戻した」と言う。
  *
  * 音源を外から持ってくると権利の出所を追えなくなる(指示書 8-5)ので、
  * 素材は置かず、このスクリプトが唯一の出所になる。鳴りを変えたいときは
@@ -142,6 +145,43 @@ const CURSOR_SFX = {
     // 「キ」と同じ高さに聞こえるまで上げる(重なりが1層少ないぶん強く出す)
     { note: 'B5', duty: 0.25, start: 0.045, dur: 0.085, gain: 1.8, decay: 12 },
     { note: 'B6', duty: 0.125, start: 0.045, dur: 0.05, gain: 0.35, decay: 20 },
+  ],
+};
+
+/**
+ * 道具ボタンの音「キ」。季節ボタンと五行の「?」ボタン(モーダルを開くだけの
+ * ボタン)で鳴る。
+ *
+ * 選ぶ音たちの立ち上がりと同じ D#5 を、行き先を付けずに言い切る。
+ * 「コ」が続かないのは、まだどこへも進んでいないから。開くだけの操作に
+ * 音程の物語を持たせず、同じ楽器の気配だけを残す。
+ */
+const KI_SFX = {
+  gain: 0.35,
+  layers: [
+    { note: 'D#5', duty: 0.125, start: 0, dur: 0.045, gain: 1.6, decay: 0 },
+    { note: 'D#6', duty: 0.125, start: 0, dur: 0.045, gain: 0.6, decay: 0 },
+  ],
+};
+
+/**
+ * 取り消し音「キロ」。パーティ枠のチップをタップして食材を外すときに鳴る。
+ *
+ * 選ぶ側の3つが D#5 から上へ跳ぶ(B5 / C6 / E6)のに対し、これだけ下がる。
+ * 立ち上がりも仲間の D#5 より半音低い D5 にして、そこから C#5 へ半音だけ
+ * 引っ込む。上がる=進む、下がる=戻す、を音程の向きで言い分ける。
+ *
+ * 取り消しは静かな操作なので、いちばん小さく(gain 0.3)短く。
+ * 「ロ」は duty 0.5 の太い波で丸く鳴らし、きらめきの層は重ねない。
+ */
+const REMOVE_SFX = {
+  gain: 0.3,
+  layers: [
+    // 「キ」: 選ぶ音たちと同じ形の立ち上がり。高さだけ半音低い
+    { note: 'D5', duty: 0.125, start: 0, dur: 0.045, gain: 1.6, decay: 0 },
+    { note: 'D6', duty: 0.125, start: 0, dur: 0.045, gain: 0.6, decay: 0 },
+    // 「ロ」: 半音下がって引っ込む。丸い波で速く減衰させ、余韻を残さない
+    { note: 'C#5', duty: 0.5, start: 0.045, dur: 0.09, gain: 1.7, decay: 14 },
   ],
 };
 
@@ -307,9 +347,13 @@ if (variantsIndex !== -1) {
     write(path.join(dir, `confirm-${name}.wav`), sfx);
   }
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
+  write(path.join(dir, 'remove.wav'), REMOVE_SFX);
+  write(path.join(dir, 'ki.wav'), KI_SFX);
 } else {
   const dir = path.join(__dirname, '..', 'assets', 'sfx');
   write(path.join(dir, 'select.wav'), VARIANTS[SELECTED]);
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
   write(path.join(dir, 'confirm.wav'), CONFIRM_VARIANTS[CONFIRM_SELECTED]);
+  write(path.join(dir, 'remove.wav'), REMOVE_SFX);
+  write(path.join(dir, 'ki.wav'), KI_SFX);
 }

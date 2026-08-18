@@ -462,7 +462,11 @@ export default function CombineScreen() {
             styles.cornerLeft,
             { backgroundColor: seasonOverride !== null ? '#8FAF8B' : c.backgroundElement },
           ]}
-          onPress={() => setSeasonModal(true)}
+          onPress={() => {
+            // 開くだけのボタンなので、立ち上がりだけの「キ」
+            feedback.ki();
+            setSeasonModal(true);
+          }}
         >
           <Text
             style={{
@@ -483,7 +487,10 @@ export default function CombineScreen() {
             { backgroundColor: c.backgroundElement },
           ]}
           accessibilityLabel={t.combine.helpTitle}
-          onPress={() => setHelpModal(true)}
+          onPress={() => {
+            feedback.ki();
+            setHelpModal(true);
+          }}
         >
           <Svg width={22} height={22}>
             <SvgPolygon
@@ -622,7 +629,11 @@ export default function CombineScreen() {
             <Pressable
               key={f.id}
               style={[styles.chip, { backgroundColor: c.backgroundSelected }]}
-              onPress={() => toggle(f.id)}
+              onPress={() => {
+                toggle(f.id);
+                // 外した合図。選ぶ音と逆向きに下がる「キロ」
+                feedback.remove();
+              }}
             >
               <TabenoteIcon
                 name={f.icon}
