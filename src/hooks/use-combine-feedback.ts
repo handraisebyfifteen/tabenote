@@ -1,11 +1,13 @@
 /**
- * 組み合わせ画面のキャラ選択の手応え(音 + バイブ)。
+ * キャラ選択まわりの手応え(音 + バイブ)。組み合わせ画面が主で、
+ * 手帳のタブ・検索窓も同じ楽器の音を借りる。
  *
  *   cursor   1タップ目。カーソルが乗った合図「キコ」+ 軽い振動
  *   decide   2タップ目。決定「キコーン」+ 重い振動
  *   confirm  3クリック目。決定ボタン「キコーン↑」+ いちばん重い振動
  *   remove   チップで食材を外す。下がる「キロ」+ カーソルと同じ軽い振動
- *   ki       季節・五行ボタン。立ち上がりだけの「キ」+ 軽い振動
+ *   ki       季節・五行・分類チップ・手帳タブ。立ち上がりだけの「キ」+ 軽い振動
+ *   search   検索欄にフォーカス。留め金の「カチッ」+ 軽い振動
  *
  * どれも画面の点灯(FoodTile の flash・FoodPortrait の点灯・決定ボタンの点灯)と同じ瞬間に呼ぶ。
  * 音量とバイブの入切は設定画面に従う(@/lib/SoundContext)。
@@ -25,6 +27,7 @@ export function useCombineFeedback(): {
   confirm: (overrideGain?: number) => void;
   remove: (overrideGain?: number) => void;
   ki: (overrideGain?: number) => void;
+  search: (overrideGain?: number) => void;
 } {
   const { gain, haptics } = useSound();
   return useMemo(
@@ -48,7 +51,11 @@ export function useCombineFeedback(): {
       },
       ki: (overrideGain?: number) => {
         playSfx('ki', overrideGain ?? gain);
-        // モーダルを開くだけのボタン。手ざわりもいちばん軽いものにする
+        // 表示を切り替えるだけのボタン。手ざわりもいちばん軽いものにする
+        if (haptics) cursorHaptic();
+      },
+      search: (overrideGain?: number) => {
+        playSfx('search', overrideGain ?? gain);
         if (haptics) cursorHaptic();
       },
     }),

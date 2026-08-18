@@ -656,6 +656,8 @@ export default function CombineScreen() {
         placeholderTextColor={c.textSecondary}
         value={query}
         onChangeText={setQuery}
+        // 探しはじめの合図。留め金がはまる「カチッ」
+        onFocus={() => feedback.search()}
       />
 
       {query.trim() === '' && (
@@ -670,7 +672,11 @@ export default function CombineScreen() {
               styles.chip,
               { backgroundColor: cat === 'quick' ? '#8FAF8B' : c.backgroundElement },
             ]}
-            onPress={() => setCat(cat === 'quick' ? null : 'quick')}
+            onPress={() => {
+              // 分類の切り替えも、開くだけの操作と同じ立ち上がりだけの「キ」
+              feedback.ki();
+              setCat(cat === 'quick' ? null : 'quick');
+            }}
           >
             <Text style={{ color: cat === 'quick' ? '#fff' : c.text }}>
               {t.combine.quickTab}
@@ -681,7 +687,10 @@ export default function CombineScreen() {
               styles.chip,
               { backgroundColor: cat === null ? '#8FAF8B' : c.backgroundElement },
             ]}
-            onPress={() => setCat(null)}
+            onPress={() => {
+              feedback.ki();
+              setCat(null);
+            }}
           >
             <Text style={{ color: cat === null ? '#fff' : c.text }}>
               {t.combine.allTab}
@@ -694,7 +703,10 @@ export default function CombineScreen() {
                 styles.chip,
                 { backgroundColor: cat === k ? '#8FAF8B' : c.backgroundElement },
               ]}
-              onPress={() => setCat(cat === k ? null : k)}
+              onPress={() => {
+                feedback.ki();
+                setCat(cat === k ? null : k);
+              }}
             >
               <Text style={{ color: cat === k ? '#fff' : c.text }}>
                 {cat15Label(k, lang)}

@@ -32,6 +32,7 @@ import {
 } from '@/data/foods';
 import { FOOD_NAMES_EN } from '@/data/foodNamesEn';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useCombineFeedback } from '@/hooks/use-combine-feedback';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { cat15Label, foodName, natureLabel } from '@/i18n/terms';
@@ -91,6 +92,7 @@ export default function NotebookScreen() {
 
   const [segment, setSegment] = useState<Segment>('combos');
   const [data, setData] = useState<UserData>(EMPTY_USER_DATA);
+  const feedback = useCombineFeedback();
 
   useFocusEffect(
     useCallback(() => {
@@ -125,7 +127,11 @@ export default function NotebookScreen() {
                   segment === s.key ? c.backgroundSelected : c.backgroundElement,
               },
             ]}
-            onPress={() => setSegment(s.key)}
+            onPress={() => {
+              // 表示を切り替えるだけのタブ。組み合わせ画面の道具ボタンと同じ「キ」
+              feedback.ki();
+              setSegment(s.key);
+            }}
           >
             <Text
               style={{
@@ -169,6 +175,7 @@ function CombosSection({
   const { lang } = useLang();
   const t = getStrings(lang);
 
+  const feedback = useCombineFeedback();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const [memoDraft, setMemoDraftUi] = useState('');
@@ -322,6 +329,8 @@ function CombosSection({
         placeholderTextColor={c.textSecondary}
         value={query}
         onChangeText={onQueryChange}
+        // 探しはじめの合図。組み合わせ画面の検索窓と同じ「カチッ」
+        onFocus={() => feedback.search()}
       />
       <SectionList
         sections={sections}
@@ -452,6 +461,7 @@ function ZukanSection({
   const { lang } = useLang();
   const t = getStrings(lang);
 
+  const feedback = useCombineFeedback();
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<ZukanFilter>('all');
 
@@ -480,6 +490,7 @@ function ZukanSection({
         placeholderTextColor={c.textSecondary}
         value={query}
         onChangeText={setQuery}
+        onFocus={() => feedback.search()}
       />
       <View style={styles.filterRow}>
         {filters.map((f) => (

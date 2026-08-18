@@ -8,7 +8,8 @@
  *   select.wav   2タップ目・決定「キコーン」      D#5 → C6
  *   confirm.wav  3クリック目・決定ボタン「キコーン↑」D#5 → E6
  *   remove.wav   チップで食材を外す「キロ」       D5 → C#5
- *   ki.wav       季節・五行ボタン「キ」          D#5 のみ
+ *   ki.wav       季節・五行・分類チップ「キ」     D#5 のみ
+ *   search.wav   検索欄フォーカス「カチッ」       A#4 → D#5
  *
  * 選ぶ3つは立ち上がりの「キ」を D#5 で揃え、行き先だけを B5 → C6 → E6 と
  * 上げていく。同じ楽器のまま、押し進むごとに音が上へ抜けていく並び。
@@ -149,11 +150,11 @@ const CURSOR_SFX = {
 };
 
 /**
- * 道具ボタンの音「キ」。季節ボタンと五行の「?」ボタン(モーダルを開くだけの
- * ボタン)で鳴る。
+ * 道具ボタンの音「キ」。季節ボタン・五行の「?」ボタン・分類チップなど、
+ * 表示を切り替えるだけのボタンで鳴る。
  *
  * 選ぶ音たちの立ち上がりと同じ D#5 を、行き先を付けずに言い切る。
- * 「コ」が続かないのは、まだどこへも進んでいないから。開くだけの操作に
+ * 「コ」が続かないのは、まだどこへも進んでいないから。切り替えるだけの操作に
  * 音程の物語を持たせず、同じ楽器の気配だけを残す。
  */
 const KI_SFX = {
@@ -161,6 +162,26 @@ const KI_SFX = {
   layers: [
     { note: 'D#5', duty: 0.125, start: 0, dur: 0.045, gain: 1.6, decay: 0 },
     { note: 'D#6', duty: 0.125, start: 0, dur: 0.045, gain: 0.6, decay: 0 },
+  ],
+};
+
+/**
+ * 検索欄の音「カチッ」。組み合わせ画面と手帳の検索欄にフォーカスが入るときに
+ * 鳴る。B♭4 → D#5(表記の都合で A#4 と書く)。
+ *
+ * 下から4度上がってみんなの「キ」と同じ D#5 に着地する。留め金が
+ * カチッとはまる向きの跳びで、「ここから探しはじめる」の合図。
+ * どちらの音も伸ばさず言い切って、キーボードが出る邪魔をしない。
+ */
+const SEARCH_SFX = {
+  gain: 0.3,
+  layers: [
+    // 「カ」: 下の A#4。硬く短く
+    { note: 'A#4', duty: 0.25, start: 0, dur: 0.03, gain: 1.3, decay: 0 },
+    { note: 'A#5', duty: 0.125, start: 0, dur: 0.03, gain: 0.5, decay: 0 },
+    // 「チッ」: 4度上がって D#5 で言い切る。速い減衰で「ッ」を作る
+    { note: 'D#5', duty: 0.125, start: 0.03, dur: 0.07, gain: 1.5, decay: 20 },
+    { note: 'D#6', duty: 0.125, start: 0.03, dur: 0.045, gain: 0.5, decay: 28 },
   ],
 };
 
@@ -349,6 +370,7 @@ if (variantsIndex !== -1) {
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
   write(path.join(dir, 'remove.wav'), REMOVE_SFX);
   write(path.join(dir, 'ki.wav'), KI_SFX);
+  write(path.join(dir, 'search.wav'), SEARCH_SFX);
 } else {
   const dir = path.join(__dirname, '..', 'assets', 'sfx');
   write(path.join(dir, 'select.wav'), VARIANTS[SELECTED]);
@@ -356,4 +378,5 @@ if (variantsIndex !== -1) {
   write(path.join(dir, 'confirm.wav'), CONFIRM_VARIANTS[CONFIRM_SELECTED]);
   write(path.join(dir, 'remove.wav'), REMOVE_SFX);
   write(path.join(dir, 'ki.wav'), KI_SFX);
+  write(path.join(dir, 'search.wav'), SEARCH_SFX);
 }
