@@ -112,6 +112,10 @@ export interface Strings {
     zukanPlaceholder(count: number): string;
     /** 組み合わせタイムラインの日付見出し */
     dateHeading(d: Date): string;
+    /** 週ストリップ: 月ラベル・曜日の頭文字(月曜はじまり)・今日の週へ戻る */
+    weekMonthLabel(d: Date): string;
+    weekDayInitials: string[];
+    weekToday: string;
     /** 図鑑のフィルタ: すべて / ★お気に入り / メモあり */
     filterAll: string;
     filterStarred: string;
@@ -428,6 +432,9 @@ const ja: Strings = {
     zukanPlaceholder: (count) => `図鑑をさがす(全${count}品目)`,
     dateHeading: (d) =>
       `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日(${WEEKDAYS_JA[d.getDay()]})`,
+    weekMonthLabel: (d) => `${d.getFullYear()}年${d.getMonth() + 1}月`,
+    weekDayInitials: ['月', '火', '水', '木', '金', '土', '日'],
+    weekToday: '今日',
     filterAll: 'すべて',
     filterStarred: '★ お気に入り',
     filterMemo: 'メモあり',
@@ -777,6 +784,9 @@ const en: Strings = {
     zukanPlaceholder: (count) => `Search the encyclopedia (${count} entries)`,
     dateHeading: (d) =>
       `${WEEKDAYS_EN[d.getDay()]}, ${MONTHS_EN[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`,
+    weekMonthLabel: (d) => `${MONTHS_EN[d.getMonth()].slice(0, 3)} ${d.getFullYear()}`,
+    weekDayInitials: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+    weekToday: 'Today',
     filterAll: 'All',
     filterStarred: '★ Favorites',
     filterMemo: 'With memos',

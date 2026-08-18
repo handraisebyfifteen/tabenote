@@ -8,6 +8,7 @@
  *   remove   チップで食材を外す。下がる「キロ」+ カーソルと同じ軽い振動
  *   ki       季節・五行・分類チップ・手帳タブ。立ち上がりだけの「キ」+ 軽い振動
  *   search   検索欄にフォーカス。留め金の「カチッ」+ 軽い振動
+ *   po       そのほかのタップ。1オクターブ下の丸い「ぽ」+ 軽い振動
  *
  * どれも画面の点灯(FoodTile の flash・FoodPortrait の点灯・決定ボタンの点灯)と同じ瞬間に呼ぶ。
  * 音量とバイブの入切は設定画面に従う(@/lib/SoundContext)。
@@ -28,6 +29,7 @@ export function useCombineFeedback(): {
   remove: (overrideGain?: number) => void;
   ki: (overrideGain?: number) => void;
   search: (overrideGain?: number) => void;
+  po: (overrideGain?: number) => void;
 } {
   const { gain, haptics } = useSound();
   return useMemo(
@@ -56,6 +58,10 @@ export function useCombineFeedback(): {
       },
       search: (overrideGain?: number) => {
         playSfx('search', overrideGain ?? gain);
+        if (haptics) cursorHaptic();
+      },
+      po: (overrideGain?: number) => {
+        playSfx('po', overrideGain ?? gain);
         if (haptics) cursorHaptic();
       },
     }),

@@ -10,6 +10,7 @@
  *   remove.wav   チップで食材を外す「キロ」       D5 → C#5
  *   ki.wav       季節・五行・分類チップ「キ」     D#5 のみ
  *   search.wav   検索欄フォーカス「カチッ」       A#4 → D#5
+ *   po.wav       そのほかのタップ「ぽ」          D#4 のみ
  *
  * 選ぶ3つは立ち上がりの「キ」を D#5 で揃え、行き先だけを B5 → C6 → E6 と
  * 上げていく。同じ楽器のまま、押し進むごとに音が上へ抜けていく並び。
@@ -162,6 +163,25 @@ const KI_SFX = {
   layers: [
     { note: 'D#5', duty: 0.125, start: 0, dur: 0.045, gain: 1.6, decay: 0 },
     { note: 'D#6', duty: 0.125, start: 0, dur: 0.045, gain: 0.6, decay: 0 },
+  ],
+};
+
+/**
+ * そのほかのタップの音「ぽ」。カードの開閉・モーダルの開け閉め・行き先への
+ * 移動など、キャラ選択の物語に入らないタップ全部で鳴る。
+ *
+ * D#4 のひと粒だけ。みんなの「キ」(D#5)の1オクターブ下で、同じ楽器の
+ * いちばん低くて丸い声。旋律を持たないので、どこで鳴っても物語の音たちと
+ * ぶつからない。
+ *
+ * D#4(311Hz)はスマホの小さいスピーカーだと基音がほとんど出ないため、
+ * 1オクターブ上をうっすら重ねて、丸いまま聞こえる高さを足してある。
+ */
+const PO_SFX = {
+  gain: 0.3,
+  layers: [
+    { note: 'D#4', duty: 0.5, start: 0, dur: 0.08, gain: 1, decay: 14 },
+    { note: 'D#5', duty: 0.5, start: 0, dur: 0.06, gain: 0.35, decay: 20 },
   ],
 };
 
@@ -371,6 +391,7 @@ if (variantsIndex !== -1) {
   write(path.join(dir, 'remove.wav'), REMOVE_SFX);
   write(path.join(dir, 'ki.wav'), KI_SFX);
   write(path.join(dir, 'search.wav'), SEARCH_SFX);
+  write(path.join(dir, 'po.wav'), PO_SFX);
 } else {
   const dir = path.join(__dirname, '..', 'assets', 'sfx');
   write(path.join(dir, 'select.wav'), VARIANTS[SELECTED]);
@@ -379,4 +400,5 @@ if (variantsIndex !== -1) {
   write(path.join(dir, 'remove.wav'), REMOVE_SFX);
   write(path.join(dir, 'ki.wav'), KI_SFX);
   write(path.join(dir, 'search.wav'), SEARCH_SFX);
+  write(path.join(dir, 'po.wav'), PO_SFX);
 }

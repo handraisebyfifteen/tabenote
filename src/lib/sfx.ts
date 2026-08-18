@@ -1,5 +1,5 @@
 /**
- * 効果音の鳴らし口。組み合わせ画面と手帳の6つの音を持つ。
+ * 効果音の鳴らし口。組み合わせ画面と手帳の7つの音を持つ。
  *
  *   cursor   1タップ目・カーソル「キコ」        D#5 → B5
  *   select   2タップ目・決定「キコーン」        D#5 → C6
@@ -7,6 +7,7 @@
  *   remove   チップで食材を外す「キロ」         D5 → C#5
  *   ki       季節・五行・分類・手帳タブ「キ」    D#5 のみ
  *   search   検索欄フォーカス「カチッ」         A#4 → D#5
+ *   po       そのほかのタップ「ぽ」            D#4 のみ
  *
  * 選ぶ3つの「キ」は D#5 で同じ。行き先だけ B5 → C6 → E6 と上がるので、
  * 押し進むほど音が上へ抜ける。外す音だけは半音低く立って半音下がる。
@@ -32,7 +33,14 @@
  */
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
 
-export type SfxName = 'cursor' | 'select' | 'confirm' | 'remove' | 'ki' | 'search';
+export type SfxName =
+  | 'cursor'
+  | 'select'
+  | 'confirm'
+  | 'remove'
+  | 'ki'
+  | 'search'
+  | 'po';
 
 const SOURCES: Record<SfxName, number> = {
   cursor: require('../../assets/sfx/cursor.wav'),
@@ -41,6 +49,7 @@ const SOURCES: Record<SfxName, number> = {
   remove: require('../../assets/sfx/remove.wav'),
   ki: require('../../assets/sfx/ki.wav'),
   search: require('../../assets/sfx/search.wav'),
+  po: require('../../assets/sfx/po.wav'),
 };
 
 const players: Partial<Record<SfxName, AudioPlayer>> = {};

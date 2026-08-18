@@ -519,7 +519,14 @@ export default function CombineScreen() {
         animationType="fade"
         onRequestClose={() => setSeasonModal(false)}
       >
-        <Pressable style={styles.modalBackdrop} onPress={() => setSeasonModal(false)}>
+        <Pressable
+          style={styles.modalBackdrop}
+          onPress={() => {
+            // 閉じるだけのタップ。物語に入らない丸い「ぽ」
+            feedback.po();
+            setSeasonModal(false);
+          }}
+        >
           <Pressable
             style={[styles.modalCard, { backgroundColor: c.background }]}
             onPress={() => {}}
@@ -541,6 +548,7 @@ export default function CombineScreen() {
                       { backgroundColor: active ? '#8FAF8B' : c.backgroundElement },
                     ]}
                     onPress={() => {
+                      feedback.po();
                       setSeasonOverride(s === todaySeason ? null : s);
                       setSeasonModal(false);
                     }}
@@ -565,7 +573,13 @@ export default function CombineScreen() {
         animationType="fade"
         onRequestClose={() => setHelpModal(false)}
       >
-        <Pressable style={styles.modalBackdrop} onPress={() => setHelpModal(false)}>
+        <Pressable
+          style={styles.modalBackdrop}
+          onPress={() => {
+            feedback.po();
+            setHelpModal(false);
+          }}
+        >
           <Pressable
             style={[styles.modalCard, styles.helpCard, { backgroundColor: c.background }]}
             onPress={() => {}}
@@ -608,7 +622,13 @@ export default function CombineScreen() {
                   </View>
                 ))}
               </View>
-              <Pressable style={styles.closeButton} onPress={() => setHelpModal(false)}>
+              <Pressable
+                style={styles.closeButton}
+                onPress={() => {
+                  feedback.po();
+                  setHelpModal(false);
+                }}
+              >
                 <Text style={{ color: '#fff', fontSize: 14, fontWeight: '600' }}>
                   {t.combine.close}
                 </Text>

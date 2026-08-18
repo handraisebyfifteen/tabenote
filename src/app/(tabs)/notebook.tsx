@@ -62,6 +62,27 @@ function parseYmd(ymd: string): Date | null {
   return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
 }
 
+/** 選択中を示す緑(組み合わせ画面・設定画面と同じ) */
+const ACCENT = '#8FAF8B';
+
+/** Date を保存形式の 'YYYY-MM-DD' にする(週ストリップの照合用) */
+function toYmd(d: Date): string {
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${mm}-${dd}`;
+}
+
+function addDays(d: Date, days: number): Date {
+  const next = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  next.setDate(next.getDate() + days);
+  return next;
+}
+
+/** その週の月曜 0:00。週ストリップは月曜はじまり */
+function startOfWeek(d: Date): Date {
+  return addDays(d, -((d.getDay() + 6) % 7));
+}
+
 /**
  * 組み合わせ1件を検索対象の文字列にする。
  *
@@ -178,6 +199,15 @@ function CombosSection({
   const feedback = useCombineFeedback();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [query, setQuery] = useState('');
+  // 週ストリップ。保存のある日に点を打ち、点のある日をタップするとその見出しへ飛ぶ
+  const listRef = useRef<SectionList<SavedCombo>>(null);
+  const [weekStart, setWeekStart] = useState(() => startOfWeek(new Date()));
+  const todayYmd = toYmd(new Date());
+  const atCurrentWeek = toYmd(weekStart) === toYmd(startOfWeek(new Date()));
+  const savedDates = useMemo(
+    () => new Set(combos.map((combo) => combo.date)),
+    [combos],
+  );
   const [memoDraft, setMemoDraftUi] = useState('');
   const [nameDraft, setNameDraftUi] = useState('');
   // blur を経ずに閉じても編集が消えないよう、最新値と保存済み値を ref に持つ
@@ -307,6 +337,14 @@ function CombosSection({
       .map(([date, data]) => ({ date, data }));
   }, [matched]);
 
+  /** 週ストリップの日タップ。その日の見出しへ飛ぶ(検索で消えている日なら何もしない) */
+  const jumpToDate = (date: string) => {
+    const sectionIndex = sections.findIndex((s) => s.date === date);
+    if (sectionIndex === -1) return;
+    // itemIndex 0 は SectionList では見出しを指す
+    listRef.current?.scrollToLocation({ sectionIndex, itemIndex: 0, viewOffset: 8 });
+  };
+
   if (combos.length === 0) {
     return (
       <View style={styles.empty}>
@@ -319,6 +357,106 @@ function CombosSection({
 
   return (
     <View style={styles.combos}>
+      {/*
+        週ストリップ(月曜はじまり)。保存のある日に点を打つ。記録は過去にしか
+        増えないので、未来へは今日の週までしか送れない。点のある日をタップすると
+        その日の見出しへ飛ぶ(絞り込みではなくジャンプ。前後の日の流れを切らない)
+      */}
+      <View style={[styles.weekStrip, { backgroundColor: c.backgroundElement }]}>
+        <View style={styles.weekHeader}>
+          <Text style={[styles.weekMonth, { color: c.text }]}>
+            {/* 週が月をまたぐことがあるので、週の真ん中(木曜)の月を出す */}
+            {t.notebook.weekMonthLabel(addDays(weekStart, 3))}
+          </Text>
+          <View style={styles.weekNav}>
+            {!atCurrentWeek && (
+              <Pressable
+                hitSlop={8}
+                onPress={() => {
+                  feedback.ki();
+                  setWeekStart(startOfWeek(new Date()));
+                }}
+              >
+                <Text style={[styles.weekTodayLink, { color: ACCENT }]}>
+                  {t.notebook.weekToday}
+                </Text>
+              </Pressable>
+            )}
+            <Pressable
+              hitSlop={8}
+              onPress={() => {
+                feedback.ki();
+                setWeekStart((w) => addDays(w, -7));
+              }}
+            >
+              <Text style={[styles.weekArrow, { color: c.text }]}>‹</Text>
+            </Pressable>
+            <Pressable
+              hitSlop={8}
+              disabled={atCurrentWeek}
+              onPress={() => {
+                feedback.ki();
+                setWeekStart((w) => addDays(w, 7));
+              }}
+            >
+              <Text
+                style={[
+                  styles.weekArrow,
+                  { color: atCurrentWeek ? c.backgroundSelected : c.text },
+                ]}
+              >
+                ›
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+        <View style={styles.weekDays}>
+          {t.notebook.weekDayInitials.map((initial, i) => {
+            const day = addDays(weekStart, i);
+            const key = toYmd(day);
+            const has = savedDates.has(key);
+            const isToday = key === todayYmd;
+            const isFuture = key > todayYmd;
+            return (
+              <Pressable
+                key={key}
+                style={styles.weekDay}
+                disabled={!has}
+                onPress={() => {
+                  feedback.po();
+                  jumpToDate(key);
+                }}
+              >
+                <Text style={[styles.weekDayInitial, { color: c.textSecondary }]}>
+                  {initial}
+                </Text>
+                <Text
+                  style={[
+                    styles.weekDayNum,
+                    {
+                      color: isFuture
+                        ? c.backgroundSelected
+                        : isToday
+                          ? ACCENT
+                          : c.text,
+                      fontWeight: isToday ? '700' : '400',
+                    },
+                  ]}
+                >
+                  {day.getDate()}
+                </Text>
+                <View
+                  style={[
+                    styles.weekDot,
+                    { backgroundColor: has ? ACCENT : 'transparent' },
+                  ]}
+                />
+              </Pressable>
+            );
+          })}
+        </View>
+      </View>
+
       {/*
         名前・メモ・食材名・日付で絞る。保存が増えるほど日付をたどるのが辛くなるので、
         図鑑と同じ形の検索窓を同じ位置に置く(手帳の中で探しかたを揃える)
@@ -333,8 +471,16 @@ function CombosSection({
         onFocus={() => feedback.search()}
       />
       <SectionList
+        ref={listRef}
         sections={sections}
         keyExtractor={(combo) => combo.id}
+        // 遠い日付は未描画で位置が読めないことがある。おおまかに飛べば描画されて、
+        // 以後の同じジャンプは正確に寄る
+        onScrollToIndexFailed={(info) => {
+          listRef.current
+            ?.getScrollResponder()
+            ?.scrollTo({ y: info.averageItemLength * info.index, animated: true });
+        }}
         contentContainerStyle={styles.list}
         stickySectionHeadersEnabled={false}
         keyboardShouldPersistTaps="handled"
@@ -356,7 +502,11 @@ function CombosSection({
           return (
             <Pressable
               style={[styles.card, { backgroundColor: c.backgroundElement }]}
-              onPress={() => onCardPress(item)}
+              onPress={() => {
+                // カードの開閉。物語に入らない丸い「ぽ」
+                feedback.po();
+                onCardPress(item);
+              }}
             >
               {expanded ? (
                 <TextInput
@@ -400,6 +550,7 @@ function CombosSection({
                     <Pressable
                       style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
                       onPress={() => {
+                        feedback.po();
                         persistDraft(true);
                         router.push({
                           pathname: '/(tabs)/combine',
@@ -413,12 +564,13 @@ function CombosSection({
                     </Pressable>
                     <Pressable
                       style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
-                      onPress={() =>
+                      onPress={() => {
+                        feedback.po();
                         router.push({
                           pathname: '/advice',
                           params: { ids: item.foodIds.join(',') },
-                        })
-                      }
+                        });
+                      }}
                     >
                       <Text style={{ color: c.text, fontSize: 13 }}>
                         {t.notebook.viewComposition}
@@ -426,7 +578,10 @@ function CombosSection({
                     </Pressable>
                     <Pressable
                       style={[styles.comboAction, { backgroundColor: c.backgroundSelected }]}
-                      onPress={() => remove(item)}
+                      onPress={() => {
+                        feedback.po();
+                        remove(item);
+                      }}
                     >
                       <Text style={{ color: '#C9563D', fontSize: 13 }}>
                         {t.notebook.deleteAction}
@@ -503,7 +658,11 @@ function ZukanSection({
                   filter === f.key ? '#8FAF8B' : c.backgroundElement,
               },
             ]}
-            onPress={() => setFilter(f.key)}
+            onPress={() => {
+              // 表示を絞るだけのチップ。組み合わせ画面の分類チップと同じ「キ」
+              feedback.ki();
+              setFilter(f.key);
+            }}
           >
             <Text style={{ color: filter === f.key ? '#fff' : c.text, fontSize: 13 }}>
               {f.label}
@@ -531,7 +690,10 @@ function ZukanSection({
           return (
             <Pressable
               style={styles.zukanRow}
-              onPress={() => router.push(`/food/${item.id}`)}
+              onPress={() => {
+                feedback.po();
+                router.push(`/food/${item.id}`);
+              }}
               onLongPress={() => toggleFavorite(item.id).then(onChange)}
             >
               <FoodThumb
@@ -722,6 +884,28 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   combos: { flex: 1 },
+  weekStrip: {
+    marginHorizontal: 16,
+    marginBottom: 8,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    gap: 8,
+  },
+  weekHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  weekMonth: { fontSize: 13, fontWeight: '600' },
+  weekNav: { flexDirection: 'row', alignItems: 'center', gap: 18 },
+  weekTodayLink: { fontSize: 12 },
+  weekArrow: { fontSize: 20, lineHeight: 22 },
+  weekDays: { flexDirection: 'row' },
+  weekDay: { flex: 1, alignItems: 'center', gap: 2 },
+  weekDayInitial: { fontSize: 10 },
+  weekDayNum: { fontSize: 15 },
+  weekDot: { width: 4, height: 4, borderRadius: 2 },
   zukan: { flex: 1 },
   filterRow: {
     flexDirection: 'row',

@@ -1,7 +1,9 @@
 /**
  * 設定(指示書 6-4/申請準備指示書 Phase 5)。
- * 月額プラン/復元/購読管理・表示(配色と文字サイズ)・効果音・バイブ・言語・参考文献・免責・
- * 規約とポリシー・お問い合わせ・データのエクスポート・バージョン。
+ * 並びは「操作の設定 → 読みもの」。
+ * 月額プラン/復元/購読管理・スイッチ系(配色・文字サイズ・バイブ)・チップ系(効果音・言語)・
+ * データのエクスポート、ここから読みもの: について・参考文献・免責・規約とポリシー・
+ * お問い合わせ・バージョン。
  * 課金の導線は、APIキー未設定のときとWebでは出さない(食材名の英語データは未整備。言語欄に注記)。
  * 規約・ポリシーへの導線はアプリ内から常に必要(Schedule 2 §3.8(b))なので課金の有効無効に関わらず出す。
  */
@@ -195,6 +197,27 @@ export default function SettingsScreen() {
         </Text>
       </View>
 
+      {/* バイブ。音を切っている人にも選んだ手応えだけは残す。スイッチ系はここまで */}
+      <View style={[styles.row, { backgroundColor: c.backgroundElement }]}>
+        <View style={styles.switchRow}>
+          <Text style={[styles.title, styles.switchLabel, { color: c.text }]}>
+            {t.settings.haptics}
+          </Text>
+          <Switch
+            value={haptics}
+            onValueChange={(on) => {
+              setHaptics(on);
+              // 入れた瞬間に一度震わせて、どのくらいか分かるようにする
+              if (on) decideHaptic();
+            }}
+            trackColor={switchTrack}
+          />
+        </View>
+        <Text style={[styles.note, { color: c.textSecondary }]}>
+          {t.settings.hapticsNote}
+        </Text>
+      </View>
+
       {/* 効果音の音量。選んだ段でその場で鳴らして、耳で決められるようにする */}
       <View style={[styles.row, { backgroundColor: c.backgroundElement }]}>
         <Text style={[styles.title, { color: c.text }]}>{t.settings.sound}</Text>
@@ -221,27 +244,6 @@ export default function SettingsScreen() {
         </View>
         <Text style={[styles.note, { color: c.textSecondary }]}>
           {t.settings.soundNote}
-        </Text>
-      </View>
-
-      {/* バイブ。音を切っている人にも選んだ手応えだけは残す */}
-      <View style={[styles.row, { backgroundColor: c.backgroundElement }]}>
-        <View style={styles.switchRow}>
-          <Text style={[styles.title, styles.switchLabel, { color: c.text }]}>
-            {t.settings.haptics}
-          </Text>
-          <Switch
-            value={haptics}
-            onValueChange={(on) => {
-              setHaptics(on);
-              // 入れた瞬間に一度震わせて、どのくらいか分かるようにする
-              if (on) decideHaptic();
-            }}
-            trackColor={switchTrack}
-          />
-        </View>
-        <Text style={[styles.note, { color: c.textSecondary }]}>
-          {t.settings.hapticsNote}
         </Text>
       </View>
 
@@ -278,6 +280,17 @@ export default function SettingsScreen() {
 
       <Pressable
         style={[styles.row, { backgroundColor: c.backgroundElement }]}
+        onPress={exportData}
+      >
+        <Text style={[styles.title, { color: c.text }]}>{t.settings.exportTitle}</Text>
+        <Text style={[styles.note, { color: c.textSecondary }]}>
+          {t.settings.exportNote}
+        </Text>
+      </Pressable>
+
+      {/* ここから下は読みもの・外部ページへの導線。操作の設定より下にまとめる */}
+      <Pressable
+        style={[styles.row, { backgroundColor: c.backgroundElement }]}
         onPress={() => router.push('/about')}
       >
         <Text style={[styles.title, { color: c.text }]}>{t.settings.about}</Text>
@@ -308,16 +321,6 @@ export default function SettingsScreen() {
             {t.settings.disclaimerBody}
           </Text>
         )}
-      </Pressable>
-
-      <Pressable
-        style={[styles.row, { backgroundColor: c.backgroundElement }]}
-        onPress={exportData}
-      >
-        <Text style={[styles.title, { color: c.text }]}>{t.settings.exportTitle}</Text>
-        <Text style={[styles.note, { color: c.textSecondary }]}>
-          {t.settings.exportNote}
-        </Text>
       </Pressable>
 
       {/* 規約・ポリシーはアプリ内から常に開けること(Schedule 2 §3.8(b)) */}
