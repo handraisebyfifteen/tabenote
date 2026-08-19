@@ -7,6 +7,7 @@ import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { LanguageProvider, useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
+import { AnalyticsProvider } from '@/lib/analytics';
 import { BillingProvider, useBilling } from '@/lib/BillingContext';
 import { DisplayProvider } from '@/lib/DisplayContext';
 import { SoundProvider } from '@/lib/SoundContext';
@@ -66,14 +67,16 @@ function ThemedRoot() {
 
 export default function RootLayout() {
   return (
-    <DisplayProvider>
-      <SoundProvider>
-        <LanguageProvider>
-          <BillingProvider>
-            <ThemedRoot />
-          </BillingProvider>
-        </LanguageProvider>
-      </SoundProvider>
-    </DisplayProvider>
+    <AnalyticsProvider>
+      <DisplayProvider>
+        <SoundProvider>
+          <LanguageProvider>
+            <BillingProvider>
+              <ThemedRoot />
+            </BillingProvider>
+          </LanguageProvider>
+        </SoundProvider>
+      </DisplayProvider>
+    </AnalyticsProvider>
   );
 }

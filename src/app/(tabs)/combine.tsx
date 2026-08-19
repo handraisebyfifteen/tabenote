@@ -28,6 +28,7 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import Svg, { Polygon as SvgPolygon, Text as SvgText } from 'react-native-svg';
 
+import AiSimilarFoods from '@/components/AiSimilarFoods';
 import FiveElementsChart from '@/components/FiveElementsChart';
 import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
@@ -64,6 +65,7 @@ import {
   type FiveSeason,
 } from '@/logic/season';
 import { complementOrder } from '@/logic/suggest';
+import { useTrack } from '@/lib/analytics';
 import { brighten } from '@/lib/color';
 import { useDisplay } from '@/lib/DisplayContext';
 import { loadUserData, recordSelections, toggleFavorite } from '@/lib/storage';
@@ -221,6 +223,7 @@ export default function CombineScreen() {
   const t = getStrings(lang);
   const { gridColumns } = useDisplay();
   const feedback = useCombineFeedback();
+  const track = useTrack();
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [query, setQuery] = useState('');
@@ -302,12 +305,22 @@ export default function CombineScreen() {
   const totals = useMemo(() => aggregateFlavors(selectedFoods), [selectedFoods]);
   const natureLevel = useMemo(() => averageNatureLevel(selectedFoods), [selectedFoods]);
 
+  /**
+   * 検索語が図鑑に当たったかどうか(選択済み・参照のみを除く前の生の結果)。
+   * グリッドが空でも、選択済みだから消えているだけ・参照のみ項目だから選べないだけ、
+   * ということがある。「図鑑に無い」と言ってよいのはこれが0件のときだけ
+   */
+  const searchHits = useMemo(
+    () => (query.trim() === '' ? [] : searchFoods(query)),
+    [query],
+  );
+
   const listFoods = useMemo(() => {
     // 選択済みはグリッドから外す(上のパーティ枠に居る)
     const picked = new Set(selectedIds);
     if (query.trim() !== '') {
       // 別名(note)・英語名にもヒットさせる。参照のみ項目はこの画面では選べないので除く
-      return searchFoods(query).filter((f) => f.nature !== '' && !picked.has(f.id));
+      return searchHits.filter((f) => f.nature !== '' && !picked.has(f.id));
     }
     if (cat === 'quick') {
       return quickFoods.filter((f) => !picked.has(f.id));
@@ -322,7 +335,17 @@ export default function CombineScreen() {
       selectionHistory: history,
       seasonNatureLevels: seasonRec.natureLevels,
     });
-  }, [query, cat, quickFoods, selectedIds, selectedFoods, favorites, history, seasonRec]);
+  }, [
+    query,
+    searchHits,
+    cat,
+    quickFoods,
+    selectedIds,
+    selectedFoods,
+    favorites,
+    history,
+    seasonRec,
+  ]);
 
   const toggle = (id: string) => {
     setSelectedIds((ids) =>
@@ -363,6 +386,8 @@ export default function CombineScreen() {
         setFrozenList(null);
         setDepartingId(null);
       }, 450);
+      // 空の状態からの最初の1つだけ計測する(食材名は送らない)
+      if (selectedIds.length === 0) track('combination_started');
       toggle(id);
       // 決定したタイルはグリッドから抜けるので、カーソルも外す
       setFocusedId(null);
@@ -391,8 +416,10 @@ export default function CombineScreen() {
   const decide = () => {
     if (selectedIds.length === 0 || decideNavTimer.current !== null) return;
     // 3クリック目の音とバイブ。カーソル(B)→決定(C)から一段上がった「キコーン↑」で、
-    // 画面が助言へ変わることを耳でも伝える。演出を省く設定でも、押した合図は残す
-    feedback.confirm();
+    // 画面が助言へ変わることを耳でも伝える。演出を省く設定でも、押した合図は残す。
+    // 複数を合わせたときは、さらに一段上の A6 へ跳ぶ濁ったほうが鳴る
+    feedback.confirm(selectedIds.length);
+    track('combination_confirmed', { count: selectedIds.length });
     const go = async () => {
       decideNavTimer.current = null;
       await recordSelections(selectedIds);
@@ -773,7 +800,45 @@ export default function CombineScreen() {
         numColumns={gridColumns}
         contentContainerStyle={styles.gridContent}
         ListEmptyComponent={
-          cat === 'quick' && query.trim() === '' ? (
+          query.trim() !== '' && searchHits.length === 0 ? (
+            // 図鑑は438品目で閉じている。無い食材を探して行き止まりにせず、
+            // 図鑑の中で近いとされるものをAIに挙げてもらう(タップでそのまま追加)
+            <AiSimilarFoods
+              query={query}
+              renderItem={({ food, reason }) => {
+                const added = selectedIds.includes(food.id);
+                return (
+                  <Pressable
+                    style={styles.similarRow}
+                    onPress={() => {
+                      toggle(food.id);
+                      // 追加は決定と同じ、外すのは外す合図(グリッドと同じ流儀)
+                      if (added) feedback.remove();
+                      else feedback.decide();
+                    }}
+                  >
+                    <FoodThumb
+                      name={foodName(food, lang)}
+                      icon={food.icon}
+                      catIcon={food.catIcon}
+                      color={natureColor(natureValue(food))}
+                    />
+                    <View style={styles.similarTexts}>
+                      <Text style={{ color: c.text, fontSize: 15 }}>
+                        {foodName(food, lang)}
+                      </Text>
+                      <Text style={[styles.similarReason, { color: c.textSecondary }]}>
+                        {reason}
+                      </Text>
+                      <Text style={[styles.similarHint, { color: c.textSecondary }]}>
+                        {added ? `✓ ${t.aiSimilar.addedMark}` : t.aiSimilar.addHint}
+                      </Text>
+                    </View>
+                  </Pressable>
+                );
+              }}
+            />
+          ) : cat === 'quick' && query.trim() === '' ? (
             <Text style={[styles.quickEmpty, { color: c.textSecondary }]}>
               {t.combine.quickEmpty}
             </Text>
@@ -931,6 +996,16 @@ const styles = StyleSheet.create({
   dot: { width: 10, height: 10, borderRadius: 5 },
   focusName: { fontSize: 13, fontWeight: '600', flexShrink: 1 },
   focusHint: { fontSize: 12 },
+  /* 図鑑に無い食材を探したときの、AIが挙げた近い食材の行 */
+  similarRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 8,
+  },
+  similarTexts: { flex: 1, gap: 2 },
+  similarReason: { fontSize: 12, lineHeight: 18 },
+  similarHint: { fontSize: 11 },
   quickEmpty: {
     textAlign: 'center',
     fontSize: 13,

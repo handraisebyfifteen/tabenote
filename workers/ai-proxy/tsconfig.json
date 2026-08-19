@@ -5,6 +5,8 @@
     // DOM を外す。既定で入ると @cloudflare/workers-types と Response などが衝突して型チェックが通らない
     "lib": ["es2022"],
     "moduleResolution": "bundler",
+    // 参照データ(../../../src/data/tabenote_foods.json)を直接読むため
+    "resolveJsonModule": true,
     "strict": true,
     "noEmit": true,
     // 依存の .d.ts 同士(workers-types と @types/node)がグローバル名で衝突するため

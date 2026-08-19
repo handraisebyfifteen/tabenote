@@ -3,6 +3,7 @@
  *
  * アプリに API キーを載せないための小さなプロキシ。
  *   POST /suggest — 選択食材+季節から献立のアイデアを返す(有料機能)
+ *   POST /similar — 図鑑に無い食材名から、図鑑の中の近い食材を挙げる(有料機能)
  *
  * 表現の制約(設計書 9章)はシステムプロンプトで強制する:
  * 効能・症状・病名・点数を出さない。
@@ -10,6 +11,10 @@
  * デプロイ手順は同ディレクトリの README.md を参照。
  */
 import Anthropic from '@anthropic-ai/sdk';
+
+// アプリと同じ参照データを見る(コピーを置くと図鑑とずれる)。
+// wrangler(esbuild)がバンドル時に取り込むので、実行時のファイル読み込みは無い
+import rawFoods from '../../../src/data/tabenote_foods.json';
 
 export interface Env {
   ANTHROPIC_API_KEY: string;
@@ -37,6 +42,128 @@ interface SuggestRequest {
   recommendedFlavors?: string[];
   missingFlavors?: string[];
   lang?: 'ja' | 'en';
+}
+
+/* ---------------- /similar(図鑑に無い食材 → 近い食材) ---------------- */
+
+interface CatalogFood {
+  id: string;
+  name: string;
+  nature: string;
+  flavors: string[];
+  visible?: boolean;
+}
+
+/**
+ * 候補になる食材。非表示3件と、性が空の「参照のみ項目」を除く
+ * (アプリ側の SELECTABLE_FOODS と同じ母集合。選べないものを案内しない)
+ */
+const CANDIDATES: CatalogFood[] = (rawFoods as CatalogFood[]).filter(
+  (f) => f.visible !== false && f.nature !== '',
+);
+
+/** モデルに見せる一覧。「番号 名前|性|味」の1行1件(約6KB) */
+const CATALOG = CANDIDATES.map(
+  (f, i) => `${i} ${f.name}|${f.nature}|${f.flavors.join('')}`,
+).join('\n');
+
+const SIMILAR_SYSTEM_PROMPT = `あなたは薬膳手帳アプリ「tabenote」の食材案内アシスタントです。
+利用者が図鑑(下の一覧)に載っていない食材の名前を検索したとき、一覧の中から性・味・料理での使われかたが近いものを最大3件挙げ、なぜ近いのかを述べます。
+
+必ず守ること:
+- 挙げてよいのは一覧にある食材だけ。一覧に無い名前は絶対に返さない
+- 検索された食材そのものの性・味・帰経を断定しない(出典に無いため)
+- 「治る」「効く」「予防する」「改善します」などの効能表現を使わない
+- 症状名・病名に言及しない。医学的な助言をしない
+- 中医学の用語を使うときは「〜とされています」の伝聞形にとどめる
+- reason は1〜2文。性(温める/冷ます方向)・味・調理での使われかたのうち、近いと言える点を書く
+- 近い順に並べる。思い当たらない・検索語が食材でないときは items を空にする
+- note は1文。その食材が図鑑に無いこと(または判断できないこと)を伝える
+- lang が "en" なら英語で、それ以外は日本語で書く
+
+一覧(番号 名前|性|味):
+${CATALOG}`;
+
+/**
+ * 返答の形。index と name の両方を返させて、取り違えをサーバー側で弾く。
+ * 件数の上限は構造化出力の制約として書けない(配列の個数制限は非対応)ので、
+ * システムプロンプトで指示し、最後に3件へ切る
+ */
+const SIMILAR_SCHEMA = {
+  type: 'object',
+  properties: {
+    note: { type: 'string' },
+    items: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          index: { type: 'integer' },
+          name: { type: 'string' },
+          reason: { type: 'string' },
+        },
+        required: ['index', 'name', 'reason'],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ['note', 'items'],
+  additionalProperties: false,
+} as const;
+
+interface SimilarRequest {
+  query: string;
+  lang?: 'ja' | 'en';
+}
+
+function isValidSimilarRequest(body: unknown): body is SimilarRequest {
+  if (typeof body !== 'object' || body === null) return false;
+  const b = body as Record<string, unknown>;
+  return typeof b.query === 'string' && b.query.trim() !== '' && b.query.length <= 40;
+}
+
+/** 名前が一意な食材の逆引き(「かき」「さけ」は同名2件あるので入れない) */
+const BY_UNIQUE_NAME = (() => {
+  const counts = new Map<string, number>();
+  for (const f of CANDIDATES) counts.set(f.name, (counts.get(f.name) ?? 0) + 1);
+  const map = new Map<string, CatalogFood>();
+  for (const f of CANDIDATES) if (counts.get(f.name) === 1) map.set(f.name, f);
+  return map;
+})();
+
+/**
+ * モデルの返答を図鑑の ID に落とす。
+ * 番号と名前が食い違ったら名前を優先し(reason は名前について書かれているため)、
+ * 同名2件で決められないものは落とす。ここを通ったものだけがアプリに渡る
+ */
+function resolveSimilarItems(
+  raw: unknown,
+): { items: { id: string; reason: string }[]; note: string } {
+  if (typeof raw !== 'object' || raw === null) return { items: [], note: '' };
+  const r = raw as { note?: unknown; items?: unknown };
+  const note = typeof r.note === 'string' ? r.note : '';
+  if (!Array.isArray(r.items)) return { items: [], note };
+
+  const seen = new Set<string>();
+  const items: { id: string; reason: string }[] = [];
+  for (const entry of r.items) {
+    if (typeof entry !== 'object' || entry === null) continue;
+    const e = entry as { index?: unknown; name?: unknown; reason?: unknown };
+    const reason = typeof e.reason === 'string' ? e.reason : '';
+    const name = typeof e.name === 'string' ? e.name : '';
+    const byIndex =
+      typeof e.index === 'number' && Number.isInteger(e.index)
+        ? CANDIDATES[e.index]
+        : undefined;
+    const food =
+      byIndex !== undefined && byIndex.name === name
+        ? byIndex
+        : BY_UNIQUE_NAME.get(name);
+    if (food === undefined || reason === '' || seen.has(food.id)) continue;
+    seen.add(food.id);
+    items.push({ id: food.id, reason });
+  }
+  return { items: items.slice(0, 3), note };
 }
 
 function jsonResponse(body: unknown, status = 200): Response {
@@ -102,6 +229,91 @@ async function hasActiveSubscription(request: Request, env: Env): Promise<boolea
   return pro.expires_date === null || Date.parse(pro.expires_date) > Date.now();
 }
 
+/** 返答から最初のテキストブロックを取り出す */
+function firstText(message: Anthropic.Message): string {
+  const text = message.content.find((block) => block.type === 'text');
+  return text?.type === 'text' ? text.text : '';
+}
+
+async function handleSuggest(body: unknown, env: Env): Promise<Response> {
+  if (!isValidRequest(body)) {
+    return jsonResponse({ error: 'invalid_request' }, 400);
+  }
+
+  const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+  let message: Anthropic.Message;
+  try {
+    message = await client.messages.create({
+      model: MODEL,
+      max_tokens: 1024,
+      system: SYSTEM_PROMPT,
+      messages: [
+        {
+          role: 'user',
+          content: JSON.stringify({
+            foods: body.foods,
+            season: body.season,
+            recommendedFlavors: body.recommendedFlavors ?? [],
+            missingFlavors: body.missingFlavors ?? [],
+            lang: body.lang ?? 'ja',
+          }),
+        },
+      ],
+    });
+  } catch (err) {
+    // キー無効・レート超過など上流のエラー。詳細はログ(wrangler tail)で見る
+    console.error('anthropic_error', err instanceof Error ? err.message : err);
+    return jsonResponse({ error: 'upstream_error' }, 502);
+  }
+
+  return jsonResponse({ suggestion: firstText(message) });
+}
+
+async function handleSimilar(body: unknown, env: Env): Promise<Response> {
+  if (!isValidSimilarRequest(body)) {
+    return jsonResponse({ error: 'invalid_request' }, 400);
+  }
+
+  const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+  let message: Anthropic.Message;
+  try {
+    message = await client.messages.create({
+      model: MODEL,
+      max_tokens: 1024,
+      // 一覧(約6KB)は毎回同じなので、まるごとキャッシュに載せる
+      system: [
+        {
+          type: 'text',
+          text: SIMILAR_SYSTEM_PROMPT,
+          cache_control: { type: 'ephemeral' },
+        },
+      ],
+      output_config: { format: { type: 'json_schema', schema: SIMILAR_SCHEMA } },
+      messages: [
+        {
+          role: 'user',
+          content: JSON.stringify({
+            query: body.query.trim(),
+            lang: body.lang ?? 'ja',
+          }),
+        },
+      ],
+    });
+  } catch (err) {
+    console.error('anthropic_error', err instanceof Error ? err.message : err);
+    return jsonResponse({ error: 'upstream_error' }, 502);
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(firstText(message));
+  } catch {
+    console.error('similar_parse_error', firstText(message).slice(0, 300));
+    return jsonResponse({ error: 'upstream_error' }, 502);
+  }
+  return jsonResponse(resolveSimilarItems(parsed));
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === 'OPTIONS') {
@@ -109,7 +321,10 @@ export default {
     }
 
     const url = new URL(request.url);
-    if (request.method !== 'POST' || url.pathname !== '/suggest') {
+    if (
+      request.method !== 'POST' ||
+      (url.pathname !== '/suggest' && url.pathname !== '/similar')
+    ) {
       return jsonResponse({ error: 'not_found' }, 404);
     }
 
@@ -123,37 +338,9 @@ export default {
     } catch {
       return jsonResponse({ error: 'invalid_json' }, 400);
     }
-    if (!isValidRequest(body)) {
-      return jsonResponse({ error: 'invalid_request' }, 400);
-    }
 
-    const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
-    let message: Anthropic.Message;
-    try {
-      message = await client.messages.create({
-        model: MODEL,
-        max_tokens: 1024,
-        system: SYSTEM_PROMPT,
-        messages: [
-          {
-            role: 'user',
-            content: JSON.stringify({
-              foods: body.foods,
-              season: body.season,
-              recommendedFlavors: body.recommendedFlavors ?? [],
-              missingFlavors: body.missingFlavors ?? [],
-              lang: body.lang ?? 'ja',
-            }),
-          },
-        ],
-      });
-    } catch (err) {
-      // キー無効・レート超過など上流のエラー。詳細はログ(wrangler tail)で見る
-      console.error('anthropic_error', err instanceof Error ? err.message : err);
-      return jsonResponse({ error: 'upstream_error' }, 502);
-    }
-
-    const text = message.content.find((block) => block.type === 'text');
-    return jsonResponse({ suggestion: text?.type === 'text' ? text.text : '' });
+    return url.pathname === '/suggest'
+      ? handleSuggest(body, env)
+      : handleSimilar(body, env);
   },
 };

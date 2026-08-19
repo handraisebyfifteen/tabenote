@@ -124,6 +124,28 @@ export interface Strings {
     filterEmpty: string;
   };
 
+  /**
+   * 検索が1件も当たらなかったときのAIの案内(組み合わせ画面・図鑑で共通)。
+   * 出すのは「図鑑の中の近い食材」だけで、図鑑に無い食材の性・味は示さない。
+   */
+  aiSimilar: {
+    notFound(query: string): string;
+    askButton: string;
+    retryButton: string;
+    loading: string;
+    error: string;
+    /** 購読が要るとき(サーバーが402を返す) */
+    subscriptionRequired: string;
+    subscribeButton: string;
+    /** 近いものが挙がらなかったとき */
+    emptyResult: string;
+    note: string;
+    /** 組み合わせ画面: 行をタップするとどうなるか */
+    addHint: string;
+    /** 組み合わせ画面: すでに選んである食材の印 */
+    addedMark: string;
+  };
+
   guide: {
     fivePhasesTitle: string;
     fivePhasesTable: string[][];
@@ -439,6 +461,20 @@ const ja: Strings = {
     filterStarred: '★ お気に入り',
     filterMemo: 'メモあり',
     filterEmpty: '★を付けた食材や、メモを書いた食材がここに並びます。',
+  },
+
+  aiSimilar: {
+    notFound: (query) => `「${query}」は図鑑にありません。`,
+    askButton: 'AIに近い食材を聞く',
+    retryButton: 'もう一度聞く',
+    loading: '探しています…',
+    error: '近い食材を取得できませんでした。通信環境を確認して、もう一度お試しください。',
+    subscriptionRequired: 'AIの案内は有料機能です。',
+    subscribeButton: '詳しく見る',
+    emptyResult: '近いとされる食材は挙がりませんでした。',
+    note: 'AIの案内です。図鑑に無い食材の性・味は示しません。図鑑の中で近いとされる食材を挙げるだけです。',
+    addHint: 'タップで組み合わせに追加',
+    addedMark: '追加済み',
   },
 
   guide: {
@@ -791,6 +827,20 @@ const en: Strings = {
     filterStarred: '★ Favorites',
     filterMemo: 'With memos',
     filterEmpty: 'Foods you star or write memos on will collect here.',
+  },
+
+  aiSimilar: {
+    notFound: (query) => `“${query}” is not in the encyclopedia.`,
+    askButton: 'Ask AI for close foods',
+    retryButton: 'Ask again',
+    loading: 'Looking…',
+    error: 'Could not get close foods. Please check your connection and try again.',
+    subscriptionRequired: 'AI guidance is a paid feature.',
+    subscribeButton: 'Learn more',
+    emptyResult: 'No close foods came up.',
+    note: 'An AI suggestion. It does not state the nature or flavors of a food outside the encyclopedia — it only names foods within it that are said to be close.',
+    addHint: 'Tap to add to your combination',
+    addedMark: 'Added',
   },
 
   guide: {

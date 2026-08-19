@@ -7,8 +7,8 @@
  * 節気の説明文は solar_terms.md の2段落テキスト(段落1=暦、段落2=中医学)で、
  * 読み物なので折りたたんで置く(読んで終わりの画面にしない)。
  */
-import { router } from 'expo-router';
-import React, { useState } from 'react';
+import { router, useFocusEffect } from 'expo-router';
+import React, { useCallback, useState } from 'react';
 import {
   Pressable,
   ScrollView,
@@ -30,6 +30,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { fiveFlavorAxisLabels, fiveSeasonName, foodName } from '@/i18n/terms';
+import { useAnalyticsReady, useTrack } from '@/lib/analytics';
 import { emptyTotals } from '@/logic/flavors';
 import { natureValue } from '@/logic/nature';
 import { seasonalPicks } from '@/logic/seasonFoods';
@@ -38,6 +39,22 @@ import { calendarDayNumber } from '@/logic/solarTerms';
 
 /** 「いまの季節に合う食材」を出す数 */
 const PICK_COUNT = 8;
+
+/**
+ * ホームを開くたびに、いま表示している節気を計測する(名前は英語名のみ)。
+ * SDK 初期化前の発火は落ちるので、ready になった瞬間にも一度発火し直す
+ */
+function TrackSolarTerm({ term }: { term: string }) {
+  const track = useTrack();
+  const ready = useAnalyticsReady();
+  useFocusEffect(
+    useCallback(() => {
+      if (!ready) return;
+      track('solar_term_viewed', { term });
+    }, [ready, track, term]),
+  );
+  return null;
+}
 
 export default function HomeScreen() {
   const scheme = useColorScheme();
@@ -77,6 +94,7 @@ export default function HomeScreen() {
       contentContainerStyle={styles.container}
     >
       <PageHead {...t.meta.home} path="/" />
+      <TrackSolarTerm term={termInfo.current.term.english} />
 
       <TermScene termIndex={termInfo.current.term.index} height={sceneHeight}>
         <View style={styles.heroText}>

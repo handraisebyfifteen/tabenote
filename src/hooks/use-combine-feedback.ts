@@ -10,11 +10,15 @@
  *   search   検索欄にフォーカス。留め金の「カチッ」+ 軽い振動
  *   po       そのほかのタップ。1オクターブ下の丸い「ぽ」+ 軽い振動
  *
+ * confirm だけ、選んだ数を受け取って音を差し替える。1つなら澄んだ E6 まで、
+ * 2つ以上なら D#5 からトライトーン上の A6 まで跳ぶ。何と何を合わせたかは
+ * 画面が言うので、音は「1つか、合わせたか」だけを言う。
+ *
  * どれも画面の点灯(FoodTile の flash・FoodPortrait の点灯・決定ボタンの点灯)と同じ瞬間に呼ぶ。
  * 音量とバイブの入切は設定画面に従う(@/lib/SoundContext)。
  *
  * 引数に音量(0〜1)を渡すと設定より優先する。設定画面の試し鳴らし用で、
- * ふだんは引数なしで呼ぶ。
+ * ふだんは渡さずに呼ぶ。
  */
 import { useMemo } from 'react';
 
@@ -25,7 +29,7 @@ import { useSound } from '@/lib/SoundContext';
 export function useCombineFeedback(): {
   cursor: (overrideGain?: number) => void;
   decide: (overrideGain?: number) => void;
-  confirm: (overrideGain?: number) => void;
+  confirm: (count: number, overrideGain?: number) => void;
   remove: (overrideGain?: number) => void;
   ki: (overrideGain?: number) => void;
   search: (overrideGain?: number) => void;
@@ -42,8 +46,9 @@ export function useCombineFeedback(): {
         playSfx('select', overrideGain ?? gain);
         if (haptics) decideHaptic();
       },
-      confirm: (overrideGain?: number) => {
-        playSfx('confirm', overrideGain ?? gain);
+      confirm: (count: number, overrideGain?: number) => {
+        // 複数を合わせたときだけ、もう一段上のトライトーンへ跳ぶほう。手ざわりは同じ
+        playSfx(count > 1 ? 'confirmMulti' : 'confirm', overrideGain ?? gain);
         if (haptics) confirmHaptic();
       },
       remove: (overrideGain?: number) => {

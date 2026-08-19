@@ -50,6 +50,21 @@
           "recordAudioAndroid": false,
           "enableBackgroundPlayback": false
         }
+      ],
+      "expo-tracking-transparency",
+      [
+        "@layers/expo",
+        {
+          "ios": {
+            "attUsageDescription": "Used to measure which content brought you here. No personal data is collected.",
+            "urlSchemes": ["tabenote"],
+            "includeDefaultSKAdNetworkIds": false,
+            "includeAdvertisingAttributionReportEndpoint": false
+          },
+          "android": {
+            "intentFilters": [{ "scheme": "tabenote", "host": "open" }]
+          }
+        }
       ]
     ],
     "experiments": {

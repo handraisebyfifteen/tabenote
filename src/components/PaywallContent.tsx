@@ -7,7 +7,7 @@
  *   購入を復元・利用規約・プライバシーポリシー・自動更新と解約方法の説明。
  * プランは月額1本のみなので、選択UIは置かない(指示書 4-3)。
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -24,11 +24,17 @@ import { Colors, MaxContentWidth } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
+import { useAnalyticsReady, useTrack } from '@/lib/analytics';
 import { useBilling } from '@/lib/BillingContext';
 
 const ACCENT = '#8FAF8B';
 
-export default function PaywallContent() {
+export default function PaywallContent({
+  source,
+}: {
+  /** 計測に送る呼び出し元(例: 'onboarding' | 'settings') */
+  source: string;
+}) {
   const scheme = useColorScheme();
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
   const { lang } = useLang();
@@ -42,6 +48,17 @@ export default function PaywallContent() {
     loadPlans();
   }, [loadPlans]);
 
+  // 表示を1回だけ計測する。起動直後のゲート表示では SDK の初期化が
+  // 間に合わないことがあるので、ready を待ってから送る
+  const track = useTrack();
+  const analyticsReady = useAnalyticsReady();
+  const viewSent = useRef(false);
+  useEffect(() => {
+    if (!analyticsReady || viewSent.current) return;
+    viewSent.current = true;
+    track('paywall_viewed', { source });
+  }, [analyticsReady, track, source]);
+
   // プランは月額1本。Offering の先頭を使う
   const plan = plans[0] ?? null;
 
@@ -50,6 +67,10 @@ export default function PaywallContent() {
     setBusy(true);
     const outcome = await purchase(plan.id);
     setBusy(false);
+    // 無料トライアル付きプランの購入成立 = トライアル開始(RevenueCat)
+    if (outcome === 'purchased' && plan.trial !== null) {
+      track('trial_started');
+    }
     if (outcome === 'failed') {
       Alert.alert(t.paywall.failTitle, t.paywall.failBody);
     }

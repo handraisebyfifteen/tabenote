@@ -39,7 +39,7 @@ export default function Onboarding() {
   if (step === 3) {
     return (
       <SafeAreaView style={[styles.fill, { backgroundColor: c.background }]}>
-        <PaywallContent />
+        <PaywallContent source="onboarding" />
       </SafeAreaView>
     );
   }

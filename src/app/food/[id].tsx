@@ -33,6 +33,7 @@ import {
 } from '@/i18n/terms';
 import { aggregateFlavors } from '@/logic/flavors';
 import { natureValue } from '@/logic/nature';
+import { useTrack } from '@/lib/analytics';
 import { loadUserData, setFoodNote, toggleFavorite } from '@/lib/storage';
 
 /**
@@ -51,6 +52,7 @@ export default function FoodDetailScreen() {
 
   const { id } = useLocalSearchParams<{ id: string }>();
   const food = getFood(id ?? '');
+  const track = useTrack();
 
   const [starred, setStarred] = useState(false);
   const [memo, setMemoUi] = useState('');
@@ -79,9 +81,11 @@ export default function FoodDetailScreen() {
         if (s.loaded && s.text !== s.persisted) {
           s.persisted = s.text;
           setFoodNote(food.id, s.text);
+          // 書いた事実だけ計測する。内容も食材名も送らない(消したときは送らない)
+          if (s.text !== '') track('note_written');
         }
       };
-    }, [food?.id]),
+    }, [food?.id, track]),
   );
 
   if (!food) {
@@ -106,6 +110,8 @@ export default function FoodDetailScreen() {
     if (s.loaded && s.text !== s.persisted) {
       s.persisted = s.text;
       setFoodNote(food.id, s.text);
+      // 書いた事実だけ計測する。内容も食材名も送らない(消したときは送らない)
+      if (s.text !== '') track('note_written');
     }
   };
 

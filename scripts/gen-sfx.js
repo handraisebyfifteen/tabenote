@@ -4,16 +4,19 @@
  *
  * 組み合わせ画面のキャラ選択の音を、ファミコンの矩形波の流儀で合成する。
  *
- *   cursor.wav   1タップ目・カーソル「キコ」      D#5 → B5
- *   select.wav   2タップ目・決定「キコーン」      D#5 → C6
- *   confirm.wav  3クリック目・決定ボタン「キコーン↑」D#5 → E6
- *   remove.wav   チップで食材を外す「キロ」       D5 → C#5
- *   ki.wav       季節・五行・分類チップ「キ」     D#5 のみ
- *   search.wav   検索欄フォーカス「カチッ」       A#4 → D#5
- *   po.wav       そのほかのタップ「ぽ」          D#4 のみ
+ *   cursor.wav        1タップ目・カーソル「キコ」      D#5 → B5
+ *   select.wav        2タップ目・決定「キコーン」      D#5 → C6
+ *   confirm.wav       決定ボタン(1つ)「キコーン↑」    D#5 → E6
+ *   confirm-multi.wav 決定ボタン(複数)               D#5 → A6
+ *   remove.wav        チップで食材を外す「キロ」       D5 → C#5
+ *   ki.wav            季節・五行・分類チップ「キ」     D#5 のみ
+ *   search.wav        検索欄フォーカス「カチッ」       A#4 → D#5
+ *   po.wav            そのほかのタップ「ぽ」          D#4 のみ
  *
- * 選ぶ3つは立ち上がりの「キ」を D#5 で揃え、行き先だけを B5 → C6 → E6 と
+ * 選ぶ音は立ち上がりの「キ」を D#5 で揃え、行き先だけを B5 → C6 → E6 → A6 と
  * 上げていく。同じ楽器のまま、押し進むごとに音が上へ抜けていく並び。
+ * いちばん上の A6 は複数を合わせて決定したときだけで、D#5 からトライトーン
+ * (+1オクターブ)。ここだけ濁った音程になり、「合わせた」を耳で言う。
  * 取り消しだけは半音低い D5 から C#5 へ下がり、向きの逆で「戻した」と言う。
  *
  * 音源を外から持ってくると権利の出所を追えなくなる(指示書 8-5)ので、
@@ -309,6 +312,105 @@ const CONFIRM_VARIANTS = {
 /** 採用中の候補(assets へ書き出すのはこれ) */
 const CONFIRM_SELECTED = 'plain';
 
+/**
+ * 複数選んで決定したときの音「キコーン↑(にごり)」の候補。
+ * 選んだ食材が2つ以上のときだけ、上の CONFIRM の代わりに鳴る。
+ *
+ * 1つだけの決定は confirm のまま(D#5 → E6)。1つは「これに決めた」、
+ * 複数は「これとこれを合わせた」で、合わさっているぶん音程に緊張を入れる、
+ * という言い分け。
+ *
+ * どの候補もトライトーン(3全音)を入れる。決定音たちがずっと
+ * 完全5度(C6+G6 / E6+B6)で澄ませてきたところに、半音だけずらした
+ * 不安定な音程を置く。ファミコンでも敵の出現や合体の合図に使われた響き。
+ *
+ * 違うのは、トライトーンをどこに置くか。和音に置く2案(chord / chord-hold)は
+ * 高さを confirm と揃えたまま響きの色だけ変え、跳びに置く案(leap)は
+ * 行き先そのものを動かす。採ったのは leap。
+ */
+const CONFIRM_MULTI_VARIANTS = {
+  /**
+   * 行き先は confirm と同じ E6 のまま、上に重ねる5度 B6 を
+   * 半音下げて A#6 にする。E6 と A#6 でトライトーン。
+   *
+   * 音の高さも長さも confirm と揃うので、続けて鳴らしても同じ音の
+   * 仲間に聞こえる。変わるのは響きの色だけ。
+   * ……のだが、変わりかたが控えめで「合わせた」がはっきり出ないので、採らなかった。
+   */
+  chord: {
+    gain: 0.55,
+    layers: [
+      // 「キ」: 選ぶ音たち共通の立ち上がり。ここは confirm と同じ
+      { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
+      { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
+      // 「コーン↑」の芯。confirm と同じ E6
+      { note: 'E6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 5 },
+      { note: 'E6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 5 },
+      { note: 'E5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.45, decay: 5 },
+      // ここだけ違う。confirm の B6(完全5度)を半音下げてトライトーンに。
+      // にごりが立つのは頭だけでいいので、confirm の B6 より速く減らす
+      { note: 'A#6', duty: 0.25, start: 0.055, dur: 0.36, gain: 0.55, decay: 11 },
+    ],
+  },
+
+  /**
+   * chord の濁りを、confirm の5度と同じ「聞こえの強さ」まで出す案。
+   * 減衰を B6 と揃え(11 → 9)、さらに gain を上げてある。
+   *
+   * gain を上げるのは、B6 と A#6 で下駄の有無が違うから。confirm の B6
+   * (1976Hz)は、下に敷いた E5(659Hz・duty 0.5 の矩形波)の第3倍音
+   * 1978Hz とほぼ同じ高さで、E5 に補強されている。スペクトルを見ると
+   * B6 は 25% 出ているが、A#6 を同じ gain・同じ減衰で置いても 17% にしか
+   * ならないのはこのため。半音下げると下駄が外れる。
+   * 0.55 → 0.8 は、その差を埋めて 25% に揃えるための数字。
+   *
+   * chord はにごりが頭で引くので「一瞬ざらついて澄む」。こちらは余韻の
+   * 最後までトライトーンが残るので、濁りははっきり分かるが、
+   * 決定音としてはきつくなる。どちらが「合わせた」の言い方として合うか。
+   */
+  'chord-hold': {
+    gain: 0.55,
+    layers: [
+      { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
+      { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
+      { note: 'E6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 5 },
+      { note: 'E6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 5 },
+      { note: 'E5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.45, decay: 5 },
+      // confirm の B6 を半音下げて、外れた下駄のぶん持ち上げた
+      { note: 'A#6', duty: 0.25, start: 0.055, dur: 0.36, gain: 0.8, decay: 9 },
+    ],
+  },
+
+  /**
+   * 採用中。跳びのほうをトライトーンにする。行き先を E6 から A6 へ移して、
+   * 立ち上がりの D#5 との間(1オクターブ+トライトーン)でにごらせる。
+   *
+   * 響きではなく旋律でトライトーンを言うので、和音でにごらせる2案より
+   * はっきり分かる。行き先の並びも B5 → C6 → E6 → A6 と素直に伸びて、
+   * 「合わせたぶんもう一段上がる」が音程の高さだけで伝わる。
+   *
+   * 上物は足していない。A6(1760Hz)の5度上は E7 で、confirm が避けた
+   * 折り返しの濁りと刺さりの帯に入るため。重心は1オクターブ下の A5 で作る。
+   * A6 は confirm の E6 より完全4度高いので、芯が細くならないよう
+   * A5 を confirm の E5 より厚め(0.45 → 0.6)に敷いてある。
+   */
+  leap: {
+    gain: 0.55,
+    layers: [
+      { note: 'D#5', duty: 0.125, start: 0, dur: 0.055, gain: 1.7, decay: 0 },
+      { note: 'D#6', duty: 0.125, start: 0, dur: 0.055, gain: 0.7, decay: 0 },
+      // 「コーン↑」の芯。D#5 からトライトーン(+1オクターブ)上がった A6
+      { note: 'A6', duty: 0.25, start: 0.055, dur: 0.55, gain: 1, decay: 6 },
+      { note: 'A6', detune: 8, duty: 0.25, start: 0.055, dur: 0.55, gain: 0.5, decay: 6 },
+      // 1オクターブ下。高いぶん芯が細くなるので、confirm の E5 より厚く敷く
+      { note: 'A5', duty: 0.5, start: 0.055, dur: 0.55, gain: 0.6, decay: 5 },
+    ],
+  },
+};
+
+/** 採用中の候補(assets へ書き出すのはこれ) */
+const CONFIRM_MULTI_SELECTED = 'leap';
+
 /** 1レイヤーを合成してバッファへ足し込む */
 function renderLayer(out, layer) {
   const tune = Math.pow(2, (layer.octave ?? 0) + (layer.detune ?? 0) / 1200);
@@ -387,6 +489,9 @@ if (variantsIndex !== -1) {
   for (const [name, sfx] of Object.entries(CONFIRM_VARIANTS)) {
     write(path.join(dir, `confirm-${name}.wav`), sfx);
   }
+  for (const [name, sfx] of Object.entries(CONFIRM_MULTI_VARIANTS)) {
+    write(path.join(dir, `confirm-multi-${name}.wav`), sfx);
+  }
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
   write(path.join(dir, 'remove.wav'), REMOVE_SFX);
   write(path.join(dir, 'ki.wav'), KI_SFX);
@@ -397,6 +502,10 @@ if (variantsIndex !== -1) {
   write(path.join(dir, 'select.wav'), VARIANTS[SELECTED]);
   write(path.join(dir, 'cursor.wav'), CURSOR_SFX);
   write(path.join(dir, 'confirm.wav'), CONFIRM_VARIANTS[CONFIRM_SELECTED]);
+  write(
+    path.join(dir, 'confirm-multi.wav'),
+    CONFIRM_MULTI_VARIANTS[CONFIRM_MULTI_SELECTED],
+  );
   write(path.join(dir, 'remove.wav'), REMOVE_SFX);
   write(path.join(dir, 'ki.wav'), KI_SFX);
   write(path.join(dir, 'search.wav'), SEARCH_SFX);

@@ -48,6 +48,7 @@ import {
   type SuggestionContext,
 } from '@/logic/suggest';
 import { aiEnabled, suggestMenu } from '@/lib/ai';
+import { useTrack } from '@/lib/analytics';
 import { useBilling } from '@/lib/BillingContext';
 import { addSavedCombo, loadUserData } from '@/lib/storage';
 
@@ -91,6 +92,7 @@ export default function AdviceScreen() {
   }, [seasonParam]);
 
   const [saved, setSaved] = useState(false);
+  const track = useTrack();
 
   const [suggestionCtx, setSuggestionCtx] = useState<SuggestionContext>(
     EMPTY_SUGGESTION_CONTEXT,
@@ -156,6 +158,7 @@ export default function AdviceScreen() {
       date: dateIso,
     });
     setSaved(true);
+    track('combination_saved');
   };
 
   const flavorFact = t.advice.flavorFact(dominant, missing);

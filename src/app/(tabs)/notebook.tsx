@@ -17,6 +17,7 @@ import {
   View,
 } from 'react-native';
 
+import AiSimilarFoods from '@/components/AiSimilarFoods';
 import { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
 import { getFoodEmoji } from '@/data/foodEmoji';
@@ -620,12 +621,22 @@ function ZukanSection({
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<ZukanFilter>('all');
 
+  /**
+   * 検索語が図鑑に当たったかどうか(★・メモの絞り込みをかける前の結果)。
+   * 一覧が空でも、絞り込みで消えているだけのことがある。
+   * 「図鑑に無い」と言ってよいのはこれが0件のときだけ
+   */
+  const searchHits = useMemo(
+    () => (query.trim() === '' ? [] : searchFoods(query)),
+    [query],
+  );
+
   const foods = useMemo(() => {
-    const base = query.trim() === '' ? VISIBLE_FOODS : searchFoods(query);
+    const base = query.trim() === '' ? VISIBLE_FOODS : searchHits;
     if (filter === 'starred') return base.filter((f) => favorites.includes(f.id));
     if (filter === 'memo') return base.filter((f) => (notes[f.id] ?? '').trim() !== '');
     return base;
-  }, [query, filter, favorites, notes]);
+  }, [query, searchHits, filter, favorites, notes]);
 
   // 英語は語が長い(Slightly warming / Vegetables)。1行に名前と並べると窮屈なので、
   // 名前の下にまとめて置く。日本語は2文字で収まるので右端に列で出したままにする。
@@ -674,7 +685,42 @@ function ZukanSection({
         data={foods}
         keyExtractor={(f) => f.id}
         ListEmptyComponent={
-          filter !== 'all' && query.trim() === '' ? (
+          query.trim() !== '' && searchHits.length === 0 ? (
+            // 図鑑に載っていない食材で行き止まりにしない。
+            // 図鑑の中で近いとされるものをAIに挙げてもらい、そこから個票へ渡す
+            <AiSimilarFoods
+              query={query}
+              renderItem={({ food, reason }) => (
+                <Pressable
+                  style={styles.similarRow}
+                  onPress={() => {
+                    feedback.po();
+                    router.push(`/food/${food.id}`);
+                  }}
+                >
+                  <FoodThumb
+                    name={foodName(food, lang)}
+                    icon={food.icon}
+                    catIcon={food.catIcon}
+                    color={natureColor(natureValue(food))}
+                  />
+                  <View style={styles.similarTexts}>
+                    <Text style={{ color: c.text, fontSize: 15 }}>
+                      {foodName(food, lang)}
+                      {'  '}
+                      <Text style={{ color: c.textSecondary, fontSize: 12 }}>
+                        {food.nature !== '' ? natureLabel(food.nature, lang) : ''}
+                      </Text>
+                    </Text>
+                    <Text style={[styles.similarReason, { color: c.textSecondary }]}>
+                      {reason}
+                    </Text>
+                  </View>
+                  <Text style={{ color: c.textSecondary }}>›</Text>
+                </Pressable>
+              )}
+            />
+          ) : filter !== 'all' && query.trim() === '' ? (
             <Text style={[styles.emptyText, styles.filterEmpty, { color: c.textSecondary }]}>
               {t.notebook.filterEmpty}
             </Text>
@@ -939,6 +985,15 @@ const styles = StyleSheet.create({
   zukanMemo: { fontSize: 12 },
   zukanNature: { fontSize: 12 },
   zukanCat: { fontSize: 11 },
+  /* 図鑑に無い食材を探したときの、AIが挙げた近い食材の行 */
+  similarRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 8,
+  },
+  similarTexts: { flex: 1, gap: 2 },
+  similarReason: { fontSize: 12, lineHeight: 18 },
   guide: { padding: 16, gap: 12 },
   guideTitle: { fontSize: 12, marginBottom: 4 },
   guideText: { fontSize: 14, lineHeight: 22 },

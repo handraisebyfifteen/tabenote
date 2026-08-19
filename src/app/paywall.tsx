@@ -7,5 +7,5 @@ import React from 'react';
 import PaywallContent from '@/components/PaywallContent';
 
 export default function PaywallScreen() {
-  return <PaywallContent />;
+  return <PaywallContent source="settings" />;
 }

@@ -1,23 +1,26 @@
 /**
- * 効果音の鳴らし口。組み合わせ画面と手帳の7つの音を持つ。
+ * 効果音の鳴らし口。組み合わせ画面と手帳の8つの音を持つ。
  *
- *   cursor   1タップ目・カーソル「キコ」        D#5 → B5
- *   select   2タップ目・決定「キコーン」        D#5 → C6
- *   confirm  3クリック目・決定ボタン「キコーン↑」 D#5 → E6
- *   remove   チップで食材を外す「キロ」         D5 → C#5
- *   ki       季節・五行・分類・手帳タブ「キ」    D#5 のみ
- *   search   検索欄フォーカス「カチッ」         A#4 → D#5
- *   po       そのほかのタップ「ぽ」            D#4 のみ
+ *   cursor        1タップ目・カーソル「キコ」        D#5 → B5
+ *   select        2タップ目・決定「キコーン」        D#5 → C6
+ *   confirm       決定ボタン(1つ)「キコーン↑」      D#5 → E6
+ *   confirmMulti  決定ボタン(複数)「キコーン↑↑」   D#5 → A6
+ *   remove        チップで食材を外す「キロ」         D5 → C#5
+ *   ki            季節・五行・分類・手帳タブ「キ」    D#5 のみ
+ *   search        検索欄フォーカス「カチッ」         A#4 → D#5
+ *   po            そのほかのタップ「ぽ」            D#4 のみ
  *
- * 選ぶ3つの「キ」は D#5 で同じ。行き先だけ B5 → C6 → E6 と上がるので、
+ * 選ぶ音の「キ」は D#5 で同じ。行き先だけ B5 → C6 → E6 → A6 と上がるので、
  * 押し進むほど音が上へ抜ける。外す音だけは半音低く立って半音下がる。
+ * いちばん上の A6 は複数を合わせて決定したときだけで、D#5 からトライトーン
+ * (+1オクターブ)。ここだけ濁った跳びになり、「合わせた」を音程で言う。
  *
  * 波形は scripts/gen-sfx.js が作る(assets/sfx/*.wav)。
  *
  * プレイヤーは音ごとにアプリで1つだけ持つ。画面ごとに作ると、
  *   ・組み合わせ画面と設定画面で二重に読み込むことになる
  *   ・画面に入るたび作り直しになり、最初のタップが鳴らないことがある
- * ため、初回に作って以後使い回す(合わせて 120KB の短い音なので抱えたままでよい)。
+ * ため、初回に作って以後使い回す(合わせて 190KB の短い音なので抱えたままでよい)。
  *
  * 鳴らしかたの約束:
  *   マナーモード中でも鳴らす(playsInSilentMode: true)。
@@ -37,6 +40,7 @@ export type SfxName =
   | 'cursor'
   | 'select'
   | 'confirm'
+  | 'confirmMulti'
   | 'remove'
   | 'ki'
   | 'search'
@@ -46,6 +50,7 @@ const SOURCES: Record<SfxName, number> = {
   cursor: require('../../assets/sfx/cursor.wav'),
   select: require('../../assets/sfx/select.wav'),
   confirm: require('../../assets/sfx/confirm.wav'),
+  confirmMulti: require('../../assets/sfx/confirm-multi.wav'),
   remove: require('../../assets/sfx/remove.wav'),
   ki: require('../../assets/sfx/ki.wav'),
   search: require('../../assets/sfx/search.wav'),
