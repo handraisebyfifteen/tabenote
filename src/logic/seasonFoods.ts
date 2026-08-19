@@ -35,10 +35,18 @@ export function seasonalPicks(
   season: FiveSeason,
   dayNum: number,
   limit: number,
+  /** 既に同じ画面の別の枠に出ている食材。二度出さないために飛ばす */
+  exclude?: ReadonlySet<string>,
 ): Food[] {
   const pool = seasonMatchingFoods(season);
   if (pool.length === 0) return [];
-  if (pool.length <= limit) return pool;
   const start = ((dayNum % pool.length) + pool.length) % pool.length;
-  return Array.from({ length: limit }, (_, i) => pool[(start + i) % pool.length]);
+  // 除外は窓をずらしたあとに掛ける。★を付けても並び全体がずれないようにする
+  const picks: Food[] = [];
+  for (let i = 0; i < pool.length && picks.length < limit; i++) {
+    const food = pool[(start + i) % pool.length];
+    if (exclude?.has(food.id)) continue;
+    picks.push(food);
+  }
+  return picks;
 }

@@ -64,7 +64,9 @@ import {
   getFiveSeason,
   type FiveSeason,
 } from '@/logic/season';
+import { seasonalPicks } from '@/logic/seasonFoods';
 import { complementOrder } from '@/logic/suggest';
+import { getToday } from '@/logic/today';
 import { useTrack } from '@/lib/analytics';
 import { brighten } from '@/lib/color';
 import { useDisplay } from '@/lib/DisplayContext';
@@ -72,6 +74,9 @@ import { loadUserData, recordSelections, toggleFavorite } from '@/lib/storage';
 
 /** よく使う層に自動で上がる件数の上限(お気に入りを除く) */
 const AUTO_QUICK_LIMIT = 20;
+
+/** 「★よく使う」の先頭に出す季節の食材の数(ホームの PICK_COUNT と揃える) */
+const QUICK_SEASON_COUNT = 8;
 
 /** 「★よく使う」を表すタブ値(15分類と排他) */
 type CatTab = Cat15 | 'quick' | null;
@@ -294,6 +299,23 @@ export default function CombineScreen() {
   const [seasonModal, setSeasonModal] = useState(false);
   const [helpModal, setHelpModal] = useState(false);
 
+  /**
+   * 「★よく使う」の先頭に出す季節の食材(指示書 6-1 の導線をここまで繋ぐ)。
+   * ホームの「この季節の食材を見る」で来た人が、まず季節のものに出会えるようにする。
+   * 季節ボタンでの切り替えにも追従する。よく使うに既にいる食材は飛ばす —— 同じ画面に
+   * 二度出さないため。除外したぶんは後ろから補うので、常に QUICK_SEASON_COUNT 品出る。
+   */
+  const seasonPicks = useMemo(
+    () =>
+      seasonalPicks(
+        season,
+        getToday().dayNum,
+        QUICK_SEASON_COUNT,
+        new Set(quickFoods.map((f) => f.id)),
+      ),
+    [season, quickFoods],
+  );
+
   const selectedFoods = useMemo(
     () =>
       selectedIds
@@ -347,6 +369,12 @@ export default function CombineScreen() {
     seasonRec,
   ]);
 
+  /** 季節の組に実際に出す分。グリッドと同じく、選択済みは外す(パーティ枠に居る) */
+  const seasonList = useMemo(() => {
+    const picked = new Set(selectedIds);
+    return seasonPicks.filter((f) => !picked.has(f.id));
+  }, [seasonPicks, selectedIds]);
+
   const toggle = (id: string) => {
     setSelectedIds((ids) =>
       ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id],
@@ -358,6 +386,8 @@ export default function CombineScreen() {
   // その間に FoodTile が点灯(flash) → 縮んで消える(departing)を演じてから、
   // 凍結を解いて本当に抜く。長さは FoodTile の DEPART_FRAMES と合わせること
   const [frozenList, setFrozenList] = useState<Food[] | null>(null);
+  /** 季節の組もグリッドと同じ間だけ凍結する(どちらのタイルから決めても演出を揃える) */
+  const [frozenSeason, setFrozenSeason] = useState<Food[] | null>(null);
   const [departingId, setDepartingId] = useState<string | null>(null);
   /** 決定(2タップ目)のたびに増える。ポートレートを弱く点灯させる合図 */
   const [decideFlash, setDecideFlash] = useState(0);
@@ -380,10 +410,12 @@ export default function CombineScreen() {
     if (focusedId === id) {
       // いま画面に出ている並びのまま凍結してから決定する
       setFrozenList(frozenList ?? listFoods);
+      setFrozenSeason(frozenSeason ?? seasonList);
       setDepartingId(id);
       if (frozenTimer.current !== null) clearTimeout(frozenTimer.current);
       frozenTimer.current = setTimeout(() => {
         setFrozenList(null);
+        setFrozenSeason(null);
         setDepartingId(null);
       }, 450);
       // 空の状態からの最初の1つだけ計測する(食材名は送らない)
@@ -406,6 +438,25 @@ export default function CombineScreen() {
     const d = await toggleFavorite(id);
     setFavorites(d.favorites);
   };
+
+  /** グリッドと季節の組で同じマスを使う(触り心地を分けないため) */
+  const renderTile = (food: Food) => (
+    <FoodTile
+      key={food.id}
+      columns={gridColumns}
+      name={foodName(food, lang)}
+      icon={food.icon}
+      catIcon={food.catIcon}
+      color={natureColor(natureValue(food))}
+      selected={selectedIds.includes(food.id)}
+      focused={focusedId === food.id}
+      starred={favorites.includes(food.id)}
+      departing={food.id === departingId}
+      nameColor={c.text}
+      onPress={() => onTile(food.id)}
+      onLongPress={() => toggleStar(food.id)}
+    />
+  );
 
   const focusedFood = focusedId !== null ? getFood(focusedId) : undefined;
   /** 左のポートレートに出す食材: カーソル中のもの、なければ最後に決定したもの */
@@ -799,6 +850,24 @@ export default function CombineScreen() {
         key={`grid-${gridColumns}`}
         numColumns={gridColumns}
         contentContainerStyle={styles.gridContent}
+        // 季節の組はグリッドの前に置く。別リストにすると縦スクロールが二重になるので、
+        // 一覧の先頭(ヘッダ)として同じスクロールに乗せる。
+        // マスの幅は FoodTile が列数から出しているので、折り返しの並びは下と揃う
+        ListHeaderComponent={
+          cat === 'quick' && query.trim() === '' ? (
+            <View>
+              <Text style={[styles.groupTitle, { color: c.textSecondary }]}>
+                {t.combine.quickSeasonTitle(fiveSeasonChipLabel(season, lang))}
+              </Text>
+              <View style={styles.groupGrid}>
+                {(frozenSeason ?? seasonList).map(renderTile)}
+              </View>
+              <Text style={[styles.groupTitle, { color: c.textSecondary }]}>
+                {t.combine.quickTab}
+              </Text>
+            </View>
+          ) : null
+        }
         ListEmptyComponent={
           query.trim() !== '' && searchHits.length === 0 ? (
             // 図鑑は438品目で閉じている。無い食材を探して行き止まりにせず、
@@ -844,22 +913,7 @@ export default function CombineScreen() {
             </Text>
           ) : null
         }
-        renderItem={({ item }) => (
-          <FoodTile
-            columns={gridColumns}
-            name={foodName(item, lang)}
-            icon={item.icon}
-            catIcon={item.catIcon}
-            color={natureColor(natureValue(item))}
-            selected={selectedIds.includes(item.id)}
-            focused={focusedId === item.id}
-            starred={favorites.includes(item.id)}
-            departing={item.id === departingId}
-            nameColor={c.text}
-            onPress={() => onTile(item.id)}
-            onLongPress={() => toggleStar(item.id)}
-          />
-        )}
+        renderItem={({ item }) => renderTile(item)}
       />
 
       <Pressable
@@ -974,6 +1028,15 @@ const styles = StyleSheet.create({
   },
   list: { flex: 1 },
   gridContent: { paddingHorizontal: 8, paddingBottom: 8 },
+  // 左端はマスの内側の余白(FoodTile の cell padding 5)に合わせる
+  groupTitle: {
+    fontSize: 12,
+    fontWeight: '600',
+    paddingHorizontal: 5,
+    paddingTop: 10,
+    paddingBottom: 2,
+  },
+  groupGrid: { flexDirection: 'row', flexWrap: 'wrap' },
   portraitFlash: {
     position: 'absolute',
     top: 0,

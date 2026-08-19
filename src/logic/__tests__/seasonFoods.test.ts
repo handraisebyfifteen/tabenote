@@ -47,4 +47,17 @@ describe('季節に合う食材', () => {
       expect(new Set(picks.map((f) => f.id)).size).toBe(picks.length);
     }
   });
+
+  it('exclude に入れた食材は飛ばし、そのぶん後ろから補って数を保つ', () => {
+    const plain = seasonalPicks('autumn', 12345, 8);
+    const dropped = new Set([plain[0].id, plain[3].id]);
+    const picks = seasonalPicks('autumn', 12345, 8, dropped);
+
+    for (const id of dropped) expect(picks.map((f) => f.id)).not.toContain(id);
+    expect(picks).toHaveLength(8);
+    // 除外は窓をずらしたあとに掛かるので、残ったぶんの並びは動かない
+    expect(picks.slice(0, 6).map((f) => f.id)).toEqual(
+      plain.filter((f) => !dropped.has(f.id)).map((f) => f.id),
+    );
+  });
 });

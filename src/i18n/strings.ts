@@ -31,6 +31,8 @@ export interface Strings {
   combine: {
     searchPlaceholder: string;
     quickTab: string;
+    /** ★よく使うタブの中の見出し。季節の食材の組と、よく使うの組を分ける */
+    quickSeasonTitle(season: string): string;
     allTab: string;
     quickEmpty: string;
     decide(count: number): string;
@@ -370,6 +372,7 @@ const ja: Strings = {
   combine: {
     searchPlaceholder: '食材をさがす',
     quickTab: '★ よく使う',
+    quickSeasonTitle: (season) => `${season}に合う食材`,
     allTab: 'すべて',
     quickEmpty: '★を付けた食材と、「決定」した食材がここに並びます。',
     decide: (count) => (count > 0 ? `決定(${count}品)` : '決定'),
@@ -732,6 +735,7 @@ const en: Strings = {
   combine: {
     searchPlaceholder: 'Search ingredients',
     quickTab: '★ Frequent',
+    quickSeasonTitle: (season) => `Good for ${season}`,
     allTab: 'All',
     quickEmpty: 'Ingredients you star, or pick and “Decide” with, will appear here.',
     decide: (count) => (count > 0 ? `Decide (${count})` : 'Decide'),
