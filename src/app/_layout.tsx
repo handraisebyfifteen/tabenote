@@ -1,9 +1,12 @@
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, View } from 'react-native';
+import { useCallback, useState } from 'react';
+import { ActivityIndicator, Platform, View } from 'react-native';
 
 import Onboarding from '@/components/Onboarding';
+import SplashWordmark from '@/components/SplashWordmark';
 import { Colors } from '@/constants/theme';
+import { useAppFonts } from '@/hooks/use-app-fonts';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { LanguageProvider, useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
@@ -46,6 +49,8 @@ function RootStack() {
       />
       {/* 公開サイトのランディングを兼ねる紹介ページ */}
       <Stack.Screen name="about" options={{ title: t.about.screenTitle }} />
+      {/* 同梱している書体の OFL 表示。設定から常に開けること */}
+      <Stack.Screen name="licenses" options={{ title: t.licenses.screenTitle }} />
       {/* タイトルは画面側が食材名を設定する */}
       <Stack.Screen name="food/[id]" options={{ title: '' }} />
     </Stack>
@@ -56,16 +61,31 @@ function RootStack() {
 function ThemedRoot() {
   const colorScheme = useColorScheme();
   const dark = colorScheme === 'dark';
+
+  // 起動のワードマークはネイティブだけ。web は公開サイトのランディングを
+  // 兼ねていて、1.2 秒待たせる意味がないので最初から済んだ扱いにする
+  const [introDone, setIntroDone] = useState(Platform.OS === 'web');
+  const finishIntro = useCallback(() => setIntroDone(true), []);
+
   return (
     <ThemeProvider value={dark ? DarkTheme : DefaultTheme}>
       {/* 端末の設定と食い違う配色を選べるので、ステータスバーは auto ではなく明示する */}
       <StatusBar style={dark ? 'light' : 'dark'} />
-      <RootStack />
+      <View style={{ flex: 1 }}>
+        {/* 裏で購読確認と保存データの読み出しを進めながら、上にワードマークを被せる */}
+        <RootStack />
+        {!introDone && <SplashWordmark onDone={finishIntro} />}
+      </View>
     </ThemeProvider>
   );
 }
 
 export default function RootLayout() {
+  // 読み込みが終わるまで何も描かない。先に描くと一瞬システムフォントで出てから
+  // Lexend に差し替わる。この間はネイティブのスプラッシュが出たままになる
+  const fontsReady = useAppFonts();
+  if (!fontsReady) return null;
+
   return (
     <AnalyticsProvider>
       <DisplayProvider>

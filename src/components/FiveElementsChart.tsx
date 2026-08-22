@@ -12,6 +12,8 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Circle, Line, Polygon, Rect, Text as SvgText } from 'react-native-svg';
 
+import { lexendFamily } from '@/constants/typography';
+
 import { FIVE_FLAVORS } from '../logic/flavors';
 import type { FiveSeason } from '../logic/season';
 import { fiveFlavorLabel, fiveSeasonChipLabel, type Lang } from '../i18n/terms';
@@ -157,6 +159,7 @@ function CaptionLines({
           x={x}
           y={firstY + li * lineH}
           fontSize={fontSize}
+          fontFamily={lexendFamily('400')}
           fill={fill}
           textAnchor="middle"
         >
@@ -268,6 +271,7 @@ export default function FiveElementsChart({
                 x={x}
                 y={y + 12}
                 fontSize={lang === 'ja' ? 7.5 : 7}
+                fontFamily={lexendFamily('400')}
                 fill="#fff"
                 textAnchor="middle"
               >

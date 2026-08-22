@@ -38,6 +38,7 @@ import NatureScale from '@/components/NatureScale';
 import PageHead from '@/components/PageHead';
 import { Text, TextInput } from '@/components/Type';
 import { Colors } from '@/constants/theme';
+import { lexendFamily } from '@/constants/typography';
 import {
   ALL_CAT15,
   SELECTABLE_FOODS,
@@ -581,7 +582,7 @@ export default function CombineScreen() {
               x={11}
               y={14.5}
               fontSize={9}
-              fontWeight="bold"
+              fontFamily={lexendFamily('700')}
               fill={c.text}
               textAnchor="middle"
             >

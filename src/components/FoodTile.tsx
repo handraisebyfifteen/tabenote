@@ -15,13 +15,15 @@
  * 無ければ catIcon(カテゴリ)、それも無ければ頭文字のモノグラムに落とす。
  */
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
   useReducedMotion,
   type CSSAnimationKeyframes,
 } from 'react-native-reanimated';
 
 import { TabenoteIcon, hasIcon } from '@/components/icons/TabenoteIcon';
+// 寸法はマスの大きさから決めるので文字サイズ設定は掛けない。書体だけ当てる
+import { UnscaledText as Text } from '@/components/Type';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { brighten } from '@/lib/color';
 

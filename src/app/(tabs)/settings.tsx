@@ -3,7 +3,7 @@
  * 並びは「操作の設定 → 読みもの」。
  * 月額プラン/復元/購読管理・スイッチ系(配色・文字サイズ・バイブ)・チップ系(効果音・言語)・
  * データのエクスポート、ここから読みもの: について・参考文献・免責・規約とポリシー・
- * お問い合わせ・バージョン。
+ * オープンソースライセンス・お問い合わせ・バージョン。
  * 課金の導線は、APIキー未設定のときとWebでは出さない(食材名の英語データは未整備。言語欄に注記)。
  * 規約・ポリシーへの導線はアプリ内から常に必要(Schedule 2 §3.8(b))なので課金の有効無効に関わらず出す。
  */
@@ -336,6 +336,17 @@ export default function SettingsScreen() {
         onPress={() => Linking.openURL(PRIVACY_URL)}
       >
         <Text style={[styles.title, { color: c.text }]}>{t.settings.privacy}</Text>
+      </Pressable>
+
+      {/* 書体(Lexend)を同梱しているので OFL 上ここが必要。消さないこと */}
+      <Pressable
+        style={[styles.row, { backgroundColor: c.backgroundElement }]}
+        onPress={() => router.push('/licenses')}
+      >
+        <Text style={[styles.title, { color: c.text }]}>{t.settings.licenses}</Text>
+        <Text style={[styles.note, { color: c.textSecondary }]}>
+          {t.settings.licensesNote}
+        </Text>
       </Pressable>
 
       <Pressable

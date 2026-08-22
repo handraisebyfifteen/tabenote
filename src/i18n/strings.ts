@@ -232,6 +232,22 @@ export interface Strings {
     exportFailBody: string;
     about: string;
     aboutNote: string;
+    licenses: string;
+    licensesNote: string;
+  };
+
+  /**
+   * オープンソースライセンス(app/licenses.tsx)。
+   * 同梱している書体(Lexend)の OFL 表示。文面と全文は constants/licenses.ts。
+   */
+  licenses: {
+    screenTitle: string;
+    lede: string;
+    /** 全文の開閉。読み上げでは名前と組んで読ませる */
+    showFullText: string;
+    hideFullText: string;
+    /** 配布元を開くリンクの読み上げ */
+    openSource: string;
   };
 
   /** ペイウォール(指示書 7章「課金設計」) */
@@ -315,6 +331,7 @@ export interface Strings {
     advice: PageMeta;
     settings: PageMeta;
     about: PageMeta;
+    licenses: PageMeta;
     food(name: string, attrs: FoodMetaAttrs): PageMeta;
   };
 }
@@ -572,11 +589,21 @@ const ja: Strings = {
       'tabenote は、中医学で伝統的に用いられてきた食材の分類(性・味・帰経)を情報として示すアプリです。\n\n効能を約束したり、症状の改善を示唆したりするものではなく、医師の診断・治療の代わりにはなりません。体調に不安があるときは医療機関にご相談ください。\n\n食物アレルギーや体質に関わる判断は、必ずご自身で行ってください。',
     about: 'tabenoteについて',
     aboutNote: 'アプリの紹介ページを開きます',
+    licenses: 'オープンソースライセンス',
+    licensesNote: '同梱しているソフトウェアの著作権表示とライセンス',
     exportTitle: 'データのエクスポート',
     exportNote: 'お気に入り・メモ・保存した組み合わせを書き出します',
     exportShareTitle: 'tabenote データ',
     exportFailTitle: 'エクスポート',
     exportFailBody: 'データの書き出しに失敗しました。',
+  },
+
+  licenses: {
+    screenTitle: 'オープンソースライセンス',
+    lede: 'このアプリは以下のソフトウェアを利用しています。',
+    showFullText: '全文',
+    hideFullText: '閉じる',
+    openSource: '配布元を開く',
   },
 
   paywall: {
@@ -690,6 +717,11 @@ const ja: Strings = {
       title: 'tabenoteについて | tabenote',
       description:
         '中医学で伝統的に用いられてきた食材の分類を、図と言葉で確かめる薬膳手帳。五角形の図、435品目の図鑑、二十四節気と五季、AIの献立案。効能はアプリが書きません。',
+    },
+    licenses: {
+      title: 'オープンソースライセンス | tabenote',
+      description:
+        'tabenote が利用しているオープンソースソフトウェアの著作権表示とライセンス全文。',
     },
     food: (name, a) => {
       const facts = [
@@ -942,11 +974,21 @@ const en: Strings = {
       'tabenote presents the traditional classifications of ingredients used in Chinese medicine — nature, flavor, meridians — as information.\n\nIt makes no promises about effects, does not suggest that symptoms will improve, and is no substitute for diagnosis or treatment by a physician. If you have health concerns, please consult a medical professional.\n\nDecisions involving food allergies or your own constitution are always yours to make.',
     about: 'About tabenote',
     aboutNote: 'Opens the introduction page',
+    licenses: 'Open source licenses',
+    licensesNote: 'Copyright notices and licenses for the bundled software',
     exportTitle: 'Export data',
     exportNote: 'Writes out your favorites, notes, and saved combinations',
     exportShareTitle: 'tabenote data',
     exportFailTitle: 'Export',
     exportFailBody: 'Could not export your data.',
+  },
+
+  licenses: {
+    screenTitle: 'Open source licenses',
+    lede: 'This app uses the following software.',
+    showFullText: 'Full text',
+    hideFullText: 'Close',
+    openSource: 'Open the source page',
   },
 
   paywall: {
@@ -1061,6 +1103,11 @@ const en: Strings = {
       title: 'About | tabenote',
       description:
         'A yakuzen notebook that shows the traditional classifications of ingredients — five flavors, nature, meridians, category — as shapes and words. A pentagon chart, an index of 435 ingredients, the 24 solar terms and five seasons, and AI menu ideas. The app never writes effects.',
+    },
+    licenses: {
+      title: 'Open source licenses | tabenote',
+      description:
+        'Copyright notices and full license texts for the open source software used in tabenote.',
     },
     food: (name, a) => {
       const facts = [

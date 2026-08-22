@@ -6,9 +6,11 @@
  * 食材ごとの icon → カテゴリの catIcon → 頭文字、の順に落とす。
  */
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { TabenoteIcon, hasIcon } from '@/components/icons/TabenoteIcon';
+// 寸法は size 由来なので文字サイズ設定は掛けない。書体だけ当てる
+import { UnscaledText as Text } from '@/components/Type';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { brighten } from '@/lib/color';
 

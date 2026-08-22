@@ -13,6 +13,8 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
 
+import { lexendFamily } from '@/constants/typography';
+
 import { FIVE_FLAVORS, type FiveFlavor, type FlavorTotals } from '../logic/flavors';
 
 /** 性レベル(-2〜+2)→ 色。寒色〜暖色のグラデーション */
@@ -142,6 +144,7 @@ export default function FlavorPentagon({
               x={x}
               y={y + 4}
               fontSize={label.length > 2 ? 9 : 13}
+              fontFamily={lexendFamily('400')}
               fill={labelColor}
               textAnchor="middle"
             >
