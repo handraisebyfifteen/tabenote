@@ -7,3 +7,17 @@ compatibility_flags = ["nodejs_compat"]
 # シークレットはファイルに書かず、以下で登録する:
 #   npx wrangler secret put ANTHROPIC_API_KEY
 #   npx wrangler secret put REVENUECAT_API_KEY   (課金を有効にするとき)
+
+# 連打よけ。app_user_id ごとに1分5回まで。
+#
+# この仕組みが取れる period は 10 秒か 60 秒だけで、日次・月次は書けない。
+# しかも数えるのは Cloudflare の拠点ごとなので、拠点を跨がれれば掛け算になる。
+# つまりこれは「請求の上限」ではなく、暴走とスクリプト連打を鈍らせるためのもの。
+# 金額の天井が要るなら Durable Object の台帳が別途必要(README 参照)。
+[[ratelimits]]
+name = "AI_LIMITER"
+namespace_id = "1001"
+
+[ratelimits.simple]
+limit = 5
+period = 60

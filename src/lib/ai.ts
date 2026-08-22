@@ -49,6 +49,10 @@ export async function suggestMenu(params: SuggestParams): Promise<string> {
   if (res.status === 402) {
     throw new Error('subscription_required');
   }
+  // 使いすぎ。通信エラーと同じ文面を出すと不具合に見えるので、呼び出し側で分ける
+  if (res.status === 429) {
+    throw new Error('rate_limited');
+  }
   if (!res.ok) {
     throw new Error(`AI提案の取得に失敗しました (${res.status})`);
   }
@@ -97,6 +101,9 @@ export async function suggestSimilarFoods(
   });
   if (res.status === 402) {
     throw new Error('subscription_required');
+  }
+  if (res.status === 429) {
+    throw new Error('rate_limited');
   }
   if (!res.ok) {
     throw new Error(`近い食材の取得に失敗しました (${res.status})`);

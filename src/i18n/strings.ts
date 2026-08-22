@@ -87,6 +87,8 @@ export interface Strings {
     aiRetryButton: string;
     aiLoading: string;
     aiError: string;
+    /** 短時間に使いすぎたとき(サーバーが429を返す) */
+    aiRateLimited: string;
     aiNote: string;
     save: string;
     savedDone: string;
@@ -136,6 +138,8 @@ export interface Strings {
     retryButton: string;
     loading: string;
     error: string;
+    /** 短時間に使いすぎたとき(サーバーが429を返す) */
+    rateLimited: string;
     /** 購読が要るとき(サーバーが402を返す) */
     subscriptionRequired: string;
     subscribeButton: string;
@@ -447,6 +451,7 @@ const ja: Strings = {
     aiRetryButton: 'ほかのアイデアを聞く',
     aiLoading: '考えています…',
     aiError: '提案を取得できませんでした。通信環境を確認して、もう一度お試しください。',
+    aiRateLimited: '続けてお使いいただいたため、少しお待ちいただいています。1分ほどしてから、もう一度お試しください。',
     aiNote: 'AIによる提案は、料理名と方向性のアイデアです。分量や厳密な手順は示しません。',
     save: '手帳に保存',
     savedDone: '手帳に保存しました ✓',
@@ -489,6 +494,7 @@ const ja: Strings = {
     retryButton: 'もう一度聞く',
     loading: '探しています…',
     error: '近い食材を取得できませんでした。通信環境を確認して、もう一度お試しください。',
+    rateLimited: '続けてお使いいただいたため、少しお待ちいただいています。1分ほどしてから、もう一度お試しください。',
     subscriptionRequired: 'AIの案内は有料機能です。',
     subscribeButton: '詳しく見る',
     emptyResult: '近いとされる食材は挙がりませんでした。',
@@ -828,6 +834,7 @@ const en: Strings = {
     aiRetryButton: 'Ask for other ideas',
     aiLoading: 'Thinking…',
     aiError: 'Could not get a suggestion. Please check your connection and try again.',
+    aiRateLimited: 'You have made several requests in a row. Please wait about a minute and try again.',
     aiNote: 'AI suggestions are dish names and directions only — no amounts or strict recipes.',
     save: 'Save to notebook',
     savedDone: 'Saved to notebook ✓',
@@ -871,6 +878,7 @@ const en: Strings = {
     retryButton: 'Ask again',
     loading: 'Looking…',
     error: 'Could not get close foods. Please check your connection and try again.',
+    rateLimited: 'You have made several requests in a row. Please wait about a minute and try again.',
     subscriptionRequired: 'AI guidance is a paid feature.',
     subscribeButton: 'Learn more',
     emptyResult: 'No close foods came up.',

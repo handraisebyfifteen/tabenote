@@ -62,7 +62,7 @@ tabenote(タベノート)は、中医学で伝統的に用いられてきた食�
 
 食材を選ぶと、その組み合わせの五味(酸・苦・甘・辛・鹹)の構成と、性(寒熱)の傾向が、ひとつの五角形として表示されます。何が多くて何が足りないのか、形で分かります。
 
-■ 438品目の図鑑
+■ 435品目の図鑑
 
 収録した食材それぞれについて、五味・性・帰経・分類を掲載。★を付けたり、自分の言葉でメモを残したりできます。
 
@@ -123,7 +123,7 @@ tabenote is a notebook for looking at food through the classifications long used
 
 Pick a few ingredients and their combined five flavors (sour, bitter, sweet, pungent, salty) and thermal nature appear as a single pentagon. What you have plenty of, and what is missing, is visible at a glance.
 
-■ An encyclopedia of 438 ingredients
+■ An encyclopedia of 435 ingredients
 
 Each entry carries its flavor, nature, meridian affinity, and category. Star the ones you like, and write your own notes.
 

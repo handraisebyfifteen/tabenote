@@ -123,12 +123,13 @@ export default function AdviceScreen() {
   const { appUserId } = useBilling();
   const [aiText, setAiText] = useState<string | null>(null);
   const [aiBusy, setAiBusy] = useState(false);
-  const [aiError, setAiError] = useState(false);
+  // 通信の失敗と、使いすぎ(429)は文面を分ける。同じ扱いだと不具合に見える
+  const [aiError, setAiError] = useState<'error' | 'limited' | null>(null);
 
   const askAi = async () => {
     if (aiBusy) return;
     setAiBusy(true);
-    setAiError(false);
+    setAiError(null);
     try {
       const text = await suggestMenu({
         foods: foods.map((f) => foodName(f, lang)),
@@ -139,8 +140,10 @@ export default function AdviceScreen() {
         appUserId: appUserId ?? undefined,
       });
       setAiText(text);
-    } catch {
-      setAiError(true);
+    } catch (e) {
+      setAiError(
+        e instanceof Error && e.message === 'rate_limited' ? 'limited' : 'error',
+      );
     } finally {
       setAiBusy(false);
     }
@@ -284,9 +287,9 @@ export default function AdviceScreen() {
           {aiText !== null && (
             <Text style={[styles.sectionBody, { color: c.text }]}>{aiText}</Text>
           )}
-          {aiError && (
+          {aiError !== null && (
             <Text style={[styles.sectionBody, { color: c.textSecondary }]}>
-              {t.advice.aiError}
+              {aiError === 'limited' ? t.advice.aiRateLimited : t.advice.aiError}
             </Text>
           )}
           {aiBusy ? (
@@ -302,7 +305,9 @@ export default function AdviceScreen() {
               onPress={askAi}
             >
               <Text style={{ color: c.text, fontSize: 13 }}>
-                {aiText === null && !aiError ? t.advice.aiButton : t.advice.aiRetryButton}
+                {aiText === null && aiError === null
+                  ? t.advice.aiButton
+                  : t.advice.aiRetryButton}
               </Text>
             </Pressable>
           )}

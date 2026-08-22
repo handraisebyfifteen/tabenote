@@ -52,7 +52,7 @@ npx wrangler secret put REVENUECAT_API_KEY
 
 → `{ "items": [{ "id": "f...", "reason": "..." }], "note": "..." }`
 
-図鑑の一覧(`src/data/tabenote_foods.json` を直接読み、選択可能な435品目に絞ったもの)を
+図鑑の一覧(`src/data/tabenote_foods.json` を直接読み、選択可能な430品目に絞ったもの)を
 システムプロンプトに載せ、構造化出力で番号と名前を返させる。返ってきた番号と名前が
 食い違うものと、一覧に無いものはサーバー側で落とすので、`items` に入る ID は必ず実在する。
 一覧は毎回同じなのでプロンプトキャッシュに載せている。

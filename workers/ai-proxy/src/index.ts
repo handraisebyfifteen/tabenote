@@ -20,7 +20,21 @@ export interface Env {
   ANTHROPIC_API_KEY: string;
   /** RevenueCat の購読確認を有効にする場合に設定(未設定なら確認をスキップ) */
   REVENUECAT_API_KEY?: string;
+  /** 連打よけ(wrangler.toml の [[ratelimits]])。1分5回を app_user_id ごとに数える */
+  AI_LIMITER: { limit(options: { key: string }): Promise<{ success: boolean }> };
 }
+
+/**
+ * リクエスト本文の上限(バイト)。
+ * まっとうな要求は、食材30件でも 2KB 程度にしかならない。4倍の余裕を見ている。
+ */
+const MAX_BODY_BYTES = 8192;
+
+/**
+ * モデルに渡す文字列そのものの上限。
+ * 検証を1つ足し忘れてもここで止まる、最後の関門。
+ */
+const MAX_USER_CONTENT_CHARS = 4000;
 
 const MODEL = 'claude-sonnet-5';
 
@@ -116,10 +130,31 @@ interface SimilarRequest {
   lang?: 'ja' | 'en';
 }
 
+/** lang は ja / en しか受け取らない(省略も可) */
+function isLang(v: unknown): v is 'ja' | 'en' | undefined {
+  return v === undefined || v === 'ja' || v === 'en';
+}
+
+/** 省略できる文字列の配列。件数と、1件の長さの両方を見る */
+function isShortStrings(v: unknown, maxItems: number, maxLen: number): boolean {
+  return (
+    v === undefined ||
+    (Array.isArray(v) &&
+      v.length <= maxItems &&
+      v.every((s) => typeof s === 'string' && s.length <= maxLen))
+  );
+}
+
 function isValidSimilarRequest(body: unknown): body is SimilarRequest {
   if (typeof body !== 'object' || body === null) return false;
   const b = body as Record<string, unknown>;
-  return typeof b.query === 'string' && b.query.trim() !== '' && b.query.length <= 40;
+  // query は縛っていたが lang は素通りで、そのままモデルに渡っていた
+  return (
+    typeof b.query === 'string' &&
+    b.query.trim() !== '' &&
+    b.query.length <= 40 &&
+    isLang(b.lang)
+  );
 }
 
 /** 名前が一意な食材の逆引き(「かき」「さけ」は同名2件あるので入れない) */
@@ -186,7 +221,12 @@ function isValidRequest(body: unknown): body is SuggestRequest {
     b.foods.length <= 30 &&
     b.foods.every((f) => typeof f === 'string' && f.length <= 60) &&
     typeof b.season === 'string' &&
-    b.season.length <= 60
+    b.season.length <= 60 &&
+    // ここから下は今まで検証していなかった。この3つは素通りで JSON.stringify に入り、
+    // そのままモデルへ渡っていた(長さ無制限=1リクエストで数ドル使わせられる)
+    isShortStrings(b.recommendedFlavors, 10, 20) &&
+    isShortStrings(b.missingFlavors, 10, 20) &&
+    isLang(b.lang)
   );
 }
 
@@ -240,25 +280,30 @@ async function handleSuggest(body: unknown, env: Env): Promise<Response> {
     return jsonResponse({ error: 'invalid_request' }, 400);
   }
 
+  const content = JSON.stringify({
+    foods: body.foods,
+    season: body.season,
+    recommendedFlavors: body.recommendedFlavors ?? [],
+    missingFlavors: body.missingFlavors ?? [],
+    lang: body.lang ?? 'ja',
+  });
+  // 検証を1つ足し忘れても、モデルに渡る前にここで止まる
+  if (content.length > MAX_USER_CONTENT_CHARS) {
+    return jsonResponse({ error: 'invalid_request' }, 400);
+  }
+
   const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
   let message: Anthropic.Message;
   try {
     message = await client.messages.create({
       model: MODEL,
       max_tokens: 1024,
+      // Sonnet 5 は thinking を省くと adaptive thinking が effort の既定値(high)で
+      // 走る。思考も出力として max_tokens を食うので、献立3案には深すぎる。
+      // 浅くして、枠と料金を本文のほうに回す
+      output_config: { effort: 'low' },
       system: SYSTEM_PROMPT,
-      messages: [
-        {
-          role: 'user',
-          content: JSON.stringify({
-            foods: body.foods,
-            season: body.season,
-            recommendedFlavors: body.recommendedFlavors ?? [],
-            missingFlavors: body.missingFlavors ?? [],
-            lang: body.lang ?? 'ja',
-          }),
-        },
-      ],
+      messages: [{ role: 'user', content }],
     });
   } catch (err) {
     // キー無効・レート超過など上流のエラー。詳細はログ(wrangler tail)で見る
@@ -274,30 +319,39 @@ async function handleSimilar(body: unknown, env: Env): Promise<Response> {
     return jsonResponse({ error: 'invalid_request' }, 400);
   }
 
+  const content = JSON.stringify({
+    query: body.query.trim(),
+    lang: body.lang ?? 'ja',
+  });
+  if (content.length > MAX_USER_CONTENT_CHARS) {
+    return jsonResponse({ error: 'invalid_request' }, 400);
+  }
+
   const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
   let message: Anthropic.Message;
   try {
     message = await client.messages.create({
       model: MODEL,
-      max_tokens: 1024,
-      // 一覧(約6KB)は毎回同じなので、まるごとキャッシュに載せる
+      // 思考と JSON が同じ枠を食い合う。1024 だと thinking が伸びたときに
+      // JSON が途中で切れ、下の JSON.parse が落ちて 502 になる。実際の出力は
+      // 300 トークン程度なので、上限を上げても課金は増えない(上限であって消費量ではない)
+      max_tokens: 2048,
+      // 一覧(約6KB)は毎回同じなので、まるごとキャッシュに載せる。
+      // 既定の5分だと呼び出しが疎なときにまず当たらず、書き込みの割増(1.25倍)だけ
+      // 払うことになる。1時間なら分岐点が命中率 52.6%(アプリ全体で月およそ545回)まで下がる
       system: [
         {
           type: 'text',
           text: SIMILAR_SYSTEM_PROMPT,
-          cache_control: { type: 'ephemeral' },
+          cache_control: { type: 'ephemeral', ttl: '1h' },
         },
       ],
-      output_config: { format: { type: 'json_schema', schema: SIMILAR_SCHEMA } },
-      messages: [
-        {
-          role: 'user',
-          content: JSON.stringify({
-            query: body.query.trim(),
-            lang: body.lang ?? 'ja',
-          }),
-        },
-      ],
+      // 近い食材を3件挙げるだけなので深い思考は要らない(上の max_tokens と対)
+      output_config: {
+        effort: 'low',
+        format: { type: 'json_schema', schema: SIMILAR_SCHEMA },
+      },
+      messages: [{ role: 'user', content }],
     });
   } catch (err) {
     console.error('anthropic_error', err instanceof Error ? err.message : err);
@@ -328,13 +382,39 @@ export default {
       return jsonResponse({ error: 'not_found' }, 404);
     }
 
+    // 宣言値で先に落とす。ここで弾いた分は読み込みもパースも起きない
+    const declared = Number(request.headers.get('content-length') ?? '0');
+    if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) {
+      return jsonResponse({ error: 'payload_too_large' }, 413);
+    }
+
+    // 連打よけは購読確認より前に置く。ここで止めれば RevenueCat への
+    // 往復(=サブリクエスト1つと、あちらの API 枠)も使わずに済む。
+    //
+    // 数えるのは Cloudflare の拠点ごとなので、これは請求の上限ではなく
+    // あくまで瞬間風速の抑えとして見ること
+    const appUserId = (request.headers.get('authorization') ?? '')
+      .replace(/^Bearer\s+/i, '')
+      .trim();
+    if (appUserId !== '') {
+      const { success } = await env.AI_LIMITER.limit({ key: appUserId });
+      if (!success) {
+        return jsonResponse({ error: 'rate_limited' }, 429);
+      }
+    }
+
     if (!(await hasActiveSubscription(request, env))) {
       return jsonResponse({ error: 'subscription_required' }, 402);
     }
 
     let body: unknown;
     try {
-      body = await request.json();
+      const text = await request.text();
+      // content-length は無いこともある。実際に読んだ長さで必ず確認する
+      if (text.length > MAX_BODY_BYTES) {
+        return jsonResponse({ error: 'payload_too_large' }, 413);
+      }
+      body = JSON.parse(text);
     } catch {
       return jsonResponse({ error: 'invalid_json' }, 400);
     }

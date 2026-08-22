@@ -38,7 +38,7 @@ interface Props {
   renderItem: (row: SimilarFoodRow) => React.ReactNode;
 }
 
-type Status = 'idle' | 'loading' | 'done' | 'error' | 'subscription';
+type Status = 'idle' | 'loading' | 'done' | 'error' | 'limited' | 'subscription';
 
 export default function AiSimilarFoods({ query, renderItem }: Props) {
   const scheme = useColorScheme();
@@ -91,7 +91,9 @@ export default function AiSimilarFoods({ query, renderItem }: Props) {
         status:
           e instanceof Error && e.message === 'subscription_required'
             ? 'subscription'
-            : 'error',
+            : e instanceof Error && e.message === 'rate_limited'
+              ? 'limited'
+              : 'error',
         rows: [],
         note: '',
       });
@@ -118,6 +120,12 @@ export default function AiSimilarFoods({ query, renderItem }: Props) {
       {status === 'error' && (
         <Text style={[styles.body, { color: c.textSecondary }]}>
           {t.aiSimilar.error}
+        </Text>
+      )}
+
+      {status === 'limited' && (
+        <Text style={[styles.body, { color: c.textSecondary }]}>
+          {t.aiSimilar.rateLimited}
         </Text>
       )}
 
