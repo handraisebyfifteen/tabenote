@@ -19,6 +19,10 @@ import { LexendAssets } from '@/constants/typography';
 // コンポーネントの中だと、すでに自動で消えたあとになることがある。
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
+// 消すときは溶かして、ワードマーク(節気の空)へ繋ぐ。型定義どおり
+// @platform ios で、Android では効かず、青からの切り替わりは一段はっきり出る
+SplashScreen.setOptions({ fade: true });
+
 export function useAppFonts() {
   const [loaded, error] = useFonts(LexendAssets);
   const ready = loaded || !!error;

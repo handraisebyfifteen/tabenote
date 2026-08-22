@@ -7,8 +7,6 @@ import '@/global.css';
 
 import { Platform } from 'react-native';
 
-import { THEME_COLOR } from '@/constants/site';
-
 export const Colors = {
   light: {
     text: '#000000',
@@ -66,15 +64,6 @@ export const Spacing = {
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
 
-/**
- * 起動画面(components/SplashWordmark)の地と文字。
- *
- * 地はネイティブのスプラッシュ(app.json)と同じ色。入れ替わる瞬間にここが
- * ずれていると地の色が飛ぶので、THEME_COLOR から引いて一箇所にまとめてある。
- *
- * 図(assets/images/splash-icon.png)は白抜き・透過なので、地を明るい色へ
- * 変えるなら図の描き直しとセットになる。
- */
-export const SplashBackground = THEME_COLOR;
-/** 地に対して 3.5:1。本文には足りないが、大きな文字(24px 以上)なら AA を満たす */
-export const SplashForeground = '#FFFFFF';
+// 起動画面(components/SplashWordmark)の地は、いまは節気の空
+// (data/termScenes)から取る。ネイティブのスプラッシュの青一色と
+// 白抜きの図(assets/images/splash-icon.png)は app.json 側の指定。
