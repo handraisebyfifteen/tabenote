@@ -19,7 +19,7 @@
     "screenshot": {
       "extends": "simulator",
       "env": {
-        "EXPO_PUBLIC_MOCK_PLAN_PRICE": "¥1,500"
+        "EXPO_PUBLIC_MOCK_PLAN_PRICE": "¥980"
       }
     },
     "screenshot-app": {
