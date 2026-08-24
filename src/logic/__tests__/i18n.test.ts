@@ -13,6 +13,7 @@ import {
   natureLabel,
 } from '../../i18n/terms';
 import { getStrings } from '../../i18n/strings';
+import { pickLang } from '../../i18n/deviceLang';
 
 const hasJapanese = (s: string) => /[぀-ヿ㐀-鿿]/.test(s);
 
@@ -71,5 +72,28 @@ describe('画面文字列', () => {
       expect(t.combine.decide(2)).not.toBe('');
       expect(t.notebook.deleteMessage('x')).not.toBe('');
     }
+  });
+});
+
+describe('既定の表示言語', () => {
+  // 国外向けのアプリなので既定は英語。日本語端末のときだけ日本語で開く
+  it('日本語端末だけ ja、それ以外はすべて en', () => {
+    expect(pickLang([{ languageCode: 'ja' }])).toBe('ja');
+    expect(pickLang([{ languageCode: 'ja-JP' }])).toBe('ja');
+    expect(pickLang([{ languageCode: 'en' }])).toBe('en');
+    expect(pickLang([{ languageCode: 'fr' }])).toBe('en');
+    expect(pickLang([{ languageCode: 'zh-Hant' }])).toBe('en');
+  });
+
+  it('端末の第1言語だけを見る(第2言語が日本語でも英語のまま)', () => {
+    expect(pickLang([{ languageCode: 'en' }, { languageCode: 'ja' }])).toBe('en');
+    expect(pickLang([{ languageCode: 'ja' }, { languageCode: 'en' }])).toBe('ja');
+  });
+
+  it('端末の言語を取れないときは英語', () => {
+    expect(pickLang([])).toBe('en');
+    expect(pickLang(null)).toBe('en');
+    expect(pickLang(undefined)).toBe('en');
+    expect(pickLang([{ languageCode: null }])).toBe('en');
   });
 });

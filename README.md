@@ -10,8 +10,11 @@
 - データ: 参照データは `src/data/tabenote_foods.json`(読み取り専用)、ユーザーデータは AsyncStorage
 - 課金: RevenueCat(`react-native-purchases`)。**月額プラン1本の全機能有料**(未購読の間は
   オンボーディング→購読案内がタブを覆う)。UI文言に「プレミアム/PRO/アップグレード」は使わない
-- 表示言語: 日本語 / 英語(`src/i18n`)。既定は日本語で、選択は AsyncStorage に残す。
-  ただし参照データの食材名は日本語のみ(英語名は `src/data/foodNamesEn.ts` の別立て)
+- 表示言語: 日本語 / 英語(`src/i18n`)。**既定は英語**で、端末の言語が日本語のときだけ
+  日本語で開く(`src/i18n/deviceLang.ts`)。設定で選んだ言語は AsyncStorage に残り、端末より優先する。
+  iOS が端末の言語を返すには app.json の `expo-localization` の `supportedLocales`(= `CFBundleLocalizations`)
+  が要る。宣言がないと開発地域(en)しか返らないので、反映にはネイティブの再ビルドが必要。
+  なお参照データの食材名は日本語のみ(英語名は `src/data/foodNamesEn.ts` の別立て)
 - 手応え: 効果音(expo-audio)と触覚(expo-haptics)。どちらも設定画面から強さを変えられる
 - AI献立提案: アプリはAPIキーを持たず、`workers/ai-proxy`(Cloudflare Worker)を経由する
 - テスト: Vitest(ロジック層・ストレージ層)

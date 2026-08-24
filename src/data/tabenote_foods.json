@@ -41,7 +41,8 @@
   "cat15": "kokurui",
   "cat5": "grain",
   "page": "32",
-  "note": "粳米・白米。※粥は益精強志",
+  "note": "粳米・白米",
+  "caution": "粥は益精強志",
   "icon": "kome",
   "catIcon": "cat_kokurui"
  },
@@ -117,7 +118,8 @@
   "cat15": "kokurui",
   "cat5": "grain",
   "page": "32",
-  "note": "玄米。※脾胃虚弱者は慎用。炒ってから粥にして食す",
+  "note": "玄米",
+  "caution": "脾胃虚弱者は慎用。炒ってから粥にして食す",
   "icon": "kome",
   "catIcon": "cat_kokurui"
  },
@@ -132,7 +134,8 @@
   "cat15": "kokurui",
   "cat5": "grain",
   "page": "34",
-  "note": "小麦。※実は温性で皮は涼性。全粒粉は涼性",
+  "note": "小麦",
+  "caution": "実は温性で皮は涼性。全粒粉は涼性",
   "icon": "mugi",
   "catIcon": "cat_kokurui"
  },
@@ -178,7 +181,8 @@
   "cat15": "kokurui",
   "cat5": "grain",
   "page": "34",
-  "note": "蕎麦。※脾胃虚寒の者は注意",
+  "note": "蕎麦",
+  "caution": "脾胃虚寒の者は注意",
   "icon": "mugi",
   "catIcon": "cat_kokurui"
  },
@@ -194,7 +198,8 @@
   "cat15": "kokurui",
   "cat5": "grain",
   "page": "34",
-  "note": "薏苡仁。※妊娠初期は注意",
+  "note": "薏苡仁",
+  "caution": "妊娠初期は注意",
   "icon": "kome",
   "catIcon": "cat_kokurui"
  },
@@ -285,7 +290,8 @@
   "cat15": "kokurui",
   "cat5": "grain",
   "page": "36",
-  "note": "糯米。※痰湿証者の常食に注意",
+  "note": "糯米",
+  "caution": "痰湿証者の常食に注意",
   "icon": "kome",
   "catIcon": "cat_kokurui"
  },
@@ -391,7 +397,8 @@
   "cat15": "imo",
   "cat5": "grain",
   "page": "38",
-  "note": "馬鈴薯。※生汁には解毒・消炎作用あり",
+  "note": "馬鈴薯",
+  "caution": "生汁には解毒・消炎作用あり",
   "icon": "imo_root",
   "catIcon": "cat_imo"
  },
@@ -498,7 +505,8 @@
   "cat15": "mame",
   "cat5": "grain",
   "page": "40",
-  "note": "黒大豆。※煮汁は利咽。煮食は偏涼、炒食は偏温。皮に養血平肝・除熱・止汗",
+  "note": "黒大豆",
+  "caution": "煮汁は利咽。煮食は偏涼、炒食は偏温。皮に養血平肝・除熱・止汗",
   "icon": "mame_tsubu",
   "catIcon": "cat_mame"
  },
@@ -574,7 +582,8 @@
   "cat15": "mame",
   "cat5": "grain",
   "page": "40",
-  "note": "刀豆。※福神漬けに利用",
+  "note": "刀豆",
+  "caution": "福神漬けに利用",
   "icon": "mame_tsubu",
   "catIcon": "cat_mame"
  },
@@ -650,7 +659,8 @@
   "cat15": "mame",
   "cat5": "grain",
   "page": "42",
-  "note": "緑豆。※清熱解毒の力は豆皮にある",
+  "note": "緑豆",
+  "caution": "清熱解毒の力は豆皮にある",
   "icon": "mame_tsubu",
   "catIcon": "cat_mame"
  },
@@ -728,7 +738,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "44",
-  "note": "※中医飲食営養学では微温性・抗癌、中医薬膳学では寒性・清熱生津・利水の記述",
+  "note": "",
+  "caution": "中医飲食営養学では微温性・抗癌、中医薬膳学では寒性・清熱生津・利水の記述",
   "icon": "asupara",
   "catIcon": "cat_yasai"
  },
@@ -743,7 +754,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "44",
-  "note": "※禁忌:妊婦。皮は苦味が強く緩下作用",
+  "note": "",
+  "caution": "禁忌:妊婦。皮は苦味が強く緩下作用",
   "icon": "keisai",
   "catIcon": "cat_yasai"
  },
@@ -759,7 +771,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "44",
-  "note": "茴香(茎・葉)。※魚の臭みを消す",
+  "note": "茴香(茎・葉)",
+  "caution": "魚の臭みを消す",
   "icon": "kousou",
   "catIcon": "cat_yasai"
  },
@@ -931,7 +944,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "48",
-  "note": "蕪菁。※生食は涼性、熱食は温性にかたむく",
+  "note": "蕪菁",
+  "caution": "生食は涼性、熱食は温性にかたむく",
   "icon": "konsai",
   "catIcon": "cat_yasai"
  },
@@ -994,7 +1008,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "48",
-  "note": "菊花。※黄菊花は疏散風熱、白菊花は平肝明目",
+  "note": "菊花",
+  "caution": "黄菊花は疏散風熱、白菊花は平肝明目",
   "icon": "kasai_hana",
   "catIcon": "cat_yasai"
  },
@@ -1085,7 +1100,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "50",
-  "note": "胡瓜。※注意:多食",
+  "note": "胡瓜",
+  "caution": "注意:多食",
   "icon": "uri",
   "catIcon": "cat_yasai"
  },
@@ -1100,7 +1116,9 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "50",
-  "note": "金針菜。※生は小毒なので加熱し多食を控える。禁忌:皮膚掻痒の者",
+  "note": "金針菜",
+  "safety": "生は小毒なので加熱し多食を控える",
+  "caution": "禁忌:皮膚掻痒の者",
   "icon": "hamono",
   "catIcon": "cat_yasai"
  },
@@ -1313,7 +1331,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "54",
-  "note": "冬菇・花菇。※冬から春の肉厚を冬菇、薄手で開かないうちのものを香信",
+  "note": "冬菇・花菇",
+  "caution": "冬から春の肉厚を冬菇、薄手で開かないうちのものを香信",
   "icon": "kinoko",
   "catIcon": "cat_yasai"
  },
@@ -1344,7 +1363,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "54",
-  "note": "紫蘇。※効能は赤紫蘇が強い。解魚蟹毒",
+  "note": "紫蘇",
+  "caution": "効能は赤紫蘇が強い。解魚蟹毒",
   "icon": "kousou",
   "catIcon": "cat_yasai"
  },
@@ -1405,7 +1425,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "56",
-  "note": "生姜。※注意:陰虚内熱の者。生は辛散の効能が強く、熱は温中に傾く。皮は涼で利水消腫",
+  "note": "生姜",
+  "caution": "注意:陰虚内熱の者。生は辛散の効能が強く、熱は温中に傾く。皮は涼で利水消腫",
   "icon": "turmeric",
   "catIcon": "cat_yasai"
  },
@@ -1436,7 +1457,7 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "56",
-  "note": "芋頭茎。※乾かした物がいもがら",
+  "note": "芋頭茎(乾かした物がいもがら)",
   "icon": "keisai",
   "catIcon": "cat_yasai"
  },
@@ -1515,7 +1536,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "58",
-  "note": "薇。※寒性でありながら活血と止血の働きを併せもつ",
+  "note": "薇",
+  "caution": "寒性でありながら活血と止血の働きを併せもつ",
   "icon": "keisai",
   "catIcon": "cat_yasai"
  },
@@ -1546,7 +1568,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "58",
-  "note": "大根。※生は冷やす作用が強いが加熱すると温める作用。注意:脾胃虚弱者の生食・多食",
+  "note": "大根",
+  "caution": "生は冷やす作用が強いが加熱すると温める作用。注意:脾胃虚弱者の生食・多食",
   "icon": "konsai",
   "catIcon": "cat_yasai"
  },
@@ -1591,7 +1614,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "58",
-  "note": "筍。※注意:胃潰瘍、慢性腎炎、泌尿系結石の者",
+  "note": "筍",
+  "caution": "注意:胃潰瘍、慢性腎炎、泌尿系結石の者",
   "icon": "takenoko",
   "catIcon": "cat_yasai"
  },
@@ -1727,7 +1751,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "60",
-  "note": "玉蜀黍。※根や葉を煎じて飲むと尿路結石を改善",
+  "note": "玉蜀黍",
+  "caution": "根や葉を煎じて飲むと尿路結石を改善",
   "icon": "mugi",
   "catIcon": "cat_yasai"
  },
@@ -1742,7 +1767,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "62",
-  "note": "玉米鬚。※乾燥したものを生薬として使用",
+  "note": "玉米鬚",
+  "caution": "乾燥したものを生薬として使用",
   "icon": "mugi",
   "catIcon": "cat_yasai"
  },
@@ -1851,7 +1877,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "62",
-  "note": "苦瓜・ゴーヤ。※たね 甘/苦 益気壮陽",
+  "note": "苦瓜・ゴーヤ",
+  "caution": "たね 甘/苦 益気壮陽",
   "icon": "uri",
   "catIcon": "cat_yasai"
  },
@@ -1896,7 +1923,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "64",
-  "note": "大蒜。※注意:陰虚火旺証・実熱証の者",
+  "note": "大蒜",
+  "caution": "注意:陰虚火旺証・実熱証の者",
   "icon": "rinkei",
   "catIcon": "cat_yasai"
  },
@@ -2166,7 +2194,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "68",
-  "note": "菠薐草。※根に止渇・潤燥の効能あり",
+  "note": "菠薐草",
+  "caution": "根に止渇・潤燥の効能あり",
   "icon": "hamono",
   "catIcon": "cat_yasai"
  },
@@ -2196,7 +2225,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "68",
-  "note": "真菰筍。※注意:慢性下痢、脾胃虚弱の者",
+  "note": "真菰筍",
+  "caution": "注意:慢性下痢、脾胃虚弱の者",
   "icon": "keisai",
   "catIcon": "cat_yasai"
  },
@@ -2211,7 +2241,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "68",
-  "note": "松傘蘑。※注意:気滞証の者",
+  "note": "松傘蘑",
+  "caution": "注意:気滞証の者",
   "icon": "kinoko",
   "catIcon": "cat_yasai"
  },
@@ -2226,7 +2257,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "68",
-  "note": "松茸。※老廃物の排泄",
+  "note": "松茸",
+  "caution": "老廃物の排泄",
   "icon": "kinoko",
   "catIcon": "cat_yasai"
  },
@@ -2318,7 +2350,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "70",
-  "note": "黄豆芽。※疣(ユウ)はイボ",
+  "note": "黄豆芽",
+  "caution": "疣(ユウ)はイボ",
   "icon": "keisai",
   "catIcon": "cat_yasai"
  },
@@ -2394,7 +2427,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "72",
-  "note": "百合根。※乾したものがかんぴょう",
+  "note": "百合根",
+  "caution": "乾したものがかんぴょう",
   "icon": "rinkei",
   "catIcon": "cat_yasai"
  },
@@ -2410,7 +2444,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "72",
-  "note": "蓬葉・艾蒿。※注意:熱証の者",
+  "note": "蓬葉・艾蒿",
+  "caution": "注意:熱証の者",
   "icon": "kousou",
   "catIcon": "cat_yasai"
  },
@@ -2459,7 +2494,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "72",
-  "note": "食用だいおう・大黄茎。※注意:多食。禁忌:妊産婦・授乳婦",
+  "note": "食用だいおう・大黄茎",
+  "caution": "注意:多食。禁忌:妊産婦・授乳婦",
   "icon": "keisai",
   "catIcon": "cat_yasai"
  },
@@ -2492,7 +2528,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "74",
-  "note": "香茅。※注意:妊婦(子宮収縮作用あり)",
+  "note": "香茅",
+  "caution": "注意:妊婦(子宮収縮作用あり)",
   "icon": "kousou",
   "catIcon": "cat_yasai"
  },
@@ -2522,7 +2559,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "74",
-  "note": "蓮藕。※生の絞り汁は清熱生津。藕節は平/甘渋、収斂・止血",
+  "note": "蓮藕",
+  "caution": "生の絞り汁は清熱生津。藕節は平/甘渋、収斂・止血",
   "icon": "turmeric",
   "catIcon": "cat_yasai"
  },
@@ -2552,7 +2590,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "74",
-  "note": "迷迭香。※催眠作用あり",
+  "note": "迷迭香",
+  "caution": "催眠作用あり",
   "icon": "kousou",
   "catIcon": "cat_yasai"
  },
@@ -2598,7 +2637,8 @@
   "cat15": "yasai",
   "cat5": "veg",
   "page": "74",
-  "note": "蕨。※根も同様",
+  "note": "蕨",
+  "caution": "根も同様",
   "icon": "keisai",
   "catIcon": "cat_yasai"
  },
@@ -2646,7 +2686,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "76",
-  "note": "杏。※干したものは心の果",
+  "note": "杏",
+  "caution": "干したものは心の果",
   "icon": "kakka",
   "catIcon": "cat_kajitsu"
  },
@@ -2726,7 +2767,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "76",
-  "note": "橙子・ネーブル。※皮(橙皮)は理気・化痰・健脾・導滞",
+  "note": "橙子・ネーブル",
+  "caution": "皮(橙皮)は理気・化痰・健脾・導滞",
   "icon": "kankitsu",
   "catIcon": "cat_kajitsu"
  },
@@ -2742,7 +2784,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "78",
-  "note": "柿子。※注意:脾胃虚寒の者",
+  "note": "柿子",
+  "caution": "注意:脾胃虚寒の者",
   "icon": "kaki",
   "catIcon": "cat_kajitsu"
  },
@@ -2757,7 +2800,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "78",
-  "note": "柿餅。※柿霜(表面の白い粉)は生津・利咽",
+  "note": "柿餅",
+  "caution": "柿霜(表面の白い粉)は生津・利咽",
   "icon": "kaki",
   "catIcon": "cat_kajitsu"
  },
@@ -2905,7 +2949,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "80",
-  "note": "西柚。※皮は清虚熱・降気・消食",
+  "note": "西柚",
+  "caution": "皮は清虚熱・降気・消食",
   "icon": "kankitsu",
   "catIcon": "cat_kajitsu"
  },
@@ -3031,7 +3076,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "82",
-  "note": "西瓜。※天然の白虎湯ともいう。皮(白)は涼で利尿効果が増す",
+  "note": "西瓜",
+  "caution": "天然の白虎湯ともいう。皮(白)は涼で利尿効果が増す",
   "icon": "suika",
   "catIcon": "cat_kajitsu"
  },
@@ -3047,7 +3093,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "82",
-  "note": "五斂子。※注意:脾胃虚寒の者",
+  "note": "五斂子",
+  "caution": "注意:脾胃虚寒の者",
   "icon": "nettai",
   "catIcon": "cat_kajitsu"
  },
@@ -3095,7 +3142,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "82",
-  "note": "雪花梨。※注意:脾胃虚寒の者",
+  "note": "雪花梨",
+  "caution": "注意:脾胃虚寒の者",
   "icon": "jinka",
   "catIcon": "cat_kajitsu"
  },
@@ -3110,7 +3158,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "82",
-  "note": "紅棗。※生のなつめは熱/甘辛。注意:多食",
+  "note": "紅棗",
+  "caution": "生のなつめは熱/甘辛。注意:多食",
   "icon": "kakka",
   "catIcon": "cat_kajitsu"
  },
@@ -3363,7 +3412,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "86",
-  "note": "桃子。※外用:葉はあせも・肌荒れに有効",
+  "note": "桃子",
+  "caution": "外用:葉はあせも・肌荒れに有効",
   "icon": "kakka",
   "catIcon": "cat_kajitsu"
  },
@@ -3379,7 +3429,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "86",
-  "note": "楊梅。※注意:血熱火旺者の多食",
+  "note": "楊梅",
+  "caution": "注意:血熱火旺者の多食",
   "icon": "kakka",
   "catIcon": "cat_kajitsu"
  },
@@ -3395,7 +3446,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "88",
-  "note": "柚子。※たねは外用:にきびなどに使用",
+  "note": "柚子",
+  "caution": "たねは外用:にきびなどに使用",
   "icon": "kankitsu",
   "catIcon": "cat_kajitsu"
  },
@@ -3427,7 +3479,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "88",
-  "note": "茘枝。※注意:陰虚火旺の者",
+  "note": "茘枝",
+  "caution": "注意:陰虚火旺の者",
   "icon": "kakka",
   "catIcon": "cat_kajitsu"
  },
@@ -3458,7 +3511,8 @@
   "cat15": "kajitsu",
   "cat5": "fruit",
   "page": "88",
-  "note": "龍眼。※注意:肝火及び湿滞の者",
+  "note": "龍眼",
+  "caution": "注意:肝火及び湿滞の者",
   "icon": "kakka",
   "catIcon": "cat_kajitsu"
  },
@@ -3597,7 +3651,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "90",
-  "note": "南瓜子。※薬効を高める為には皮ごと使用",
+  "note": "南瓜子",
+  "caution": "薬効を高める為には皮ごと使用",
   "icon": "shushi",
   "catIcon": "cat_shujitsu"
  },
@@ -3629,7 +3684,9 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "90",
-  "note": "白果。※注意:小毒あり。多量摂取と小児。生食は駆虫作用あり",
+  "note": "白果",
+  "safety": "小毒あり。多量摂取と小児は注意",
+  "caution": "生食は駆虫作用あり",
   "icon": "kenka",
   "catIcon": "cat_shujitsu"
  },
@@ -3644,7 +3701,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "92",
-  "note": "栗子。※タンニンは渋皮に多いので渋皮を残して料理するとよい",
+  "note": "栗子",
+  "caution": "タンニンは渋皮に多いので渋皮を残して料理するとよい",
   "icon": "kuri",
   "catIcon": "cat_shujitsu"
  },
@@ -3674,7 +3732,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "92",
-  "note": "黒芝麻。※注意:便溏の者",
+  "note": "黒芝麻",
+  "caution": "注意:便溏の者",
   "icon": "shushi",
   "catIcon": "cat_shujitsu"
  },
@@ -3705,7 +3764,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "92",
-  "note": "白芝麻。※注意:便溏の者。多食は脾胃虚寒を発す。胡麻油は白胡麻が主原料",
+  "note": "白芝麻",
+  "caution": "注意:便溏の者。多食は脾胃虚寒を発す。胡麻油は白胡麻が主原料",
   "icon": "shushi",
   "catIcon": "cat_shujitsu"
  },
@@ -3735,7 +3795,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "92",
-  "note": "甜杏仁・南杏仁。※杏仁には北杏仁(苦杏仁)と南杏(甜杏仁)の2種",
+  "note": "甜杏仁・南杏仁",
+  "caution": "杏仁には北杏仁(苦杏仁)と南杏(甜杏仁)の2種",
   "icon": "kanka",
   "catIcon": "cat_shujitsu"
  },
@@ -3751,7 +3812,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "92",
-  "note": "蓮子。※芯(蓮子心)は苦味が強いので料理では取り除く",
+  "note": "蓮子",
+  "caution": "芯(蓮子心)は苦味が強いので料理では取り除く",
   "icon": "kanka",
   "catIcon": "cat_shujitsu"
  },
@@ -3766,7 +3828,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "94",
-  "note": "菱の実・菱角。※生は清熱除煩解暑止渇、熟は補気健脾。注意:胃虚脾弱、胸腹痞脹者の多食",
+  "note": "菱の実・菱角",
+  "caution": "生は清熱除煩解暑止渇、熟は補気健脾。注意:胃虚脾弱、胸腹痞脹者の多食",
   "icon": "kanka",
   "catIcon": "cat_shujitsu"
  },
@@ -3811,7 +3874,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "94",
-  "note": "松子仁・海松子。※注意:便溏の者",
+  "note": "松子仁・海松子",
+  "caution": "注意:便溏の者",
   "icon": "kenka",
   "catIcon": "cat_shujitsu"
  },
@@ -3826,7 +3890,8 @@
   "cat15": "shujitsu",
   "cat5": "grain",
   "page": "94",
-  "note": "落花生・花生。※薄皮ごと食すと補血・止血の作用あり",
+  "note": "落花生・花生",
+  "caution": "薄皮ごと食すと補血・止血の作用あり",
   "icon": "kenka",
   "catIcon": "cat_shujitsu"
  },
@@ -3982,7 +4047,8 @@
   "cat15": "gyokai",
   "cat5": "protein",
   "page": "100",
-  "note": "海胆。※生殖巣(雄の精巣・雌の卵巣)を食用",
+  "note": "海胆",
+  "caution": "生殖巣(雄の精巣・雌の卵巣)を食用",
   "icon": "uni",
   "catIcon": "cat_gyokai"
  },
@@ -4426,7 +4492,8 @@
   "cat15": "gyokai",
   "cat5": "protein",
   "page": "106",
-  "note": "甲魚・元魚。※大補陰之佳品",
+  "note": "甲魚・元魚",
+  "caution": "大補陰之佳品",
   "icon": "kame",
   "catIcon": "cat_gyokai"
  },
@@ -4579,7 +4646,8 @@
   "cat15": "gyokai",
   "cat5": "protein",
   "page": "108",
-  "note": "※乾物は壮陽の効能有り",
+  "note": "",
+  "caution": "乾物は壮陽の効能有り",
   "icon": "namako",
   "catIcon": "cat_gyokai"
  },
@@ -4763,7 +4831,8 @@
   "cat15": "gyokai",
   "cat5": "protein",
   "page": "112",
-  "note": "河豚。※肝臓、卵巣は猛毒",
+  "note": "河豚",
+  "safety": "肝臓、卵巣は猛毒",
   "icon": "fugu",
   "catIcon": "cat_gyokai"
  },
@@ -4826,7 +4895,8 @@
   "cat15": "gyokai",
   "cat5": "protein",
   "page": "112",
-  "note": "鰡魚。※からすみ(ぼらの卵巣を塩漬け後乾燥)",
+  "note": "鰡魚",
+  "caution": "からすみ(ぼらの卵巣を塩漬け後乾燥)",
   "icon": "sakana",
   "catIcon": "cat_gyokai"
  },
@@ -4903,7 +4973,7 @@
   "cat15": "gyokai",
   "cat5": "protein",
   "page": "114",
-  "note": "淡菜・ムール貝。※ムラサキ貝の別名",
+  "note": "淡菜・ムール貝・ムラサキ貝",
   "icon": "nimaigai",
   "catIcon": "cat_gyokai"
  },
@@ -4948,7 +5018,8 @@
   "cat15": "niku",
   "cat5": "protein",
   "page": "116",
-  "note": "狗肉。※注意:陰虚の者",
+  "note": "狗肉",
+  "caution": "注意:陰虚の者",
   "icon": "cat_niku",
   "catIcon": "cat_niku",
   "visible": false
@@ -4994,7 +5065,8 @@
   "cat15": "niku",
   "cat5": "protein",
   "page": "116",
-  "note": "兎肉。※注意:脾胃虚寒の者",
+  "note": "兎肉",
+  "caution": "注意:脾胃虚寒の者",
   "icon": "usagi",
   "catIcon": "cat_niku"
  },
@@ -5071,7 +5143,8 @@
   "cat15": "niku",
   "cat5": "protein",
   "page": "118",
-  "note": "鴨肉。※鴨はマガモを指すが、アヒルと掛け合わせた合鴨が一般的",
+  "note": "鴨肉",
+  "caution": "鴨はマガモを指すが、アヒルと掛け合わせた合鴨が一般的",
   "icon": "kamo",
   "catIcon": "cat_niku"
  },
@@ -5087,7 +5160,8 @@
   "cat15": "niku",
   "cat5": "protein",
   "page": "118",
-  "note": "雉肉・山鶏。※古書では微寒。春夏に捕穫したものは微毒あり",
+  "note": "雉肉・山鶏",
+  "caution": "古書では微寒。春夏に捕穫したものは微毒あり",
   "icon": "kiji",
   "catIcon": "cat_niku"
  },
@@ -5117,7 +5191,8 @@
   "cat15": "niku",
   "cat5": "protein",
   "page": "118",
-  "note": "牛肚。※第一胃ミノ、第二胃ハチノス、第三胃センマイ、第四胃アカセンマイ",
+  "note": "牛肚",
+  "caution": "第一胃ミノ、第二胃ハチノス、第三胃センマイ、第四胃アカセンマイ",
   "icon": "i",
   "catIcon": "cat_niku"
  },
@@ -5285,7 +5360,8 @@
   "cat15": "niku",
   "cat5": "protein",
   "page": "120",
-  "note": "雀肉・麻雀肉。※注意:陰虚火旺の者",
+  "note": "雀肉・麻雀肉",
+  "caution": "注意:陰虚火旺の者",
   "icon": "suzume",
   "catIcon": "cat_niku"
  },
@@ -5395,7 +5471,8 @@
   "cat15": "niku",
   "cat5": "protein",
   "page": "122",
-  "note": "猪肉。※注意:湿熱・痰滞内蘊の者",
+  "note": "猪肉",
+  "caution": "注意:湿熱・痰滞内蘊の者",
   "icon": "buta",
   "catIcon": "cat_niku"
  },
@@ -5842,7 +5919,8 @@
   "cat15": "yushi",
   "cat5": "season",
   "page": "132",
-  "note": "胡麻油・香油。※注意:脾虚泄瀉の者",
+  "note": "胡麻油・香油",
+  "caution": "注意:脾虚泄瀉の者",
   "icon": "abura",
   "catIcon": "cat_yushi"
  },
@@ -6007,7 +6085,8 @@
   "cat15": "satou",
   "cat5": "season",
   "page": "134",
-  "note": "甜菜糖。※てんさいは北海道、さとうきびは沖縄が主要産地",
+  "note": "甜菜糖",
+  "caution": "てんさいは北海道、さとうきびは沖縄が主要産地",
   "icon": "satou_cube",
   "catIcon": "cat_satou"
  },
@@ -6097,7 +6176,8 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "138",
-  "note": "丁香。※うこんと一緒に使用しない",
+  "note": "丁香",
+  "caution": "うこんと一緒に使用しない",
   "icon": "clove",
   "catIcon": "cat_choumi"
  },
@@ -6112,7 +6192,8 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "138",
-  "note": "胡椒。※注意:陰虚証の者",
+  "note": "胡椒",
+  "caution": "注意:陰虚証の者",
   "icon": "kosho",
   "catIcon": "cat_choumi"
  },
@@ -6158,7 +6239,8 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "140",
-  "note": "番紅花。※注意:妊婦および月経過多症の者は禁忌",
+  "note": "番紅花",
+  "caution": "注意:妊婦および月経過多症の者は禁忌",
   "icon": "clove",
   "catIcon": "cat_choumi"
  },
@@ -6173,7 +6255,9 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "140",
-  "note": "花椒・蜀椒。※小毒。注意:陰虚火旺の者・妊婦。皮に局所麻酔及び鎮痛作用",
+  "note": "花椒・蜀椒",
+  "safety": "小毒あり",
+  "caution": "注意:陰虚火旺の者・妊婦。皮に局所麻酔及び鎮痛作用",
   "icon": "kosho",
   "catIcon": "cat_choumi"
  },
@@ -6203,7 +6287,8 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "140",
-  "note": "塩。※外用:歯ぐき出血。天然塩",
+  "note": "塩",
+  "caution": "外用:歯ぐき出血。天然塩",
   "icon": "shio",
   "catIcon": "cat_choumi"
  },
@@ -6250,7 +6335,8 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "142",
-  "note": "醋。※注意:陰虚火旺の者(食べ過ぎると津液を失いやすい)",
+  "note": "醋",
+  "caution": "注意:陰虚火旺の者(食べ過ぎると津液を失いやすい)",
   "icon": "jouzou_eki",
   "catIcon": "cat_choumi"
  },
@@ -6297,7 +6383,8 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "142",
-  "note": "辣椒。※注意:陰虚火旺の者",
+  "note": "辣椒",
+  "caution": "注意:陰虚火旺の者",
   "icon": "tougarashi",
   "catIcon": "cat_choumi"
  },
@@ -6313,7 +6400,8 @@
   "cat15": "choumi",
   "cat5": "season",
   "page": "142",
-  "note": "豆豉。※塩分の少ないものは中薬の淡豆豉",
+  "note": "豆豉",
+  "caution": "塩分の少ないものは中薬の淡豆豉",
   "icon": "jouzou_paste",
   "catIcon": "cat_choumi"
  },
@@ -6421,7 +6509,7 @@
   "cat15": "inryou",
   "cat5": "season",
   "page": "146",
-  "note": "酒醸。※米麹の甘酒",
+  "note": "酒醸(米麹の甘酒)",
   "icon": "amazake",
   "catIcon": "cat_inryou"
  },
@@ -6437,7 +6525,8 @@
   "cat15": "inryou",
   "cat5": "season",
   "page": "146",
-  "note": "烏龍茶。※高発酵茶は温性に傾く",
+  "note": "烏龍茶",
+  "caution": "高発酵茶は温性に傾く",
   "icon": "chaba",
   "catIcon": "cat_inryou"
  },
@@ -6595,7 +6684,7 @@
   "cat15": "inryou",
   "cat5": "season",
   "page": "148",
-  "note": "ハブ茶。※決明子の成熟種子を炒ったものがハブ茶",
+  "note": "ハブ茶(決明子の成熟種子を炒ったもの)",
   "icon": "chaba",
   "catIcon": "cat_inryou"
  },
@@ -6611,7 +6700,8 @@
   "cat15": "inryou",
   "cat5": "season",
   "page": "148",
-  "note": "普洱茶。※熟茶は暖胃・解酒の効能あり。生茶は涼/苦甘",
+  "note": "普洱茶",
+  "caution": "熟茶は暖胃・解酒の効能あり。生茶は涼/苦甘",
   "icon": "chaba",
   "catIcon": "cat_inryou"
  },
@@ -6627,7 +6717,7 @@
   "cat15": "inryou",
   "cat5": "season",
   "page": "148",
-  "note": "玫瑰花。※和名はまはなす",
+  "note": "玫瑰花・はまなす",
   "icon": "hanacha",
   "catIcon": "cat_inryou"
  },

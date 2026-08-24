@@ -20,7 +20,7 @@ import {
 
 export default function Root({ children }: PropsWithChildren) {
   return (
-    <html lang="ja">
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -32,7 +32,7 @@ export default function Root({ children }: PropsWithChildren) {
         {/* 画面側が上書きしない分の既定値。題・説明・URLは PageHead が入れる */}
         <meta property="og:site_name" content={SITE_NAME} />
         <meta property="og:type" content="website" />
-        <meta property="og:locale" content="ja_JP" />
+        <meta property="og:locale" content="en_US" />
         <meta property="og:image" content={OG_IMAGE_URL} />
         <meta property="og:image:width" content={OG_IMAGE_WIDTH} />
         <meta property="og:image:height" content={OG_IMAGE_HEIGHT} />

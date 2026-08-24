@@ -11,7 +11,8 @@
       "bundleIdentifier": "app.tabenote.main",
       "supportsTablet": false,
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleDevelopmentRegion": "en"
       }
     },
     "android": {
@@ -57,12 +58,34 @@
         {
           "ios": {
             "attUsageDescription": "Used to measure which content brought you here. No personal data is collected.",
-            "urlSchemes": ["tabenote"],
+            "urlSchemes": [
+              "tabenote"
+            ],
             "includeDefaultSKAdNetworkIds": false,
             "includeAdvertisingAttributionReportEndpoint": false
           },
           "android": {
-            "intentFilters": [{ "scheme": "tabenote", "host": "open" }]
+            "intentFilters": [
+              {
+                "scheme": "tabenote",
+                "host": "open"
+              }
+            ]
+          }
+        }
+      ],
+      [
+        "expo-localization",
+        {
+          "supportedLocales": {
+            "ios": [
+              "en",
+              "ja"
+            ],
+            "android": [
+              "en",
+              "ja"
+            ]
           }
         }
       ]

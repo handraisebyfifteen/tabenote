@@ -34,6 +34,17 @@ export interface Food {
   cat5: Cat5;
   /** 別名・漢字名(生物学上・言語上の事実のみ。中医学上の注意は持たない) */
   note: string;
+  /**
+   * 食品安全上の事実(ふぐの肝臓・卵巣、ぎんなんの小毒など)。中医学の禁忌ではない。
+   * 別名とは別のラベルで表示する。持たない食材のほうが多い。
+   */
+  safety?: string;
+  /**
+   * 退避したテキスト。かつて note に「※」付きで同居していた中医学上の禁忌・注意・
+   * 効能・性味の補足で、医学上のエビデンスに乏しいため画面には一切出さない。
+   * 出典との対応を保つためデータからは消していない。表示・検索に使わないこと。
+   */
+  caution?: string;
   /** 出典書籍のページ番号 */
   page?: string;
   /** 食材ごとのアイコンキー(src/components/icons/icons.ts の ICONS を参照) */
@@ -111,8 +122,8 @@ export function toHiragana(s: string): string {
 }
 
 /**
- * 名前・別名(note 内)・英語名に対する部分一致検索。
- * 非表示の食材は、名前で直接引かれても出さない。
+ * 名前・別名(note)・英語名に対する部分一致検索。
+ * 非表示の食材は、名前で直接引かれても出さない。caution は表に出さないので検索もしない。
  */
 export function searchFoods(query: string): Food[] {
   const q = toHiragana(query.trim().toLowerCase());

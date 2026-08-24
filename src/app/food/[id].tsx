@@ -204,6 +204,16 @@ export default function FoodDetailScreen() {
         )}
       </View>
 
+      {/* 食品安全上の事実だけを、別名とは別のラベルで出す(中医学の禁忌は出さない) */}
+      {food.safety !== undefined && food.safety !== '' && (
+        <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
+          <Text style={[styles.safetyTitle, { color: c.textSecondary }]}>
+            {t.food.safetyLabel}
+          </Text>
+          <Text style={[styles.safetyText, { color: c.text }]}>{food.safety}</Text>
+        </View>
+      )}
+
       <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
         <Text style={[styles.memoTitle, { color: c.textSecondary }]}>
           {t.food.memoTitle}
@@ -260,6 +270,8 @@ const styles = StyleSheet.create({
   attrRow: { flexDirection: 'row', gap: 12 },
   attrLabel: { fontSize: 14, width: 76, lineHeight: 21 },
   attrValue: { fontSize: 14, flex: 1, lineHeight: 21 },
+  safetyTitle: { fontSize: 12 },
+  safetyText: { fontSize: 14, lineHeight: 21 },
   memoTitle: { fontSize: 12 },
   memoInput: {
     fontSize: 15,

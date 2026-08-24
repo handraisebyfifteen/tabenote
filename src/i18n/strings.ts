@@ -178,6 +178,8 @@ export interface Strings {
     meridiansLabel: string;
     categoryLabel: string;
     noteLabel: string;
+    /** 食品安全上の注意(ふぐ・ぎんなん等)。別名とは別の行で出す */
+    safetyLabel: string;
     memoTitle: string;
     memoPlaceholder: string;
     memoHint: string;
@@ -548,6 +550,7 @@ const ja: Strings = {
     meridiansLabel: '帰経',
     categoryLabel: '分類',
     noteLabel: '別名',
+    safetyLabel: '安全上の注意',
     memoTitle: '自分のメモ',
     memoPlaceholder: '調べたこと・体感・自分の解釈など、自由に。',
     memoHint: '書くのは持ち主。入力を終えると自動で保存されます。',
@@ -933,6 +936,7 @@ const en: Strings = {
     meridiansLabel: 'Meridians',
     categoryLabel: 'Category',
     noteLabel: 'Also known as',
+    safetyLabel: 'Safety note',
     memoTitle: 'My notes',
     memoPlaceholder: 'Anything you learn, feel, or interpret — in your own words.',
     memoHint: 'This page is yours to write. Saved automatically when you finish.',
