@@ -15,8 +15,11 @@ export const OG_IMAGE_URL = `${SITE_URL}/og.png`;
 export const OG_IMAGE_WIDTH = '1200';
 export const OG_IMAGE_HEIGHT = '630';
 
-/** splash(app.json)と揃えた地の色 */
-export const THEME_COLOR = '#208AEF';
+/**
+ * ブラウザのUIに出る地の色。アイコンの生成り地に合わせる。
+ * splash(app.json)の朱は幕として独立させた色なので、ここには持ち込まない
+ */
+export const THEME_COLOR = '#F1E5C7';
 
 /**
  * 法務ページ。実体は public/ の静的HTML(support/privacy/terms/tokusho)で、
