@@ -662,8 +662,8 @@ const ja: Strings = {
 
   about: {
     screenTitle: 'tabenoteについて',
-    tagline: '薬膳の手帳。書くのは、あなた',
-    lead: 'tabenote(タベノート)は、中医学で伝統的に用いられてきた食材の分類を、図と言葉で確かめるための手帳です。',
+    tagline: '食材選びの手帳。書くのは、あなた',
+    lead: 'tabenote(タベノート)は、経験を積んだ料理人がするように、季節と味の釣り合いで食材を選ぶための手帳です。土台には、東アジアの台所で長く受け継がれてきた伝統的な食材の分類があります。',
     sections: [
       {
         title: '選んだ食材が、ひとつの図形になる',
@@ -692,16 +692,16 @@ const ja: Strings = {
 
   welcome: {
     title: 'tabenoteへようこそ',
-    body: '薬膳の手帳です。食材を選ぶと、五味と性がひとつの五角形になります。二十四節気に合わせて、いまの季節にすすめられる味も。',
+    body: '料理人の食材選びの手帳です。食材を選ぶと、五味と性がひとつの五角形になります。二十四節気に合わせて、いまの季節にすすめられる味も。',
     about: 'tabenoteについて',
     start: 'このまま使ってみる',
   },
 
   meta: {
     home: {
-      title: 'tabenote — 薬膳手帳',
+      title: 'tabenote — 料理人の食材手帳',
       description:
-        '二十四節気と五季を表示し、選んだ食材の組み合わせを五味・性・帰経・分類の事実として示す薬膳手帳。効能はアプリが書かず、持ち主が書きます。',
+        '二十四節気と五季を表示し、選んだ食材の組み合わせを五味・性・帰経・分類の事実として示す食材手帳。効能はアプリが書かず、持ち主が書きます。',
     },
     combine: {
       title: '組み合わせ | tabenote',
@@ -725,7 +725,7 @@ const ja: Strings = {
     about: {
       title: 'tabenoteについて | tabenote',
       description:
-        '中医学で伝統的に用いられてきた食材の分類を、図と言葉で確かめる薬膳手帳。五角形の図、435品目の図鑑、二十四節気と五季、AIの献立案。効能はアプリが書きません。',
+        '料理人が食材を選ぶように、季節と味の釣り合いで組み合わせを考える食材手帳。五角形の図、435品目の図鑑、二十四節気と五季、AIの献立案。効能はアプリが書きません。',
     },
     licenses: {
       title: 'オープンソースライセンス | tabenote',
@@ -1050,9 +1050,9 @@ const en: Strings = {
 
   about: {
     screenTitle: 'About tabenote',
-    tagline: 'A notebook for yakuzen. You write the rest.',
+    tagline: 'A chef’s eye for ingredients. You write the rest.',
     lead:
-      'tabenote is a notebook for checking the traditional ingredient classifications of Chinese dietary theory, in shapes and words.',
+      'tabenote is a notebook for choosing ingredients the way a seasoned chef does — by season and the balance of flavors. Underneath sits a classification of ingredients refined over centuries in East Asian kitchens, shown in shapes and words.',
     sections: [
       {
         title: 'Your ingredients become one shape',
@@ -1081,14 +1081,14 @@ const en: Strings = {
 
   welcome: {
     title: 'Welcome to tabenote',
-    body: 'A notebook for yakuzen. Pick ingredients and their five flavors and nature become one pentagon — with the flavors favored by the current solar term.',
+    body: 'A chef’s-eye notebook for ingredients. Pick ingredients and their five flavors and nature become one pentagon — with the flavors favored by the current solar term.',
     about: 'About tabenote',
     start: 'Start using it',
   },
 
   meta: {
     home: {
-      title: 'tabenote — a notebook for Chinese dietary theory',
+      title: 'tabenote — a chef’s eye for ingredients',
       description:
         'Shows the current solar term and season, and describes what a set of ingredients is made of — five flavors, nature, meridians, category. The app states the facts; you write the rest.',
     },
@@ -1114,7 +1114,7 @@ const en: Strings = {
     about: {
       title: 'About | tabenote',
       description:
-        'A yakuzen notebook that shows the traditional classifications of ingredients — five flavors, nature, meridians, category — as shapes and words. A pentagon chart, an index of 435 ingredients, the 24 solar terms and five seasons, and AI menu ideas. The app never writes effects.',
+        'A food notebook with a chef’s eye: the traditional classifications of ingredients — five flavors, nature, meridians, category — as shapes and words. A pentagon chart, an index of 435 ingredients, the 24 solar terms and five seasons, and AI menu ideas. The app never writes effects.',
     },
     licenses: {
       title: 'Open source licenses | tabenote',
