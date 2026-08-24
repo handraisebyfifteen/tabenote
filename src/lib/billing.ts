@@ -82,7 +82,7 @@ const DEV_APP_USER_ID = HATCHES_ALLOWED
  *
  * App内課金の審査用スクリーンショットには価格の出たペイウォールが要るが、
  * シミュレータには StoreKit の商品情報が無いので「取得できませんでした」で止まる。
- * 価格表記(例: ¥700)を渡すと、その月額1本だけを並べた状態で撮れる。
+ * 価格表記(例: ¥1,000)を渡すと、その月額1本だけを並べた状態で撮れる。
  *
  * この状態では RevenueCat を一切呼ばない(購入も復元も成立しない)。撮影以外に使わないこと。
  * 表示は実際の価格と一致させること。違う価格を審査に出すと不正確な申請になる。
@@ -150,7 +150,7 @@ export interface BillingPlan {
   /** 購入時にそのまま渡す package identifier */
   id: string;
   period: 'monthly' | 'annual' | 'other';
-  /** ストアがローカライズ済みの価格表記(例: ¥700) */
+  /** ストアがローカライズ済みの価格表記(例: ¥1,000) */
   priceString: string;
   /** 無料トライアルの長さ。無ければ null */
   trial: { count: number; unit: string } | null;
