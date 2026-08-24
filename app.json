@@ -30,6 +30,7 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "./plugins/strip-att-key.js",
       [
         "expo-router",
         {
@@ -52,12 +53,10 @@
           "enableBackgroundPlayback": false
         }
       ],
-      "expo-tracking-transparency",
       [
         "@layers/expo",
         {
           "ios": {
-            "attUsageDescription": "Used to measure which content brought you here. No personal data is collected.",
             "urlSchemes": [
               "tabenote"
             ],
