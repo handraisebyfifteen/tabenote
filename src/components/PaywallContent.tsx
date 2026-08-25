@@ -26,6 +26,8 @@ import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { useAnalyticsReady, useTrack } from '@/lib/analytics';
 import { useBilling } from '@/lib/BillingContext';
+import { exportUserData } from '@/lib/export';
+import { loadUserData } from '@/lib/storage';
 
 const ACCENT = '#8FAF8B';
 
@@ -43,6 +45,41 @@ export default function PaywallContent({
   const { active, plans, plansLoading, loadPlans, purchase, restore } = useBilling();
   const [busy, setBusy] = useState(false);
   const [restoring, setRestoring] = useState(false);
+
+  // 購読が切れた人がメモを持ち出せる書き出し(2026-08-25 決定)。ゲート(onboarding)にだけ、
+  // 書き出しに含まれるデータ(lib/exportPayload)がひとつでもある人にだけ出す。
+  // 初回起動の新規ユーザーはデータが空なので出ない。閲覧は購読の対価なので一切開けない。
+  const [hasData, setHasData] = useState(false);
+  const [exporting, setExporting] = useState(false);
+  useEffect(() => {
+    if (source !== 'onboarding') return;
+    let live = true;
+    loadUserData().then((d) => {
+      if (!live) return;
+      setHasData(
+        d.favorites.length > 0 ||
+          Object.keys(d.notes).length > 0 ||
+          d.savedCombos.length > 0 ||
+          Object.keys(d.estimatedNotes).length > 0 ||
+          Object.keys(d.selectionHistory).length > 0,
+      );
+    });
+    return () => {
+      live = false;
+    };
+  }, [source]);
+
+  const onExport = async () => {
+    if (exporting) return;
+    setExporting(true);
+    try {
+      await exportUserData(lang);
+    } catch {
+      Alert.alert(t.settings.exportFailTitle, t.settings.exportFailBody);
+    } finally {
+      setExporting(false);
+    }
+  };
 
   useEffect(() => {
     loadPlans();
@@ -182,6 +219,18 @@ export default function PaywallContent({
               {t.paywall.privacy}
             </Text>
           </Pressable>
+          {source === 'onboarding' && !active && hasData && (
+            <Pressable onPress={onExport} disabled={exporting}>
+              <Text
+                style={[
+                  styles.link,
+                  { color: c.textSecondary, opacity: exporting ? 0.5 : 1 },
+                ]}
+              >
+                {t.paywall.exportSaved}
+              </Text>
+            </Pressable>
+          )}
         </View>
       </View>
     </ScrollView>

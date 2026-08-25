@@ -15,7 +15,6 @@ import {
   Linking,
   Pressable,
   ScrollView,
-  Share,
   StyleSheet,
   Switch,
   View,
@@ -36,10 +35,10 @@ import { getStrings, type Strings } from '@/i18n/strings';
 import type { Lang } from '@/i18n/terms';
 import { useBilling } from '@/lib/BillingContext';
 import { useDisplay } from '@/lib/DisplayContext';
+import { exportUserData } from '@/lib/export';
 import { decideHaptic } from '@/lib/haptics';
 import { playSfx } from '@/lib/sfx';
 import { sfxGain, useSound, VOLUME_ORDER, type SfxVolume } from '@/lib/SoundContext';
-import { loadUserData } from '@/lib/storage';
 
 const LANG_OPTIONS: { value: Lang; label: string }[] = [
   { value: 'ja', label: '日本語' },
@@ -69,6 +68,7 @@ export default function SettingsScreen() {
 
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [restoring, setRestoring] = useState(false);
+  const [exporting, setExporting] = useState(false);
 
   const toggleSection = (key: string) => {
     setOpenSection((current) => (current === key ? null : key));
@@ -91,20 +91,15 @@ export default function SettingsScreen() {
   };
 
   const exportData = async () => {
+    // 共有シートが開くまでの二度押しで expo-sharing が例外になるのを防ぐ
+    if (exporting) return;
+    setExporting(true);
     try {
-      const data = await loadUserData();
-      const payload = {
-        app: 'tabenote',
-        format: 1,
-        exportedAt: new Date().toISOString(),
-        data,
-      };
-      await Share.share({
-        title: t.settings.exportShareTitle,
-        message: JSON.stringify(payload, null, 2),
-      });
+      await exportUserData(lang);
     } catch {
       Alert.alert(t.settings.exportFailTitle, t.settings.exportFailBody);
+    } finally {
+      setExporting(false);
     }
   };
 
@@ -279,8 +274,12 @@ export default function SettingsScreen() {
       </View>
 
       <Pressable
-        style={[styles.row, { backgroundColor: c.backgroundElement }]}
+        style={[
+          styles.row,
+          { backgroundColor: c.backgroundElement, opacity: exporting ? 0.6 : 1 },
+        ]}
         onPress={exportData}
+        disabled={exporting}
       >
         <Text style={[styles.title, { color: c.text }]}>{t.settings.exportTitle}</Text>
         <Text style={[styles.note, { color: c.textSecondary }]}>

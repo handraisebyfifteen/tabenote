@@ -288,6 +288,8 @@ export interface Strings {
     restoreFailBody: string;
     terms: string;
     privacy: string;
+    /** 購読が切れた人が保存データを持ち出すための書き出し(初回ゲートの画面だけに出す) */
+    exportSaved: string;
   };
 
   /** 初回起動のオンボーディング(3枚)→ 購読案内(Guideline 4.2 対策) */
@@ -601,7 +603,7 @@ const ja: Strings = {
     licenses: 'オープンソースライセンス',
     licensesNote: '同梱しているソフトウェアの著作権表示とライセンス',
     exportTitle: 'データのエクスポート',
-    exportNote: 'お気に入り・メモ・保存した組み合わせを書き出します',
+    exportNote: 'お気に入り・メモ・保存した組み合わせなどを書き出します',
     exportShareTitle: 'tabenote データ',
     exportFailTitle: 'エクスポート',
     exportFailBody: 'データの書き出しに失敗しました。',
@@ -639,6 +641,7 @@ const ja: Strings = {
     restoreFailBody: '復元に失敗しました。通信環境を確認してください。',
     terms: '利用規約',
     privacy: 'プライバシーポリシー',
+    exportSaved: '保存したデータを書き出す',
   },
 
   onboarding: {
@@ -989,7 +992,7 @@ const en: Strings = {
     licenses: 'Open source licenses',
     licensesNote: 'Copyright notices and licenses for the bundled software',
     exportTitle: 'Export data',
-    exportNote: 'Writes out your favorites, notes, and saved combinations',
+    exportNote: 'Writes out your favorites, notes, saved combinations, and more',
     exportShareTitle: 'tabenote data',
     exportFailTitle: 'Export',
     exportFailBody: 'Could not export your data.',
@@ -1027,6 +1030,7 @@ const en: Strings = {
     restoreFailBody: 'Could not restore. Please check your connection.',
     terms: 'Terms of Use',
     privacy: 'Privacy Policy',
+    exportSaved: 'Export your saved data',
   },
 
   onboarding: {
