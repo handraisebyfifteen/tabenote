@@ -7,6 +7,7 @@
 import type { Cat5 } from '../data/foods';
 import type { FiveFlavor } from '../logic/flavors';
 import type { FiveSeason } from '../logic/season';
+import type { Store } from '../constants/site';
 import { cat5Label, fiveFlavorLabel, organLabel, seasonNatureText, type Lang } from './terms';
 
 export interface Strings {
@@ -199,7 +200,8 @@ export interface Strings {
     restoreNoneBody: string;
     restoreFailBody: string;
     manageSubscription: string;
-    manageSubscriptionNote: string;
+    /** 解約の案内。決済元(Apple / Google Play)で文言が変わる */
+    manageSubscriptionNote(store: Store): string;
     terms: string;
     privacy: string;
     contact: string;
@@ -274,7 +276,8 @@ export interface Strings {
     periodNote: string;
     subscribe: string;
     /** 自動更新・解約方法の説明(ボタンの下) */
-    renewalNote: string;
+    /** 自動更新と解約方法の説明。決済元(Apple / Google Play)で文言が変わる */
+    renewalNote(store: Store): string;
     restore: string;
     loading: string;
     unavailable: string;
@@ -570,7 +573,10 @@ const ja: Strings = {
     restoreNoneBody: '復元できる購読が見つかりませんでした。',
     restoreFailBody: '復元に失敗しました。通信環境を確認してください。',
     manageSubscription: 'サブスクリプションの管理',
-    manageSubscriptionNote: '解約もこちらから(Apple の管理画面が開きます)',
+    manageSubscriptionNote: (store) =>
+      store === 'apple'
+        ? '解約もこちらから(Apple の管理画面が開きます)'
+        : '解約もこちらから(Google Play の管理画面が開きます)',
     terms: '利用規約',
     privacy: 'プライバシーポリシー',
     contact: 'お問い合わせ',
@@ -626,8 +632,10 @@ const ja: Strings = {
       '選んだ食材の組み合わせを五味・性の五角形で確かめる\n435品目の食材の図鑑(五味・性・帰経・分類)\n二十四節気と五季、いまの季節に合う味の表示\n食材に★とメモ、組み合わせを手帳に保存\n選んだ食材と季節から、AIが献立のアイデアを提案',
     periodNote: '1か月ごとの自動更新',
     subscribe: '登録する',
-    renewalNote:
-      '期間終了の24時間前までに解約しない限り、自動的に更新されます。お支払いは Apple アカウントに請求されます。解約は、iPhoneの「設定」→ Apple アカウント →「サブスクリプション」からいつでも行えます。',
+    renewalNote: (store) =>
+      store === 'apple'
+        ? '期間終了の24時間前までに解約しない限り、自動的に更新されます。お支払いは Apple アカウントに請求されます。解約は、iPhoneの「設定」→ Apple アカウント →「サブスクリプション」からいつでも行えます。'
+        : '期間終了の24時間前までに解約しない限り、自動的に更新されます。お支払いは Google Play アカウントに請求されます。解約は、Google Play の「お支払いと定期購入」→「定期購入」からいつでも行えます。',
     restore: '購入を復元',
     loading: 'プランを読み込んでいます…',
     unavailable: 'いまプランを取得できませんでした。通信環境を確認して、もう一度お試しください。',
@@ -957,7 +965,10 @@ const en: Strings = {
     restoreNoneBody: 'No subscription was found to restore.',
     restoreFailBody: 'Could not restore. Please check your connection.',
     manageSubscription: 'Manage subscription',
-    manageSubscriptionNote: 'Cancel here too (opens Apple’s management page)',
+    manageSubscriptionNote: (store) =>
+      store === 'apple'
+        ? 'Cancel here too (opens Apple’s management page)'
+        : 'Cancel here too (opens Google Play’s subscription page)',
     terms: 'Terms of Use',
     privacy: 'Privacy Policy',
     contact: 'Contact us',
@@ -1015,8 +1026,10 @@ const en: Strings = {
       'See any combination of ingredients as a pentagon of the five flavors and nature\nAn encyclopedia of 435 ingredients (flavor, nature, meridians, category)\nThe 24 solar terms, the five seasons, and the flavors favored right now\nStar ingredients, write notes, save combinations to your notebook\nAI menu ideas from the ingredients you picked and the season',
     periodNote: 'Renews automatically every month',
     subscribe: 'Subscribe',
-    renewalNote:
-      'Renews automatically unless cancelled at least 24 hours before the end of the current period. Payment is charged to your Apple Account. Cancel any time in Settings → Apple Account → Subscriptions on your iPhone.',
+    renewalNote: (store) =>
+      store === 'apple'
+        ? 'Renews automatically unless cancelled at least 24 hours before the end of the current period. Payment is charged to your Apple Account. Cancel any time in Settings → Apple Account → Subscriptions on your iPhone.'
+        : 'Renews automatically unless cancelled at least 24 hours before the end of the current period. Payment is charged to your Google Play account. Cancel any time in Google Play → Payments & subscriptions → Subscriptions.',
     restore: 'Restore purchases',
     loading: 'Loading the plan…',
     unavailable: 'Could not load the plan. Please check your connection and try again.',

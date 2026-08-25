@@ -41,8 +41,18 @@ export const PRIVACY_URL = `${SITE_URL}/privacy`;
 /** 特定商取引法に基づく表記。App Store では必須ではない(tokusho.html の注記を参照) */
 export const TOKUSHO_URL = `${SITE_URL}/tokusho`;
 
-/** iOS の購読管理(Apple の共通URL)。解約はアプリからは行えないため、ここへ誘導する */
-export const MANAGE_SUBSCRIPTION_URL = 'https://apps.apple.com/account/subscriptions';
+/** 決済元。購読管理の遷移先と、更新・解約の説明文がこれで変わる */
+export type Store = 'apple' | 'google';
+
+/**
+ * 購読管理ページ(ストアの共通URL)。解約はアプリからは行えないため、ここへ誘導する。
+ * Google Play 側は package と sku を付けると、その商品の管理画面が直接開く。
+ */
+export const MANAGE_SUBSCRIPTION_URL: Record<Store, string> = {
+  apple: 'https://apps.apple.com/account/subscriptions',
+  google:
+    'https://play.google.com/store/account/subscriptions?sku=tabenote.premium.monthly&package=app.tabenote.main',
+};
 
 /**
  * App Store の製品ページ。審査通過後に判明するURLをここに入れる。

@@ -18,12 +18,14 @@ import {
   StyleSheet,
   Switch,
   View,
+  Platform,
 } from 'react-native';
 
 import PageHead from '@/components/PageHead';
 import { Text } from '@/components/Type';
 import {
   MANAGE_SUBSCRIPTION_URL,
+  type Store,
   PRIVACY_URL,
   SUPPORT_URL,
   TERMS_URL,
@@ -61,6 +63,7 @@ export default function SettingsScreen() {
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
   const { lang, setLang } = useLang();
   const t = getStrings(lang);
+  const store: Store = Platform.OS === 'android' ? 'google' : 'apple';
 
   const { enabled: billingOn, active, restore } = useBilling();
   const { themePref, setThemePref, textSize, setTextSize } = useDisplay();
@@ -140,13 +143,13 @@ export default function SettingsScreen() {
 
           <Pressable
             style={[styles.row, { backgroundColor: c.backgroundElement }]}
-            onPress={() => Linking.openURL(MANAGE_SUBSCRIPTION_URL)}
+            onPress={() => Linking.openURL(MANAGE_SUBSCRIPTION_URL[store])}
           >
             <Text style={[styles.title, { color: c.text }]}>
               {t.settings.manageSubscription}
             </Text>
             <Text style={[styles.note, { color: c.textSecondary }]}>
-              {t.settings.manageSubscriptionNote}
+              {t.settings.manageSubscriptionNote(store)}
             </Text>
           </Pressable>
         </>

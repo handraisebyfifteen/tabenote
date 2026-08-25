@@ -55,3 +55,4 @@ example
 .breakpoints
 .env
 *.log
+google-play-service-account.json

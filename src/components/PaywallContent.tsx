@@ -16,6 +16,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Platform,
 } from 'react-native';
 
 import { Text } from '@/components/Type';
@@ -200,7 +201,7 @@ export default function PaywallContent({
         )}
 
         <Text style={[styles.renewalNote, { color: c.textSecondary }]}>
-          {t.paywall.renewalNote}
+          {t.paywall.renewalNote(Platform.OS === 'android' ? 'google' : 'apple')}
         </Text>
 
         <View style={styles.links}>
