@@ -12,7 +12,7 @@
       Android 用に足すコードは無い。必要なのは `EXPO_PUBLIC_RC_ANDROID_KEY` だけ)
 - [x] アプリ内の購読文言・管理URLをストア別に切り替え(`src/constants/site.ts` の `Store`)
 - [x] `eas.json` に `submit.production.android`(internal トラック・draft)
-- [ ] **RevenueCat に Android アプリを追加** → `EXPO_PUBLIC_RC_ANDROID_KEY` を EAS に登録(下の Step 2)
+- [x] **RevenueCat に Android アプリを追加** → `EXPO_PUBLIC_RC_ANDROID_KEY` を EAS に登録(production / preview 両方。2026-08-25 完了)
 - [ ] Play Console でアプリ作成・ストア掲載・AAB アップロード
 - [ ] 定期購入商品の作成(**AAB を上げるまで作れない**。下の Step 7)
 - [ ] ライセンステスターで課金テスト → クローズドテスト14日 → 本番申請
@@ -155,6 +155,22 @@ This app does not promise medical or health benefits. If you have health concern
   「All features require an in-app subscription. Reviewers can purchase with a license-tester account (added under Setup → License testing) — test purchases are free. No login/account exists in the app.」
   そのために **Play Console →「設定」→「ライセンス テスト」に審査用の Gmail を追加**しておく(Step 9)
 - **広告**: 含まない
+- **広告 ID(申告)**: **「いいえ」**。ただし `@layers/react-native` が `play-services-ads-identifier` を依存に持ち、
+  その AAR から `com.google.android.gms.permission.AD_ID` が推移的にマージされるため、
+  **素のビルドで「いいえ」を選ぶと Play が公開をブロックする**(「はい を選ぶか、マニフェストから権限を削除してください」と出る)。
+  アプリは `setConsent({ advertising: false })`(`src/lib/analytics.tsx`)で広告IDを使わない方針なので、
+  「はい」にせず**権限側を消して申告と実態を合わせる**。`app.json` に追加済み(2026-08-25):
+
+  ```json
+  "android": { "blockedPermissions": ["com.google.android.gms.permission.AD_ID"] }
+  ```
+
+  マージ後のマニフェストが `<uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>`
+  になることを `npx expo prebuild -p android` で確認済み(確認後は生成された `android/` を消し、prebuild が書き換える
+  `package.json` の scripts を `git checkout` で戻すこと)。iOS の ATT キー削除(`plugins/strip-att-key.js`)と同じ趣旨。
+  **⚠️ 権限はバイナリに焼き込まれるので、既にアップロード済みの AAB には効かない。Step 5 で再ビルドすること。**
+  副作用: Layers の GAID 取得が常に null になる(インストールリファラは影響なし)。広告出稿を始めるときはこの設定を外し、
+  データセーフティに「広告ID」を申告し直すこと。
 - **コンテンツのレーティング**: IARC 質問票。暴力・性的・薬物・ギャンブル: なし。
   「健康・医療の助言」系は **なし**(効能を扱わない設計)。ユーザー間の交流: なし。→ 3+ / Everyone
 - **ターゲット ユーザー**: 18歳以上(子ども向けではない。13〜17 を含めると追加要件が増える)

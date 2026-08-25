@@ -89,3 +89,36 @@ FONTCONFIG_FILE=/tmp/fonts.conf rsvg-convert -w 1024 -h 500 \
 `design-review/en-*.png` は 780×1688 の Web キャプチャで下半分が余白のためストア用には向かない。
 iOS 用に撮る 6.9インチ（1320×2868）セットをそのまま流用するのが早い。
 候補の5画面: Home / Combine（五角形が出た状態）/ Food detail / Advice / Notebook。
+
+## リリースノート（en-US）
+
+Play Console のリリースノートは **1言語 500文字まで**（`<en-US>` タグは字数に含まない）。
+Play Console 上で貼るときはタグ不要（言語ごとの入力欄がある）。EAS submit の
+`--metadata` や `whatsnew/` を使う場合のみ `whatsnew-en-US` ファイルに本文だけを入れる。
+
+### クローズドテスト用（[play-release.md](./play-release.md) Step 6-3）（176 / 500）
+
+```
+Initial closed test build. Everything is here: the food encyclopedia, pairing, solar terms, AI meal ideas, and the journal. Please tell us anything that reads oddly in English.
+```
+
+### 本番 1.0.0 用（[play-release.md](./play-release.md) Step 11）（473 / 500）
+
+```
+First release.
+
+Choose ingredients the way a seasoned chef does — by season, and by the balance of flavors.
+
+- 435 foods: thermal nature, five flavors, meridian tropism, category
+- Combine ingredients and watch the balance take shape on a pentagon chart
+- A note on the current solar term, and the flavors each season favors
+- AI meal ideas from your ingredients and the season
+- Save combinations, write your own notes, star what you keep
+- Japanese / English, dark mode
+```
+
+効能・症状に触れない・スコアを出さないという掲載情報の方針をリリースノートでも守ること
+（「helps with」「good for」「boosts」等は使わない）。
+
+App Store Connect の「このバージョンの新機能」は **1.0.0 では入力欄が出ない**（初回リリースのため）。
+1.0.1 以降で必要になったら、上の本文をそのまま流用できる（ASC は4000文字まで）。

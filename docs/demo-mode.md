@@ -6,8 +6,21 @@
 
 ## 起動
 
+開発中の確認:
+
 ```bash
 EXPO_PUBLIC_DEMO=1 npx expo start
+```
+
+本番の撮影(開発モードより滑らかで、BPM 123 の台本がコマ落ちしにくい):
+
+```sh
+npx eas build -p ios --profile demo    # simulator 継承のリリースビルド
+# 完了後、ビルドページの .tar.gz を落として展開
+xcrun simctl boot "iPhone 16 Pro" && open -a Simulator
+xcrun simctl install booted /path/to/tabenote.app
+xcrun simctl launch booted app.tabenote.main
+xcrun simctl io booted recordVideo --codec=h264 demo.mov   # Ctrl+C で停止
 ```
 
 ## 画面の操作(DEMO_MODE のときだけ出る)
@@ -28,8 +41,11 @@ EXPO_PUBLIC_DEMO=1 npx expo start
 - アプリの言語を **英語** にする(動画は英語版。検索も英語名 "bitter" で走る)。
 - 手帳(組み合わせ)に見せられる保存データを数件作っておく(27小節で映る)。
 - 端末の「視差効果を減らす」を **オフ** に(オンだと点灯・ポップの演出が消える)。
-- 課金ゲートが出る環境では購読を有効にしておく(`.env.local` の
-  `EXPO_PUBLIC_SKIP_PAYWALL` も参照)。
+- 課金ゲートは `EXPO_PUBLIC_SKIP_PAYWALL=1` で消す(`.env.local`、または
+  eas.json の `demo` プロファイル)。この抜け道は `__DEV__ || !Device.isDevice` の
+  ときだけ効く(`src/lib/billing.ts`)ので、**実機のリリースビルドでは無効**。
+  RC のキーが入ったビルドを実機に入れるとゲートを抜けられず撮影できない。
+  撮影は**シミュレータ**で行う。
 
 ## 台本(src/demo/script.ts)
 
