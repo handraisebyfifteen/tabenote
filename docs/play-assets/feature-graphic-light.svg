@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="500" viewBox="0 0 1024 500">
+  <defs>
+    <radialGradient id="bg" cx="0.78" cy="0.30" r="1.0">
+      <stop offset="0%"   stop-color="#F7EFDC"/>
+      <stop offset="42%"  stop-color="#F2E7CE"/>
+      <stop offset="100%" stop-color="#EADFC2"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="500" fill="url(#bg)"/>
+
+  <g font-family="Lexend" fill="#26382C">
+    <text x="76" y="200" font-size="80" font-weight="700" letter-spacing="-2">tabenote</text>
+    <text x="79" y="248" font-size="29" font-weight="500" fill="#3D5142">Ingredient Notes</text>
+    <rect x="79" y="278" width="64" height="3" rx="1.5" fill="#C4442F"/>
+    <text x="79" y="326" font-size="21" font-weight="400" fill="#6B6152">Pair foods by flavor &amp; season,</text>
+    <text x="79" y="357" font-size="21" font-weight="400" fill="#6B6152">the way a seasoned chef does.</text>
+  </g>
+
+  <g transform="translate(580,70) scale(0.90)">
+    <g fill="none" stroke="#C3B79A" stroke-width="1.3">
+      <polygon points="200,40 352.2,150.6 294.1,329.4 105.9,329.4 47.8,150.6"/>
+      <polygon points="200,80 314.2,162.9 270.6,297.1 129.4,297.1 85.8,162.9"/>
+      <polygon points="200,120 276.1,175.3 247.1,264.7 152.9,264.7 123.9,175.3"/>
+      <polygon points="200,160 238.1,187.6 223.5,232.4 176.5,232.4 161.9,187.6"/>
+      <line x1="200" y1="200" x2="200" y2="40"/>
+      <line x1="200" y1="200" x2="352.2" y2="150.6"/>
+      <line x1="200" y1="200" x2="294.1" y2="329.4"/>
+      <line x1="200" y1="200" x2="105.9" y2="329.4"/>
+      <line x1="200" y1="200" x2="47.8" y2="150.6"/>
+    </g>
+    <polygon points="200,104 268.5,177.8 280.0,310.0 167.1,245.3 116.3,172.8"
+             fill="#C4442F" fill-opacity="0.16" stroke="#C4442F" stroke-width="2.6" stroke-linejoin="round"/>
+    <g fill="#C4442F">
+      <circle cx="200" cy="104" r="4.5"/><circle cx="268.5" cy="177.8" r="4.5"/>
+      <circle cx="280.0" cy="310.0" r="4.5"/><circle cx="167.1" cy="245.3" r="4.5"/>
+      <circle cx="116.3" cy="172.8" r="4.5"/>
+    </g>
+    <g font-family="Lexend" font-size="19" font-weight="400" fill="#7A7060">
+      <text x="200" y="22"  text-anchor="middle">Sour</text>
+      <text x="368" y="146" text-anchor="start">Bitter</text>
+      <text x="300" y="360" text-anchor="middle">Sweet</text>
+      <text x="100" y="360" text-anchor="middle">Pungent</text>
+      <text x="32"  y="146" text-anchor="end">Salty</text>
+    </g>
+  </g>
+</svg>

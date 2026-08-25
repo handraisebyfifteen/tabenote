@@ -8,11 +8,30 @@
 - [x] Google Play デベロッパー登録 済み
 - [x] `app.json` の Android 設定(`package: app.tabenote.main`、アイコン、ロケール)
 - [x] EAS の Android キーストア(初回 preview ビルドで自動生成、EAS サーバー保管)
+- [x] **課金ライブラリの組み込み**(`react-native-purchases` 10.7.1 / `src/lib/billing.ts`。iOS と共通で、
+      Android 用に足すコードは無い。必要なのは `EXPO_PUBLIC_RC_ANDROID_KEY` だけ)
 - [x] アプリ内の購読文言・管理URLをストア別に切り替え(`src/constants/site.ts` の `Store`)
 - [x] `eas.json` に `submit.production.android`(internal トラック・draft)
 - [ ] **RevenueCat に Android アプリを追加** → `EXPO_PUBLIC_RC_ANDROID_KEY` を EAS に登録(下の Step 2)
-- [ ] Play Console でアプリ作成・定期購入商品・ストア掲載・テスト
-- [ ] production プロファイルで AAB ビルド → アップロード
+- [ ] Play Console でアプリ作成・ストア掲載・AAB アップロード
+- [ ] 定期購入商品の作成(**AAB を上げるまで作れない**。下の Step 7)
+- [ ] ライセンステスターで課金テスト → クローズドテスト14日 → 本番申請
+
+## 作業順(ここを間違えると手戻りする)
+
+Google Play は **課金ライブラリ入りのビルドを1本アップロードするまで「定期購入」を作らせない**。
+一方 RevenueCat の Android APIキーは**商品が無くても発行される**(アプリを登録した時点でもらえる)。
+なので順序はこうなる:
+
+```
+課金ライブラリ(済) → RC に Android アプリ登録 → goog_ キーを EAS へ
+  → AAB ビルド → クローズドテストにアップロード(公開はまだ押さない)
+  → 定期購入を作成 → RC に商品を紐付け → ライセンステスターで購入テスト
+  → クローズドテスト公開(14日) → 本番申請
+```
+
+**キーは Step 2 でビルド前に入れておくこと。** 商品の紐付け(Step 8)はビルド後で構わないので、
+この順序なら**再ビルドは要らない**。
 
 **⚠️ 個人アカウントの場合**、本番公開の前に **クローズドテスト(テスター12人以上・14日間連続)** が必須。
 テストを始めた日から最短2週間後に「本番アクセスの申請」ができる。テスターは Gmail アドレスで招待し、
@@ -35,20 +54,19 @@ Play Console →「アプリを作成」:
 
 作成後、左メニューの「ダッシュボード」に出るタスクを上から潰す。
 
-## Step 2. RevenueCat に Android を追加(ビルド前に必須)
+## Step 2. RevenueCat に Android アプリを追加 → APIキーを EAS へ(ビルド前に必須)
+
+**商品(定期購入)はまだ作れないが、それとは無関係にキーは取れる。** ここで取ってビルドに焼き込む。
 
 1. Play Console →「収益化の設定」→ **ライセンスキー(Base64 RSA 公開鍵)** は不要(RevenueCat は使わない)
 2. Google Cloud で**サービスアカウント**を作り、Play Console →「ユーザーと権限」で招待、
    権限は「財務データの表示」「注文管理」「アプリ情報の表示」。JSON キーをダウンロード
    (RevenueCat の手順: https://www.revenuecat.com/docs/service-credentials/creating-play-service-credentials)
+   **権限が RevenueCat から使えるようになるまで最大36時間かかる**ので、ここは早めに済ませておく
 3. RevenueCat →(既存の tabenote プロジェクト)→ **+ New app → Google Play**
    - Package: `app.tabenote.main`
    - Service Account credentials JSON をアップロード
-4. Products → **+ New product** → Google Play 側で作った商品(Step 4)を紐付け:
-   - Product ID: `tabenote.premium.monthly`、Base plan ID: `monthly`
-   - Entitlement `pro` に attach
-   - Offering `default` に月額パッケージとして追加(iOS と同じ Offering に Android 商品を足すだけ)
-5. **Public API key(`goog_…`)** を控えて EAS に登録:
+4. **Public API key(`goog_…`)** を控えて EAS に登録:
 
    ```sh
    npx eas env:create --environment production --name EXPO_PUBLIC_RC_ANDROID_KEY --value goog_xxx --visibility plaintext
@@ -56,12 +74,16 @@ Play Console →「アプリを作成」:
    npx eas env:list --environment production   # IOS_KEY と ANDROID_KEY の両方が出ること
    ```
 
-6. サービスアカウントの JSON は、EAS submit にも同じものが使える。
+5. サービスアカウントの JSON は、EAS submit にも同じものが使える。
    リポジトリ直下に `google-play-service-account.json` として置く(**.gitignore 済み**。コミットしない)。
+
+商品の紐付け(Products → + New product)は、Play 側に商品が存在しないと出来ない。**Step 8 で行う**。
 
 ## Step 3. ストアの掲載情報(Play 版 素材A)
 
 Play Console →「ストアでの表示」→「メインのストアの掲載情報」。文字数上限が ASC と違う。
+
+**✅ en-US の確定テキストとグラフィックは [play-listing-en.md](./play-listing-en.md) にまとめた**（そのまま貼れる形・字数カウント済み）。以下は概要と日本語ローカライズ。
 
 ### English(en-US)— デフォルト
 
@@ -118,15 +140,67 @@ This app does not promise medical or health benefits. If you have health concern
 
 | 素材 | 仕様 | 元ネタ |
 |---|---|---|
-| アプリアイコン | 512×512 PNG(32bit、角丸なし) | `assets/images/icon.png` を書き出し |
-| **フィーチャー グラフィック** | **1024×500 JPG/PNG(必須)** | 新規作成。OG画像(`public/og.png` 1200×630)をトリミング/再構成 |
+| アプリアイコン | 512×512 PNG(32bit、角丸なし) | ✅ `docs/play-assets/icon-512.png` |
+| **フィーチャー グラフィック** | **1024×500 JPG/PNG(必須)** | ✅ `docs/play-assets/feature-graphic-light-1024x500.png`(ダーク版も同梱)。og.png は「薬膳手帳」表記なので流用しない |
 | スマホのスクリーンショット | 2〜8枚、16:9〜9:16、最短辺 320px 以上、最長辺 3840px 以下 | iOS 用スクショ(6.9インチ 1320×2868)を**そのまま流用可**(比率 9:19.5 は許容範囲) |
 | 7インチ / 10インチ タブレット | 任意(`supportsTablet: false` 相当の扱いだが Play は任意) | 省略 |
 
 カテゴリ: **フード&ドリンク**。タグは任意。
 連絡先: メール(必須)、ウェブサイト `https://tabenote.app`。
 
-## Step 4. 定期購入商品
+## Step 4. アプリのコンテンツ(ダッシュボードのタスク)
+
+- **プライバシー ポリシー**: `https://tabenote.app/privacy`
+- **アプリのアクセス**: 「すべての機能を制限なく利用できる」は**選ばない**。「一部またはすべての機能が制限されている」→ 手順を追加:
+  「All features require an in-app subscription. Reviewers can purchase with a license-tester account (added under Setup → License testing) — test purchases are free. No login/account exists in the app.」
+  そのために **Play Console →「設定」→「ライセンス テスト」に審査用の Gmail を追加**しておく(Step 9)
+- **広告**: 含まない
+- **コンテンツのレーティング**: IARC 質問票。暴力・性的・薬物・ギャンブル: なし。
+  「健康・医療の助言」系は **なし**(効能を扱わない設計)。ユーザー間の交流: なし。→ 3+ / Everyone
+- **ターゲット ユーザー**: 18歳以上(子ども向けではない。13〜17 を含めると追加要件が増える)
+- **ニュース アプリ**: いいえ
+- **データ セーフティ**:
+  - データを収集・共有するか → **はい**
+  - **購入履歴**: 収集する / 共有しない / 必須 / 用途: アプリの機能・分析 / 暗号化して送信: はい / 削除リクエスト: 不可(端末内のみ・アカウント無し)
+  - **その他のユーザー作成コンテンツ**(AI提案で送る食材名・季節): 収集する / **第三者と共有する**(Anthropic API 経由)/ 任意 / 用途: アプリの機能 / 暗号化: はい
+  - **デバイスまたはその他の ID**（RevenueCat の匿名 app user ID。`src/lib/billing.ts` の `P.configure({ apiKey })` が生成し、AI中継のレート制限キーにも使う）: 収集する / 共有しない / 必須 / 用途: アプリの機能・不正行為防止/セキュリティ / 暗号化: はい
+  - **位置 / 連絡先 / 個人情報**: 収集しない
+  - 「セキュリティ対策: 転送中に暗号化」はい、「データ削除をリクエストできる」いいえ(該当データを保持しないため。理由欄に「no account; nothing retained server-side beyond subscription state」)
+- **政府発行アプリ / 金融 / ヘルス**: すべて「いいえ」(ヘルスアプリの申告をすると医療系の審査に入る。効能を扱わないので該当しない)
+
+## Step 5. 本番用ビルド(AAB)
+
+Step 2 の環境変数が入った**あと**で:
+
+```sh
+npx eas build -p android --profile production --non-interactive
+```
+
+`production` プロファイルは Android では既定で **AAB** を出す(Play はAPKを受け付けない)。
+`autoIncrement: true` で versionCode が上がる(`appVersionSource: remote`。今回の preview ビルドで 1 に初期化済み、次は 2)。
+
+## Step 6. クローズドテストに AAB をアップロード(公開はまだ押さない)
+
+**この1本を上げて初めて「定期購入」が作れるようになる。** テスターを集めるのは商品と課金テストが
+済んでからで良いので、ここでは「リリースを作成して下書きのまま保存」までにしておく。
+
+1. Play Console →「テスト」→「クローズドテスト」→「Alpha」トラック(既定名)→「新しいリリースを作成」
+2. **初回は AAB を手動アップロード**(EAS submit はアプリの初回作成を代行できない)。
+   EAS のビルドページから `.aab` をダウンロード → ドラッグ&ドロップ
+3. リリース名は自動(`1 (1.0.0)`)、リリースノートは英語で1行(「Initial closed test.」)
+4. **「下書きとして保存」**(「公開を開始」はまだ押さない。押しても審査が入るだけで害は無いが、
+   テスターが揃っていない状態で14日カウントを始めても意味が無い)
+
+2回目以降のアップロードは EAS から:
+
+```sh
+npx eas submit -p android --latest      # eas.json の submit.production.android(internal・draft)
+```
+
+`track` を `alpha` に変えればクローズドテストへ直接上げられる。`releaseStatus: draft` なので
+Play Console で「公開」を押すまで配布されない。
+
+## Step 7. 定期購入商品(← AAB を上げて初めて作れる)
 
 Play Console →「収益化」→「商品」→「定期購入」→「定期購入を作成」:
 
@@ -149,62 +223,46 @@ Play Console →「収益化」→「商品」→「定期購入」→「定期�
 
 保存 → 基本プランを「有効化」する。有効化しないと購入画面にプランが出ない(RevenueCat が `Offerings` を返さない)。
 
-## Step 5. アプリのコンテンツ(ダッシュボードのタスク)
+## Step 8. RevenueCat に商品を紐付け
 
-- **プライバシー ポリシー**: `https://tabenote.app/privacy`
-- **アプリのアクセス**: 「すべての機能を制限なく利用できる」は**選ばない**。「一部またはすべての機能が制限されている」→ 手順を追加:
-  「All features require an in-app subscription. Reviewers can purchase with a license-tester account (added under Setup → License testing) — test purchases are free. No login/account exists in the app.」
-  そのために **Play Console →「設定」→「ライセンス テスト」に審査用の Gmail を追加**しておく
-- **広告**: 含まない
-- **コンテンツのレーティング**: IARC 質問票。暴力・性的・薬物・ギャンブル: なし。
-  「健康・医療の助言」系は **なし**(効能を扱わない設計)。ユーザー間の交流: なし。→ 3+ / Everyone
-- **ターゲット ユーザー**: 18歳以上(子ども向けではない。13〜17 を含めると追加要件が増える)
-- **ニュース アプリ**: いいえ
-- **データ セーフティ**:
-  - データを収集・共有するか → **はい**
-  - **購入履歴**: 収集する / 共有しない / 必須 / 用途: アプリの機能・分析 / 暗号化して送信: はい / 削除リクエスト: 不可(端末内のみ・アカウント無し)
-  - **その他のユーザー作成コンテンツ**(AI提案で送る食材名・季節): 収集する / **第三者と共有する**(Anthropic API 経由)/ 任意 / 用途: アプリの機能 / 暗号化: はい
-  - **デバイス ID / 位置 / 連絡先 / 個人情報**: 収集しない
-  - 「セキュリティ対策: 転送中に暗号化」はい、「データ削除をリクエストできる」いいえ(該当データを保持しないため。理由欄に「no account; nothing retained server-side beyond subscription state」)
-- **政府発行アプリ / 金融 / ヘルス**: すべて「いいえ」(ヘルスアプリの申告をすると医療系の審査に入る。効能を扱わないので該当しない)
+Step 7 で商品を作り、**基本プランを有効化した後**に行う(有効化前だと RevenueCat 側で商品が見つからない)。
 
-## Step 6. 本番用ビルド(AAB)
+1. RevenueCat →(Step 2 で作った Google Play アプリ)→ Products → **+ New product**
+   - Product ID: `tabenote.premium.monthly`、Base plan ID: `monthly`
+2. Entitlement `pro` に attach(コード側 `src/lib/billing.ts` の `ENTITLEMENT_ID`)
+3. Offering `default` に月額パッケージとして追加(iOS と同じ Offering に Android 商品を足すだけ)
 
-Step 2 の環境変数が入った**あと**で:
+ここまでで `getPlans()` が Android でもプランを返すようになる。返らない場合の原因はほぼこの3つ:
+基本プランが未有効、サービスアカウント権限の反映待ち(最大36時間)、Offering に足し忘れ。
 
-```sh
-npx eas build -p android --profile production --non-interactive
-```
+## Step 9. ライセンステスターを登録 → 課金テスト
 
-`production` プロファイルは Android では既定で **AAB** を出す(Play はAPKを受け付けない)。
-`autoIncrement: true` で versionCode が上がる(`appVersionSource: remote`。今回の preview ビルドで 1 に初期化済み、次は 2)。
+1. Play Console →「設定」→**「ライセンス テスト」**に、テストする Gmail アドレスを追加
+   (自分・審査担当・クローズドテスターの全員を入れておく。ここに無いアカウントは**実際に課金される**)
+2. そのアカウントを Alpha トラックのテスターに入れ、招待リンクからインストール
+   (ライセンステスターであっても、**トラックのテスターに入っていないとインストールできない**)
+3. アプリで通しの確認:
+   - [ ] ペイウォールに `¥1,000 / 月`(= Play のローカライズ価格)が出る
+   - [ ] 購入 → テスト用の支払い方法が出る → 購入完了でゲートを抜ける
+   - [ ] AI提案が通る(中継サーバーが RevenueCat の app_user_id を検証している)
+   - [ ] アプリを消して入れ直し →「購入を復元」で購読が戻る
+   - [ ] 設定 →「サブスクリプションの管理」が Google Play の管理画面を開く
+   - [ ] RevenueCat ダッシュボードの Customer History に購入が出る(**Sandbox** 表示になる)
 
-## Step 7. クローズドテストを開始(明日の作業)
+テスト購読は更新間隔が短縮される(月額 → 5分)。解約・失効の挙動もここで見ておくと早い。
 
-1. Play Console →「テスト」→「クローズドテスト」→「Alpha」トラック(既定名)→「新しいリリースを作成」
-2. **初回は AAB を手動アップロード**(EAS submit はアプリの初回作成を代行できない)。
-   EAS のビルドページから `.aab` をダウンロード → ドラッグ&ドロップ
-3. リリース名は自動(`1 (1.0.0)`)、リリースノートは英語で1行(「Initial closed test.」)
-4. 「テスター」タブ →「メーリング リストを作成」→ Gmail アドレスを **12人以上** 登録
+## Step 10. クローズドテストを公開してテスターを集める(14日カウント開始)
+
+1. 「テスト」→「クローズドテスト」→ Alpha →「テスター」タブ →「メーリング リストを作成」→
+   Gmail アドレスを **12人以上** 登録
    (家族・友人・Shipaton 仲間など。テスター本人が招待リンクを開いて「参加」し、Play からインストールする必要がある)
-5. 「リリースをレビュー」→「クローズドテストとして公開を開始」
-6. 招待リンク(`https://play.google.com/apps/testing/app.tabenote.main`)をテスターに配る
-7. **開始日をメモする**: `_____ 年 __ 月 __ 日` → 14日後に「本番へのアクセスを申請」が押せるようになる
+2. Step 6 で下書きにしたリリースを「リリースをレビュー」→「クローズドテストとして公開を開始」
+3. 招待リンク(`https://play.google.com/apps/testing/app.tabenote.main`)をテスターに配る
+4. **開始日をメモする**: `_____ 年 __ 月 __ 日` → 14日後に「本番へのアクセスを申請」が押せるようになる
 
-テスト中の購入は、Step 5 の「ライセンス テスト」に入れたアカウントなら無料(テスト用カードが出る)。
-それ以外のテスターは実際に課金される(本番の定期購入がそのまま動く)ので、テスターにも
-ライセンステスターとして登録しておくのが無難。
+テスターは Step 9 でライセンステスターに入れておくこと。入れ忘れたテスターは**実際に課金される**。
 
-2回目以降のアップロードは EAS から:
-
-```sh
-npx eas submit -p android --latest      # eas.json の submit.production.android(internal・draft)
-```
-
-`track` を `alpha` に変えればクローズドテストへ直接上げられる。`releaseStatus: draft` なので
-Play Console で「公開」を押すまで配布されない。
-
-## Step 8. 本番公開(14日後)
+## Step 11. 本番公開(14日後)
 
 1. 「テスト」→「クローズドテスト」→ 14日経過後に「本番へのアクセスを申請」→ 質問票に答える
    (テストで何を確認したか、フィードバックをどう反映したか、を英語で数行)
