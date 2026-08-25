@@ -34,7 +34,8 @@
       [
         "expo-router",
         {
-          "sitemap": false
+          "sitemap": false,
+          "origin": "https://tabenote.app"
         }
       ],
       [
