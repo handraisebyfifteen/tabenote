@@ -4,6 +4,7 @@
  */
 import rawFoods from './tabenote_foods.json';
 import { FOOD_NAMES_EN } from './foodNamesEn';
+import { FOOD_NOTES_EN } from './foodNotesEn';
 
 /** 性(四性+平)。空文字は「参照のみ項目」で選択不可(指示書 4-3) */
 export type Nature = '熱' | '温' | '微温' | '平' | '微涼' | '涼' | '微寒' | '寒' | '';
@@ -132,6 +133,7 @@ export function searchFoods(query: string): Food[] {
     const name = toHiragana(f.name.toLowerCase());
     const note = toHiragana((f.note ?? '').toLowerCase());
     const en = (FOOD_NAMES_EN[f.id] ?? '').toLowerCase();
-    return name.includes(q) || note.includes(q) || en.includes(q);
+    const noteEn = (FOOD_NOTES_EN[f.id] ?? '').toLowerCase();
+    return name.includes(q) || note.includes(q) || en.includes(q) || noteEn.includes(q);
   });
 }

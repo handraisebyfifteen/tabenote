@@ -106,19 +106,28 @@ const SHIFT_FRAMES: CSSAnimationKeyframes = {
 type Props = {
   /** 幕が引き切ったら呼ばれる */
   onDone: () => void;
+  /**
+   * 合計表示時間の下限(ms)。TOTAL より長いぶんは「出そろった姿」の余韻に
+   * 足される(捌けと幕引きが後ろへずれる)。デモモードの再表示専用で、
+   * 通常起動では渡さない(渡さなければ従来どおり)。
+   */
+  minTotalMs?: number;
 };
 
-export default function SplashWordmark({ onDone }: Props) {
+export default function SplashWordmark({ onDone, minTotalMs }: Props) {
   // 「視差効果を減らす」を入れている端末では動かさず、最初から出して
   // 短く引き上げる。前庭障害があると、横に滑る動きで実際に気分が悪く
   // なることがある
   const reduced = useReducedMotion();
   const { width, height } = useWindowDimensions();
 
+  // デモモードで指定された長さまで、余韻(HOLD)を引き延ばす
+  const extraHold = Math.max(0, (minTotalMs ?? 0) - TOTAL);
+
   React.useEffect(() => {
-    const t = setTimeout(onDone, reduced ? REDUCED_HOLD : TOTAL);
+    const t = setTimeout(onDone, (reduced ? REDUCED_HOLD : TOTAL) + extraHold);
     return () => clearTimeout(t);
-  }, [onDone, reduced]);
+  }, [onDone, reduced, extraHold]);
 
   // 捌けの距離は画面幅から取る。文字は幅の 3 割、幕は幅ごと右へ
   const outFrames = React.useMemo<CSSAnimationKeyframes>(
@@ -152,7 +161,7 @@ export default function SplashWordmark({ onDone }: Props) {
         !reduced && {
           animationName: panelFrames,
           animationDuration: `${PANEL_DURATION}ms`,
-          animationDelay: `${PANEL_START}ms`,
+          animationDelay: `${PANEL_START + extraHold}ms`,
           // 動き出すまでは素の位置。引き切った姿のまま onDone を待つ
           animationFillMode: 'forwards',
         },
@@ -187,7 +196,7 @@ export default function SplashWordmark({ onDone }: Props) {
               !reduced && {
                 animationName: outFrames,
                 animationDuration: `${OUT_DURATION}ms`,
-                animationDelay: `${OUT_START + i * OUT_STAGGER}ms`,
+                animationDelay: `${OUT_START + extraHold + i * OUT_STAGGER}ms`,
                 // 始まるまでは素の姿(=入りの終わりと同じ)で待つ
                 animationFillMode: 'forwards',
               },

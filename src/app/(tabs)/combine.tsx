@@ -47,6 +47,8 @@ import {
   type Cat15,
   type Food,
 } from '@/data/foods';
+import { DEMO_CHIP_STEP_PX, DEMO_MODE } from '@/demo/config';
+import { registerDemoScreen, type DemoHandlers } from '@/demo/registry';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useCombineFeedback } from '@/hooks/use-combine-feedback';
 import { useLang } from '@/i18n/LanguageContext';
@@ -376,6 +378,19 @@ export default function CombineScreen() {
     return seasonPicks.filter((f) => !picked.has(f.id));
   }, [seasonPicks, selectedIds]);
 
+  /**
+   * デモモード専用: 台本でタップする食材(ぶり)は分類の並びの奥に居て
+   * 画面外になるので、グリッドの先頭に繰り上げて映るようにする。
+   * DEMO_MODE でなければ listFoods をそのまま返す(実行経路に入らない)。
+   */
+  const [demoPin, setDemoPin] = useState<string | null>(null);
+  const gridFoods = useMemo(() => {
+    if (!DEMO_MODE || demoPin === null) return listFoods;
+    const pin = listFoods.find((f) => f.id === demoPin);
+    if (pin === undefined) return listFoods;
+    return [pin, ...listFoods.filter((f) => f.id !== demoPin)];
+  }, [listFoods, demoPin]);
+
   const toggle = (id: string) => {
     setSelectedIds((ids) =>
       ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id],
@@ -410,7 +425,7 @@ export default function CombineScreen() {
     if (id === departingId) return;
     if (focusedId === id) {
       // いま画面に出ている並びのまま凍結してから決定する
-      setFrozenList(frozenList ?? listFoods);
+      setFrozenList(frozenList ?? gridFoods);
       setFrozenSeason(frozenSeason ?? seasonList);
       setDepartingId(id);
       if (frozenTimer.current !== null) clearTimeout(frozenTimer.current);
@@ -488,6 +503,90 @@ export default function CombineScreen() {
     setDecideBtnFlash((n) => n + 1);
     decideNavTimer.current = setTimeout(go, DECIDE_TRANSITION_MS);
   };
+
+  /**
+   * デモモード: 台本(src/demo/script.ts)からこの画面を動かすハンドラ。
+   * 音・点灯・カーソルの挙動は、手でタップしたときと同じ関数を通す。
+   * ref の中身は毎レンダー更新するので、常に最新の state を見る。
+   */
+  const catChipsRef = useRef<ScrollView>(null);
+  const demoRef = useRef<DemoHandlers>({});
+  useEffect(() => {
+    if (!DEMO_MODE) return;
+    const scrollCats = (k: Cat15) => {
+      const idx = ALL_CAT15.indexOf(k);
+      catChipsRef.current?.scrollTo({
+        x: Math.max(0, idx * DEMO_CHIP_STEP_PX),
+        animated: true,
+      });
+    };
+    demoRef.current = {
+      /** 初期状態に戻す(撮り直し用)。ids がそのまま選択中になる */
+      reset: (ids: string[]) => {
+        // マウント直後の「★よく使うを既定タブにする」非同期初期化が
+        // この後に走って cat を上書きしないよう、済んだことにする
+        quickInitialized.current = true;
+        setSelectedIds(ids);
+        setQuery('');
+        setCat(null);
+        setFocusedId(null);
+        setSeasonOverride(null);
+        setSeasonModal(false);
+        setHelpModal(false);
+        setFrozenList(null);
+        setFrozenSeason(null);
+        setDepartingId(null);
+        setDemoPin(null);
+      },
+      openSeason: () => {
+        feedback.ki();
+        setSeasonModal(true);
+      },
+      pickSeason: (s: FiveSeason) => {
+        feedback.po();
+        setSeasonOverride(s === todaySeason ? null : s);
+      },
+      closeSeason: () => {
+        feedback.po();
+        setSeasonModal(false);
+      },
+      /** 選択中チップ(★スロット)を外す */
+      removeChip: (id: string) => {
+        feedback.remove();
+        toggle(id);
+      },
+      /** タイルへのタップ。1回目 = カーソル、2回目 = 決定(手タップと同じ) */
+      tapTile: (id: string) => onTile(id),
+      /** 分類タブを直接指定。pin はグリッド先頭へ繰り上げる食材 */
+      setCatTab: (k: Cat15, pin?: string | null) => {
+        feedback.ki();
+        setCat(k);
+        if (pin !== undefined) setDemoPin(pin);
+        scrollCats(k);
+      },
+      /** 分類タブをひとつ右へ */
+      slideCat: () => {
+        const idx = cat !== null && cat !== 'quick' ? ALL_CAT15.indexOf(cat) : -1;
+        const next = ALL_CAT15[Math.min(idx + 1, ALL_CAT15.length - 1)];
+        feedback.ki();
+        setCat(next);
+        scrollCats(next);
+      },
+      searchSound: () => feedback.search(),
+      /** IME を通さず検索語を直接書き込む */
+      setQueryText: (text: string) => setQuery(text),
+      clearSearch: () => {
+        setQuery('');
+        setCat(null);
+        setDemoPin(null);
+      },
+      decide: () => decide(),
+    };
+  });
+  useEffect(() => {
+    if (!DEMO_MODE) return;
+    return registerDemoScreen('combine', demoRef);
+  }, []);
 
   return (
     <View style={[styles.screen, { backgroundColor: c.background }]}>
@@ -761,6 +860,7 @@ export default function CombineScreen() {
 
       {query.trim() === '' && (
         <ScrollView
+          ref={catChipsRef}
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.chipsRow}
@@ -845,7 +945,7 @@ export default function CombineScreen() {
 
       <FlatList
         style={styles.list}
-        data={frozenList ?? listFoods}
+        data={frozenList ?? gridFoods}
         keyExtractor={(f) => f.id}
         // numColumns は動的に変えられないので、列数が変わったら key で作り直す
         key={`grid-${gridColumns}`}

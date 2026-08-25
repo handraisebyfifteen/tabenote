@@ -1,11 +1,14 @@
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Platform, View } from 'react-native';
 
 import Onboarding from '@/components/Onboarding';
 import SplashWordmark from '@/components/SplashWordmark';
 import { Colors } from '@/constants/theme';
+import { DEMO_MODE } from '@/demo/config';
+import DemoOverlay from '@/demo/DemoOverlay';
+import { registerDemoScreen, type DemoHandlers } from '@/demo/registry';
 import { useAppFonts } from '@/hooks/use-app-fonts';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { LanguageProvider, useLang } from '@/i18n/LanguageContext';
@@ -67,6 +70,27 @@ function ThemedRoot() {
   const [introDone, setIntroDone] = useState(Platform.OS === 'web');
   const finishIntro = useCallback(() => setIntroDone(true), []);
 
+  // デモモード: ワードマークの再表示(合計表示時間つき)を台本から呼べるようにする
+  const [demoSplashMs, setDemoSplashMs] = useState<number | null>(null);
+  const demoHandlers = useRef<DemoHandlers>({});
+  useEffect(() => {
+    if (!DEMO_MODE) return;
+    demoHandlers.current = {
+      showSplash: (totalMs: number) => {
+        setDemoSplashMs(totalMs);
+        setIntroDone(false);
+      },
+      hideSplash: () => {
+        setDemoSplashMs(null);
+        setIntroDone(true);
+      },
+    };
+  });
+  useEffect(() => {
+    if (!DEMO_MODE) return;
+    return registerDemoScreen('root', demoHandlers);
+  }, []);
+
   return (
     <ThemeProvider value={dark ? DarkTheme : DefaultTheme}>
       {/* 端末の設定と食い違う配色を選べるので、ステータスバーは auto ではなく明示する */}
@@ -74,7 +98,13 @@ function ThemedRoot() {
       <View style={{ flex: 1 }}>
         {/* 裏で購読確認と保存データの読み出しを進めながら、上にワードマークを被せる */}
         <RootStack />
-        {!introDone && <SplashWordmark onDone={finishIntro} />}
+        {!introDone && (
+          <SplashWordmark
+            onDone={finishIntro}
+            minTotalMs={demoSplashMs ?? undefined}
+          />
+        )}
+        {DEMO_MODE && <DemoOverlay />}
       </View>
     </ThemeProvider>
   );

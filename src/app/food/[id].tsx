@@ -27,7 +27,9 @@ import {
   cat5Label,
   fiveFlavorAxisLabels,
   flavorsLabel,
+  foodAlias,
   foodName,
+  foodSafety,
   meridiansLabel,
   natureLabel,
 } from '@/i18n/terms';
@@ -97,6 +99,8 @@ export default function FoodDetailScreen() {
   }
 
   const refOnly = isReferenceOnly(food);
+  const alias = foodAlias(food, lang);
+  const safety = foodSafety(food, lang);
   const totals = aggregateFlavors([food]);
   const natureLevel = refOnly ? null : natureValue(food);
 
@@ -158,7 +162,7 @@ export default function FoodDetailScreen() {
       {refOnly ? (
         <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
           <Text style={[styles.refOnlyText, { color: c.text }]}>
-            {t.food.referenceOnly(food.note)}
+            {t.food.referenceOnly(alias)}
           </Text>
         </View>
       ) : (
@@ -199,18 +203,18 @@ export default function FoodDetailScreen() {
           }
           color={c}
         />
-        {!refOnly && food.note !== '' && (
-          <AttrRow label={t.food.noteLabel} value={food.note} color={c} />
+        {!refOnly && alias !== '' && (
+          <AttrRow label={t.food.noteLabel} value={alias} color={c} />
         )}
       </View>
 
       {/* 食品安全上の事実だけを、別名とは別のラベルで出す(中医学の禁忌は出さない) */}
-      {food.safety !== undefined && food.safety !== '' && (
+      {safety !== '' && (
         <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
           <Text style={[styles.safetyTitle, { color: c.textSecondary }]}>
             {t.food.safetyLabel}
           </Text>
-          <Text style={[styles.safetyText, { color: c.text }]}>{food.safety}</Text>
+          <Text style={[styles.safetyText, { color: c.text }]}>{safety}</Text>
         </View>
       )}
 

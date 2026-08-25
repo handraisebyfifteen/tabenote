@@ -31,7 +31,11 @@ import {
   searchFoods,
   toHiragana,
 } from '@/data/foods';
+import { DEMO_MODE } from '@/demo/config';
+import { registerDemoScreen, type DemoHandlers } from '@/demo/registry';
+import { useDemoScroll } from '@/demo/scroll';
 import { FOOD_NAMES_EN } from '@/data/foodNamesEn';
+import { FOOD_NOTES_EN } from '@/data/foodNotesEn';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useCombineFeedback } from '@/hooks/use-combine-feedback';
 import { useLang } from '@/i18n/LanguageContext';
@@ -99,7 +103,7 @@ function comboHaystack(combo: SavedCombo): string {
   const foods = combo.foodIds.map((id) => {
     const food = getFood(id);
     if (food === undefined) return '';
-    return `${food.name} ${food.note ?? ''} ${FOOD_NAMES_EN[food.id] ?? ''}`;
+    return `${food.name} ${food.note ?? ''} ${FOOD_NAMES_EN[food.id] ?? ''} ${FOOD_NOTES_EN[food.id] ?? ''}`;
   });
   return toHiragana(
     `${combo.name} ${combo.memo} ${combo.date} ${foods.join(' ')}`.toLowerCase(),
@@ -133,6 +137,23 @@ export default function NotebookScreen() {
     { key: 'zukan', label: t.notebook.segZukan },
     { key: 'guide', label: t.notebook.segGuide },
   ];
+
+  // デモモード: 台本からセグメント(手帳 / 図鑑 / 解説)を切り替える
+  const demoRef = useRef<DemoHandlers>({});
+  useEffect(() => {
+    if (!DEMO_MODE) return;
+    demoRef.current = {
+      segment: (s: Segment) => {
+        feedback.ki();
+        setSegment(s);
+      },
+      reset: () => setSegment('combos'),
+    };
+  });
+  useEffect(() => {
+    if (!DEMO_MODE) return;
+    return registerDemoScreen('notebook', demoRef);
+  }, []);
 
   return (
     <View style={[styles.screen, { backgroundColor: c.background }]}>
@@ -337,6 +358,11 @@ function CombosSection({
       .sort((a, b) => (a[0] < b[0] ? 1 : -1))
       .map(([date, data]) => ({ date, data }));
   }, [matched]);
+
+  // デモモード: 台本・⇣ボタンからのなめらかスクロール
+  useDemoScroll((y) =>
+    listRef.current?.getScrollResponder()?.scrollTo({ y, animated: false }),
+  );
 
   /** 週ストリップの日タップ。その日の見出しへ飛ぶ(検索で消えている日なら何もしない) */
   const jumpToDate = (date: string) => {
@@ -621,6 +647,12 @@ function ZukanSection({
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<ZukanFilter>('all');
 
+  // デモモード: 台本・⇣ボタンからのなめらかスクロール
+  const listRef = useRef<FlatList>(null);
+  useDemoScroll((y) =>
+    listRef.current?.scrollToOffset({ offset: y, animated: false }),
+  );
+
   /**
    * 検索語が図鑑に当たったかどうか(★・メモの絞り込みをかける前の結果)。
    * 一覧が空でも、絞り込みで消えているだけのことがある。
@@ -682,6 +714,7 @@ function ZukanSection({
         ))}
       </View>
       <FlatList
+        ref={listRef}
         data={foods}
         keyExtractor={(f) => f.id}
         ListEmptyComponent={
@@ -798,8 +831,12 @@ function GuideSection() {
   const { lang } = useLang();
   const g = getStrings(lang).guide;
 
+  // デモモード: 台本・⇣ボタンからのなめらかスクロール
+  const scrollRef = useRef<ScrollView>(null);
+  useDemoScroll((y) => scrollRef.current?.scrollTo({ y, animated: false }));
+
   return (
-    <ScrollView contentContainerStyle={styles.guide}>
+    <ScrollView ref={scrollRef} contentContainerStyle={styles.guide}>
       <GuideCard title={g.fivePhasesTitle} color={c}>
         <View style={styles.table}>
           {g.fivePhasesTable.map((row, ri) => (

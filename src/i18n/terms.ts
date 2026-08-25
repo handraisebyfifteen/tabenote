@@ -8,6 +8,7 @@
 import type { Cat15, Cat5, Flavor, Food, Nature } from '../data/foods';
 import { CAT15_LABELS, CAT5_LABELS } from '../data/foods';
 import { FOOD_NAMES_EN } from '../data/foodNamesEn';
+import { FOOD_NOTES_EN, FOOD_SAFETY_EN } from '../data/foodNotesEn';
 import { FIVE_FLAVORS, type FiveFlavor } from '../logic/flavors';
 import type { FiveSeason, FiveSeasonInfo } from '../logic/season';
 import { SEASON_RECOMMENDATIONS, fiveSeasonLabel } from '../logic/season';
@@ -25,6 +26,23 @@ export function foodName(food: Food, lang: Lang): string {
 /** 食材名の列挙(ja: 「・」区切り / en: 「, 」区切り) */
 export function joinFoodNames(foods: Food[], lang: Lang): string {
   return foods.map((f) => foodName(f, lang)).join(lang === 'ja' ? '・' : ', ');
+}
+
+/**
+ * 別名(データの note)。利用者が書くメモ(storage の setFoodNote)とは別物。
+ * 英語では英語圏で通用する別名がある食材だけ返し、
+ * 無いもの(漢字表記・中国語名のみ)は空文字 = 行ごと非表示(日本語を残さない)。
+ */
+export function foodAlias(food: Food, lang: Lang): string {
+  if (lang === 'en') return FOOD_NOTES_EN[food.id] ?? '';
+  return food.note;
+}
+
+/** 安全上の注意(safety)。注意情報なので、英訳が万一無い場合は隠さず日本語のまま出す */
+export function foodSafety(food: Food, lang: Lang): string {
+  const ja = food.safety ?? '';
+  if (lang === 'en') return FOOD_SAFETY_EN[food.id] ?? ja;
+  return ja;
 }
 
 /* ---------------- 性 ---------------- */
