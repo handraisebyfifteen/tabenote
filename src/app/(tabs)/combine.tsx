@@ -523,6 +523,16 @@ export default function CombineScreen() {
     demoRef.current = {
       /** 初期状態に戻す(撮り直し用)。ids がそのまま選択中になる */
       reset: (ids: string[]) => {
+        // 決定の点灯中に停止すると、この後アドバイスへ飛ぶタイマーが
+        // 生き残って Home の上にモーダルが開く。state より先に消す。
+        if (decideNavTimer.current !== null) {
+          clearTimeout(decideNavTimer.current);
+          decideNavTimer.current = null;
+        }
+        if (frozenTimer.current !== null) {
+          clearTimeout(frozenTimer.current);
+          frozenTimer.current = null;
+        }
         // マウント直後の「★よく使うを既定タブにする」非同期初期化が
         // この後に走って cat を上書きしないよう、済んだことにする
         quickInitialized.current = true;
@@ -537,6 +547,9 @@ export default function CombineScreen() {
         setFrozenSeason(null);
         setDepartingId(null);
         setDemoPin(null);
+        // 分類タブの横スクロールは cat を戻しても残る。次のテイクの頭で
+        // 「★よく使う/すべて」が見切れないよう先頭に戻す。
+        catChipsRef.current?.scrollTo({ x: 0, animated: false });
       },
       openSeason: () => {
         feedback.ki();

@@ -30,7 +30,8 @@ export function smoothScroll(
 }
 
 /**
- * スクロールできるセクションが 'notebookScroll.by(dy, ms)' に応えられるようにする。
+ * スクロールできるセクションが 'notebookScroll.by(dy, ms)' と
+ * 'notebookScroll.toTop()' に応えられるようにする。
  * apply には「オフセット y へ即座に移動する」関数を渡す。
  */
 export function useDemoScroll(apply: (y: number) => void) {
@@ -52,6 +53,16 @@ export function useDemoScroll(apply: (y: number) => void) {
         const to = Math.max(0, from + dy);
         offset.current = to;
         cancel.current = smoothScroll((y) => applyRef.current(y), from, to, ms);
+      },
+      /**
+       * 先頭へ即座に戻す(撮り直し用)。手帳は停止しても同じセクションのままで
+       * 再マウントされないので、この offset と実際の位置を明示的に戻す。
+       */
+      toTop: () => {
+        cancel.current?.();
+        cancel.current = null;
+        offset.current = 0;
+        applyRef.current(0);
       },
     };
   });

@@ -66,6 +66,7 @@ export default function DemoOverlay() {
     demoCall('root.hideSplash');
     if (router.canGoBack()) router.back(); // アドバイスが開いていたら閉じる
     demoCall('combine.reset', [FOOD_AJI]);
+    demoCall('notebookScroll.toTop'); // 手帳のままだと再マウントされず位置が残る
     demoCall('notebook.reset');
     router.navigate('/');
     setPhase('idle');

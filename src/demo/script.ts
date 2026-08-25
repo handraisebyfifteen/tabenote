@@ -43,15 +43,21 @@ export function buildDemoActions(): DemoAction[] {
   add(0, 'スプラッシュを被せる', () =>
     demoCall('root.showSplash', COUNT_IN_MS + beat(2, 2)),
   );
-  add(80, '(準備) 組み合わせ画面をマウント', () =>
+  // スプラッシュは押下+4390ms まで画面を覆うので、その内側で余裕を持って並べる。
+  // アプリ起動後の最初の▶はタブが未マウントで、マウントとハンドラ登録に
+  // 数百 ms かかることがある(間に合わないと reset が空振りする)。
+  add(100, '(準備) 組み合わせ画面をマウント', () =>
     router.navigate({ pathname: '/(tabs)/combine', params: { ids: FOOD_AJI } }),
   );
-  add(420, '(準備) 組み合わせ画面を初期化(★=あじ)', () =>
+  add(1200, '(準備) 組み合わせ画面を初期化(★=あじ)', () =>
     demoCall('combine.reset', [FOOD_AJI]),
   );
-  add(500, '(準備) 手帳をマウント', () => router.navigate('/(tabs)/notebook'));
-  add(580, '(準備) 手帳を初期化', () => demoCall('notebook.reset'));
-  add(660, '(準備) Home へ戻す', () => router.navigate('/'));
+  add(1500, '(準備) 手帳をマウント', () => router.navigate('/(tabs)/notebook'));
+  add(2200, '(準備) 手帳を初期化', () => {
+    demoCall('notebookScroll.toTop');
+    demoCall('notebook.reset');
+  });
+  add(2900, '(準備) Home へ戻す', () => router.navigate('/'));
 
   /* ---- 本編(t = 楽曲 0:00.00 起点) ---- */
 
