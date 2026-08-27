@@ -10,6 +10,7 @@
  */
 import React, { useState } from 'react';
 import { Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import PageHead from '@/components/PageHead';
 import { Text } from '@/components/Type';
@@ -28,10 +29,13 @@ export default function LicensesScreen() {
   // 開けるのは 1 件ずつ。全文が長いので、並べて開けても読みづらいだけ
   const [openId, setOpenId] = useState<string | null>(null);
 
+  // Android の edge-to-edge でナビゲーションバーが重なる分を下端に足す
+  const insets = useSafeAreaInsets();
+
   return (
     <ScrollView
       style={{ backgroundColor: c.background }}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, { paddingBottom: 32 + insets.bottom }]}
     >
       <PageHead {...t.meta.licenses} path="/licenses" />
 
@@ -108,7 +112,7 @@ function LicenseRow({
 const ACCENT = '#8FAF8B';
 
 const styles = StyleSheet.create({
-  container: { padding: 16, paddingBottom: 32 },
+  container: { padding: 16 },
   body: {
     width: '100%',
     maxWidth: MaxContentWidth,

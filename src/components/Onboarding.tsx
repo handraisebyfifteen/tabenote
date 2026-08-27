@@ -37,8 +37,12 @@ export default function Onboarding() {
   const seasonInfo = useMemo(() => getFiveSeason(new Date()), []);
 
   if (step === 3) {
+    // bottom は PaywallContent 自身が useSafeAreaInsets で足すので、ここで重ねない
     return (
-      <SafeAreaView style={[styles.fill, { backgroundColor: c.background }]}>
+      <SafeAreaView
+        edges={['top', 'left', 'right']}
+        style={[styles.fill, { backgroundColor: c.background }]}
+      >
         <PaywallContent source="onboarding" />
       </SafeAreaView>
     );

@@ -12,6 +12,7 @@
 import { router } from 'expo-router';
 import React, { useMemo } from 'react';
 import { Linking, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import FlavorPentagon from '@/components/FlavorPentagon';
 import PageHead from '@/components/PageHead';
@@ -45,11 +46,13 @@ export default function AboutScreen() {
   const web = Platform.OS === 'web';
   // import した束縛のままだと onPress の中で null 除去が効かないため、一度受ける
   const appStoreUrl = APP_STORE_URL;
+  // Android の edge-to-edge でナビゲーションバーが重なる分を下端に足す
+  const insets = useSafeAreaInsets();
 
   return (
     <ScrollView
       style={{ backgroundColor: c.background }}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, { paddingBottom: 32 + insets.bottom }]}
     >
       <PageHead {...t.meta.about} path="/about" />
 
@@ -142,7 +145,7 @@ export default function AboutScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 16, paddingBottom: 32 },
+  container: { padding: 16 },
   body: {
     width: '100%',
     maxWidth: MaxContentWidth,

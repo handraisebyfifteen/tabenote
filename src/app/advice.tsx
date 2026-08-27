@@ -17,6 +17,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import FlavorPentagon from '@/components/FlavorPentagon';
 import PageHead from '@/components/PageHead';
@@ -55,6 +56,9 @@ import { addSavedCombo, loadUserData } from '@/lib/storage';
 export default function AdviceScreen() {
   const scheme = useColorScheme();
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
+  // Android は edge-to-edge でナビゲーションバーが画面に重なるため、
+  // 末尾のボタンが隠れないよう下端にその分の余白を足す
+  const insets = useSafeAreaInsets();
   const { lang } = useLang();
   const t = getStrings(lang);
 
@@ -187,7 +191,7 @@ export default function AdviceScreen() {
   return (
     <ScrollView
       style={{ backgroundColor: c.background }}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, { paddingBottom: 16 + insets.bottom }]}
     >
       <PageHead {...t.meta.advice} path="/advice" />
       {/* 履歴が無いときはヘッダに閉じるボタンを出す(モーダルの戻る矢印が出ないため) */}

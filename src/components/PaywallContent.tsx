@@ -18,6 +18,7 @@ import {
   View,
   Platform,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Text } from '@/components/Type';
 import { PRIVACY_URL, TERMS_URL } from '@/constants/site';
@@ -42,6 +43,9 @@ export default function PaywallContent({
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
   const { lang } = useLang();
   const t = getStrings(lang);
+  // Android の edge-to-edge でナビゲーションバーが重なる分を下端に足す。
+  // Onboarding 側の SafeAreaView は bottom を外してあり、下端はここだけが持つ
+  const insets = useSafeAreaInsets();
 
   const { active, plans, plansLoading, loadPlans, purchase, restore } = useBilling();
   const [busy, setBusy] = useState(false);
@@ -134,7 +138,7 @@ export default function PaywallContent({
   return (
     <ScrollView
       style={{ backgroundColor: c.background }}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, { paddingBottom: 32 + insets.bottom }]}
     >
       <View style={styles.content}>
         <Text style={[styles.planName, { color: c.text }]}>{t.paywall.planName}</Text>
@@ -239,7 +243,7 @@ export default function PaywallContent({
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 16, paddingBottom: 32 },
+  container: { padding: 16 },
   content: { width: '100%', maxWidth: MaxContentWidth, alignSelf: 'center', gap: 8 },
   planName: { fontSize: 22, fontWeight: '600', marginTop: 8 },
   lead: { fontSize: 13, lineHeight: 20, marginBottom: 4 },

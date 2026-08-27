@@ -12,6 +12,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import FlavorPentagon, { natureColor } from '@/components/FlavorPentagon';
 import FoodThumb from '@/components/FoodThumb';
@@ -51,6 +52,8 @@ export default function FoodDetailScreen() {
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
   const { lang } = useLang();
   const t = getStrings(lang);
+  // Android の edge-to-edge でナビゲーションバーが重なる分を下端に足す
+  const insets = useSafeAreaInsets();
 
   const { id } = useLocalSearchParams<{ id: string }>();
   const food = getFood(id ?? '');
@@ -122,7 +125,7 @@ export default function FoodDetailScreen() {
   return (
     <ScrollView
       style={{ backgroundColor: c.background }}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={[styles.container, { paddingBottom: 16 + insets.bottom }]}
       keyboardShouldPersistTaps="handled"
     >
       <Stack.Screen options={{ title: foodName(food, lang) }} />
