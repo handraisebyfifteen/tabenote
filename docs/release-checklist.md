@@ -55,6 +55,16 @@
       未設定だと課金機能が丸ごと無効になり、購読ゲートも出ない
 - [ ] Web版を公開する場合、Replit 側の環境変数にも同じ値を入れてある
       (Expo の `EXPO_PUBLIC_*` は**ビルド時**に埋め込まれる。後から差し替えられない)
+- [ ] **⚠️ `EXPO_PUBLIC_CLOSED_TEST` が本番ビルドで立っていない**(クローズドテスト配布用の
+      エンタイトルメント開放フラグ。設計書 rev.4 §7 の 2026-08-27 追記)
+
+      ```sh
+      grep -r "EXPO_PUBLIC_CLOSED_TEST" eas.json   # production.env が "0" であることを目視確認
+      ```
+
+      このフラグは eas.json のビルドプロファイルだけで扱い、EAS 側の環境変数
+      (`eas env:list`)には**登録しないこと**。本番ビルドの実機で赤バナー
+      「CLOSED TEST BUILD」が**出ない**こと・ペイウォールが**出る**ことも確認する。
 
 ## 3. RevenueCat ダッシュボード
 
@@ -63,7 +73,9 @@
 - [ ] その商品を含む Offering が **current** になっている
 - [ ] App Store Connect との連携(App-Specific Shared Secret)が設定済み
 - [ ] テスト用に付けた promotional entitlement を消した
-      (「A day」で付けたものは24時間で自動的に切れるので、通常は放置でよい)
+      (「A day」で付けたものは24時間で自動的に切れるので、通常は放置でよい。
+      **クローズドテスト用の `closed_test_tester` は「A month」で付けているので、
+      テスト完了後に必ず手で取り消す**)
 
 ## 4. 法務ページ(public/ の静的HTML → tabenote.app)
 

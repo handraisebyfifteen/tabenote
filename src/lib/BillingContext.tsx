@@ -7,6 +7,8 @@
  */
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
+import { IS_CLOSED_TEST } from '@/config/closedTest';
+
 import {
   billingEnabled,
   configureBilling,
@@ -113,7 +115,10 @@ export function BillingProvider({ children }: { children: React.ReactNode }) {
     <BillingContext.Provider
       value={{
         enabled,
-        active,
+        // ここが購読判定の集約点。クローズドテスト配布ビルドだけは「購読中」に固定する
+        // (config/closedTest)。内部状態は本物の RevenueCat を追い続け、初回確認・
+        // 更新リスナー・購入・復元のどの経路にも手を入れない(偽の購入は作らない)
+        active: IS_CLOSED_TEST ? true : active,
         appUserId,
         ready,
         plans,

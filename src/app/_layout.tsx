@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Platform, View } from 'react-native';
 
+import ClosedTestBanner from '@/components/ClosedTestBanner';
 import Onboarding from '@/components/Onboarding';
 import SplashWordmark from '@/components/SplashWordmark';
 import { Colors } from '@/constants/theme';
@@ -95,6 +96,8 @@ function ThemedRoot() {
     <ThemeProvider value={dark ? DarkTheme : DefaultTheme}>
       {/* 端末の設定と食い違う配色を選べるので、ステータスバーは auto ではなく明示する */}
       <StatusBar style={dark ? 'light' : 'dark'} />
+      {/* クローズドテスト配布ビルドの目印。スプラッシュにも覆わせない。通常ビルドでは何も描かない */}
+      <ClosedTestBanner />
       <View style={{ flex: 1 }}>
         {/* 裏で購読確認と保存データの読み出しを進めながら、上にワードマークを被せる */}
         <RootStack />

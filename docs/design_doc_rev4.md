@@ -671,6 +671,16 @@ tabenote は「中医学」を用いる(漢方は日本で発展したもの、�
 
 【2026-08-24 追記】価格は最終決定済み: $9.99/月 ベース、日本ストアのみ月額1,000円(意図的な日本向け優遇)。月額1本のみ・年額なし・トライアルなし・ハードペイウォール。以下の検討メモは決定前の記録(正は 申請準備-入力素材.md の素材A)。
 
+【2026-08-27 追記】クローズドテスト配布用のエンタイトルメント開放フラグを追加。サブスク専用のため、素のビルドだと外注テスターがペイウォールで止まり、Google Play が個人アカウントに求める「テスター12人以上・14日間」の実使用実績が作れない。そのための仕組み。
+
+- フラグ名: EXPO_PUBLIC_CLOSED_TEST。文字列 "1" との完全一致のみ有効(src/config/closedTest.ts)。EXPO_PUBLIC_* はビルド時にバンドルへ焼き込まれるため、実行時に切り替わる経路はない
+- 有効化されるのは eas.json の closedtest プロファイルのみ(production を継承し、このフラグだけ差し替える)。production 側は明示的に "0" を設定してある
+- 効果: lib/BillingContext が公開する購読判定 active を true に固定する(ハードペイウォールが開く)。上書きはこの1箇所だけで、RevenueCat の CustomerInfo・購入・復元には手を入れない(偽の購入は作らない)。課金フローの検証はライセンステスターが production ビルドで別途行う
+- 目印: 有効時は全画面最上部に赤(#B00020)のバナー「CLOSED TEST BUILD — full access enabled」を常時表示(components/ClosedTestBanner)。閉じられない。本番ビルドとの取り違えを目視で防ぐ
+- AI機能: 献立提案・近い食材はサーバー側(workers/ai-proxy)でも RevenueCat の購読を検証するため、判定の上書きだけでは通らない。そこで closedtest プロファイルは共有の App User ID(EXPO_PUBLIC_DEV_APP_USER_ID=closed_test_tester)でも起動し(lib/billing.ts の抜け道をこのビルドに限り実機でも許可)、配布前に RevenueCat ダッシュボードでこの ID へ promotional entitlement pro を「A month」で付与しておく。偽の購入ではなく、ダッシュボードで見える・取り消せる付与。AI中継のレート制限(1分5回)は ID 単位のため、テスター全員で共有になる
+- IS_CLOSED_TEST の参照は3箇所: 判定集約点(lib/BillingContext)、バナー(components/ClosedTestBanner)、App User ID の抜け道ゲート(lib/billing.ts)
+- クローズドテスト完了後の扱い: フラグ・バナーはコードに残す(production は "0" なので実行経路に入らない。既存の EXPO_PUBLIC_DEMO と同じ扱い)。closed_test_tester への promotional entitlement はダッシュボードで取り消す。closedtest ビルド(AAB)を本番トラックへ昇格させることは禁止。本番用は production プロファイルで別途ビルドし直す(手順は docs/play-release.md の Step 5 / Step 11)
+
 1ヶ月無料トライアル → 月額
 
 Shipaton の提出要件(無料トライアル or プロモコード)を満たす

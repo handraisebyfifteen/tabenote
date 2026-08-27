@@ -48,7 +48,20 @@
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_CLOSED_TEST": "0"
+      }
+    },
+    "closedtest": {
+      "extends": "production",
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_CLOSED_TEST": "1",
+        "EXPO_PUBLIC_DEV_APP_USER_ID": "closed_test_tester"
+      }
     }
   },
   "submit": {

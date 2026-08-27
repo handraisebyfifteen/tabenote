@@ -3,7 +3,7 @@
 2026-08-25 作成。iOS 側は [申請準備-入力素材.md](./申請準備-入力素材.md) と [release-checklist.md](./release-checklist.md) を参照。
 ここは **Android 固有の作業だけ**を、Play Console の操作順に並べたもの。
 
-## 前提と現状(2026-08-25)
+## 前提と現状(2026-08-27 更新)
 
 - [x] Google Play デベロッパー登録 済み
 - [x] `app.json` の Android 設定(`package: app.tabenote.main`、アイコン、ロケール)
@@ -13,9 +13,44 @@
 - [x] アプリ内の購読文言・管理URLをストア別に切り替え(`src/constants/site.ts` の `Store`)
 - [x] `eas.json` に `submit.production.android`(internal トラック・draft)
 - [x] **RevenueCat に Android アプリを追加** → `EXPO_PUBLIC_RC_ANDROID_KEY` を EAS に登録(production / preview 両方。2026-08-25 完了)
-- [ ] Play Console でアプリ作成・ストア掲載・AAB アップロード
-- [ ] 定期購入商品の作成(**AAB を上げるまで作れない**。下の Step 7)
-- [ ] ライセンステスターで課金テスト → クローズドテスト14日 → 本番申請
+- [x] Play Console でアプリ作成・ストア掲載・AAB アップロード(Step 1〜6。Alpha に production の AAB を配置)
+- [x] 定期購入商品の作成 + RevenueCat への紐付け(Step 7〜8)
+- [x] ライセンステスターで課金テスト(Step 9。closedtest 導入前に Alpha のビルドで実施)
+- [ ] **Alpha の AAB を closedtest ビルドに差し替える**(下の「現状と残作業」)
+- [ ] クローズドテスト14日 → 本番申請(Step 10〜11)
+
+## 現状と残作業(2026-08-27)
+
+テスターへの配布まで到達したが、**配ったのは production の AAB なので全員ペイウォールで
+止まっている**(サブスク専用のため。テスターは月額に二の足を踏む — 想定どおり)。
+ここを開けるのが closedtest ビルド(エンタイトルメント開放+赤バナー。設計書 rev.4 §7 の
+2026-08-27 追記)。ビルド履歴: v1=preview、v2・v3=production(08-25)。**次のビルドは v4**。
+
+残作業はこの順:
+
+1. `npx eas build -p android --profile closedtest --non-interactive`(→ versionCode 4)
+2. RevenueCat で共有ID `closed_test_tester` に promotional entitlement `pro` を **A month** で付与。
+   customer がまだ無ければ v1 API の GET で作れる(Worker と同じ secret key を使う):
+
+   ```sh
+   curl https://api.revenuecat.com/v1/subscribers/closed_test_tester \
+     -H 'authorization: Bearer <RevenueCat secret key>'   # 無ければこれで作られる
+   ```
+
+   → RevenueCat → Customers → `closed_test_tester` → **Grant promotional entitlement** → `pro` / A month。
+   Worker は呼び出しごとに RC を照会するので、付与した瞬間からテスターの AI も通る(再起動不要)
+3. Play Console → クローズドテスト(Alpha)→「新しいリリースを作成」→ v4 の AAB → 公開。
+   **AAB を差し替えてもテスト自体は継続**なので、14日カウント(テスターの参加+インストール維持)は
+   仕切り直しにならない
+4. 自分の実機を Play ストアから v4 に更新して確認: 赤バナーが出る・ペイウォールが出ない・
+   AI提案が通る(通らなければ 2 の付与を確認)
+5. テスターに「Play ストアからアップデートすれば全機能が使える」と周知
+   (自動更新は反映まで時間がかかることがある。ストアのアプリページから手動更新が確実)
+6. 12人以上が参加+インストール維持のまま14日 → 「本番へのアクセスを申請」(Step 11)
+7. 本番用は `--profile production` で**ビルドし直す**(v5)。Alpha の v4 は昇格しない。
+   `closed_test_tester` の promotional entitlement を取り消す
+
+以下の Step 1〜9 は完了済みの記録として残す(再現・譲渡用)。
 
 ## 作業順(ここを間違えると手戻りする)
 
@@ -25,7 +60,7 @@ Google Play は **課金ライブラリ入りのビルドを1本アップロー�
 
 ```
 課金ライブラリ(済) → RC に Android アプリ登録 → goog_ キーを EAS へ
-  → AAB ビルド → クローズドテストにアップロード(公開はまだ押さない)
+  → AAB ビルド(closedtest / production の2本) → クローズドテストにアップロード(公開はまだ押さない)
   → 定期購入を作成 → RC に商品を紐付け → ライセンステスターで購入テスト
   → クローズドテスト公開(14日) → 本番申請
 ```
@@ -184,21 +219,41 @@ This app does not promise medical or health benefits. If you have health concern
   - 「セキュリティ対策: 転送中に暗号化」はい、「データ削除をリクエストできる」いいえ(該当データを保持しないため。理由欄に「no account; nothing retained server-side beyond subscription state」)
 - **政府発行アプリ / 金融 / ヘルス**: すべて「いいえ」(ヘルスアプリの申告をすると医療系の審査に入る。効能を扱わないので該当しない)
 
-## Step 5. 本番用ビルド(AAB)
+## Step 5. ビルド(AAB)— クローズドテスト用と本番用は別ビルド
 
-Step 2 の環境変数が入った**あと**で:
+Step 2 の環境変数が入った**あと**で。用途ごとにプロファイルを使い分ける:
 
 ```sh
+# クローズドテスト(Alpha)に配る1本。エンタイトルメント開放+赤バナー付き
+npx eas build -p android --profile closedtest --non-interactive
+
+# 課金テスト(Step 9)と本番公開(Step 11)用。ペイウォールが生きている
 npx eas build -p android --profile production --non-interactive
 ```
 
-`production` プロファイルは Android では既定で **AAB** を出す(Play はAPKを受け付けない)。
-`autoIncrement: true` で versionCode が上がる(`appVersionSource: remote`。今回の preview ビルドで 1 に初期化済み、次は 2)。
+tabenote はサブスク専用なので、素のビルドだと外注テスターがペイウォールで止まり、14日間の
+実使用実績が作れない。`closedtest` は `production` を継承して `EXPO_PUBLIC_CLOSED_TEST=1` だけを
+立てたビルド(設計書 rev.4 §7 の 2026-08-27 追記)。distribution が store のままなので EAS の
+環境変数も production environment のもの(RCキー・AI URL)がそのまま入る。
+**⚠️ closedtest の AAB を本番トラックへ昇格させてはいけない。**
 
-## Step 6. クローズドテストに AAB をアップロード(公開はまだ押さない)
+**closedtest の配布前に、RevenueCat で共有ID `closed_test_tester` に promotional entitlement
+`pro` を「A month」で付与しておく**(手順は上の「現状と残作業」の 2。「A day」だと翌日切れて
+AI だけエラーに戻る)。closedtest ビルドは全テスターがこの共有IDで起動し(eas.json が渡す
+`EXPO_PUBLIC_DEV_APP_USER_ID`)、サーバー側で購読を検証する AI 提案までこの付与で通る。
+AI のレート制限(1分5回)は app_user_id 単位なのでテスター全員で共有になる。同時に使うと
+「使いすぎ」表示が出ることがあるが、不具合ではない。
+
+どちらのプロファイルも Android では既定で **AAB** を出す(Play はAPKを受け付けない)。
+`autoIncrement: true` で versionCode が上がる(`appVersionSource: remote`)。この順でビルドすれば
+本番用の versionCode がクローズドテスト用より大きくなる。それぞれの versionCode を控えておく。
+
+## Step 6. クローズドテストに AAB をアップロード(済み。closedtest への差し替えは「現状と残作業」)
 
 **この1本を上げて初めて「定期購入」が作れるようになる。** テスターを集めるのは商品と課金テストが
 済んでからで良いので、ここでは「リリースを作成して下書きのまま保存」までにしておく。
+ここに上げるのは **`closedtest` プロファイルの AAB**(Step 5 の1本目)。production の AAB を
+上げるとテスターがペイウォールで止まり、14日間の実使用にならない。
 
 1. Play Console →「テスト」→「クローズドテスト」→「Alpha」トラック(既定名)→「新しいリリースを作成」
 2. **初回は AAB を手動アップロード**(EAS submit はアプリの初回作成を代行できない)。
@@ -216,7 +271,7 @@ npx eas submit -p android --latest      # eas.json の submit.production.android
 `track` を `alpha` に変えればクローズドテストへ直接上げられる。`releaseStatus: draft` なので
 Play Console で「公開」を押すまで配布されない。
 
-## Step 7. 定期購入商品(← AAB を上げて初めて作れる)
+## Step 7. 定期購入商品(済み)(← AAB を上げて初めて作れる)
 
 Play Console →「収益化」→「商品」→「定期購入」→「定期購入を作成」:
 
@@ -239,7 +294,7 @@ Play Console →「収益化」→「商品」→「定期購入」→「定期�
 
 保存 → 基本プランを「有効化」する。有効化しないと購入画面にプランが出ない(RevenueCat が `Offerings` を返さない)。
 
-## Step 8. RevenueCat に商品を紐付け
+## Step 8. RevenueCat に商品を紐付け(済み)
 
 Step 7 で商品を作り、**基本プランを有効化した後**に行う(有効化前だと RevenueCat 側で商品が見つからない)。
 
@@ -251,12 +306,15 @@ Step 7 で商品を作り、**基本プランを有効化した後**に行う(�
 ここまでで `getPlans()` が Android でもプランを返すようになる。返らない場合の原因はほぼこの3つ:
 基本プランが未有効、サービスアカウント権限の反映待ち(最大36時間)、Offering に足し忘れ。
 
-## Step 9. ライセンステスターを登録 → 課金テスト
+## Step 9. ライセンステスターを登録 → 課金テスト(済み)
 
 1. Play Console →「設定」→**「ライセンス テスト」**に、テストする Gmail アドレスを追加
    (自分・審査担当・クローズドテスターの全員を入れておく。ここに無いアカウントは**実際に課金される**)
-2. そのアカウントを Alpha トラックのテスターに入れ、招待リンクからインストール
-   (ライセンステスターであっても、**トラックのテスターに入っていないとインストールできない**)
+2. **課金テストは production ビルドで行う**(closedtest ビルドは購読判定が固定されていて、
+   ペイウォールに購入ボタンがそもそも出ない)。初回は closedtest 導入前の Alpha(production の AAB)で
+   実施済み。**今後やり直すとき**は Alpha が closedtest ビルドになっているので、production の AAB を
+   内部テストトラックへ上げて行う(`npx eas submit -p android --latest` = internal・draft →
+   Play Console で公開。ライセンステスターでも**トラックのテスターに入っていないとインストールできない**)
 3. アプリで通しの確認:
    - [ ] ペイウォールに `¥1,000 / 月`(= Play のローカライズ価格)が出る
    - [ ] 購入 → テスト用の支払い方法が出る → 購入完了でゲートを抜ける
@@ -282,9 +340,17 @@ Step 7 で商品を作り、**基本プランを有効化した後**に行う(�
 
 1. 「テスト」→「クローズドテスト」→ 14日経過後に「本番へのアクセスを申請」→ 質問票に答える
    (テストで何を確認したか、フィードバックをどう反映したか、を英語で数行)
-2. 承認されたら「本番」→「新しいリリースを作成」→ 同じ AAB(またはその時点の最新)
-3. 配信国: **iOS と同じく EU/EEA を外す**(Play の DSA トレーダー要件も回避できる)
-4. 審査は通常 1〜7 日
+2. **本番へ上げるのは `production` プロファイルの AAB だけ**。`eas build --profile production` で
+   ビルドし直す(versionCode がクローズドテスト版 v4 より大きくなる)。
+   **⚠️ Alpha の closedtest AAB(v4)を昇格・流用してはいけない**(エンタイトルメント開放+
+   赤バナーのまま全ユーザーに配られる)
+3. 上げる前の確認: `grep -r "EXPO_PUBLIC_CLOSED_TEST" eas.json` で production の env が `"0"` の
+   ままであること、その AAB の実機で赤バナー「CLOSED TEST BUILD」が**出ない**・ペイウォールが
+   **出る**こと
+4. 配信国: **iOS と同じく EU/EEA を外す**(Play の DSA トレーダー要件も回避できる)
+5. 審査は通常 1〜7 日
+6. クローズドテストが終わったら、RevenueCat の `closed_test_tester` に付けた promotional
+   entitlement `pro` を取り消す(「A month」なので自動では切れない)
 
 ## Android 実機での確認項目(preview APK)
 

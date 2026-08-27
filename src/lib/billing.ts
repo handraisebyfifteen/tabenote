@@ -16,6 +16,8 @@ import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 import type { CustomerInfo, PurchasesError, PurchasesPackage } from 'react-native-purchases';
 
+import { IS_CLOSED_TEST } from '@/config/closedTest';
+
 /** RevenueCat ダッシュボードで作る entitlement の識別子 */
 export const ENTITLEMENT_ID = 'pro';
 
@@ -49,6 +51,7 @@ function sdk(): PurchasesApi | null {
  *
  * つまり環境変数が本番ビルドに紛れ込んでも、実機では無効になる。eas.json 側で
  * 打ち消す必要はない(そもそも EAS は env に空文字を許さない)。
+ * 例外は DEV_APP_USER_ID だけ(クローズドテスト配布ビルドでも効く。宣言側の注記を参照)。
  */
 const HATCHES_ALLOWED = __DEV__ || !Device.isDevice;
 
@@ -63,7 +66,7 @@ const HATCHES_ALLOWED = __DEV__ || !Device.isDevice;
 const SKIP_PAYWALL = HATCHES_ALLOWED && process.env.EXPO_PUBLIC_SKIP_PAYWALL === '1';
 
 /**
- * 「購読者」として起動するための App User ID(撮影・動作確認用)。
+ * 「購読者」として起動するための App User ID(撮影・動作確認・クローズドテスト用)。
  *
  * RevenueCat ダッシュボードで promotional entitlement を付けても、既定のアプリは
  * 匿名ID($RCAnonymousID:…)で動くので権利が届かない。付けた相手の ID を渡すと、
@@ -72,10 +75,16 @@ const SKIP_PAYWALL = HATCHES_ALLOWED && process.env.EXPO_PUBLIC_SKIP_PAYWALL ===
  * SKIP_PAYWALL と違い課金機能は生きたままなので、appUserId が中継サーバーへ渡り、
  * AI献立提案も通る(AI欄まで撮るならこちらの経路)。
  * 両方を同時に設定した場合は SKIP_PAYWALL が勝つ(課金機能ごと無効になるため)。
+ *
+ * 3つの抜け道で唯一、クローズドテスト配布ビルド(config/closedTest)でも効かせる。
+ * 実機のリリースビルドだが、eas.json の closedtest プロファイルが渡す共有ID
+ * (closed_test_tester)に promotional entitlement を付けておくことで、サーバー側で
+ * 購読を検証するAI機能までテスターに通すため(設計書 rev.4 §7 の 2026-08-27 追記)。
  */
-const DEV_APP_USER_ID = HATCHES_ALLOWED
-  ? (process.env.EXPO_PUBLIC_DEV_APP_USER_ID ?? '').trim()
-  : '';
+const DEV_APP_USER_ID =
+  HATCHES_ALLOWED || IS_CLOSED_TEST
+    ? (process.env.EXPO_PUBLIC_DEV_APP_USER_ID ?? '').trim()
+    : '';
 
 /**
  * ペイウォールを撮影するためのダミープラン(撮影専用ビルド限定)。
