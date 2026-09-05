@@ -571,7 +571,7 @@ const ja: Strings = {
     restoreDoneTitle: '購入の復元',
     restoreDoneBody: '購読を復元しました。',
     restoreNoneBody: '復元できる購読が見つかりませんでした。',
-    restoreFailBody: '復元に失敗しました。通信環境を確認してください。',
+    restoreFailBody: '復元できませんでした。しばらくしてからもう一度お試しください。',
     manageSubscription: 'サブスクリプションの管理',
     manageSubscriptionNote: (store) =>
       store === 'apple'
@@ -638,7 +638,7 @@ const ja: Strings = {
         : '期間終了の24時間前までに解約しない限り、自動的に更新されます。お支払いは Google Play アカウントに請求されます。解約は、Google Play の「お支払いと定期購入」→「定期購入」からいつでも行えます。',
     restore: '購入を復元',
     loading: 'プランを読み込んでいます…',
-    unavailable: 'いまプランを取得できませんでした。通信環境を確認して、もう一度お試しください。',
+    unavailable: 'いまプランを取得できませんでした。しばらくしてから、もう一度お試しください。',
     retry: 'もう一度読み込む',
     alreadySubscribed: 'ご登録中です。すべての機能をご利用いただけます。',
     failTitle: '月額プラン',
@@ -646,7 +646,7 @@ const ja: Strings = {
     restoreDoneTitle: '購入の復元',
     restoreDoneBody: '購読を復元しました。',
     restoreNoneBody: '復元できる購読が見つかりませんでした。',
-    restoreFailBody: '復元に失敗しました。通信環境を確認してください。',
+    restoreFailBody: '復元できませんでした。しばらくしてからもう一度お試しください。',
     terms: '利用規約',
     privacy: 'プライバシーポリシー',
     exportSaved: '保存したデータを書き出す',
@@ -963,7 +963,7 @@ const en: Strings = {
     restoreDoneTitle: 'Restore purchases',
     restoreDoneBody: 'Your subscription has been restored.',
     restoreNoneBody: 'No subscription was found to restore.',
-    restoreFailBody: 'Could not restore. Please check your connection.',
+    restoreFailBody: 'Could not restore. Please try again in a moment.',
     manageSubscription: 'Manage subscription',
     manageSubscriptionNote: (store) =>
       store === 'apple'
@@ -1032,7 +1032,7 @@ const en: Strings = {
         : 'Renews automatically unless cancelled at least 24 hours before the end of the current period. Payment is charged to your Google Play account. Cancel any time in Google Play → Payments & subscriptions → Subscriptions.',
     restore: 'Restore purchases',
     loading: 'Loading the plan…',
-    unavailable: 'Could not load the plan. Please check your connection and try again.',
+    unavailable: 'Could not load the plan. Please try again in a moment.',
     retry: 'Try again',
     alreadySubscribed: 'You are subscribed. Every feature is available.',
     failTitle: 'Monthly Plan',
@@ -1040,7 +1040,7 @@ const en: Strings = {
     restoreDoneTitle: 'Restore purchases',
     restoreDoneBody: 'Your subscription has been restored.',
     restoreNoneBody: 'No subscription was found to restore.',
-    restoreFailBody: 'Could not restore. Please check your connection.',
+    restoreFailBody: 'Could not restore. Please try again in a moment.',
     terms: 'Terms of Use',
     privacy: 'Privacy Policy',
     exportSaved: 'Export your saved data',
