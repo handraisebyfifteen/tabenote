@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Platform, View } from 'react-native';
 
 import ClosedTestBanner from '@/components/ClosedTestBanner';
+import DownloadScreen from '@/components/DownloadScreen';
 import Onboarding from '@/components/Onboarding';
 import SplashWordmark from '@/components/SplashWordmark';
 import { Colors } from '@/constants/theme';
@@ -24,6 +25,9 @@ function RootStack() {
   const t = getStrings(lang);
   const scheme = useColorScheme();
   const c = Colors[scheme === 'dark' ? 'dark' : 'light'];
+
+  // Webではアプリ本体を公開せず、モバイル版の配布案内だけを表示する。
+  if (Platform.OS === 'web') return <DownloadScreen />;
 
   // 全機能有料(申請準備指示書・2026-08-17 決定)。未購読の間はタブを出さず、
   // オンボーディング→購読案内で覆う。課金が無効な環境(Web・キー未設定)では掛からない。

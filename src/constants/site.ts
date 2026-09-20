@@ -59,3 +59,6 @@ export const MANAGE_SUBSCRIPTION_URL: Record<Store, string> = {
  * null の間、紹介ページ(/about)は入手ボタンの代わりに「準備中」を出す。
  */
 export const APP_STORE_URL: string | null = null;
+
+/** Androidの配布先。公開後はGoogle Playの本番URLに差し替える。 */
+export const ANDROID_STORE_URL = 'https://play.google.com/apps/testing/app.tabenote.main';
