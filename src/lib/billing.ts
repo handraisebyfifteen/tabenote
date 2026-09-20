@@ -165,7 +165,7 @@ export interface BillingPlan {
   trial: { count: number; unit: string } | null;
 }
 
-function toPlan(pkg: PurchasesPackage): BillingPlan {
+function toPlan(pkg: PurchasesPackage, trialAllowed: boolean): BillingPlan {
   const intro = pkg.product.introPrice;
   const isFreeTrial = intro !== null && intro.price === 0;
   const type = String(pkg.packageType);
@@ -174,10 +174,38 @@ function toPlan(pkg: PurchasesPackage): BillingPlan {
     period: type === 'ANNUAL' ? 'annual' : type === 'MONTHLY' ? 'monthly' : 'other',
     priceString: pkg.product.priceString,
     trial:
-      isFreeTrial && intro !== null
+      isFreeTrial && intro !== null && trialAllowed
         ? { count: intro.periodNumberOfUnits, unit: intro.periodUnit }
         : null,
   };
+}
+
+/**
+ * 無料トライアルを「ある」と表示してよい product の集合。null は全部信じてよい。
+ *
+ * iOS ではトライアルは一度使うと二度目は付かない(再登録・別端末で使用済み)。
+ * その人に「無料」と出したまま購入させると有料で始まるので、SDK に適格性を確認して
+ * ELIGIBLE 以外は外す。UNKNOWN も外す(SDK の推奨。ストアの購入シートには正しい条件が
+ * 出るので、控えめに倒しても嘘にはならない)。確認に失敗したときも同じ扱い。
+ * Android は常に UNKNOWN を返す仕様なので確認せず、Play が返した offer をそのまま使う
+ * (Play は適格な人にしか無料フェーズ付きの offer を返さない)。
+ */
+async function trialEligibleProductIds(
+  P: PurchasesApi,
+  packages: PurchasesPackage[],
+): Promise<Set<string> | null> {
+  if (Platform.OS !== 'ios') return null;
+  const ids = packages
+    .filter((pkg) => pkg.product.introPrice !== null)
+    .map((pkg) => pkg.product.identifier);
+  if (ids.length === 0) return null;
+  try {
+    const result = await P.checkTrialOrIntroductoryPriceEligibility(ids);
+    const eligible = P.INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE;
+    return new Set(ids.filter((id) => result[id]?.status === eligible));
+  } catch {
+    return new Set();
+  }
 }
 
 /**
@@ -191,9 +219,12 @@ export async function getPlans(): Promise<BillingPlan[]> {
   await configureBilling();
   const offerings = await P.getOfferings();
   const packages = offerings.current?.availablePackages ?? [];
+  const trialOk = await trialEligibleProductIds(P, packages);
   // 月額を先、年額を後に並べる(指示書 7章の価格提示順)
   const order = { monthly: 0, annual: 1, other: 2 };
-  return packages.map(toPlan).sort((a, b) => order[a.period] - order[b.period]);
+  return packages
+    .map((pkg) => toPlan(pkg, trialOk === null || trialOk.has(pkg.product.identifier)))
+    .sort((a, b) => order[a.period] - order[b.period]);
 }
 
 export type PurchaseOutcome = 'purchased' | 'cancelled' | 'failed';

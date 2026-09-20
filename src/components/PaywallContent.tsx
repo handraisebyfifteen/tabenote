@@ -181,11 +181,21 @@ export default function PaywallContent({
           </View>
         ) : (
           <>
-            {/* 請求される総額が画面で最も目立つこと(Apple の要件) */}
+            {/*
+              請求される総額が画面で最も目立つこと(Apple の要件)。
+              無料トライアル付きのときは、その長さと「終了後にこの価格で自動更新」を
+              購入前に読める位置に置く(Schedule 2 §3.8(b)・Guideline 3.1.2)。
+              トライアルの有無は lib/billing が適格性まで見て決める
+            */}
             <View style={styles.priceArea}>
+              {plan.trial !== null && (
+                <Text style={[styles.trialLead, { color: c.text }]}>
+                  {t.paywall.trialLead(plan.trial)}
+                </Text>
+              )}
               <Text style={[styles.price, { color: c.text }]}>{plan.priceString}</Text>
               <Text style={[styles.periodNote, { color: c.textSecondary }]}>
-                {t.paywall.periodNote}
+                {plan.trial !== null ? t.paywall.periodNoteTrial : t.paywall.periodNote}
               </Text>
             </View>
 
@@ -198,7 +208,9 @@ export default function PaywallContent({
               {busy ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Text style={styles.ctaLabel}>{t.paywall.subscribe}</Text>
+                <Text style={styles.ctaLabel}>
+                  {plan.trial !== null ? t.paywall.subscribeTrial : t.paywall.subscribe}
+                </Text>
               )}
             </Pressable>
           </>
@@ -253,6 +265,7 @@ const styles = StyleSheet.create({
   itemBullet: { fontSize: 14, lineHeight: 21 },
   item: { flex: 1, fontSize: 14, lineHeight: 21 },
   priceArea: { alignItems: 'center', gap: 2, marginTop: 12 },
+  trialLead: { fontSize: 15, fontWeight: '600', marginBottom: 2 },
   price: { fontSize: 34, fontWeight: '700' },
   periodNote: { fontSize: 13 },
   stateArea: { alignItems: 'center', gap: 10, paddingVertical: 16 },

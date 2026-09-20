@@ -10,6 +10,16 @@ import type { FiveSeason } from '../logic/season';
 import type { Store } from '../constants/site';
 import { cat5Label, fiveFlavorLabel, organLabel, seasonNatureText, type Lang } from './terms';
 
+/** 無料トライアルの長さ。unit は RevenueCat の periodUnit(DAY / WEEK / MONTH / YEAR) */
+function trialLength(count: number, unit: string, lang: Lang): string {
+  if (lang === 'ja') {
+    const ja: Record<string, string> = { DAY: '日間', WEEK: '週間', MONTH: 'か月', YEAR: '年' };
+    return `${count}${ja[unit] ?? unit.toLowerCase()}`;
+  }
+  const en = unit.toLowerCase();
+  return `${count} ${count === 1 ? en : `${en}s`}`;
+}
+
 export interface Strings {
   tabs: { home: string; combine: string; notebook: string; settings: string };
 
@@ -274,7 +284,16 @@ export interface Strings {
     includedBody: string;
     /** 価格の直下に置く期間の説明 */
     periodNote: string;
+    /**
+     * 無料トライアル付きのときに価格の上に置く一行(例: 最初の1か月は無料)。
+     * unit は RevenueCat の periodUnit(DAY / WEEK / MONTH / YEAR)
+     */
+    trialLead(trial: { count: number; unit: string }): string;
+    /** トライアル付きのときの periodNote。無料期間のあとに請求が始まることを示す */
+    periodNoteTrial: string;
     subscribe: string;
+    /** トライアル付きのときのボタン */
+    subscribeTrial: string;
     /** 自動更新・解約方法の説明(ボタンの下) */
     /** 自動更新と解約方法の説明。決済元(Apple / Google Play)で文言が変わる */
     renewalNote(store: Store): string;
@@ -631,7 +650,10 @@ const ja: Strings = {
     includedBody:
       '選んだ食材の組み合わせを五味・性の五角形で確かめる\n435品目の食材の図鑑(五味・性・帰経・分類)\n二十四節気と五季、いまの季節に合う味の表示\n食材に★とメモ、組み合わせを手帳に保存\n選んだ食材と季節から、AIが献立のアイデアを提案',
     periodNote: '1か月ごとの自動更新',
+    trialLead: ({ count, unit }) => `最初の${trialLength(count, unit, 'ja')}は無料`,
+    periodNoteTrial: '無料期間のあと、1か月ごとの自動更新',
     subscribe: '登録する',
+    subscribeTrial: '無料で始める',
     renewalNote: (store) =>
       store === 'apple'
         ? '期間終了の24時間前までに解約しない限り、自動的に更新されます。お支払いは Apple アカウントに請求されます。解約は、iPhoneの「設定」→ Apple アカウント →「サブスクリプション」からいつでも行えます。'
@@ -1025,7 +1047,10 @@ const en: Strings = {
     includedBody:
       'See any combination of ingredients as a pentagon of the five flavors and nature\nAn encyclopedia of 435 ingredients (flavor, nature, meridians, category)\nThe 24 solar terms, the five seasons, and the flavors favored right now\nStar ingredients, write notes, save combinations to your notebook\nAI menu ideas from the ingredients you picked and the season',
     periodNote: 'Renews automatically every month',
+    trialLead: ({ count, unit }) => `${trialLength(count, unit, 'en')} free`,
+    periodNoteTrial: 'Then renews automatically every month',
     subscribe: 'Subscribe',
+    subscribeTrial: 'Start for free',
     renewalNote: (store) =>
       store === 'apple'
         ? 'Renews automatically unless cancelled at least 24 hours before the end of the current period. Payment is charged to your Apple Account. Cancel any time in Settings → Apple Account → Subscriptions on your iPhone.'
