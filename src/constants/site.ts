@@ -54,11 +54,8 @@ export const MANAGE_SUBSCRIPTION_URL: Record<Store, string> = {
     'https://play.google.com/store/account/subscriptions?sku=tabenote.premium.monthly&package=app.tabenote.main',
 };
 
-/**
- * App Store の製品ページ。審査通過後に判明するURLをここに入れる。
- * null の間、紹介ページ(/about)は入手ボタンの代わりに「準備中」を出す。
- */
-export const APP_STORE_URL: string | null = null;
+/** App Storeの製品ページ。 */
+export const APP_STORE_URL = 'https://apps.apple.com/app/id6802138763';
 
-/** Androidの配布先。公開後はGoogle Playの本番URLに差し替える。 */
-export const ANDROID_STORE_URL = 'https://play.google.com/apps/testing/app.tabenote.main';
+/** Androidの配布先。 */
+export const ANDROID_STORE_URL = 'https://play.google.com/store/apps/details?id=app.tabenote.main';
