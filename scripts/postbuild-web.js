@@ -6,7 +6,8 @@
  *
  *   1. 配信したくない書き出しを削る
  *   2. 残ったHTMLを検証する
- *   3. sitemap.xml を作る
+ *   3. 公開されるJSに図鑑データが混ざっていないか検査する
+ *   4. sitemap.xml を作る
  *
  * URL はファイルパスからではなく、各HTMLの <link rel="canonical"> から取る。
  * パスから組み立てると除外ルールを何種類も抱え込むことになり、
@@ -82,6 +83,39 @@ function canonicalOf(html) {
   return m === null ? null : m[1];
 }
 
+/**
+ * 公開サイトのJSに入っていてはいけないもの。
+ * Web ではアプリ本体を src/screens の .web.tsx で差し替えて外している。誰かが
+ * RootLayout.web.tsx や DownloadScreen から src/data を import すると、画面には
+ * 出ないまま図鑑の全件が誰でも落とせるJSに入る。見た目では気づけないのでここで止める。
+ *
+ * 'meridians' は図鑑JSONのフィールド名、食材名は実データの一例。
+ * Metro は非ASCIIを \uXXXX に落とすことがあるので、戻してから探す。
+ */
+const FORBIDDEN_IN_JS = ['meridians', 'ほうれんそう'];
+
+function jsFiles(dir) {
+  const found = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...jsFiles(full));
+    else if (entry.name.endsWith('.js')) found.push(full);
+  }
+  return found;
+}
+
+function leakedData() {
+  const leaks = [];
+  for (const file of jsFiles(OUT_DIR)) {
+    const text = fs
+      .readFileSync(file, 'utf8')
+      .replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+    const hits = FORBIDDEN_IN_JS.filter((needle) => text.includes(needle));
+    if (hits.length > 0) leaks.push(`${path.relative(OUT_DIR, file)}(${hits.join(', ')})`);
+  }
+  return leaks;
+}
+
 function escapeXml(s) {
   return s
     .replace(/&/g, '&amp;')
@@ -135,12 +169,20 @@ function main() {
     throw new Error(`canonical が自分の配信URLと食い違う: ${mismatched.join(' / ')}`);
   }
 
+  const leaks = leakedData();
+  if (leaks.length > 0) {
+    throw new Error(
+      `公開されるJSに図鑑データが入っている: ${leaks.join(' / ')}\n` +
+        'Web用の入口(src/screens の .web.tsx と DownloadScreen。src/screens/README.md)から src/data に届く import を外すこと',
+    );
+  }
+
   const list = [...urls].sort();
   if (list.length > MAX_URLS) {
     throw new Error(`URLが ${list.length} 件で上限 ${MAX_URLS} を超えた(分割が必要)`);
   }
 
-  // 3. 生成。lastmod / changefreq / priority は入れない。
+  // 4. 生成。lastmod / changefreq / priority は入れない。
   //    changefreq と priority は Google が無視する。lastmod に一律のビルド日を入れると
   //    「全ページが毎回更新された」と嘘をつくことになり、信用されないだけ得が無い。
   const xml =

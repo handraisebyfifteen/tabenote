@@ -1,11 +1,2 @@
-/**
- * 購読画面(モーダル)。設定の「月額プラン」から開く。
- * 中身は components/PaywallContent(初回起動のゲートと共用)。
- */
-import React from 'react';
-
-import PaywallContent from '@/components/PaywallContent';
-
-export default function PaywallScreen() {
-  return <PaywallContent source="settings" />;
-}
+// 実体は src/screens。Web では PaywallScreen.web.tsx(空)に差し替わる(src/screens/README.md)
+export { default } from '@/screens/PaywallScreen';
