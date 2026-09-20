@@ -6,6 +6,7 @@ import { APP_STORE_URL, ANDROID_STORE_URL, PRIVACY_URL, SUPPORT_URL, TERMS_URL }
 import { Colors, MaxContentWidth } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
+import PageHead from './PageHead';
 import { Text } from './Type';
 
 export default function DownloadScreen() {
@@ -44,6 +45,15 @@ export default function DownloadScreen() {
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: c.background }]}>
+      <PageHead
+        title={japanese ? 'tabenote — モバイルアプリ' : 'tabenote — mobile app'}
+        description={
+          japanese
+            ? 'tabenoteはiOS・Android向けの食材選びの手帳です。'
+            : 'tabenote is an ingredient notebook for iOS and Android.'
+        }
+        path="/"
+      />
       <View style={styles.content}>
         <Image
           source={require('../../assets/images/icon.png')}

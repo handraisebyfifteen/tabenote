@@ -2,6 +2,8 @@
 /**
  * 静的書き出しの後始末(公開サイト tabenote.app 用)。
  *
+ * Web版アプリは提供せず、ルートのモバイル版案内と法務ページだけを公開する。
+ *
  *   1. 配信したくない書き出しを削る
  *   2. 残ったHTMLを検証する
  *   3. sitemap.xml を作る
@@ -25,16 +27,22 @@ const path = require('path');
 const MAX_URLS = 50000;
 
 /**
- * 配信しない書き出し。いずれも本文が空か「見つかりません」だけで、
- * どこからもリンクされていない(dist内のhrefを全走査して0件を確認済み)。
- *
- *   (tabs)        ルート直下と md5 まで同一の重複4枚。canonical はクリーンURL側を指す
- *   food/[id]     動的セグメントのリテラル・フォールバック。実データ438件は別に出ている
- *   +not-found    中身が空のシェル。残すと未知URLが全部200のソフト404になる
- *   paywall       ネイティブ専用の購読モーダル。web は billingEnabled() が常に false で
- *                 設定画面の導線ごと消えるため、リンクされない「購入できない購入画面」だけが残る
+ * Expo Router はネイティブ用画面もHTMLに書き出すが、Webではアプリ本体を
+ * 提供しないため、ルート以外のアプリ画面をすべて削除する。
+ * public/ の法務ページはこの一覧に含めず、そのまま公開する。
  */
-const PRUNE = ['(tabs)', 'food/[id].html', '+not-found.html', 'paywall.html'];
+const PRUNE = [
+  '(tabs)',
+  'food',
+  '+not-found.html',
+  'about.html',
+  'advice.html',
+  'combine.html',
+  'licenses.html',
+  'notebook.html',
+  'paywall.html',
+  'settings.html',
+];
 
 const ROOT = path.resolve(__dirname, '..');
 const OUT_DIR = path.resolve(ROOT, process.argv[2] ?? 'dist');
@@ -127,23 +135,7 @@ function main() {
     throw new Error(`canonical が自分の配信URLと食い違う: ${mismatched.join(' / ')}`);
   }
 
-  // 食材ページの取りこぼし検査。generateStaticParams が壊れたら静かに減るため
-  const foods = require(path.join(ROOT, 'src/data/tabenote_foods.json'));
-  const missing = foods.filter((f) => !urls.has(`${siteUrl}/food/${f.id}`));
-  if (missing.length > 0) {
-    throw new Error(
-      `食材ページが ${missing.length}/${foods.length} 件足りない` +
-        `(例: ${missing.slice(0, 3).map((f) => f.id).join(', ')})`,
-    );
-  }
-
-  // 一覧から外した食材(visible: false)は sitemap に載せない。アプリの図鑑・検索に
-  // 出さないのに、検索エンジンには出し続けるのでは非表示にした意味がないため。
-  // ページ自体は残す。保存済みの手帳から辿るリンクを切らないため(取りこぼし検査も上のまま)
-  const hidden = new Set(
-    foods.filter((f) => f.visible === false).map((f) => `${siteUrl}/food/${f.id}`),
-  );
-  const list = [...urls].filter((u) => !hidden.has(u)).sort();
+  const list = [...urls].sort();
   if (list.length > MAX_URLS) {
     throw new Error(`URLが ${list.length} 件で上限 ${MAX_URLS} を超えた(分割が必要)`);
   }
@@ -159,10 +151,7 @@ function main() {
   fs.writeFileSync(path.join(OUT_DIR, 'sitemap.xml'), xml);
 
   console.log(`間引き: ${pruned.length > 0 ? pruned.join(', ') : 'なし'}`);
-  console.log(
-    `sitemap.xml: ${list.length} URL` +
-      `(うち食材 ${foods.length - hidden.size} 件 / 非表示 ${hidden.size} 件は除外)`,
-  );
+  console.log(`sitemap.xml: ${list.length} URL(モバイル版案内と法務ページのみ)`);
 }
 
 main();
