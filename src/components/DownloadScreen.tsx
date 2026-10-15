@@ -115,6 +115,8 @@ const COPY = {
     tagline: '食材選びの手帳。\n書くのは、あなた',
     lead: '経験を積んだ料理人がするように、季節と味の釣り合いで食材を選ぶ。東アジアの台所で受け継がれてきた分類を、図と言葉で確かめ、感じたことを自分の言葉で書き残す。そのための静かな手帳です。',
     trialBadge: '初めてのご登録なら、最初の2週間は無料',
+    // 狭い幅では1行に収まらず「無／料」で折れるので、読点で2行に分ける
+    trialBadgeNarrow: '初めてのご登録なら、\n最初の2週間は無料',
     trialNote: '無料期間中に解約すれば料金はかかりません。その後は月額プラン(日本のストアでは月額1,000円)。',
     ios: 'App Store で入手',
     android: 'Google Play で入手',
@@ -160,6 +162,7 @@ const COPY = {
     tagline: 'A chef’s eye for ingredients. You write the rest.',
     lead: 'Choose ingredients the way a seasoned chef does — by season and the balance of flavors. A classification refined over centuries in East Asian kitchens, shown as shapes and words, with room to write what you notice. A quiet notebook, made for that.',
     trialBadge: 'New subscribers start with 2 weeks free',
+    trialBadgeNarrow: 'New subscribers start\nwith 2 weeks free',
     trialNote: 'Cancel during the trial and you are not charged. Then a monthly plan — $9.99/month, with your local price shown in the store.',
     ios: 'Get it on the App Store',
     android: 'Get it on Google Play',
@@ -335,6 +338,24 @@ export default function DownloadScreen() {
     </View>
   );
 
+  /**
+   * 申し込みの塊。バッジ・注記・ボタン・補足を1枚の紙に載せ、紙の中で中央に揃える。
+   * 見出しとリードは読む流れなので広い幅では左揃えだが、この塊は「器」なので
+   * 中身を中央に置いた方が落ち着く(2026-10-15 のレビュー)。
+   */
+  const offerCard = (
+    <View style={[styles.offerCard, { backgroundColor: p.paper, borderColor: p.rule }]}>
+      <View style={[styles.trialBadge, { backgroundColor: p.vermilion }]}>
+        <Text style={[styles.trialBadgeText, { color: p.vermilionText }]}>
+          {wide ? t.trialBadge : t.trialBadgeNarrow}
+        </Text>
+      </View>
+      <Text style={[styles.trialNote, { color: p.inkSoft }]}>{t.trialNote}</Text>
+      {storeButtons}
+      <Text style={[styles.webNote, { color: p.inkSoft }]}>{t.webNote}</Text>
+    </View>
+  );
+
   return (
     <ScrollView style={{ backgroundColor: p.ground }} contentContainerStyle={styles.page}>
       <PageHead title={t.headTitle} description={t.headDescription} path="/" />
@@ -359,7 +380,7 @@ export default function DownloadScreen() {
           <View style={[styles.artFrame, { backgroundColor: p.paper, borderColor: p.rule }]}>
             <Image
               source={require('../../assets/images/icon.png')}
-              style={styles.art}
+              style={[styles.art, wide && styles.artWide]}
               accessibilityLabel="tabenote"
             />
           </View>
@@ -368,20 +389,7 @@ export default function DownloadScreen() {
         <View style={[styles.heroText, wide && styles.heroTextWide]}>
           <Text style={[styles.tagline, wide && styles.left, { color: p.ink }]}>{t.tagline}</Text>
           <Text style={[styles.lead, wide && styles.left, { color: p.inkSoft }]}>{t.lead}</Text>
-
-          <View style={[styles.trialBadge, { backgroundColor: p.vermilion }]}>
-            <Text style={[styles.trialBadgeText, { color: p.vermilionText }]}>
-              {t.trialBadge}
-            </Text>
-          </View>
-          <Text style={[styles.trialNote, wide && styles.left, { color: p.inkSoft }]}>
-            {t.trialNote}
-          </Text>
-
-          {storeButtons}
-          <Text style={[styles.webNote, wide && styles.left, { color: p.inkSoft }]}>
-            {t.webNote}
-          </Text>
+          {offerCard}
         </View>
       </View>
 
@@ -483,20 +491,33 @@ const styles = StyleSheet.create({
     padding: 18,
   },
   art: { width: 240, height: 240, borderRadius: 20 },
+  // 広い幅では右の文に負けないよう、図を一回り大きく
+  artWide: { width: 300, height: 300, borderRadius: 24 },
   heroText: { alignItems: 'center', gap: 14, maxWidth: 560 },
   heroTextWide: { flex: 6, alignItems: 'flex-start', maxWidth: undefined },
   left: { textAlign: 'left' },
   tagline: { fontSize: 34, lineHeight: 44, fontWeight: '700', textAlign: 'center' },
   lead: { fontSize: 16, lineHeight: 27, textAlign: 'center' },
+  // 申し込みの紙。中身はすべて中央揃え(見出し側の左揃えとは別の器として扱う)
+  offerCard: {
+    width: '100%',
+    maxWidth: 480,
+    borderWidth: 1,
+    borderRadius: 22,
+    paddingVertical: 22,
+    paddingHorizontal: 20,
+    marginTop: 10,
+    alignItems: 'center',
+    gap: 12,
+  },
   trialBadge: {
     borderRadius: 999,
     paddingHorizontal: 18,
     paddingVertical: 9,
-    marginTop: 6,
   },
-  trialBadgeText: { fontSize: 15, lineHeight: 22, fontWeight: '600' },
-  trialNote: { fontSize: 13, lineHeight: 20, textAlign: 'center', marginTop: -4 },
-  buttons: { width: '100%', maxWidth: 420, gap: 10, marginTop: 8 },
+  trialBadgeText: { fontSize: 15, lineHeight: 22, fontWeight: '600', textAlign: 'center' },
+  trialNote: { fontSize: 13, lineHeight: 20, textAlign: 'center', maxWidth: 400 },
+  buttons: { width: '100%', maxWidth: 420, gap: 10, marginTop: 2 },
   button: {
     minHeight: 52,
     borderRadius: 12,
