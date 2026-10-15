@@ -55,8 +55,10 @@ eas build --profile development -p ios    # EAS の開発ビルド
 購読ゲートの外に置くため、あえて expo-router の画面にしていない。
 URLの定義は `src/constants/site.ts` の1箇所。
 
-紹介ページ(`/about`)だけは expo-router の画面で、ランディングと App Store Connect の
-マーケティングURLを兼ねる。ネイティブでは設定画面から開ける。
+ルート(`/`)は `src/components/DownloadScreen` で、コンセプトの紹介と入手先を兼ねたランディング
+(App Store Connect のマーケティングURL)。文言はこのファイルに直接持つ(`i18n/strings` は
+図鑑データに届くため使えない)。紹介ページ(`/about`)は expo-router の画面で、ネイティブでは
+設定画面から開けるが、Web の書き出しからは `postbuild-web.js` が間引く。
 
 ## 効果音
 
