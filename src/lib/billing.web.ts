@@ -12,6 +12,9 @@ export type { BillingPlan, PurchaseOutcome, SubscriptionStatus } from './billing
 
 export const ENTITLEMENT_ID = 'pro';
 
+/** billing.ts と同じ値。Web はこのファイルが解決されるので、値を持たせておく */
+export const TRIAL_OFFER = { count: 2, unit: 'WEEK' } as const;
+
 export function billingEnabled(): boolean {
   return false;
 }

@@ -71,11 +71,24 @@
 - [ ] entitlement `pro` がある(識別子。UIには出さない)
 - [ ] 月額商品 `tabenote.premium.monthly` が `pro` に紐付いている
 - [ ] その商品を含む Offering が **current** になっている
+- [ ] **⚠️ Android も出すときは、`tabenote.premium.monthly:monthly` が `pro` に紐付き、
+      current の `$rc_monthly` パッケージにも入っている**(2026-10-15 時点では入っておらず、
+      別 entitlement `tabenote` の側にあった。詳細は play-release.md の Step 8)
+- [ ] 年額商品がどの Offering にも入っていない(「年額なし」の決定どおり。残骸が残っている)
 - [ ] App Store Connect との連携(App-Specific Shared Secret)が設定済み
+- [ ] **⚠️ 月額商品に2週間の無料トライアルが乗っている**(2026-10-15 決定。設計書 rev.4 §7)
+
+      設定するのはストア側だけ(ASC の導入オファー / Play の無料トライアルフェーズ)。
+      **RevenueCat 側に設定項目は無い** — SDK が StoreKit / Play Billing から直接拾って
+      自動で適用する。RevenueCat で要るのは商品が `current` の Offering に入っていること。
+      最終確認は実機で — **まだトライアルを使っていない**アカウントのペイウォールに
+      「最初の2週間は無料」と「無料で始める」が出ること。使用済みアカウントで
+      出ないのは正しい挙動(`lib/billing.ts` が適格性を確認して無料表記を外す)。
+
 - [ ] テスト用に付けた promotional entitlement を消した
       (「A day」で付けたものは24時間で自動的に切れるので、通常は放置でよい。
-      **クローズドテスト用の `closed_test_tester` は「A month」で付けているので、
-      テスト完了後に必ず手で取り消す**)
+      **クローズドテスト用の `closed_test_tester` に「A month」で付けたものが残っていれば
+      手で取り消す**。2026-10-15 以降は新たに付与しない — テスターは無料トライアルで入る)
 
 ## 4. 法務ページ(public/ の静的HTML → tabenote.app)
 

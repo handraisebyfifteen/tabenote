@@ -10,14 +10,26 @@ import type { FiveSeason } from '../logic/season';
 import type { Store } from '../constants/site';
 import { cat5Label, fiveFlavorLabel, organLabel, seasonNatureText, type Lang } from './terms';
 
-/** 無料トライアルの長さ。unit は RevenueCat の periodUnit(DAY / WEEK / MONTH / YEAR) */
+/**
+ * 無料トライアルの長さ。unit は RevenueCat の periodUnit(DAY / WEEK / MONTH / YEAR)。
+ *
+ * 同じ長さがストアによって別の単位で返る — 2週間のトライアルは App Store が WEEK/2、
+ * Google Play が DAY/14。日数が7の倍数のときは週に直して、どちらでも同じ文になるようにする
+ * (2026-10-15 決定。「14日間」と「2週間」が混ざるのを防ぐ)。
+ */
 function trialLength(count: number, unit: string, lang: Lang): string {
+  let n = count;
+  let u = unit;
+  if (u === 'DAY' && n >= 7 && n % 7 === 0) {
+    n = n / 7;
+    u = 'WEEK';
+  }
   if (lang === 'ja') {
     const ja: Record<string, string> = { DAY: '日間', WEEK: '週間', MONTH: 'か月', YEAR: '年' };
-    return `${count}${ja[unit] ?? unit.toLowerCase()}`;
+    return `${n}${ja[u] ?? u.toLowerCase()}`;
   }
-  const en = unit.toLowerCase();
-  return `${count} ${count === 1 ? en : `${en}s`}`;
+  const en = u.toLowerCase();
+  return `${n} ${n === 1 ? en : `${en}s`}`;
 }
 
 export interface Strings {
@@ -289,6 +301,12 @@ export interface Strings {
      * unit は RevenueCat の periodUnit(DAY / WEEK / MONTH / YEAR)
      */
     trialLead(trial: { count: number; unit: string }): string;
+    /**
+     * 初回ゲートで、ストアからトライアルの有無がまだ取れていないとき(読み込み中・取得失敗)
+     * と、トライアルを使い終えた人に出す一行。適格でない人にも出るため、
+     * trialLead のような断定ではなく「初めてなら」と条件を明示した言い方にする。
+     */
+    trialNote(trial: { count: number; unit: string }): string;
     /** トライアル付きのときの periodNote。無料期間のあとに請求が始まることを示す */
     periodNoteTrial: string;
     subscribe: string;
@@ -651,6 +669,8 @@ const ja: Strings = {
       '選んだ食材の組み合わせを五味・性の五角形で確かめる\n435品目の食材の図鑑(五味・性・帰経・分類)\n二十四節気と五季、いまの季節に合う味の表示\n食材に★とメモ、組み合わせを手帳に保存\n選んだ食材と季節から、AIが献立のアイデアを提案',
     periodNote: '1か月ごとの自動更新',
     trialLead: ({ count, unit }) => `最初の${trialLength(count, unit, 'ja')}は無料`,
+    trialNote: ({ count, unit }) =>
+      `初めてのご登録なら、最初の${trialLength(count, unit, 'ja')}は無料`,
     periodNoteTrial: '無料期間のあと、1か月ごとの自動更新',
     subscribe: '登録する',
     subscribeTrial: '無料で始める',
@@ -1048,6 +1068,8 @@ const en: Strings = {
       'See any combination of ingredients as a pentagon of the five flavors and nature\nAn encyclopedia of 435 ingredients (flavor, nature, meridians, category)\nThe 24 solar terms, the five seasons, and the flavors favored right now\nStar ingredients, write notes, save combinations to your notebook\nAI menu ideas from the ingredients you picked and the season',
     periodNote: 'Renews automatically every month',
     trialLead: ({ count, unit }) => `${trialLength(count, unit, 'en')} free`,
+    trialNote: ({ count, unit }) =>
+      `New subscribers start with ${trialLength(count, unit, 'en')} free`,
     periodNoteTrial: 'Then renews automatically every month',
     subscribe: 'Subscribe',
     subscribeTrial: 'Start for free',

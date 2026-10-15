@@ -21,6 +21,16 @@ import { IS_CLOSED_TEST } from '@/config/closedTest';
 /** RevenueCat ダッシュボードで作る entitlement の識別子 */
 export const ENTITLEMENT_ID = 'pro';
 
+/**
+ * ストアに設定した無料トライアルの長さ(2026-10-15 決定。設計書 rev.4 §7)。
+ *
+ * 実際に適用されるかを決めるのはストア(iOS は一人一度・Android は新規顧客のみ)なので、
+ * 購入前の表示は原則 getPlans() が返す BillingPlan.trial を使う。これはプランがまだ
+ * 取れていない初回ゲートで「初めてなら無料」と案内するためだけの控え(i18n の trialNote)。
+ * ストア側(ASC の導入オファー / Play の無料トライアルフェーズ)を変えたらここも直す。
+ */
+export const TRIAL_OFFER = { count: 2, unit: 'WEEK' } as const;
+
 /** 公開APIキー(ストアごとに別。秘密鍵ではないのでアプリに載せてよい) */
 const API_KEY =
   Platform.select({

@@ -27,6 +27,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLang } from '@/i18n/LanguageContext';
 import { getStrings } from '@/i18n/strings';
 import { useAnalyticsReady, useTrack } from '@/lib/analytics';
+import { TRIAL_OFFER } from '@/lib/billing';
 import { useBilling } from '@/lib/BillingContext';
 import { exportUserData } from '@/lib/export';
 import { loadUserData } from '@/lib/storage';
@@ -144,6 +145,18 @@ export default function PaywallContent({
         <Text style={[styles.planName, { color: c.text }]}>{t.paywall.planName}</Text>
         <Text style={[styles.lead, { color: c.textSecondary }]}>{t.paywall.lead}</Text>
 
+        {/*
+          初回ゲートでは「初めてなら2週間無料」を必ず読ませる(2026-10-15 決定)。
+          プランがまだ取れていないとき(読み込み中・取得失敗)と、トライアルを使い終えた人に出す。
+          ストアが適格と返したときは価格の上の確定表記(trialLead)が受け持つので、ここには出さない。
+          断定しないのは、適格かどうかを決めるのはストアだから(lib/billing の trialEligibleProductIds)。
+        */}
+        {source === 'onboarding' && !active && (plan === null || plan.trial === null) && (
+          <Text style={[styles.trialNote, { color: c.text }]}>
+            {t.paywall.trialNote(TRIAL_OFFER)}
+          </Text>
+        )}
+
         <View style={[styles.card, { backgroundColor: c.backgroundElement }]}>
           <Text style={[styles.cardTitle, { color: ACCENT }]}>
             {t.paywall.includedTitle}
@@ -259,6 +272,7 @@ const styles = StyleSheet.create({
   content: { width: '100%', maxWidth: MaxContentWidth, alignSelf: 'center', gap: 8 },
   planName: { fontSize: 22, fontWeight: '600', marginTop: 8 },
   lead: { fontSize: 13, lineHeight: 20, marginBottom: 4 },
+  trialNote: { fontSize: 15, fontWeight: '600', lineHeight: 22, marginBottom: 4 },
   card: { borderRadius: 12, padding: 16, gap: 6 },
   cardTitle: { fontSize: 12, fontWeight: '600', marginBottom: 2 },
   itemRow: { flexDirection: 'row', alignItems: 'flex-start' },
