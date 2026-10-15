@@ -237,7 +237,9 @@ export default function AdviceScreen() {
 
       {opposite && (
         <Section title={t.advice.balanceTitle} color={c}>
-          {t.advice.oppositeFact(
+          {(opposite.involvesSeasoning
+            ? t.advice.oppositeSeasoningFact
+            : t.advice.oppositeFact)(
             foodName(opposite.a, lang),
             foodName(opposite.b, lang),
           )}

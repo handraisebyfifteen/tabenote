@@ -94,6 +94,13 @@ export interface Strings {
     seasonFact(seasonLabel: string, flavors: FiveFlavor[]): string;
     balanceTitle: string;
     oppositeFact(a: string, b: string): string;
+    /**
+     * 片方が調味料・油脂・飲み物のときの釣り合い(opposites.involvesSeasoning)。
+     * 塩・しょうゆは寒、こしょう・とうがらしは熱なので当たり前の組み合わせでも
+     * 差が最大になる。献立から外せるものではないため、同じ皿を否定せず
+     * 「量で加減できる」と伝える
+     */
+    oppositeSeasoningFact(a: string, b: string): string;
     fillTitle: string;
     fillFlavorLabel(flavor: FiveFlavor): string;
     fillCatLabel(cat: Cat5): string;
@@ -478,6 +485,8 @@ const ja: Strings = {
     balanceTitle: '釣り合い',
     oppositeFact: (a, b) =>
       `「${a}」と「${b}」は性が正反対なので、同じ皿には向きません。`,
+    oppositeSeasoningFact: (a, b) =>
+      `「${a}」と「${b}」は性が大きく離れていますが、調味料は量で釣り合いを取れます。`,
     fillTitle: '補うなら',
     fillFlavorLabel: (f) => `${f}味`,
     fillCatLabel: (c) => cat5Label(c, 'ja'),
@@ -873,6 +882,8 @@ const en: Strings = {
     balanceTitle: 'Balance',
     oppositeFact: (a, b) =>
       `“${a}” and “${b}” have opposite natures, so they don't sit well on the same plate.`,
+    oppositeSeasoningFact: (a, b) =>
+      `“${a}” and “${b}” sit far apart in nature, but seasonings can be balanced by how much you use.`,
     fillTitle: 'To fill the gaps',
     fillFlavorLabel: (f) => fiveFlavorLabel(f, 'en'),
     fillCatLabel: (c) => cat5Label(c, 'en'),
